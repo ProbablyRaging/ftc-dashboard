@@ -1,0 +1,33 @@
+<%- include('partials/header') -%>
+    <%- include('partials/mainnav') -%>
+
+        <table class="table-fill">
+            <div class="table-title">
+                <h3>Showing 10 of <%= resArr.length %> warning logs</h3>
+            </div>
+            <thead>
+                <tr>
+                    <th class="text-left">UserId</th>
+                    <th class="text-left">Reason</th>
+                    <th class="text-left">Author</th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                <% resArr.slice(0, 10).forEach(entry=> { %>
+                    <tr>
+                        <td class="text-left">
+                            <%= entry.userId %>
+                        </td>
+                        <td class="text-left">
+                            <%= entry.reason %>
+                        </td>
+                        <td class="text-left table-author">
+                            <%= entry.authorTag %>
+                        </td>
+                    </tr>
+                    <% }) %>
+
+            </tbody>
+        </table>
+
+        <%- include('partials/footer') -%>

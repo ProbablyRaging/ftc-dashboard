@@ -1,0 +1,21 @@
+<%- include('partials/header') -%>
+    <%- include('partials/prenav') -%>
+
+        <!-- <div class="login-image-div">
+        <div class="fade-in">
+            <img src="https://i.imgur.com/pyibSFW.png" alt="CHDashboard" class="login-image">
+        </div>
+    </div> -->
+            <div class="login-container">
+                <h2>Welcome back</h2>
+                <div class="container-body">
+                    <form action="/auth">
+                        <button class="button is-primary is-rounded login-button" type="submit">Login with
+                            Discord</button>
+                    </form>
+                </div>
+                <p class="login-footer">This site is not affiliated with <a href="https://discord.com">discord inc.</a></p>
+                <p class="login-footer">Your discord <i>username</i>, <i>id</i> and <i>avatar</i> will be saved<br>in our database, nothing more.</p>
+            </div>
+
+        <%- include('partials/footer') -%>
