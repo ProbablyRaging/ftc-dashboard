@@ -1,0 +1,54 @@
+.topbar-bg-dark {
+    background-color: #1F2129 !important;
+    /* background-image: linear-gradient(to bottom, #252730, #1F2129); */
+}
+
+.mb-4 {
+    margin-bottom: 0px !important;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.nav-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+    border-radius: 8px;
+}
+
+#nav-text-one {
+    font-family: 'Mulish', sans-serif;
+    float: left;
+    color: rgba(0, 213, 255, 0.996);
+}
+
+#nav-text-two {
+    font-family: 'Mulish', sans-serif;
+    float: right;
+    color: rgb(255, 255, 255);
+    margin-right: 10px;
+}
+
+.user-info {
+    display: block;
+}
+
+.nav-item.user {
+    color: #6c757d;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: -5px;
+}
+
+.nav-item.userId {
+    float: right;
+    font-size: 8px;
+    color: #6c757d;
+    margin-right: 15px;
+}
+
+.navbar .user-discord-pfp {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}

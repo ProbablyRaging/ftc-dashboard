@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-
-
+// Dashboard root
 router.get('/', isAuthortized, (req, res) => {
     res.render('dashboard', {
-        username: req.user.username,
-        userId: req.user.userId
+        username: `${req.user.username}#${req.user.discriminator}`,
+        userId: req.user.userId,
+        avatar: req.user.avatar
     });
 });
 

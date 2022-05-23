@@ -1,0 +1,32 @@
+<%- include('partials/header') -%>
+    <%- include('partials/mainnav') -%>
+        <%- include('partials/topbar') -%>
+        
+            <div class="page-full-div">
+                <div class="module-container">
+                    <div class="inner-container">
+                        <h5 class="header">Update Rules</h5>
+                        <p class="sub-header">Update the servers rules by choosing a rule from the drop down menu and then editing the text</p>
+                        <div>&nbsp;</div>
+                        <div class="input-grid">
+                            <label class="input-label" for="rule-list">Choose a rule to update</label><br>
+                            <select class="select-box" id="rule-list">
+                                <option value="volvo">Rule 1</option>
+                                <option value="saab">Rule 2</option>
+                                <option value="opel">Rule 3</option>
+                                <option value="audi">Rule 4</option>
+                                <option value="audi">Rule 5</option>
+                                <option value="audi">Rule 6</option>
+                                <option value="audi">Rule 7</option>
+                            </select>
+                            <label class="input-label" for="rule-input">Edit the rule</label><br>
+                            <textarea class="textarea-box" id="rule-input" rows="3">Enter some text to change the rules</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+            <%- include('partials/footer') -%>

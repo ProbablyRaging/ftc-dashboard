@@ -5,9 +5,19 @@ const port = process.env.PORT;
 const session = require('express-session');
 const mongoStore = require('connect-mongo');
 const passport = require('passport');
+const favicon = require('serve-favicon');
 const discordStrategy = require('./strategies/discord_strategy');
 const mongo = require('./database/mongodb');
 const path = require('path');
+const requirejs = require('requirejs')
+
+// Fetch users profile data from Discord's API
+// const headers = {
+//     "Content-Type": "application/json",
+//     "Authorization": process.env.API_TOKEN
+// }
+// const resolve = await fetch(`https://discord.com/api/v9/users/${req.user.userId}`, { method: 'GET', headers: headers });
+// const discordUserData = resolve.json();
 
 // Database
 mongo.then(() => console.log('Connected to database')).catch(err => console.error(err));
@@ -16,6 +26,7 @@ mongo.then(() => console.log('Connected to database')).catch(err => console.erro
 const authRoute = require('./routes/auth');
 const dashboardRoute = require('./routes/dashboard');
 const logsRoute = require('./routes/logs');
+const settingsRoute = require('./routes/settings');
 
 app.use(session({
     secret: 'some secret',
@@ -36,10 +47,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Favicon
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
 // Middleware
 app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/logs', logsRoute);
+app.use('/settings', settingsRoute);
 
 app.get('/', isAuthortized, (req, res) => {
     res.render('home');

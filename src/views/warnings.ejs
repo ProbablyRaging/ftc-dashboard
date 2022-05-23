@@ -1,33 +1,85 @@
 <%- include('partials/header') -%>
-    <%- include('partials/mainnav') -%>
+    <%- include('partials/topbar') -%>
+        <%- include('partials/container') -%>
 
-        <table class="table-fill">
-            <div class="table-title">
-                <h3>Showing 10 of <%= resArr.length %> warning logs</h3>
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Warning Logs</div>
+
+                                <div class="pagination">
+                                    <section class="pagination-button" onclick="navigateDownPagination()">
+                                        <i class="fa fa-arrow-left"></i>
+                                    </section>
+                                    <p class="page-count"><%= page %></p>
+                                    <section class="pagination-button" onclick="navigateUpPagination()">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </section>
+                                </div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content-table">
+                            <table class="table-fill">
+                                <div class="table-title">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left">Username</th>
+                                            <th class="text-left">Reason</th>
+                                            <th class="text-left">Warning Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-hover">
+                                        <% results.slice(0, 5).forEach(entry=> { %>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <p class="table-user"><%= entry.username || 'null' %></p>
+                                                    <p class="table-userId">ID:<%= entry.userId || 'null' %></p>
+                                                </td>
+                                                <td class="text-left">
+                                                    <%= entry.reason || 'null' %>
+                                                </td>
+                                                <td class="text-left">
+                                                    <p class="table-author"><%= entry.authorTag || 'null' %></p>
+                                                        <p class="table-timestamp">
+                                                            <%= converTimestampToSimpleFormat(entry.timestamp) || 'null' %>
+                                                        </p>
+                                                        <p class="table-warnid">WARNID:<%= entry.warnId || 'null' %></p>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+    
+                                    </tbody>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                    <!--  -->
+
+                </div>
             </div>
-            <thead>
-                <tr>
-                    <th class="text-left">UserId</th>
-                    <th class="text-left">Reason</th>
-                    <th class="text-left">Author</th>
-                </tr>
-            </thead>
-            <tbody class="table-hover">
-                <% resArr.slice(0, 10).forEach(entry=> { %>
-                    <tr>
-                        <td class="text-left">
-                            <%= entry.userId %>
-                        </td>
-                        <td class="text-left">
-                            <%= entry.reason %>
-                        </td>
-                        <td class="text-left table-author">
-                            <%= entry.authorTag %>
-                        </td>
-                    </tr>
-                    <% }) %>
+            <!--  -->
 
-            </tbody>
-        </table>
+            <% function converTimestampToSimpleFormat(timestamp) { %>
+                <% const t=new Date(timestamp); %>
+                    <% const date=('0' + t.getDate()).slice(-2); %>
+                        <% const month=('0' + (t.getMonth() + 1)).slice(-2); %>
+                            <% const year=t.getFullYear(); %>
+                                <% const hours=('0' + t.getHours()).slice(-2); %>
+                                    <% const minutes=('0' + t.getMinutes()).slice(-2); %>
+                                        <% const seconds=('0' + t.getSeconds()).slice(-2); %>
+                                            <% const time=`${date}/${month}/${year}, ${hours}:${minutes}:${seconds}`; %>
+                                                <% return time; %>
+                                                    <% } %>
 
-        <%- include('partials/footer') -%>
+            <%- include('partials/footer') -%>

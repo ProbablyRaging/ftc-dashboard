@@ -1,38 +1,111 @@
-<div class="navbar navbar-expand-md navbar-dark bg-dark mb-4" role="navigation">
-    <a class="navbar-item" href="http://localhost:3000">
+<div class="main-menu" id="main-menu">
+    <div class="nav-logo-div">
+        <button class="fa-solid fa-bars nav-back-button" id="navbar-hide-show"></button>
         <img src="https://cdn.discordapp.com/icons/820889004055855144/a_aabe3c2a811fb30195d2cf76b9aaa437.gif"
-            alt="CHDashboard" width="112" height="28" class="nav-image">
-        <div class="nav-text">
-            <p id="nav-text-one">CH</p>
-            <p id="nav-text-two">Dashboard</p>
-        </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="http://localhost:3000/dashboard">Dashboard</a>
-            </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="http://fontenele.github.io/bootstrap-navbar-dropdowns/" target="_blank">Github</a>
-            </li> -->
-            <!-- <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li> -->
-        </ul>
-        <div class="user-info">
-            <p class="nav-item user">
-                <%= username %>
-            </p>
-            <p class="nav-item userId">
-                ID:<%= userId %>
-            </p>
-        </div>
-        <form action="/auth/logout">
-            <button class="button is-danger is-rounded logout-button" type="submit">Logout</button>
-        </form>
+            class="nav-logo">
+        <p id="nav-text-one">CH</p>
+        <p id="nav-text-two">Dashboard</p>
     </div>
+
+    <ul>
+        <li>
+            <a href="/dashboard">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">
+                    Dashboard
+                </span>
+            </a>
+        </li>
+
+        <hr class="content-box-separator">
+        <p class="list-title">Command Management</p>
+
+        <li>
+            <a href="/settings/index">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span class="nav-text">
+                    Index
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="/settings/rules">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <span class="nav-text">
+                    Rules
+                </span>
+            </a>
+        </li>
+
+        <hr class="content-box-separator">
+        <p class="list-title">Server Logs</p>
+
+
+        <li class="has-subnav">
+            <a href="/logs/warnings">
+                <i class="fa fa-exclamation-triangle"></i>
+                <span class="nav-text">
+                    Warnings
+                </span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/logs/mutes">
+                <i class="fa fa-volume-xmark"></i>
+                <span class="nav-text">
+                    Mutes/Timeouts
+                </span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a href="/logs/bans">
+                <i class="fa-solid fa-ban"></i>
+                <span class="nav-text">
+                    Bans/Unbans
+                </span>
+            </a>
+
+        </li>
+        <li>
+            <a href="/logs/blacklists">
+                <i class="fa-solid fa-crosshairs"></i>
+                <span class="nav-text">
+                    Blacklisted Messages
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="/logs/commands">
+                <i class="fa-solid fa-terminal"></i>
+                <span class="nav-text">
+                    Commands Usage
+                </span>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="logout">
+        <li>
+            <a href="/auth/logout">
+                <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">
+                    Logout
+                </span>
+            </a>
+        </li>
+    </ul>
 </div>
+
+<script>
+    // const targetDiv = document.getElementById("main-menu");
+    // const btn = document.getElementById("navbar-hide-show");
+    // btn.onclick = function() {
+    //     if (targetDiv.style.display !== "none") {
+    //         targetDiv.style.width = "55px";
+    //     } else {
+    //         targetDiv.style.display = "block";
+    //     }
+    // };
+</script>

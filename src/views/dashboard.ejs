@@ -1,47 +1,52 @@
 <%- include('partials/header') -%>
-    <%- include('partials/mainnav') -%>
+    <%- include('partials/topbar') -%>
+        <%- include('partials/container') -%>
 
-        <div style="padding: 50px;">
+            <div class="content-page-title">
+                <p>Welcome, <%= username %>
+                </p>
+            </div>
+            <p class="content-page-description">Choose a category below to view its contents or edit its settings</p>
 
-            <div class="category-container">
-                <div>
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
 
-                    <div class="category-title">
-                        Logs
-                    </div>
-                    <div class="button-container">
-                        <section class="category-button" onclick="location.href='/logs/warnings';">
-                            <i class="fa fa-exclamation-triangle"></i> Warnings
-                        </section>
-                        <section class="category-button">
-                            <i class="fa fa-volume-off"></i> Mutes/Timeouts
-                        </section>
-                        <section class="category-button">
-                            <i class="fa fa-wrench"></i> Bans/Unbans
-                        </section>
-                        <section class="category-button">
-                            <i class="fa fa-shield"></i> Blacklisted Messages
-                        </section>
-                        <section class="category-button">
-                            <i class="fa fa-tasks"></i> Commands
-                        </section>
-                    </div>
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Command Management</div>
 
-                    <div class="category-title">
-                        Values
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content">
+                            <div class="content-box-button" onclick="location.href = '/settings/index';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/281/281760.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Index Command</h5>
+                                <div class="button-description">Change response values for the index command</div>
+                            </div>
+
+                            <div class="content-box-button" onclick="location.href = '/settings/rules';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/281/281760.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Rule Command</h5>
+                                <div class="button-description">Change rules everwhere they are used on the server</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="button-container">
-                        <section class="category-button">
-                            <i class="fa fa-exclamation-triangle"></i> Index
-                        </section>
-                        <section class="category-button">
-                            <i class="fa fa-exclamation-triangle"></i> Rules
-                        </section>
-                    </div>
+                    <!--  -->
 
                 </div>
             </div>
+            <!--  -->
 
-        </div>
-
-        <%- include('partials/footer') -%>
+            <%- include('partials/footer') -%>
