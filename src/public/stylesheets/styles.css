@@ -253,7 +253,7 @@ code {
     margin: 20px 0px 34px;
 }
 
-.dwNzsD:not(:last-of-type) {
+.content-box:not(:last-of-type) {
     margin-bottom: 16px;
 }
 
