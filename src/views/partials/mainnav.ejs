@@ -1,8 +1,8 @@
-<div class="main-menu" id="main-menu">
+<div class="main-menu" id="main-menu-visible">
     <div class="nav-logo-div">
-        <button class="fa-solid fa-bars nav-back-button" id="navbar-hide-show"></button>
+        <button class="fa-solid fa-arrow-right-to-bracket nav-toggle-button" id="navbar-hide"></button>
         <img src="https://cdn.discordapp.com/icons/820889004055855144/a_aabe3c2a811fb30195d2cf76b9aaa437.gif"
-            class="nav-logo">
+            class="nav-logo" id="nav-logo">
         <p id="nav-text-one">CH</p>
         <p id="nav-text-two">Dashboard</p>
     </div>
@@ -11,86 +11,97 @@
         <li>
             <a href="/dashboard">
                 <i class="fa fa-home fa-2x"></i>
-                <span class="nav-text">
+                <span class="nav-text" id="nav-text">
                     Dashboard
                 </span>
             </a>
         </li>
 
-        <hr class="content-box-separator">
-        <p class="list-title">Command Management</p>
-
-        <li>
-            <a href="/settings/index">
-                <i class="fa-solid fa-file-invoice"></i>
-                <span class="nav-text">
-                    Index
-                </span>
-            </a>
-        </li>
-        <li>
-            <a href="/settings/rules">
-                <i class="fa-solid fa-scale-balanced"></i>
-                <span class="nav-text">
-                    Rules
-                </span>
-            </a>
-        </li>
-
-        <hr class="content-box-separator">
-        <p class="list-title">Server Logs</p>
+        <!-- Group One -->
+        <div class="list-title-div" id="group-one-visible">
+            <div class="list-title">Command Management</div>
+            <button class="fa-solid fa-angle-up" id="collapse-one"></button>
+        </div>
 
 
-        <li class="has-subnav">
-            <a href="/logs/warnings">
-                <i class="fa fa-exclamation-triangle"></i>
-                <span class="nav-text">
-                    Warnings
-                </span>
-            </a>
+        <div class="group-one">
+            <li>
+                <a href="/settings/index">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span class="nav-text id=" nav-text"">
+                        Index
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/settings/rules">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <span class="nav-text" id="nav-text">
+                        Rules
+                    </span>
+                </a>
+            </li>
+        </div>
 
-        </li>
-        <li class="has-subnav">
-            <a href="/logs/mutes">
-                <i class="fa fa-volume-xmark"></i>
-                <span class="nav-text">
-                    Mutes/Timeouts
-                </span>
-            </a>
+        <!-- Group Two -->
+        <div class="list-title-div" id="group-two-visible">
+            <div class="list-title">Server Logs</div>
+            <button class="fa-solid fa-angle-up" id="collapse-two"></button>
+        </div>
 
-        </li>
-        <li class="has-subnav">
-            <a href="/logs/bans">
-                <i class="fa-solid fa-ban"></i>
-                <span class="nav-text">
-                    Bans/Unbans
-                </span>
-            </a>
 
-        </li>
-        <li>
-            <a href="/logs/blacklists">
-                <i class="fa-solid fa-crosshairs"></i>
-                <span class="nav-text">
-                    Blacklisted Messages
-                </span>
-            </a>
-        </li>
-        <li>
-            <a href="/logs/commands">
-                <i class="fa-solid fa-terminal"></i>
-                <span class="nav-text">
-                    Commands Usage
-                </span>
-            </a>
-        </li>
+        <div class="group-two">
+            <li class="has-subnav">
+                <a href="/logs/warnings">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    <span class="nav-text" id="nav-text">
+                        Warnings
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="/logs/mutes">
+                    <i class="fa fa-volume-xmark"></i>
+                    <span class="nav-text" id="nav-text">
+                        Mutes/Timeouts
+                    </span>
+                </a>
+
+            </li>
+            <li class="has-subnav">
+                <a href="/logs/bans">
+                    <i class="fa-solid fa-ban"></i>
+                    <span class="nav-text" id="nav-text">
+                        Bans/Unbans
+                    </span>
+                </a>
+
+            </li>
+            <li>
+                <a href="/logs/blacklists">
+                    <i class="fa-solid fa-crosshairs"></i>
+                    <span class="nav-text" id="nav-text">
+                        Blacklisted Messages
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/logs/commands">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span class="nav-text" id="nav-text">
+                        Command Usage
+                    </span>
+                </a>
+            </li>
+        </div>
     </ul>
 
     <ul class="logout">
         <li>
             <a href="/auth/logout">
                 <i class="fa fa-power-off fa-2x"></i>
-                <span class="nav-text">
+                <span class="nav-text" id="nav-text">
                     Logout
                 </span>
             </a>
@@ -99,13 +110,43 @@
 </div>
 
 <script>
-    // const targetDiv = document.getElementById("main-menu");
-    // const btn = document.getElementById("navbar-hide-show");
-    // btn.onclick = function() {
-    //     if (targetDiv.style.display !== "none") {
-    //         targetDiv.style.width = "55px";
-    //     } else {
-    //         targetDiv.style.display = "block";
-    //     }
-    // };
+
+    const btnGroupOne = document.getElementById('group-one-visible');
+    const btnGroupTwo = document.getElementById('group-two-visible');
+
+    btnGroupOne.onclick = function () {
+        if (btnGroupOne.id === "group-one-visible") {
+            $(".group-one").slideUp(150);
+
+            $("#collapse-one").addClass('rotated')
+
+            $("#group-one-visible").attr("id", "group-one-hidden");
+        } else {
+            $(".group-one").slideDown(150);
+
+            $("#collapse-one").removeClass('rotated')
+
+            $("#group-one-hidden").attr("id", "group-one-visible");
+        }
+    }
+
+    btnGroupTwo.onclick = function () {
+        console.log('yes')
+        if (btnGroupTwo.id === "group-two-visible") {
+            $(".group-two").slideUp(150);
+
+            $("#collapse-two").addClass('rotated')
+
+            $("#group-two-visible").attr("id", "group-two-hidden");
+        } else {
+            $(".group-two").slideDown(150);
+
+            $("#collapse-two").removeClass('rotated')
+
+            $("#group-two-hidden").attr("id", "group-two-visible");
+        }
+    }
+
+
+
 </script>

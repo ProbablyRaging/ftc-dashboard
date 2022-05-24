@@ -11,18 +11,20 @@
                         <div class="content-box-title-flex">
                             <h5 class="content-box-title-decor">
                                 <div class="content-box-title">Warning Logs</div>
-
-                                <div class="pagination">
-                                    <section class="pagination-button" onclick="navigateDownPagination()">
-                                        <i class="fa fa-arrow-left"></i>
-                                    </section>
-                                    <p class="page-count"><%= page %></p>
-                                    <section class="pagination-button" onclick="navigateUpPagination()">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </section>
-                                </div>
-
                             </h5>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <section class="pagination-button" onclick="navigateDownPagination()">
+                                <i class="fa fa-arrow-left"></i>
+                            </section>
+                            <p class="page-count">
+                                <%= page %>
+                            </p>
+                            <section class="pagination-button" onclick="navigateUpPagination()">
+                                <i class="fa fa-arrow-right"></i>
+                            </section>
                         </div>
                     </header>
 
@@ -30,35 +32,45 @@
 
                     <div>
                         <div class="content-box-content-table">
+                            
+                            <!-- Table -->
+                            <div class="pagination-math">
+                                <code><%= skip + 1 %></code> to <code><%= limit * page %></code> of <code><%= total %></code>
+                            </div>
                             <table class="table-fill">
                                 <div class="table-title">
                                     <thead>
                                         <tr>
                                             <th class="text-left">Username</th>
-                                            <th class="text-left">Reason</th>
-                                            <th class="text-left">Warning Info</th>
+                                            <th class="text-center">Reason</th>
+                                            <th class="text-right">Information</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-hover">
                                         <% results.slice(0, 5).forEach(entry=> { %>
                                             <tr>
                                                 <td class="text-left">
-                                                    <p class="table-user"><%= entry.username || 'null' %></p>
-                                                    <p class="table-userId">ID:<%= entry.userId || 'null' %></p>
+                                                    <p class="table-user">
+                                                        <%= entry.username || 'null' %>
+                                                    </p>
+                                                    <p class="table-userId">ID:<%= entry.userId || 'null' %>
+                                                    </p>
                                                 </td>
-                                                <td class="text-left">
+                                                <td class="text-center">
                                                     <%= entry.reason || 'null' %>
                                                 </td>
-                                                <td class="text-left">
-                                                    <p class="table-author"><%= entry.authorTag || 'null' %></p>
-                                                        <p class="table-timestamp">
-                                                            <%= converTimestampToSimpleFormat(entry.timestamp) || 'null' %>
-                                                        </p>
-                                                        <p class="table-warnid">WARNID:<%= entry.warnId || 'null' %></p>
+                                                <td class="text-right">
+                                                    <p class="table-author">
+                                                        <%= entry.authorTag || 'null' %>
+                                                    </p>
+                                                    <p class="table-timestamp">
+                                                        <%= converTimestampToSimpleFormat(entry.timestamp) || 'null' %>
+                                                    </p>
+                                                    <p class="table-warnid">WARNID: <%= entry.warnId || 'null' %>
+                                                    </p>
                                                 </td>
                                             </tr>
                                             <% }) %>
-    
                                     </tbody>
                                 </div>
                             </table>
@@ -70,6 +82,7 @@
             </div>
             <!--  -->
 
+            <!-- Timestamp conversion -->
             <% function converTimestampToSimpleFormat(timestamp) { %>
                 <% const t=new Date(timestamp); %>
                     <% const date=('0' + t.getDate()).slice(-2); %>
@@ -82,4 +95,4 @@
                                                 <% return time; %>
                                                     <% } %>
 
-            <%- include('partials/footer') -%>
+                                                        <%- include('partials/footer') -%>

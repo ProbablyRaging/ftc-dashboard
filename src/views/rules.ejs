@@ -5,7 +5,7 @@
             <div class="content-page-title">
                 <p>Command Management</p>
             </div>
-            <p class="content-page-description">Change rules everwhere they are used on the server</p>
+            <p class="content-page-description">Changes the rule values everwhere they are used on the server</p>
 
             <!-- Content Box -->
             <div class="content-box">
@@ -26,6 +26,7 @@
                     <div>
                         <div class="content-box-content-row">
 
+                            <!-- Select box -->
                             <form class="submit-form content-box-content-row" action="/settings/rules" method="post">
                                 <select name="rule" class="form-select content-box-select" id="rule-selector" onchange="updateRuleInDatabase()">
                                     <option class="select-option" selected disabled>Choose a rule to edit</option>
@@ -38,22 +39,19 @@
                                     <option class="select-option" value="7">Rule 7 - <%= results[6].value %></option>
                                 </select>
 
+                                <!-- Textarea box -->
                                 <textarea name="input" id="rule-input" role="textbox"
                                     class="bg-grey-700 !min-h-[112px] rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default  undefined content-box-textbox"
                                     data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
                                     style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
                                     spellcheck="false" placeholder="Enter some text" required></textarea>
 
+                                    <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary rule-submit-btn"
                                     id="liveToastBtn">Save</button>
                             </form>
 
-
-                            
-                            
-
-
-
+                            <!-- Toast -->
                             <div class="toast-container position-fixed bottom-0 end-0 p-3">
                                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                                     <div class="toast-body text-light bg-primary">

@@ -1,5 +1,0 @@
-<%- include('partials/header') -%>
-    <%- //include('partials/mainnav') -%>
-        <%- //include('partials/topbar') -%>
-
-            <%- include('partials/footer') -%>

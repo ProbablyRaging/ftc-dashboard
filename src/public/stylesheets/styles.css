@@ -109,6 +109,18 @@ body {
     font-weight: 400;
 }
 
+strong {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+}
+
+code {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgb(28, 28, 28);
+    padding: 4px;
+    border-radius: 4px;
+}
+
 .container-fluid {
     margin: 0;
     padding: 0;
@@ -258,7 +270,7 @@ body {
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .content-box-title-flex {
@@ -422,7 +434,8 @@ hr {
     /* padding: 20px; */
 }
 
-.rule-submit-btn:focus, .rule-submit-btn:active {
+.rule-submit-btn:focus,
+.rule-submit-btn:active {
     outline: none !important;
     box-shadow: none !important;
 }
@@ -459,13 +472,14 @@ th {
     border-bottom: 1px solid rgb(49, 52, 66);
     border-right: 1px solid rgb(49, 52, 66);
     font-size: 16px;
-    padding: 6px;
-    text-align: left;
+    padding: 10px;
+    text-align: left !important;
     vertical-align: middle;
 }
 
 th:first-child {
     border-top-left-radius: 3px;
+    max-width: 20px;
 }
 
 th:last-child {
@@ -511,9 +525,9 @@ tr:nth-child(odd):hover td {
 
 td {
     background: rgb(32, 33, 41);
-    padding: 15px;
-    text-align: left;
-    vertical-align: middle;
+    padding: 10px;
+    text-align: left !important;
+    vertical-align: middle !important;
     font-weight: 300;
     font-size: 12px;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
@@ -521,6 +535,25 @@ td {
     border-left: 1px solid rgb(41, 44, 56);
     border-bottom: 1px solid rgb(41, 44, 56);
     font-family: 'Mulish', sans-serif;
+}
+
+.text-left {
+    width: 50px;
+    max-width: 60px;
+    word-wrap: break-word;
+}
+
+.text-center {
+    width: 300px;
+    max-width: 300px;
+    word-wrap: break-word;
+    font-weight: 400;
+}
+
+.text-right {
+    width: 70px;
+    max-width: 70px;
+    word-wrap: break-word;
 }
 
 .table-userId {
@@ -547,14 +580,22 @@ td {
     text-align: left !important;
 }
 
+.pagination-div {
+    display: flex;
+}
+
 .pagination {
+    display: grid;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     margin-left: 30%;
     margin-right: auto;
 }
 
 .pagination-button {
-    width: 35px;
     align-items: center;
     background-color: #202225;
     border-radius: 5px;
@@ -580,6 +621,10 @@ td {
 
 .pagination-button .fa {
     padding: 12px;
+}
+
+.pagination-math {
+    margin-bottom: 4px;
 }
 
 @keyframes gradient {
