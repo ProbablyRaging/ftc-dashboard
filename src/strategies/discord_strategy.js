@@ -28,6 +28,7 @@ passport.use(new discordStrategy({
         const resolve = await fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}/members/${profile.id}`, { method: 'GET', headers: headers });
         const discordUserData = await resolve.json();
 
+        // TODO: Check if we resolved a GET request. If not they are likely not in the server and this might cause errors
         if (discordUserData.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
             if (user) {
                 done(null, user);
@@ -39,14 +40,35 @@ passport.use(new discordStrategy({
                     avatar: profile.avatar,
                     accessToken: accessToken,
                     refreshToken: refreshToken,
-                    guilds: profile.guilds
+                    guilds: profile.guilds,
+                    roles: discordUserData.roles,
+                    isStaff: true
+                });
+
+                const savedUser = await newUser.save();
+                done(null, savedUser);
+            }
+        } else if (discordUserData.roles.includes(`846007549621960705`)) {
+            if (user) {
+                done(null, user);
+            } else {
+                const newUser = await discordUser.create({
+                    userId: profile.id,
+                    username: profile.username,
+                    discriminator: profile.discriminator,
+                    avatar: profile.avatar,
+                    accessToken: accessToken,
+                    refreshToken: refreshToken,
+                    guilds: profile.guilds,
+                    roles: discordUserData.roles,
+                    isStaff: false
                 });
 
                 const savedUser = await newUser.save();
                 done(null, savedUser);
             }
         } else {
-            done('missing permissions', null);
+            done(null, null)
         }
     } catch (err) {
         console.error(err);

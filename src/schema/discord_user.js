@@ -28,6 +28,14 @@ const userSchema = new mongoose.Schema({
     guilds: {
         type: Array,
         required: true
+    },
+    roles: {
+        type: Array,
+        required: true
+    },
+    isStaff: {
+        type: Boolean,
+        required: true
     }
 });
 

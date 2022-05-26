@@ -17,7 +17,7 @@
             </a>
         </li>
 
-        <!-- Group One -->
+        <!-- Group -->
         <div class="list-title-div" id="group-one-visible">
             <div class="list-title">Command Management</div>
             <button class="fa-solid fa-angle-up" id="collapse-one"></button>
@@ -43,14 +43,32 @@
             </li>
         </div>
 
-        <!-- Group Two -->
+        <!-- Group -->
         <div class="list-title-div" id="group-two-visible">
-            <div class="list-title">Server Logs</div>
+            <div class="list-title">Staff Applications</div>
             <button class="fa-solid fa-angle-up" id="collapse-two"></button>
         </div>
 
 
         <div class="group-two">
+            <li>
+                <a href="/applications">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span class="nav-text" id="nav-text">
+                        Applications
+                    </span>
+                </a>
+            </li>
+        </div>
+
+        <!-- Group -->
+        <div class="list-title-div" id="group-three-visible">
+            <div class="list-title">Server Logs</div>
+            <button class="fa-solid fa-angle-up" id="collapse-three"></button>
+        </div>
+
+
+        <div class="group-three">
             <li class="has-subnav">
                 <a href="/logs/warnings">
                     <i class="fa fa-exclamation-triangle"></i>
@@ -108,45 +126,3 @@
         </li>
     </ul>
 </div>
-
-<script>
-
-    const btnGroupOne = document.getElementById('group-one-visible');
-    const btnGroupTwo = document.getElementById('group-two-visible');
-
-    btnGroupOne.onclick = function () {
-        if (btnGroupOne.id === "group-one-visible") {
-            $(".group-one").slideUp(150);
-
-            $("#collapse-one").addClass('rotated')
-
-            $("#group-one-visible").attr("id", "group-one-hidden");
-        } else {
-            $(".group-one").slideDown(150);
-
-            $("#collapse-one").removeClass('rotated')
-
-            $("#group-one-hidden").attr("id", "group-one-visible");
-        }
-    }
-
-    btnGroupTwo.onclick = function () {
-        console.log('yes')
-        if (btnGroupTwo.id === "group-two-visible") {
-            $(".group-two").slideUp(150);
-
-            $("#collapse-two").addClass('rotated')
-
-            $("#group-two-visible").attr("id", "group-two-hidden");
-        } else {
-            $(".group-two").slideDown(150);
-
-            $("#collapse-two").removeClass('rotated')
-
-            $("#group-two-hidden").attr("id", "group-two-visible");
-        }
-    }
-
-
-
-</script>

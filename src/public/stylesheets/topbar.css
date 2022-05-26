@@ -9,24 +9,9 @@
     padding-right: 15px;
 }
 
-.nav-image {
-    width: 30px;
-    height: 30px;
-    margin-right: 6px;
-    border-radius: 8px;
-}
-
-#nav-text-one {
-    font-family: 'Mulish', sans-serif;
-    float: left;
-    color: rgba(0, 213, 255, 0.996);
-}
-
-#nav-text-two {
-    font-family: 'Mulish', sans-serif;
-    float: right;
-    color: rgb(255, 255, 255);
-    margin-right: 10px;
+.topnav-search {
+    background-color: rgb(23, 24, 30);
+    border: none;
 }
 
 .user-info {

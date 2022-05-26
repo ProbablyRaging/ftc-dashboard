@@ -1,5 +1,6 @@
 require('dotenv').config();
 const router = require('express').Router();
+const { isAuthortized } = require('../strategies/auth_check');
 
 // Dashboard root
 router.get('/', isAuthortized, async (req, res) => {
@@ -9,13 +10,5 @@ router.get('/', isAuthortized, async (req, res) => {
         avatar: req.user.avatar
     });
 });
-
-function isAuthortized(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-}
 
 module.exports = router;

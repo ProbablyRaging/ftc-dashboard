@@ -1,4 +1,4 @@
-// Navbar Animation
+// Navbar main show/hide
 const navBar = document.getElementById("main-menu-visible");
 const btnShowHideNav = document.getElementById("navbar-hide");
 const navText = document.getElementsByClassName('nav-text');
@@ -76,19 +76,75 @@ btnShowHideNav.onclick = function () {
     }
 };
 
+// Navbar group show/hide
+const btnGroupOne = document.getElementById('group-one-visible');
+const btnGroupTwo = document.getElementById('group-two-visible');
+const btnGroupThree = document.getElementById('group-three-visible');
+
+btnGroupOne.onclick = function () {
+    if (btnGroupOne.id === "group-one-visible") {
+        $(".group-one").slideUp(150);
+
+        $("#collapse-one").addClass('rotated')
+
+        $("#group-one-visible").attr("id", "group-one-hidden");
+    } else {
+        $(".group-one").slideDown(150);
+
+        $("#collapse-one").removeClass('rotated')
+
+        $("#group-one-hidden").attr("id", "group-one-visible");
+    }
+}
+
+btnGroupTwo.onclick = function () {
+    console.log('yes')
+    if (btnGroupTwo.id === "group-two-visible") {
+        $(".group-two").slideUp(150);
+
+        $("#collapse-two").addClass('rotated')
+
+        $("#group-two-visible").attr("id", "group-two-hidden");
+    } else {
+        $(".group-two").slideDown(150);
+
+        $("#collapse-two").removeClass('rotated')
+
+        $("#group-two-hidden").attr("id", "group-two-visible");
+    }
+}
+
+btnGroupThree.onclick = function () {
+    console.log('yes')
+    if (btnGroupThree.id === "group-three-visible") {
+        $(".group-three").slideUp(150);
+
+        $("#collapse-three").addClass('rotated')
+
+        $("#group-three-visible").attr("id", "group-three-hidden");
+    } else {
+        $(".group-three").slideDown(150);
+
+        $("#collapse-three").removeClass('rotated')
+
+        $("#group-three-hidden").attr("id", "group-three-visible");
+    }
+}
+
 // Tooltips
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
 // Live Toasts
-const toastTrigger = document.getElementById('liveToastBtn')
-const toastLiveExample = document.getElementById('liveToast')
+const toastTrigger = document.getElementById('liveToastBtn');
+const toastLiveExample = document.getElementById('liveToast');
+
 if (toastTrigger) {
     toastTrigger.addEventListener('click', () => {
-        const toast = new bootstrap.Toast(toastLiveExample)
+        const toast = new bootstrap.Toast(toastLiveExample);
 
-        toast.show()
-    })
+        toast.show();
+    });
 }
 
 // Pagination
@@ -114,8 +170,21 @@ function navigateUpPagination() {
 
 // Update rule in database
 function updateRuleInDatabase() {
-    const thisVal = document.getElementById('rule-selector').value
-    if (!thisVal) return;
-    const thisText = document.getElementById('rule-selector').options[thisVal].text.split('- ');
-    document.getElementById('rule-input').value = thisText[1]
+    setTimeout(() => {
+        const thisVal = document.getElementById('rule-selector').value;
+        if (!thisVal) return;
+        const thisText = document.getElementById('rule-selector').options[thisVal].text.split('- ');
+        document.getElementById('rule-input').value = thisText[1];
+    }, 1000);
 }
+
+// Delay submit for toast
+const getForm = document.getElementById('rule-form');
+getForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
+    event.preventDefault();
+    submitTimer = setTimeout(() => {
+        this.submit();
+    }, 2000)
+};

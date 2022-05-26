@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const mongo = require('../database/mongodb');
+const { isAuthortized } = require('../strategies/auth_check');
 const warnSchema = require('../schema/warn_schema');
 const muteTimeoutSchema = require('../schema/mute_timeout_schema');
 const banUnbanSchema = require('../schema/ban_unban_schema');
@@ -170,13 +171,5 @@ router.get('/commands', isAuthortized, async (req, res) => {
         });
     });
 });
-
-function isAuthortized(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-}
 
 module.exports = router;

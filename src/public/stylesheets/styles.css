@@ -99,7 +99,6 @@ body {
     margin: 0;
     background-color: #272934 !important;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
     line-height: 23px;
     margin: 0px auto;
     scroll-behavior: smooth;
@@ -328,6 +327,13 @@ hr {
     gap: 24px;
 }
 
+.content-box-content-column {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+}
+
 .content-box-button {
     background-color: rgb(49, 52, 66);
     display: flex;
@@ -377,10 +383,10 @@ hr {
 .content-box-select {
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 4px;
     font-family: proxima-nova, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 24px;
-    min-height: 48px;
-    color: rgb(242, 244, 251);
+    min-height: 50px;
+    color: rgb(173, 173, 173);
     max-width: 483px;
     position: relative;
     width: 100%;
@@ -425,17 +431,43 @@ hr {
 
 .content-box-textbox:focus {
     border: 1px solid #5fa2db !important;
+    background: rgb(23, 24, 30);
 }
 
-.rule-submit-btn {
-    width: 10%;
-    text-transform: unset !important;
-    overflow: hidden;
+.content-box-textbox-sm {
+    color: rgb(173, 173, 173);
+    font-family: 'Montserrat', sans-serif !important;
+    position: relative;
+    width: 100%;
+    max-width: 483px;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: border 0.2s;
+    background: rgb(23, 24, 30);
+    resize: none;
+}
+
+.content-box-textbox-sm:focus {
+    border: 1px solid #5fa2db !important;
+    background: rgb(23, 24, 30);
+}
+
+.content-box-textbox-sm:disabled {
+    background: rgb(28, 29, 35);
+}
+
+.submit-btn {
+    min-width: 120px;
+    max-height: 35px;
+    /* width: 10%; */
+    /* text-transform: unset !important;
+    overflow: hidden; */
     /* padding: 20px; */
 }
 
-.rule-submit-btn:focus,
-.rule-submit-btn:active {
+.submit-btn:focus,
+.submit-btn:active {
     outline: none !important;
     box-shadow: none !important;
 }
@@ -451,15 +483,7 @@ hr {
     width: 100%;
 }
 
-
-
-
-
-
-
-
 /* TABLE */
-
 .table-fill {
     width: 1200px;
     background-color: rgb(23, 24, 30);
@@ -626,6 +650,57 @@ td {
 .pagination-math {
     margin-bottom: 4px;
 }
+
+.mb-3-staff {
+    max-width: 500px;
+}
+
+.card {
+    width: 100% !important;
+    height: 400px;
+    display: block;
+    overflow: auto;
+    color: rgb(155, 157, 159);
+    background: rgb(23, 24, 30);
+}
+
+.card-body {
+    max-height: 50px;
+}
+
+.card-footer {
+    margin-bottom: 10px;
+}
+
+.list-group-flush>.list-group-item {
+    background-color: rgb(23, 24, 30);
+}
+
+.card>.list-group {
+    border-color: rgb(49, 52, 66);
+}
+
+.list-group-item {
+    color: rgb(155, 157, 159);
+    border-color: rgb(49, 52, 66);
+}
+
+.card-img-top {
+    min-height: 100px;
+}
+
+.card-img-crop {
+    width: 100%;
+    /* width of container */
+    height: 20%;
+    /* height of container */
+    object-fit: cover;
+}
+
+
+
+
+
 
 @keyframes gradient {
     0% {

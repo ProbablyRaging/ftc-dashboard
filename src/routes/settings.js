@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { isAuthortized } = require('../strategies/auth_check');
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const mongo = require('../database/mongodb');
@@ -9,7 +10,7 @@ router.get('/', isAuthortized, (req, res) => {
     res.redirect('/dashboard')
 });
 
-// Warnings
+// Rules GET
 router.get('/rules', isAuthortized, async (req, res) => {
     mongo.then(async mongo => {
         const results = await ruleSchema.find();
@@ -23,7 +24,7 @@ router.get('/rules', isAuthortized, async (req, res) => {
     });
 });
 
-// Rules
+// Rules POST
 router.post('/rules', isAuthortized, urlencodedParser, async (req, res) => {
     const ruleToUpdate = req.body.rule?.toLowerCase();
     const ruleNewValue = req.body.input;
@@ -49,13 +50,5 @@ router.get('/index', isAuthortized, async (req, res) => {
         avatar: req.user.avatar,
     });
 });
-
-function isAuthortized(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-}
 
 module.exports = router;

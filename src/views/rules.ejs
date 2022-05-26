@@ -27,16 +27,25 @@
                         <div class="content-box-content-row">
 
                             <!-- Select box -->
-                            <form class="submit-form content-box-content-row" action="/settings/rules" method="post">
-                                <select name="rule" class="form-select content-box-select" id="rule-selector" onchange="updateRuleInDatabase()">
+                            <form class="submit-form content-box-content-row" id="rule-form" action="/settings/rules"
+                                method="post">
+                                <select name="rule" class="form-select content-box-select" id="rule-selector"
+                                    onchange="updateRuleInDatabase()">
                                     <option class="select-option" selected disabled>Choose a rule to edit</option>
-                                    <option class="select-option" value="1">Rule 1 - <%= results[0].value %></option>
-                                    <option class="select-option" value="2">Rule 2 - <%= results[1].value %></option>
-                                    <option class="select-option" value="3">Rule 3 - <%= results[2].value %></option>
-                                    <option class="select-option" value="4">Rule 4 - <%= results[3].value %></option>
-                                    <option class="select-option" value="5">Rule 5 - <%= results[4].value %></option>
-                                    <option class="select-option" value="6">Rule 6 - <%= results[5].value %></option>
-                                    <option class="select-option" value="7">Rule 7 - <%= results[6].value %></option>
+                                    <option class="select-option" value="1">Rule 1 - <%= results[0].value %>
+                                    </option>
+                                    <option class="select-option" value="2">Rule 2 - <%= results[1].value %>
+                                    </option>
+                                    <option class="select-option" value="3">Rule 3 - <%= results[2].value %>
+                                    </option>
+                                    <option class="select-option" value="4">Rule 4 - <%= results[3].value %>
+                                    </option>
+                                    <option class="select-option" value="5">Rule 5 - <%= results[4].value %>
+                                    </option>
+                                    <option class="select-option" value="6">Rule 6 - <%= results[5].value %>
+                                    </option>
+                                    <option class="select-option" value="7">Rule 7 - <%= results[6].value %>
+                                    </option>
                                 </select>
 
                                 <!-- Textarea box -->
@@ -46,9 +55,11 @@
                                     style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
                                     spellcheck="false" placeholder="Enter some text" required></textarea>
 
-                                    <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary rule-submit-btn"
-                                    id="liveToastBtn">Save</button>
+                                <!-- Submit button -->
+                                <div>
+                                    <button type="submit" class="btn btn-primary submit-btn"
+                                        id="liveToastBtn">Save</button>
+                                </div>
                             </form>
 
                             <!-- Toast -->

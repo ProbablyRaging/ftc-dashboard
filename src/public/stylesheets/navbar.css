@@ -23,6 +23,26 @@
     font-size: 20px;
 }
 
+.nav-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+    border-radius: 8px;
+}
+
+#nav-text-one {
+    font-family: 'Mulish', sans-serif;
+    float: left;
+    color: rgba(0, 213, 255, 0.996);
+}
+
+#nav-text-two {
+    font-family: 'Mulish', sans-serif;
+    float: right;
+    color: rgb(255, 255, 255);
+    margin-right: 10px;
+}
+
 .main-menu .list-title-div {
     display: flex;
     -webkit-box-align: center;
@@ -43,7 +63,7 @@
     visibility: visible !important;
 }
 
-#collapse-one, #collapse-two {
+#collapse-one, #collapse-two, #collapse-three {
     color: #999;
     background: none;
     border: none;

@@ -9,7 +9,6 @@ const favicon = require('serve-favicon');
 const discordStrategy = require('./strategies/discord_strategy');
 const mongo = require('./database/mongodb');
 const path = require('path');
-const requirejs = require('requirejs')
 
 // Fetch users profile data from Discord's API
 // const headers = {
@@ -27,6 +26,8 @@ const authRoute = require('./routes/auth');
 const dashboardRoute = require('./routes/dashboard');
 const logsRoute = require('./routes/logs');
 const settingsRoute = require('./routes/settings');
+const applicationsRoute = require('./routes/applications');
+const applyRoute = require('./routes/apply');
 
 app.use(session({
     secret: 'some secret',
@@ -55,6 +56,8 @@ app.use('/auth', authRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/logs', logsRoute);
 app.use('/settings', settingsRoute);
+app.use('/applications', applicationsRoute);
+app.use('/apply', applyRoute);
 
 app.get('/', isAuthortized, (req, res) => {
     res.render('home');
