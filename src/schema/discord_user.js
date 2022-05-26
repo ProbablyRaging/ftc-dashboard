@@ -39,4 +39,4 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-const DiscordUser = module.exports = mongoose.model('Dashboard Users', userSchema);
+const DiscordUser = module.exports = mongoose.model('dashboardusers', userSchema);
