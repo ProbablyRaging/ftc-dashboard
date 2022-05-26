@@ -6,9 +6,15 @@
             <%= username %>
         </p>
         <p class="nav-item userId">
-            ID:<%= userId %>
+            ID: <%= userId %>
         </p>
+    </div>    
+    
+    <div class="dropstart profile-dropdown" id="profile-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.png" class="user-discord-pfp"">
+        <button class="fa-solid fa-angle-down" id="profile-dropdown-chevron"></button>
+        <ul class="dropdown-menu">
+          <li onclick="location.href='/auth/logout'"><i class="fa fa-power-off fa-2x"></i>Logout</li>
+        </ul>
     </div>
-
-    <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.png" class="user-discord-pfp">
 </div>

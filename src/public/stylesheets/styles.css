@@ -206,7 +206,7 @@ code {
 }
 
 .content-body {
-    margin-left: 220px;
+    margin-left: 300px;
     max-width: 100%;
     flex: 1 1 0%;
     display: flex;
@@ -578,6 +578,12 @@ td {
     width: 70px;
     max-width: 70px;
     word-wrap: break-word;
+}
+
+.table-img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 8px;
 }
 
 .table-userId {

@@ -29,6 +29,9 @@ const settingsRoute = require('./routes/settings');
 const applicationsRoute = require('./routes/applications');
 const applyRoute = require('./routes/apply');
 
+// Error Routes
+const forbiddenRoute = require('./routes/forbidden');
+
 app.use(session({
     secret: 'some secret',
     cookie: {
@@ -58,6 +61,7 @@ app.use('/logs', logsRoute);
 app.use('/settings', settingsRoute);
 app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
+app.use('/forbidden', forbiddenRoute);
 
 app.get('/', isAuthortized, (req, res) => {
     res.render('home');

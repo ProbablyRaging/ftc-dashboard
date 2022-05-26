@@ -7,7 +7,6 @@ const navLogo = document.getElementById("nav-logo");
 const navTextOne = document.getElementById("nav-text-one");
 const navTextTwo = document.getElementById("nav-text-two");
 const listTitle = document.getElementsByClassName('list-title-div');
-const btnCollapse = document.getElementsByClassName('fa-angle-down');
 
 btnShowHideNav.onclick = function () {
     if (navBar.id === "main-menu-visible") {
@@ -23,16 +22,16 @@ btnShowHideNav.onclick = function () {
             listTitle[i].style.display = "none";
         };
 
-        for (var i = 0; i < btnCollapse.length; i++) {
-            btnCollapse[i].style.display = "none";
-        };
-
         navLogo.style.display = "none";
         navTextOne.style.display = "none";
         navTextTwo.style.display = "none";
 
         $(".content-body").animate({
             marginLeft: 60
+        }, 200);
+
+        $(".nav-list").animate({
+            width: 60
         }, 200);
 
         $("#main-menu-visible").animate({
@@ -55,21 +54,21 @@ btnShowHideNav.onclick = function () {
                 listTitle[i].style.display = "flex";
             };
 
-            for (var i = 0; i < btnCollapse.length; i++) {
-                btnCollapse[i].style.display = "table-cell";
-            };
-
             navLogo.style.display = "block";
             navTextOne.style.display = "block";
             navTextTwo.style.display = "block";
         }, 200);
 
         $(".content-body").animate({
-            marginLeft: 220
+            marginLeft: 300
+        }, 200);
+
+        $(".nav-list").animate({
+            width: 300
         }, 200);
 
         $("#main-menu-hidden").animate({
-            width: 220
+            width: 300
         }, 200);
 
         $('#main-menu-hidden').attr("id", "main-menu-visible");
@@ -85,51 +84,62 @@ btnGroupOne.onclick = function () {
     if (btnGroupOne.id === "group-one-visible") {
         $(".group-one").slideUp(150);
 
-        $("#collapse-one").addClass('rotated')
+        $("#collapse-one").addClass('rotated');
 
         $("#group-one-visible").attr("id", "group-one-hidden");
     } else {
         $(".group-one").slideDown(150);
 
-        $("#collapse-one").removeClass('rotated')
+        $("#collapse-one").removeClass('rotated');
 
         $("#group-one-hidden").attr("id", "group-one-visible");
     }
 }
 
 btnGroupTwo.onclick = function () {
-    console.log('yes')
     if (btnGroupTwo.id === "group-two-visible") {
         $(".group-two").slideUp(150);
 
-        $("#collapse-two").addClass('rotated')
+        $("#collapse-two").addClass('rotated');
 
         $("#group-two-visible").attr("id", "group-two-hidden");
     } else {
         $(".group-two").slideDown(150);
 
-        $("#collapse-two").removeClass('rotated')
+        $("#collapse-two").removeClass('rotated');
 
         $("#group-two-hidden").attr("id", "group-two-visible");
     }
 }
 
 btnGroupThree.onclick = function () {
-    console.log('yes')
     if (btnGroupThree.id === "group-three-visible") {
         $(".group-three").slideUp(150);
 
-        $("#collapse-three").addClass('rotated')
+        $("#collapse-three").addClass('rotated');
 
         $("#group-three-visible").attr("id", "group-three-hidden");
     } else {
         $(".group-three").slideDown(150);
 
-        $("#collapse-three").removeClass('rotated')
+        $("#collapse-three").removeClass('rotated');
 
         $("#group-three-hidden").attr("id", "group-three-visible");
     }
 }
+
+// Topbar profile dropdown
+const profileDropdownDiv = document.getElementById('profile-dropdown');
+const profileDropdownBtn = document.getElementById('profile-dropdown-chevron');
+
+profileDropdownDiv.onclick = function () {
+    if (profileDropdownBtn.className === "fa-solid fa-angle-down") {
+        $("#profile-dropdown-chevron").addClass('rotated');
+    } else {
+        $("#profile-dropdown-chevron").removeClass('rotated');
+    }
+}
+
 
 // Tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
