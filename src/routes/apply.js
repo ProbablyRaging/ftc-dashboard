@@ -27,12 +27,13 @@ router.get('/', async (req, res) => {
 router.post('/', urlencodedParser, async (req, res) => {
     // Create webhook
     const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
-    const body = { name: `CreatorBot` };
+    const body = { name: `CreatorBot`, avatar: process.env.BOT_IMG_URI };
     let webhook;
     await fetch(`https://discord.com/api/v9/channels/${process.env.STAFF_CHANNEL}/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
         webhook = await response.json();
         // Send webhook
-        const body = { content: `<@&${process.env.AUTH_ROLE_ID}>
+        const body = {
+            content: `<@&${process.env.AUTH_ROLE_ID}>
 There is a new staff application, [click here](https://www.creatorhub.info/applications) to view it` };
         await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
             // Delete webhook
