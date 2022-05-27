@@ -9,9 +9,15 @@
     padding-right: 15px;
 }
 
-.topnav-search {
+.topbar-search {
+    color: rgb(155, 157, 159) !important;
     background-color: rgb(23, 24, 30);
     border: none;
+}
+
+.topbar-search:focus {
+    background-color: rgb(23, 24, 30);
+    border: none !important;
 }
 
 .user-info {
