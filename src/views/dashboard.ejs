@@ -3,10 +3,23 @@
         <%- include('partials/container') -%>
 
             <div class="content-page-title">
-                <p>Welcome, <%= username %>
+                <p>Welcome back, <%= username %>
                 </p>
+
+                <!-- Content Box -->
+                <div class="stat-content-box">
+                    <div class="content-box-div">
+                        <div class="stat-content-box-content">
+                            <i class="fa-solid fa-circle online"> Online</i> <p class="member-count"><%= onlineMembers %></p>
+                        </div>
+                        <div class="stat-content-box-content">
+                            <i class="fa-solid fa-circle offline"> Offline</i> <p class="member-count"><%= totalMembers %></p>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+
             </div>
-            <p class="content-page-description">Choose a category below to view its contents or edit its settings</p>
 
             <!-- Content Box -->
             <div class="content-box">
@@ -42,7 +55,7 @@
                                         class="button-img">
                                 </div>
                                 <h5 class="button-title">Rule</h5>
-                                <div class="button-description">Change the rules everwhere they are used on the
+                                <div class="button-description">Change the rules everywhere they are used on the
                                     server</div>
                             </div>
                         </div>
@@ -168,6 +181,66 @@
             </div>
             <!--  -->
 
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
 
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Leaderboard</div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content">
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/leaderboards/ranks';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/490/490576.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Ranks</h5>
+                                <div class="button-description">A leaderboard for the server ranks</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/leaderboards/messages';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Messages</h5>
+                                <div class="button-description">A leaderboard for the server messages</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/leaderboards/lastletter';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/773/773228.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Last Letter Game</h5>
+                                <div class="button-description">A leaderboard for the last letter game</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/leaderboards/counting';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/7173/7173821.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Counting Game</h5>
+                                <div class="button-description">A leaderboard for the counting game</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+            <!--  -->
 
             <%- include('partials/footer') -%>

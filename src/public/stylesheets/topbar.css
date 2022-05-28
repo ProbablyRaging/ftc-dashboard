@@ -25,7 +25,7 @@
 }
 
 .nav-item.user {
-    color: #6c757d;
+    color: rgb(242, 244, 251);
     margin-right: 15px;
     margin-top: 5px;
     margin-bottom: -5px;
@@ -66,11 +66,6 @@
     cursor: pointer;
     margin-top: 6px;
     transition: transform 0.15s ease-out 0s;
-}
-
-#profile-dropdown-chevron-open {
-    transition: transform 0.15s ease-out 0s;
-    transform: rotate(180deg);
 }
 
 .dropdown-menu {

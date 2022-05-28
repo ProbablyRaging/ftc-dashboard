@@ -17,7 +17,7 @@
 }
 
 .main-menu .fa,
-.fa-solid {
+.main-menu .fa-solid {
     position: relative;
     display: table-cell;
     width: 60px;
@@ -67,7 +67,10 @@
     visibility: visible !important;
 }
 
-#collapse-one, #collapse-two, #collapse-three {
+#collapse-one,
+#collapse-two,
+#collapse-three,
+#collapse-four {
     color: #999;
     background: none;
     border: none;

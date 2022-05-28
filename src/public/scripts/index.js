@@ -1,3 +1,17 @@
+if (top.location.pathname.split('/')[1] === 'logs' || top.location.pathname.split('/')[1] === 'leaderboards') {
+    $(window).on('load', function () {
+        console.log('yes')
+        setTimeout(() => {
+            $('.spinner-div').removeClass('spinner');
+            $('.content-body').removeClass('hidden');
+        }, 500);
+    });
+} else {
+    $('.spinner-div').removeClass('spinner');
+    $('.content-body').removeClass('hidden');
+}
+
+
 // Navbar main show/hide
 const navBar = document.getElementById("main-menu-visible");
 const btnShowHideNav = document.getElementById("navbar-hide");
@@ -79,66 +93,100 @@ btnShowHideNav.onclick = function () {
 const btnGroupOne = document.getElementById('group-one-visible');
 const btnGroupTwo = document.getElementById('group-two-visible');
 const btnGroupThree = document.getElementById('group-three-visible');
+const btnGroupFour = document.getElementById('group-four-visible');
 
-btnGroupOne.onclick = function () {
-    if (btnGroupOne.id === "group-one-visible") {
-        $(".group-one").slideUp(150);
+if (btnGroupOne) {
+    btnGroupOne.onclick = function () {
+        if (btnGroupOne.id === "group-one-visible") {
+            $(".group-one").slideUp(150);
 
-        $("#collapse-one").addClass('rotated');
+            $("#collapse-one").addClass('rotated');
 
-        $("#group-one-visible").attr("id", "group-one-hidden");
-    } else {
-        $(".group-one").slideDown(150);
+            $("#group-one-visible").attr("id", "group-one-hidden");
+        } else {
+            $(".group-one").slideDown(150);
 
-        $("#collapse-one").removeClass('rotated');
+            $("#collapse-one").removeClass('rotated');
 
-        $("#group-one-hidden").attr("id", "group-one-visible");
+            $("#group-one-hidden").attr("id", "group-one-visible");
+        }
     }
 }
+if (btnGroupTwo) {
+    btnGroupTwo.onclick = function () {
+        if (btnGroupTwo.id === "group-two-visible") {
+            $(".group-two").slideUp(150);
 
-btnGroupTwo.onclick = function () {
-    if (btnGroupTwo.id === "group-two-visible") {
-        $(".group-two").slideUp(150);
+            $("#collapse-two").addClass('rotated');
 
-        $("#collapse-two").addClass('rotated');
+            $("#group-two-visible").attr("id", "group-two-hidden");
+        } else {
+            $(".group-two").slideDown(150);
 
-        $("#group-two-visible").attr("id", "group-two-hidden");
-    } else {
-        $(".group-two").slideDown(150);
+            $("#collapse-two").removeClass('rotated');
 
-        $("#collapse-two").removeClass('rotated');
-
-        $("#group-two-hidden").attr("id", "group-two-visible");
+            $("#group-two-hidden").attr("id", "group-two-visible");
+        }
     }
 }
+if (btnGroupThree) {
+    btnGroupThree.onclick = function () {
+        if (btnGroupThree.id === "group-three-visible") {
+            $(".group-three").slideUp(150);
 
-btnGroupThree.onclick = function () {
-    if (btnGroupThree.id === "group-three-visible") {
-        $(".group-three").slideUp(150);
+            $("#collapse-three").addClass('rotated');
 
-        $("#collapse-three").addClass('rotated');
+            $("#group-three-visible").attr("id", "group-three-hidden");
+        } else {
+            $(".group-three").slideDown(150);
 
-        $("#group-three-visible").attr("id", "group-three-hidden");
-    } else {
-        $(".group-three").slideDown(150);
+            $("#collapse-three").removeClass('rotated');
 
-        $("#collapse-three").removeClass('rotated');
+            $("#group-three-hidden").attr("id", "group-three-visible");
+        }
+    }
+}
+if (btnGroupFour) {
+    btnGroupFour.onclick = function () {
+        if (btnGroupFour.id === "group-four-visible") {
+            $(".group-four").slideUp(150);
 
-        $("#group-three-hidden").attr("id", "group-three-visible");
+            $("#collapse-four").addClass('rotated');
+
+            $("#group-four-visible").attr("id", "group-four-hidden");
+        } else {
+            $(".group-four").slideDown(150);
+
+            $("#collapse-four").removeClass('rotated');
+
+            $("#group-four-hidden").attr("id", "group-four-visible");
+        }
     }
 }
 
 // Topbar profile dropdown
-const profileDropdownDiv = document.getElementById('profile-dropdown');
-const profileDropdownBtn = document.getElementById('profile-dropdown-chevron');
+const profileDropdownMenu = document.getElementById('dropdown-menu');
 
-profileDropdownDiv.onclick = function () {
-    if (profileDropdownBtn.className === "fa-solid fa-angle-down") {
-        $("#profile-dropdown-chevron").addClass('rotated');
-    } else {
-        $("#profile-dropdown-chevron").removeClass('rotated');
-    }
-}
+document.body.addEventListener('click', () => {
+    setTimeout(() => {
+        if (profileDropdownMenu.className === 'dropdown-menu show') {
+            $("#profile-dropdown-chevron").addClass('rotated');
+        } else {
+            $("#profile-dropdown-chevron").removeClass('rotated');
+        }
+    }, 10);
+});
+
+
+// profileDropdownDiv.onclick = function () {
+//     console.log('yess')
+//     if (profileDropdownBtn.className === "fa-solid fa-angle-down") {
+//         console.log('yes')
+//         $("#profile-dropdown-chevron").addClass('rotated');
+//     } else {
+//         $("#profile-dropdown-chevron").removeClass('rotated');
+//     }
+// }
 
 
 // Tooltips
@@ -152,7 +200,6 @@ const toastLiveExample = document.getElementById('liveToast');
 if (toastTrigger) {
     toastTrigger.addEventListener('click', () => {
         const toast = new bootstrap.Toast(toastLiveExample);
-
         toast.show();
     });
 }
@@ -198,3 +245,24 @@ function handleSubmit(event) {
         this.submit();
     }, 2000)
 };
+
+// Apply toast
+const staffForm = document.getElementById('staff-form');
+staffForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
+    event.preventDefault();
+    submitTimer = setTimeout(() => {
+        this.submit();
+    }, 2000)
+};
+
+const toastTrigger2 = document.getElementById('liveToastBtn');
+const toastLiveExample2 = document.getElementById('liveToast');
+
+if (toastTrigger2) {
+    toastTrigger2.addEventListener('click', () => {
+        const toast2 = new bootstrap.Toast(toastLiveExample2);
+        toast2.show();
+    });
+}

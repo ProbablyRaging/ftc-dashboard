@@ -28,6 +28,7 @@ const logsRoute = require('./routes/logs');
 const settingsRoute = require('./routes/settings');
 const applicationsRoute = require('./routes/applications');
 const applyRoute = require('./routes/apply');
+const leaderboardsRoute = require('./routes/leaderboards');
 
 // Error Routes
 const forbiddenRoute = require('./routes/forbidden');
@@ -56,12 +57,13 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // Middleware
 app.use('/auth', authRoute);
+app.use('/forbidden', forbiddenRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/logs', logsRoute);
 app.use('/settings', settingsRoute);
 app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
-app.use('/forbidden', forbiddenRoute);
+app.use('/leaderboards', leaderboardsRoute);
 
 app.get('/', isAuthortized, (req, res) => {
     res.render('home');
