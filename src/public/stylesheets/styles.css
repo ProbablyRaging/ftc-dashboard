@@ -783,24 +783,9 @@ td {
     border-top: 2px solid #07d;
     border-right: 2px solid transparent;
     animation: spinner .6s linear infinite;
-} */
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.leaderboard {
+*/ .leaderboard {
     width: 100%;
 }
 
@@ -861,4 +846,34 @@ td {
 .leaderboard-table td {
     padding: 15px 15px;
     border: none;
+}
+
+
+
+/* Mobile Compat */
+@media only screen and (max-width: 480px) {
+    .d-flex {
+        display: none !important;
+    }
+
+    .content-body {
+        margin-left: 60px;
+    }
+
+    .content-box-content {
+        display: block;
+        width: 100%;
+    }
+
+    .content-box-button:not(:last-of-type) {
+        margin-bottom: 15px;
+    }
+
+    .content-page-title {
+        display: block;
+    }
+
+    .stat-content-box {
+        margin-top: 15px;
+    }
 }

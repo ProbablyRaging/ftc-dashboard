@@ -42,13 +42,4 @@ router.post('/rules', isAuthortized, urlencodedParser, async (req, res) => {
     res.redirect('/settings/rules');
 });
 
-// Mutes and timeouts
-router.get('/index', isAuthortized, async (req, res) => {
-    res.render('index', {
-        username: `${req.user.username}#${req.user.discriminator}`,
-        userId: req.user.userId,
-        avatar: req.user.avatar,
-    });
-});
-
 module.exports = router;

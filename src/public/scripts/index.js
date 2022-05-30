@@ -1,3 +1,4 @@
+// Loading spinner
 if (top.location.pathname.split('/')[1] === 'logs' || top.location.pathname.split('/')[1] === 'leaderboards') {
     $(window).on('load', function () {
         console.log('yes')
@@ -54,7 +55,6 @@ btnShowHideNav.onclick = function () {
 
         $('#main-menu-visible').attr("id", "main-menu-hidden");
     } else {
-
         setTimeout(() => {
             for (var i = 0; i < navTitle.length; i++) {
                 navTitle[i].style.display = "block";
