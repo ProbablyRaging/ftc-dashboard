@@ -253,6 +253,10 @@ code {
     font-size: 24px;
 }
 
+.content-page-header {
+    align-self: flex-start;
+}
+
 .content-page-description {
     margin: 20px 0px 34px;
 }
@@ -358,6 +362,28 @@ hr {
 
 .member-count {
     margin-inline-start: auto;
+}
+
+.server-stats {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 12px;
+}
+
+.sub-stats {
+    display: flex;
+    gap: 6px;
+}
+
+.count-title {
+    font-size: 12px;
+    color: rgb(120, 120, 120);
+    /* text-transform: uppercase; */
+}
+
+.stat-counts {
+    font-size: 12px;
 }
 
 .content-box-content-row {

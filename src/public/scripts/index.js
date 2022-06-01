@@ -25,21 +25,15 @@ const listTitle = document.getElementsByClassName('list-title-div');
 
 btnShowHideNav.onclick = function () {
     if (navBar.id === "main-menu-visible") {
-        for (var i = 0; i < navTitle.length; i++) {
-            navTitle[i].style.display = "none";
-        };
+        $(".list-title").hide(100);
 
-        for (var i = 0; i < navText.length; i++) {
-            navText[i].style.display = "none";
-        };
+        $(".nav-text").hide(100);
 
-        for (var i = 0; i < listTitle.length; i++) {
-            listTitle[i].style.display = "none";
-        };
+        $(".list-title-div").hide(100);
 
-        navLogo.style.display = "none";
-        navTextOne.style.display = "none";
-        navTextTwo.style.display = "none";
+        $("#nav-logo").hide(100);
+        $("#nav-text-one").hide(100);
+        $("#nav-text-two").hide(100);
 
         $(".content-body").animate({
             marginLeft: 60
@@ -56,21 +50,15 @@ btnShowHideNav.onclick = function () {
         $('#main-menu-visible').attr("id", "main-menu-hidden");
     } else {
         setTimeout(() => {
-            for (var i = 0; i < navTitle.length; i++) {
-                navTitle[i].style.display = "block";
-            };
+            $(".list-title").show(100);
 
-            for (var i = 0; i < navText.length; i++) {
-                navText[i].style.display = "table-cell";
-            };
+            $(".nav-text").show(100);
 
-            for (var i = 0; i < listTitle.length; i++) {
-                listTitle[i].style.display = "flex";
-            };
+            $(".list-title-div").show(100);
 
-            navLogo.style.display = "block";
-            navTextOne.style.display = "block";
-            navTextTwo.style.display = "block";
+            $("#nav-logo").show(100);
+            $("#nav-text-one").show(100);
+            $("#nav-text-two").show(100);
         }, 200);
 
         $(".content-body").animate({

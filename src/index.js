@@ -7,6 +7,7 @@ const mongoStore = require('connect-mongo');
 const passport = require('passport');
 const favicon = require('serve-favicon');
 const discordStrategy = require('./strategies/discord_strategy');
+const { isAuthortized } = require('./strategies/auth_check');
 const mongo = require('./database/mongodb');
 const path = require('path');
 
@@ -68,14 +69,6 @@ app.use('/leaderboards', leaderboardsRoute);
 app.get('/', isAuthortized, (req, res) => {
     res.render('home');
 });
-
-function isAuthortized(req, res, next) {
-    if (req.user) {
-        res.redirect('/dashboard');
-    } else {
-        next();
-    }
-}
 
 app.listen(port, () => {
     console.log(`Listening on port: ${port}`);

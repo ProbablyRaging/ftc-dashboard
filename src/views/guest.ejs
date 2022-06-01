@@ -3,28 +3,36 @@
         <%- include('partials/container') -%>
 
             <div class="content-page-title">
-                <p>Welcome back, <%= username %>
+                <p class="content-page-header">Welcome back, <%= username %>
                 </p>
 
                 <!-- Content Box -->
                 <div class="stat-content-box">
                     <div class="content-box-div">
                         <div class="stat-content-box-content">
-                            <i class="fa-solid fa-circle online"> Online</i>
-                            <p class="member-count">
-                                <%= onlineMembers %>
-                            </p>
+                            <i class="fa-solid fa-circle online"> Online</i> <p class="member-count"><%= onlineMembers %></p>
                         </div>
                         <div class="stat-content-box-content">
-                            <i class="fa-solid fa-circle offline"> Offline</i>
-                            <p class="member-count">
-                                <%= totalMembers %>
-                            </p>
+                            <i class="fa-solid fa-circle offline"> Offline</i> <p class="member-count"><%= totalMembers %></p>
+                        </div>
+                    </div>
+                    <div class="server-stats">
+                        <div class="sub-stats">
+                            <p class="count-title">Text Channels:</p> <p class="stat-counts"><%= text_channel_count %></p>
+                        </div>
+                        <div class="sub-stats">
+                            <p class="count-title">Voice Channels:</p> <p class="stat-counts"><%= voice_channel_count %></p>
+                        </div>
+                        <div class="sub-stats">
+                            <p class="count-title">Categories:</p> <p class="stat-counts"><%= category_count %></p>
+                        </div>
+                        <div class="sub-stats">
+                            <p class="count-title">Roles:</p> <p class="stat-counts"><%= role_count %></p>
                         </div>
                     </div>
                 </div>
                 <!--  -->
-
+                
             </div>
 
             <!-- Content Box -->

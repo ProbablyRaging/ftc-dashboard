@@ -200,6 +200,7 @@ nav.main-menu li.active>a,
 }
 
 .nav-logo-div {
+    user-select: none;
     font-size: 20px;
     margin-top: 16px;
     display: flex;
@@ -210,8 +211,8 @@ nav.main-menu li.active>a,
 
 .nav-logo {
     margin-right: 10px;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
 }
 
