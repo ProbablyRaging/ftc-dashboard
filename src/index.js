@@ -66,8 +66,12 @@ app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
 app.use('/leaderboards', leaderboardsRoute);
 
-app.get('/', isAuthortized, (req, res) => {
-    res.render('home');
+app.get('/', (req, res) => {
+    if (req.user) {
+        res.redirect('/dashboard');
+    } else {
+       res.render('home'); 
+    }    
 });
 
 app.listen(port, () => {
