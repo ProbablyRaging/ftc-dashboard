@@ -1,3 +1,21 @@
+// Check if user has signed in via Google
+// if (top.location.pathname.split('/')[1] === 'creatorcrew') {
+//     $(window).on('load', function () {
+//         setTimeout(() => {
+//             if ('<%= userGoogleToken %>' !== '') {
+//                 console.log('<%= userGoogleToken %>')
+//                 const btnGoogleOut = document.getElementById('google-signedout');
+//                 const btnGoogleIn = document.getElementById('google-signedin');
+//                 const btnGoogleDiv = document.getElementById('btn-google-signin');
+
+//                 btnGoogleOut.style.display = 'none';
+//                 btnGoogleIn.style.display = 'inline';
+//                 btnGoogleDiv.style.width = '200px';
+//             }
+//         }, 500);
+//     });
+// }
+
 // Loading spinner
 if (top.location.pathname.split('/')[1] === 'logs' || top.location.pathname.split('/')[1] === 'leaderboards') {
     $(window).on('load', function () {

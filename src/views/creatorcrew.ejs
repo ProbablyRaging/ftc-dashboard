@@ -1,5 +1,5 @@
-<%- include('partials/header') -%>
-    <%- include('partials/topbar') -%>
+<%- include('partials/guest/guest_header') -%>
+    <%- include('partials/guest/guest_topbar') -%>
         <%- include('partials/container') -%>
 
             <script>
@@ -100,10 +100,7 @@
                         const toast = new bootstrap.Toast(liveToast);
                         toast.show();
                     }
-
-
                 }
-
             </script>
 
             <!-- Content Box -->
@@ -117,6 +114,41 @@
                                 <div class="content-box-title">Creator Crew Queue</div>
                             </h5>
                         </div>
+
+                        <div class="btn-google-signin" id="btn-google-signin"
+                            onclick="window.location.href = '/google'">
+                            <div class="btn-google-wrapper">
+                                <div class="btn-google-icon">
+                                    <div class="btn-google-icon-image">
+                                        <img src="https://www.shareicon.net/data/512x512/2016/07/10/119930_google_512x512.png"
+                                            onload="checkGoogleAuthStatus()">
+                                    </div>
+                                </div>
+                                <div class="btn-google-content">
+                                    <span class="btn-google-text" id="google-signedout">
+                                        Sign in with Google
+                                    </span>
+                                    <span class="btn-google-text" id="google-signedin" style="display: none;">
+                                        Signed in with Google
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            function checkGoogleAuthStatus() {
+                                if ('<%= userGoogleToken %>' !== '') {
+                                    console.log('<%= userGoogleToken %>')
+                                    const btnGoogleOut = document.getElementById('google-signedout');
+                                    const btnGoogleIn = document.getElementById('google-signedin');
+                                    const btnGoogleDiv = document.getElementById('btn-google-signin');
+
+                                    btnGoogleOut.style.display = 'none';
+                                    btnGoogleIn.style.display = 'inline';
+                                    btnGoogleDiv.style.width = '200px';
+                                }
+                            }
+                        </script>
+
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-secondary btn-sm modal-btn" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">

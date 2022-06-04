@@ -32,7 +32,7 @@ const settingsRoute = require('./routes/settings');
 const applicationsRoute = require('./routes/applications');
 const applyRoute = require('./routes/apply');
 const leaderboardsRoute = require('./routes/leaderboards');
-const testRoute = require('./routes/test');
+const creatorcrewRoute = require('./routes/creatorcrew');
 const privacypolicyRoute = require('./routes/privacypolicy');
 
 // Error Routes
@@ -41,7 +41,7 @@ const forbiddenRoute = require('./routes/forbidden');
 app.use(session({
     secret: 'some secret',
     cookie: {
-        maxAge: 60000 * 60 * 24 * 365
+        maxAge: 60000 * 60 * 24
     },
     saveUninitialized: false,
     resave: false,
@@ -72,7 +72,7 @@ app.use('/settings', settingsRoute);
 app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
 app.use('/leaderboards', leaderboardsRoute);
-app.use('/test', testRoute);
+app.use('/creatorcrew', creatorcrewRoute);
 app.use('/privacypolicy', privacypolicyRoute);
 
 app.get('/', (req, res) => {

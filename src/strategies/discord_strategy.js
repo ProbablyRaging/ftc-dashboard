@@ -31,6 +31,19 @@ passport.use(new discordStrategy({
         // TODO: Check if we resolved a GET request. If not they are likely not in the server and this might cause errors
         if (discordUserData.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
             if (user) {
+                await discordUser.findOneAndUpdate({
+                    userId: profile.id
+                }, {
+                    username: profile.username,
+                    discriminator: profile.discriminator,
+                    avatar: profile.avatar,
+                    accessToken: accessToken,
+                    refreshToken: refreshToken,
+                    guilds: profile.guilds,
+                    roles: discordUserData.roles,
+                    isStaff: true
+                });
+
                 done(null, user);
             } else {
                 const newUser = await discordUser.create({
@@ -50,6 +63,19 @@ passport.use(new discordStrategy({
             }
         } else if (discordUserData.roles.includes(`846007549621960705`)) {
             if (user) {
+                await discordUser.findOneAndUpdate({
+                    userId: profile.id
+                }, {
+                    username: profile.username,
+                    discriminator: profile.discriminator,
+                    avatar: profile.avatar,
+                    accessToken: accessToken,
+                    refreshToken: refreshToken,
+                    guilds: profile.guilds,
+                    roles: discordUserData.roles,
+                    isStaff: false
+                });
+
                 done(null, user);
             } else {
                 const newUser = await discordUser.create({
