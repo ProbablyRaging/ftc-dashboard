@@ -1,0 +1,296 @@
+<%- include('partials/header') -%>
+    <%- include('partials/topbar') -%>
+        <%- include('partials/container') -%>
+
+            <script>
+                const watchTimeLog = new Map();
+                const detectedSkips = new Map();
+
+                function onPlayerReady(event) {
+                    const videoId = event.target.i.id;
+                    const videoTitle = event.target.getVideoData().title.slice(0, 40) + '...';
+                    const setVideoTitle = document.getElementById(`${videoId}-video-title`);
+                    setVideoTitle.innerHTML = videoTitle;
+                    event.target.setPlaybackQuality('small');
+                }
+
+                function onPlayerStateChange(event) {
+                    const videoId = event.target.i.id;
+                    const currentWatchTime = event.target.getCurrentTime();
+                    const watchStatus = document.getElementById(`${videoId}-watch-status`);
+                    const playerBorder = document.getElementById(`${videoId}`);
+
+                    // If playing
+                    if (event.data === 1) {
+                        watchStatus.style.color = "#ffb770fe";
+                        playerBorder.style.borderColor = "#ffb770fe";
+
+                        // If the videoId isn't in our map, we add it
+                        if (!watchTimeLog.has(videoId)) {
+                            console.log('NEW MAP:', videoId)
+                            watchTimeLog.set(videoId, currentWatchTime)
+
+                            // Start an interval
+                            console.log('LOG STARTING')
+                            log = setInterval(() => {
+                                checkVideoStatus(event, videoId)
+                            }, 5000);
+                        }
+                    }
+                }
+
+                function checkVideoStatus(event, videoId) {
+                    const currentWatchTime = event.target.getCurrentTime();
+                    const totalDuration = event.target.getDuration();
+                    const watchStatus = document.getElementById(`${videoId}-watch-status`);
+                    const playerBorder = document.getElementById(`${videoId}`);
+                    const statusIndicator = document.getElementById(`${videoId}-watch-status`);
+
+                    console.log('VIDEO:', videoId, 'LOGGED:', watchTimeLog.get(videoId) + 6, 'NEW', currentWatchTime)
+
+                    // Check if a video has been skipped/seeked
+                    if (watchTimeLog.get(videoId) + 6 < currentWatchTime) {
+                        console.log('SKIP DETECTED:', videoId)
+                        watchStatus.style.color = "#ff7070fe";
+                        playerBorder.style.borderColor = "#ff7070fe";
+                        // Log if a video was skipped
+                        detectedSkips.set(videoId)
+                    }
+
+                    // If a video has been skipped
+                    if (detectedSkips.has(videoId)) {
+                        watchStatus.style.color = "#ff7070fe";
+                        playerBorder.style.borderColor = "#ff7070fe";
+                    }
+
+                    watchTimeLog.set(videoId, currentWatchTime)
+
+                    if (!detectedSkips.has(videoId) && currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration) {
+                        watchStatus.style.color = "#70ffbafe";
+                        playerBorder.style.borderColor = "#70ffbafe";
+
+                        // Send a POST to remove the video from the user's video list
+                        const headers = { "Content-Type": "application/json" };
+                        const body = { videoId: `${videoId}` };
+                        // await fetch(`http://localhost:3000/test`, { method: 'POST', body: JSON.stringify(body), headers: headers });
+                    }
+                }
+
+                function likeButton(videoId) {
+                    const videoLikeButton = document.getElementById(`${videoId}-like-button`);
+
+                    console.log('<%= userGoogleToken %>')
+                    // Check if the user has logged in via YouTube and has an access token
+                    if ('<%= userGoogleToken %>' === '') {
+                        const toast = new bootstrap.Toast(toastError);
+                        toast.show();
+                    } else {
+                        videoLikeButton.classList.remove('unliked')
+                        videoLikeButton.classList.add('liked')
+
+                        const key = '<%= process.env.GAPI_KEY %>';
+                        const accessToken = '<%= userGoogleToken %>'
+                        // $.post({
+                        //     url: `https://youtube.googleapis.com/youtube/v3/videos/rate?id=${videoId}&rating=like&key=${key}`,
+                        //     type: 'POST',
+                        //     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}` },
+                        //     dataType: 'json'
+                        // });
+
+                        const toast = new bootstrap.Toast(liveToast);
+                        toast.show();
+                    }
+
+
+                }
+
+            </script>
+
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Creator Crew Queue</div>
+                            </h5>
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-secondary btn-sm modal-btn" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Information
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Creator Crew Information</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1>How To</h1>
+                                        <ul>
+                                            <li><code>1.</code> Press play on all, or as many videos as you like</li>
+                                            <li><code>2.</code> Click the like button below all the videos</li>
+                                            <li><code>3.</code> Allow each video to play for 10 minutes. When the status
+                                                indicator turns green your 10 minute watch time is complete, but you are
+                                                free to continue playing the videos for as long as you like</li>
+                                            <li><code>4.</code> Once all the videos have a green status indicator,
+                                                refresh the page to make sure there are no remaining videos</li>
+                                        </ul>
+                                        <br>
+                                        <h1>Requirements</h1>
+                                        <ul>
+                                            <li><code>1.</code> You <strong>must</strong> be logged into <a
+                                                    href="https://www.youtube.com/">YouTube</a> before playing any
+                                                videos</li>
+                                            <li><code>2.</code> You <strong>must</strong> watch a video for a
+                                                <strong>minimum of 10 minutes</strong> for that video to be removed from
+                                                your video queue
+                                            </li>
+                                            <li><code>3.</code> You <strong>must</strong> leave a like on each video
+                                                before or during the first 10 minutes of each video</li>
+                                            <li><code>4.</code> You <strong>must not</strong> skip or seek through any
+                                                portion of the video. Your watch time is being logged and doing so will
+                                                send a notification to staff</li>
+                                        </ul>
+                                        <br>
+                                        <h1>Information</h1>
+                                        <ul>
+                                            <li>- To play more videos simultaneously, go you any <a
+                                                    href="https://www.youtube.com/">YouTube</a> video, set the playback
+                                                quality to 144p, then refresh this page. All video will now be played at
+                                                144p</li>
+                                            <li>- Exiting or refreshing the page before a video has a green status
+                                                indicator will reset the watch time for that video</li>
+                                            <li>- You can watch as many videos simultaneously as you like</li>
+                                            <li>- Videos will continue to play after 10 minutes, feel free to keep this
+                                                page open after that</li>
+                                            <li>- Videos that are in your queue for longer than 3 days will be flagged
+                                                and you may be removed from the group if this happens frequently</li>
+                                        </ul>
+                                        <br>
+                                        <h1>Video Status Indicators</h1>
+                                        <ul>
+                                            <li><i class="fa-solid fa-circle status-unwatched"></i> - video is ready to
+                                                be watched</li>
+                                            <li><i class="fa-solid fa-circle status-watching"></i> - video is currently
+                                                being watched</li>
+                                            <li><i class="fa-solid fa-circle status-watched"></i> - watch time for this
+                                                video is completed</li>
+                                            <li><i class="fa-solid fa-circle status-skipped"></i> - video skip or
+                                                seeking detected</li>
+                                            <br>
+                                            <li class="modal-info"><i>If you have any issues, please contact
+                                                    ProbablyRaging and provide any necessary screenshots</i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+
+                        <% if (videoCount < 1) { %>
+                            <p class="queue-status">There are currently no videos in your queue, check back later
+                                <button class="fa-solid fa-arrow-rotate-right refresh-page"></button>
+                            </p>
+                            <% } else { %>
+                                <p class="queue-status">There are currently <strong>
+                                        <%= videoCount %>
+                                    </strong> videos in your queue <button
+                                        class="fa-solid fa-arrow-rotate-right refresh-page" data-bs-toggle="tooltip"
+                                        title="Refresh" onclick="window.location.reload()"></button></p>
+                                <% } %>
+
+                                    <div class="cc-videos">
+                                        <% for (const data of results) { %>
+                                            <% const { videoIds }=data; %>
+
+                                                <% videoIds.forEach(id=> { %>
+                                                    <div class="video-wrapper">
+                                                        <p class="video-title" id="<%= id %>-video-title">&nbsp;</p>
+                                                        <div class="ytplayer" id="<%= id %>" disablePictureInPicture>
+                                                        </div>
+                                                        <div class="video-status">
+                                                            <p class="video-info status-text" id="title-<%= id %>">
+                                                                <strong>Video Author: ProbablyRaging</strong>&nbsp;<br>
+                                                                <strong>Video ID:</strong> <code><%= id %></code><br>
+                                                                <strong>Status:</strong> <i
+                                                                    class="fa-solid fa-circle status-unwatched"
+                                                                    id="<%= id %>-watch-status"></i>
+                                                            </p>
+                                                            <p class="video-like"><button
+                                                                    class="fa-solid fa-thumbs-up btn-outline-secondary unliked"
+                                                                    id="<%= id %>-like-button"
+                                                                    onclick="likeButton('<%= id %>')"></button>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            var player;
+
+                                                            player = new YT.Player('<%= id %>', {
+                                                                height: '144',
+                                                                width: '256',
+                                                                videoId: '<%= id %>', // Video ID fetched from database
+                                                                playerVars: {
+                                                                    // 'autoplay': 0,
+                                                                    // 'playsinline': 1,
+                                                                    // 'controls': 1, // Remove the play/skip buttons and the seek bar
+                                                                    // 'enablejsapi': 0, // Allows the player to be controlled with API calles
+                                                                    // 'disablekb': 0 // Disable keyboard shortcuts
+                                                                },
+                                                                events: {
+                                                                    'onReady': onPlayerReady,
+                                                                    'onStateChange': onPlayerStateChange // Function for checking the state change on each iframe (i.e. pause, play)
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+
+                                                    <% }) %>
+                                                        <% } %>
+                                    </div>
+
+                    </div>
+                </div>
+                <!--  -->
+
+            </div>
+            <!--  -->
+
+            <!-- Toast Error -->
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="toastError" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body text-light bg-danger">
+                        Not logged in to YouTube
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toast Success -->
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body text-light bg-primary">
+                        Like added to video
+                    </div>
+                </div>
+            </div>
+
+            <%- include('partials/footer') -%>

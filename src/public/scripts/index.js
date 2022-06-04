@@ -1,7 +1,6 @@
 // Loading spinner
 if (top.location.pathname.split('/')[1] === 'logs' || top.location.pathname.split('/')[1] === 'leaderboards') {
     $(window).on('load', function () {
-        console.log('yes')
         setTimeout(() => {
             $('.spinner-div').removeClass('spinner');
             $('.content-body').removeClass('hidden');
@@ -166,28 +165,18 @@ document.body.addEventListener('click', () => {
 });
 
 
-// profileDropdownDiv.onclick = function () {
-//     console.log('yess')
-//     if (profileDropdownBtn.className === "fa-solid fa-angle-down") {
-//         console.log('yes')
-//         $("#profile-dropdown-chevron").addClass('rotated');
-//     } else {
-//         $("#profile-dropdown-chevron").removeClass('rotated');
-//     }
-// }
-
-
 // Tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
 // Live Toasts
 const toastTrigger = document.getElementById('liveToastBtn');
-const toastLiveExample = document.getElementById('liveToast');
+const toastSuccess = document.getElementById('liveToast');
+const toastError = document.getElementById('toastError');
 
 if (toastTrigger) {
     toastTrigger.addEventListener('click', () => {
-        const toast = new bootstrap.Toast(toastLiveExample);
+        const toast = new bootstrap.Toast(toastSuccess);
         toast.show();
     });
 }
