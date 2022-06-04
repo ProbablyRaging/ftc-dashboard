@@ -90,12 +90,12 @@
 
                         const key = '<%= process.env.GAPI_KEY %>';
                         const accessToken = '<%= userGoogleToken %>'
-                        // $.post({
-                        //     url: `https://youtube.googleapis.com/youtube/v3/videos/rate?id=${videoId}&rating=like&key=${key}`,
-                        //     type: 'POST',
-                        //     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}` },
-                        //     dataType: 'json'
-                        // });
+                        $.post({
+                            url: `https://youtube.googleapis.com/youtube/v3/videos/rate?id=${videoId}&rating=like&key=${key}`,
+                            type: 'POST',
+                            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}` },
+                            dataType: 'json'
+                        });
 
                         const toast = new bootstrap.Toast(liveToast);
                         toast.show();
