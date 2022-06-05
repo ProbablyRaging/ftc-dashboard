@@ -12,6 +12,8 @@ module.exports = (passport) => {
             try {
                 let existingUser = await googleUser.find({ discordId: request.user.userId });
 
+                const currentDate = new Date();
+                
                 if (existingUser.length > 0) {
                     await googleUser.findOneAndUpdate({
                         discordId: request.user.userId
@@ -22,8 +24,6 @@ module.exports = (passport) => {
 
                     return done(null, existingUser);
                 }
-
-                const currentDate = new Date();
 
                 const newUser = await googleUser.create({
                     discordId: request.user.userId,
