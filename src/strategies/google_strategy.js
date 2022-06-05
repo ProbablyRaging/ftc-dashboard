@@ -23,6 +23,8 @@ module.exports = (passport) => {
                     return done(null, existingUser);
                 }
 
+                const currentDate = new Date();
+
                 const newUser = await googleUser.create({
                     discordId: request.user.userId,
                     accessToken: accessToken,
