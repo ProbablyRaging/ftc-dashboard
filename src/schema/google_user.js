@@ -11,7 +11,11 @@ const googleSchema = new mongoose.Schema({
     },
     refreshToken: {
         type: String,
-        required: false
+        required: true
+    }, 
+    expires: {
+        type: Date,
+        required: true
     }
 });
 

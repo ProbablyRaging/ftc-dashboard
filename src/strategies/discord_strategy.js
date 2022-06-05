@@ -29,7 +29,7 @@ passport.use(new discordStrategy({
         const discordUserData = await resolve.json();
 
         // TODO: Check if we resolved a GET request. If not they are likely not in the server and this might cause errors
-        if (discordUserData.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
+        if (discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
             if (user) {
                 await discordUser.findOneAndUpdate({
                     userId: profile.id
@@ -61,7 +61,7 @@ passport.use(new discordStrategy({
                 const savedUser = await newUser.save();
                 done(null, savedUser);
             }
-        } else if (discordUserData.roles.includes(`846007549621960705`)) {
+        } else if (discordUserData?.roles.includes(`846007549621960705`)) {
             if (user) {
                 await discordUser.findOneAndUpdate({
                     userId: profile.id

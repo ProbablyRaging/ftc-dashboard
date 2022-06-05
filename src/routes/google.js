@@ -3,7 +3,7 @@ const passport = require('passport');
 require('../strategies/google_strategy')(passport);
 
 // Auth root
-router.get('/', passport.authenticate('google', { scope: ['profile', 'https://www.googleapis.com/auth/youtube'], accessType: 'offline' }));
+router.get('/', passport.authenticate('google', { scope: ['profile', 'https://www.googleapis.com/auth/youtube'], accessType: 'offline', approvalPrompt: 'force' }));
 
 // Redirect
 router.get('/callback', passport.authenticate('google', { session: false }),

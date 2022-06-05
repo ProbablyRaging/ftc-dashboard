@@ -12,6 +12,13 @@
                     const setVideoTitle = document.getElementById(`${videoId}-video-title`);
                     setVideoTitle.innerHTML = videoTitle;
                     event.target.setPlaybackQuality('small');
+
+                    // setVideoTitle.innerHTML = videoTitle;
+                    // event.target.seekTo(0.01);
+                    // setTimeout(() => {
+                    //     event.target.pauseVideo();
+                    //     event.target.setVolume(0)
+                    // }, 1000);
                 }
 
                 function onPlayerStateChange(event) {
@@ -137,7 +144,6 @@
                         <script>
                             function checkGoogleAuthStatus() {
                                 if ('<%= userGoogleToken %>' !== '') {
-                                    console.log('<%= userGoogleToken %>')
                                     const btnGoogleOut = document.getElementById('google-signedout');
                                     const btnGoogleIn = document.getElementById('google-signedin');
                                     const btnGoogleDiv = document.getElementById('btn-google-signin');
@@ -166,44 +172,40 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <h1>How To</h1>
+                                        <h1>Instructions</h1>
                                         <ul>
-                                            <li><code>1.</code> Press play on all, or as many videos as you like</li>
-                                            <li><code>2.</code> Click the like button below all the videos</li>
-                                            <li><code>3.</code> Allow each video to play for 10 minutes. When the status
-                                                indicator turns green your 10 minute watch time is complete, but you are
-                                                free to continue playing the videos for as long as you like</li>
-                                            <li><code>4.</code> Once all the videos have a green status indicator,
-                                                refresh the page to make sure there are no remaining videos</li>
+                                            <li><strong>1.</strong> Sign in to YouTube via the <strong>Sign in with
+                                                    Google</strong> button</li>
+                                            <li><strong>2.</strong> Press play on all, or as many videos as you want to
+                                            </li>
+                                            <li><strong>3.</strong> Click the like button below all the videos that you
+                                                are watching</li>
+                                            <li><strong>4.</strong> Allow each video to play for 10 minutes until the
+                                                status indicator turns green</li>
                                         </ul>
                                         <br>
                                         <h1>Requirements</h1>
                                         <ul>
-                                            <li><code>1.</code> You <strong>must</strong> be logged into <a
-                                                    href="https://www.youtube.com/">YouTube</a> before playing any
-                                                videos</li>
-                                            <li><code>2.</code> You <strong>must</strong> watch a video for a
-                                                <strong>minimum of 10 minutes</strong> for that video to be removed from
-                                                your video queue
+                                            <li><strong>1.</strong> You <strong>must</strong> like, and watch each video
+                                                for a
+                                                <strong>minimum of 10 minutes</strong> for it to be removed from
+                                                your queue
                                             </li>
-                                            <li><code>3.</code> You <strong>must</strong> leave a like on each video
-                                                before or during the first 10 minutes of each video</li>
-                                            <li><code>4.</code> You <strong>must not</strong> skip or seek through any
-                                                portion of the video. Your watch time is being logged and doing so will
-                                                send a notification to staff</li>
+                                            <li><strong>2.</strong> You <strong>must not</strong> skip or seek through
+                                                any
+                                                portion of the video</li>
                                         </ul>
                                         <br>
                                         <h1>Information</h1>
                                         <ul>
                                             <li>- To play more videos simultaneously, go you any <a
                                                     href="https://www.youtube.com/">YouTube</a> video, set the playback
-                                                quality to 144p, then refresh this page. All video will now be played at
+                                                quality to 144p, then refresh this page. All videos will now be played
+                                                at
                                                 144p</li>
+                                            <li>- You can watch videos for longer than 10 minutes if you want to</li>
                                             <li>- Exiting or refreshing the page before a video has a green status
                                                 indicator will reset the watch time for that video</li>
-                                            <li>- You can watch as many videos simultaneously as you like</li>
-                                            <li>- Videos will continue to play after 10 minutes, feel free to keep this
-                                                page open after that</li>
                                             <li>- Videos that are in your queue for longer than 3 days will be flagged
                                                 and you may be removed from the group if this happens frequently</li>
                                         </ul>
@@ -235,17 +237,13 @@
                     <hr class="content-box-separator">
 
                     <div>
-
-                        <% if (videoCount < 1) { %>
+                        <% if (videoCount===undefined) { %>
                             <p class="queue-status">There are currently no videos in your queue, check back later
-                                <button class="fa-solid fa-arrow-rotate-right refresh-page"></button>
                             </p>
                             <% } else { %>
                                 <p class="queue-status">There are currently <strong>
                                         <%= videoCount %>
-                                    </strong> videos in your queue <button
-                                        class="fa-solid fa-arrow-rotate-right refresh-page" data-bs-toggle="tooltip"
-                                        title="Refresh" onclick="window.location.reload()"></button></p>
+                                    </strong> videos in your queue</p>
                                 <% } %>
 
                                     <div class="cc-videos">

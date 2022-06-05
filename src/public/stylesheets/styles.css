@@ -933,10 +933,19 @@ td {
     box-shadow: none;
 }
 
+.modal-body {
+    font-size: 12px;
+}
+
 .modal-body h1 {
     color: #f2f4fb;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.modal-body strong {
+    font-weight: 500;
 }
 
 .modal-body a {
@@ -950,6 +959,7 @@ td {
 
 .modal-content {
     background: rgb(31, 33, 41);
+    margin-left: -200px;
     min-width: 900px !important;
 }
 

@@ -16,7 +16,8 @@ module.exports = (passport) => {
                     await googleUser.findOneAndUpdate({
                         discordId: request.user.userId
                     }, {
-                        accessToken: accessToken
+                        accessToken: accessToken,
+                        expires: new Date(currentDate.getTime() + 60 * 60000)
                     });
 
                     return done(null, existingUser);
@@ -25,7 +26,8 @@ module.exports = (passport) => {
                 const newUser = await googleUser.create({
                     discordId: request.user.userId,
                     accessToken: accessToken,
-                    refreshToken: refreshToken
+                    refreshToken: refreshToken,
+                    expires: new Date(currentDate.getTime() + 60 * 60000)
                 });
                 await newUser.save();
                 return done(null, newUser);
