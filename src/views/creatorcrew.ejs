@@ -144,6 +144,19 @@
                         <script>
                             function checkGoogleAuthStatus() {
                                 if ('<%= userGoogleToken %>' !== '') {
+
+                                    const currentDate = new Date();
+                                    const futureDate = currentDate.setHours(currentDate.getHours() + 2);
+
+                                    console.log('DB DATE:', '<%= userExpires %>')
+                                    console.log('TEST DATE:', futureDate)
+
+                                    if ('<%= userExpires %>' <= new Date(futureDate)) {
+                                        console.log('need refresh')
+                                    } else {
+                                        console.log('token active')
+                                    }
+
                                     const btnGoogleOut = document.getElementById('google-signedout');
                                     const btnGoogleIn = document.getElementById('google-signedin');
                                     const btnGoogleDiv = document.getElementById('btn-google-signin');

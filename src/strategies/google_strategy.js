@@ -13,13 +13,14 @@ module.exports = (passport) => {
                 let existingUser = await googleUser.find({ discordId: request.user.userId });
 
                 const currentDate = new Date();
+                const futureDate = currentDate.setHours(currentDate.getHours() + 1)
                 
                 if (existingUser.length > 0) {
                     await googleUser.findOneAndUpdate({
                         discordId: request.user.userId
                     }, {
                         accessToken: accessToken,
-                        expires: new Date(currentDate.getTime() + 60 * 60000)
+                        expires: futureDate
                     });
 
                     return done(null, existingUser);
@@ -29,7 +30,7 @@ module.exports = (passport) => {
                     discordId: request.user.userId,
                     accessToken: accessToken,
                     refreshToken: refreshToken,
-                    expires: new Date(currentDate.getTime() + 60 * 60000)
+                    expires: futureDate
                 });
                 await newUser.save();
                 return done(null, newUser);

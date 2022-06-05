@@ -1,12 +1,11 @@
 const router = require('express').Router();
-const { isAuthortized } = require('../strategies/auth_check');
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const mongo = require('../database/mongodb');
 const testVideoList = require('../schema/test_video_id');
 const googleUser = require('../schema/google_user');
 
-// Rules GET
+// Creator crew GET
 router.get('/', async (req, res) => {
     if (req.user?.roles.includes('841580486517063681')) {
         mongo.then(async mongo => {
@@ -14,15 +13,21 @@ router.get('/', async (req, res) => {
             const userGoogleId = await googleUser.find({ discordId: req.user.userId });
 
             let userGoogleToken;
+            let userRefreshToken;
+            let userExpires;
+            let videoCount;
+
             for (const data of userGoogleId) {
-                const { accessToken } = data;
-                userGoogleToken = accessToken
+                const { accessToken, refreshToken, expires } = data;
+                userGoogleToken = accessToken;
+                userRefreshToken = refreshToken;
+                userExpires = expires
             }
 
-            let videoCount;
+            
             for (const data of results) {
                 const { videoIds } = data;
-                videoCount = videoIds.length
+                videoCount = videoIds.length;
             }
 
             res.render('creatorcrew', {
@@ -31,6 +36,8 @@ router.get('/', async (req, res) => {
                 avatar: req.user.avatar,
                 results,
                 userGoogleToken,
+                userRefreshToken,
+                userExpires,
                 videoCount
             });
         });
