@@ -14,7 +14,7 @@ const googleSchema = new mongoose.Schema({
         required: true
     }, 
     expires: {
-        type: Date,
+        type: String,
         required: true
     }
 });
