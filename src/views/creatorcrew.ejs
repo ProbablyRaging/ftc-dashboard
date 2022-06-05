@@ -74,13 +74,15 @@
                             watchStatus.style.color = "#ff7070fe";
                             playerBorder.style.borderColor = "#ff7070fe";
                             // Notify staff that a video was skipped
-                            $.post({
-                                url: `/creatorcrew/notify`,
-                                type: 'POST',
-                                headers: { "Content-Type": "application/json" },
-                                dataType: 'json',
-                                data: JSON.stringify({ "videoId": `${videoId}` })
-                            });
+                            if (!detectedSkips.has(videoId)) {
+                                $.post({
+                                    url: `/creatorcrew/notify`,
+                                    type: 'POST',
+                                    headers: { "Content-Type": "application/json" },
+                                    dataType: 'json',
+                                    data: JSON.stringify({ "videoId": `${videoId}` })
+                                });
+                            }
                             // Log if a video was skipped
                             detectedSkips.set(videoId)
                         }
@@ -95,7 +97,7 @@
                         watchTimeLogs.set(videoId, currentWatchTime)
 
                         // If the minimum watch time is complete
-                        if (!detectedSkips.has(videoId) && currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration) {
+                        if (!detectedSkips.has(videoId) && currentWatchTime >= 60 || currentWatchTime + 4 >= totalDuration) {
                             watchStatus.style.color = "#70ffbafe";
                             playerBorder.style.borderColor = "#70ffbafe";
 
