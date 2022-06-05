@@ -12,19 +12,12 @@ const { isAuthortized } = require('./strategies/auth_check');
 const mongo = require('./database/mongodb');
 const path = require('path');
 
-// Fetch users profile data from Discord's API
-// const headers = {
-//     "Content-Type": "application/json",
-//     "Authorization": process.env.API_TOKEN
-// }
-// const resolve = await fetch(`https://discord.com/api/v9/users/${req.user.userId}`, { method: 'GET', headers: headers });
-// const discordUserData = resolve.json();
-
 // Database
 mongo.then(() => console.log('Connected to database')).catch(err => console.error(err));
 
 // Routes
 const authRoute = require('./routes/auth');
+const apiRoute = require('./routes/api');
 const googleRoute = require('./routes/google');
 const dashboardRoute = require('./routes/dashboard');
 const logsRoute = require('./routes/logs');
@@ -64,6 +57,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // Middleware
 app.use('/auth', authRoute);
+app.use('/api', apiRoute);
 app.use('/google', googleRoute);
 app.use('/forbidden', forbiddenRoute);
 app.use('/dashboard', dashboardRoute);

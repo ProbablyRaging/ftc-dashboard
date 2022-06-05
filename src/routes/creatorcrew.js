@@ -10,21 +10,14 @@ router.get('/', async (req, res) => {
     if (req.user?.roles.includes('841580486517063681')) {
         mongo.then(async mongo => {
             const results = await testVideoList.find({ userId: req.user.userId });
-            const userGoogleId = await googleUser.find({ discordId: req.user.userId });
+            const userData = await googleUser.findOne({ discordId: req.user.userId });
 
-            let userGoogleToken;
-            let userRefreshToken;
-            let userExpires;
-            let videoCount;
-
-            for (const data of userGoogleId) {
-                const { accessToken, refreshToken, expires } = data;
-                userGoogleToken = accessToken;
-                userRefreshToken = refreshToken;
-                userExpires = expires
+            if (userData.accessToken) {
+                userHasToken = true;
+            } else {
+                userHasToken = false
             }
 
-            
             for (const data of results) {
                 const { videoIds } = data;
                 videoCount = videoIds.length;
@@ -34,10 +27,9 @@ router.get('/', async (req, res) => {
                 username: `${req.user.username}#${req.user.discriminator}`,
                 userId: req.user.userId,
                 avatar: req.user.avatar,
+                userExpires: userData.expires,
                 results,
-                userGoogleToken,
-                userRefreshToken,
-                userExpires,
+                userHasToken,
                 videoCount
             });
         });
@@ -61,7 +53,8 @@ router.post('/', urlencodedParser, async (req, res) => {
     //     );
     // });
 
-    res.sendStatus(200)
+    // res.sendStatus(200)
+    res.send(`${process.env.GAPI_KEY}`)
 });
 
 module.exports = router;

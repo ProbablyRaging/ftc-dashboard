@@ -3,49 +3,61 @@
         <%- include('partials/container') -%>
 
             <script>
-                const watchTimeLog = new Map();
+                const watchTimeLogs = new Map();
+                const completedVideos = new Map();
                 const detectedSkips = new Map();
+                const userHasToken = '<%= userHasToken %>';
+                let isUserGoogleAuthed = false;
 
+                // When the player is ready
                 function onPlayerReady(event) {
                     const videoId = event.target.i.id;
                     const videoTitle = event.target.getVideoData().title.slice(0, 40) + '...';
                     const setVideoTitle = document.getElementById(`${videoId}-video-title`);
                     setVideoTitle.innerHTML = videoTitle;
-                    event.target.setPlaybackQuality('small');
-
-                    // setVideoTitle.innerHTML = videoTitle;
-                    // event.target.seekTo(0.01);
-                    // setTimeout(() => {
-                    //     event.target.pauseVideo();
-                    //     event.target.setVolume(0)
-                    // }, 1000);
+                    // Set the player volume to 0
+                    event.target.setVolume(0);
                 }
 
+                // When the player state changes (i.e. pause, play, etc..)
                 function onPlayerStateChange(event) {
-                    const videoId = event.target.i.id;
-                    const currentWatchTime = event.target.getCurrentTime();
-                    const watchStatus = document.getElementById(`${videoId}-watch-status`);
-                    const playerBorder = document.getElementById(`${videoId}`);
+                    // Check if the user is signed in via Google
+                    if (isUserGoogleAuthed) {
+                        const videoId = event.target.i.id;
+                        const currentWatchTime = event.target.getCurrentTime();
+                        const watchStatus = document.getElementById(`${videoId}-watch-status`);
+                        const playerBorder = document.getElementById(`${videoId}`);
 
-                    // If playing
-                    if (event.data === 1) {
-                        watchStatus.style.color = "#ffb770fe";
-                        playerBorder.style.borderColor = "#ffb770fe";
+                        // If the player state is 1=PLAYING
+                        if (event.data === 1) {
+                            // When initially starting the video, we seek to the beginning
+                            if (!watchTimeLogs.has(videoId) && !completedVideos.has(videoId)) event.target.seekTo(0.01);
 
-                        // If the videoId isn't in our map, we add it
-                        if (!watchTimeLog.has(videoId)) {
-                            console.log('NEW MAP:', videoId)
-                            watchTimeLog.set(videoId, currentWatchTime)
+                            // Change border and status indicator
+                            watchStatus.style.color = "#ffb770fe";
+                            playerBorder.style.borderColor = "#ffb770fe";
 
-                            // Start an interval
-                            console.log('LOG STARTING')
-                            log = setInterval(() => {
-                                checkVideoStatus(event, videoId)
-                            }, 5000);
+                            // If the videoId isn't in our map, we add it and start an interval to keep checking the video status
+                            if (!watchTimeLogs.has(videoId)) {
+                                watchTimeLogs.set(videoId, currentWatchTime);
+
+                                log = setInterval(() => {
+                                    checkVideoStatus(event, videoId);
+                                }, 5000);
+                            }
+                        }
+                    } else {
+                        // If the user is not signed in via Google, stop playing the video and issue a toast
+                        if (event.data === 1) {
+                            event.target.seekTo(0.01);
+                            event.target.stopVideo();
+                            const toast = new bootstrap.Toast(toastError);
+                            toast.show();
                         }
                     }
                 }
 
+                // Periodically check the status of the video
                 function checkVideoStatus(event, videoId) {
                     const currentWatchTime = event.target.getCurrentTime();
                     const totalDuration = event.target.getDuration();
@@ -53,59 +65,98 @@
                     const playerBorder = document.getElementById(`${videoId}`);
                     const statusIndicator = document.getElementById(`${videoId}-watch-status`);
 
-                    console.log('VIDEO:', videoId, 'LOGGED:', watchTimeLog.get(videoId) + 6, 'NEW', currentWatchTime)
+                    // Make sure our map contains the videoId
+                    if (watchTimeLogs.has(videoId)) {
+                        console.log('VIDEO:', videoId, 'LOGGED:', watchTimeLogs.get(videoId) + 6, 'NEW', currentWatchTime)
 
-                    // Check if a video has been skipped/seeked
-                    if (watchTimeLog.get(videoId) + 6 < currentWatchTime) {
-                        console.log('SKIP DETECTED:', videoId)
-                        watchStatus.style.color = "#ff7070fe";
-                        playerBorder.style.borderColor = "#ff7070fe";
-                        // Log if a video was skipped
-                        detectedSkips.set(videoId)
-                    }
+                        // Check if a video has been skipped/seeked
+                        if (watchTimeLogs.get(videoId) + 6 < currentWatchTime) {
+                            watchStatus.style.color = "#ff7070fe";
+                            playerBorder.style.borderColor = "#ff7070fe";
 
-                    // If a video has been skipped
-                    if (detectedSkips.has(videoId)) {
-                        watchStatus.style.color = "#ff7070fe";
-                        playerBorder.style.borderColor = "#ff7070fe";
-                    }
+                            // Log if a video was skipped
+                            detectedSkips.set(videoId)
+                        }
 
-                    watchTimeLog.set(videoId, currentWatchTime)
+                        // If a video has been skipped
+                        if (detectedSkips.has(videoId)) {
+                            watchStatus.style.color = "#ff7070fe";
+                            playerBorder.style.borderColor = "#ff7070fe";
+                        }
 
-                    if (!detectedSkips.has(videoId) && currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration) {
-                        watchStatus.style.color = "#70ffbafe";
-                        playerBorder.style.borderColor = "#70ffbafe";
+                        // Update our map
+                        watchTimeLogs.set(videoId, currentWatchTime)
 
-                        // Send a POST to remove the video from the user's video list
-                        const headers = { "Content-Type": "application/json" };
-                        const body = { videoId: `${videoId}` };
-                        // await fetch(`http://localhost:3000/test`, { method: 'POST', body: JSON.stringify(body), headers: headers });
+                        // If the minimum watch time is complete
+                        if (!detectedSkips && currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration) {
+                            watchStatus.style.color = "#70ffbafe";
+                            playerBorder.style.borderColor = "#70ffbafe";
+
+                            // Send a POST to remove the video from the user's video list
+                            $.post({
+                                url: `/creatorcrew`,
+                                type: 'POST',
+                                headers: { "Content-Type": "application/json" },
+                                dataType: 'json',
+                                data: JSON.stringify({ "videoId": `${videoId}` })
+                            });
+
+                            // Remove the video from our log and mark it as completed
+                            watchTimeLogs.delete(videoId);
+                            completedVideos.set(videoId);
+                        }
                     }
                 }
 
+                // When the like button below a video is clicked
                 function likeButton(videoId) {
                     const videoLikeButton = document.getElementById(`${videoId}-like-button`);
 
-                    console.log('<%= userGoogleToken %>')
                     // Check if the user has logged in via YouTube and has an access token
-                    if ('<%= userGoogleToken %>' === '') {
-                        const toast = new bootstrap.Toast(toastError);
-                        toast.show();
-                    } else {
-                        videoLikeButton.classList.remove('unliked')
-                        videoLikeButton.classList.add('liked')
+                    if (isUserGoogleAuthed) {
+                        videoLikeButton.classList.remove('unliked');
+                        videoLikeButton.classList.add('liked');
 
-                        const key = '<%= process.env.GAPI_KEY %>';
-                        const accessToken = '<%= userGoogleToken %>'
+                        // Send a POST to Google's API rate route
                         $.post({
-                            url: `https://youtube.googleapis.com/youtube/v3/videos/rate?id=${videoId}&rating=like&key=${key}`,
+                            url: '/api/like-video',
                             type: 'POST',
-                            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}` },
-                            dataType: 'json'
+                            headers: { "Content-Type": "application/json" },
+                            dataType: 'json',
+                            data: JSON.stringify({ "videoId": videoId, "discordId": '<%= userId %>' })
                         });
 
-                        const toast = new bootstrap.Toast(liveToast);
+                        const toast = new bootstrap.Toast(successToast);
                         toast.show();
+                    } else {
+                        const toast = new bootstrap.Toast(toastError);
+                        toast.show();
+                    }
+                }
+
+                function dateAddedToDatabase(dateToCheck) {
+                    const msPerMinute = 60;
+                    const msPerHour = msPerMinute * 60;
+                    const msPerDay = msPerHour * 24;
+                    const msPerMonth = msPerDay * 30;
+
+                    const myDate = new Date();
+                    const nowDate = myDate.setSeconds(myDate.getSeconds() + 1);
+                    const elapsed = nowDate.toString().slice(0, 10) - new Date(dateToCheck);
+
+                    if (elapsed < msPerMinute) {
+                        return Math.floor(elapsed / 1000) + ' seconds ago';
+                    }
+                    else if (elapsed < msPerHour) {
+                        return Math.floor(elapsed / msPerMinute) + ' minutes ago';
+                    }
+                    else if (elapsed < msPerDay) {
+                        return Math.floor(elapsed / msPerHour) + ' hours ago';
+                    }
+                    else if (elapsed < msPerMonth) {
+                        return Math.floor(elapsed / msPerDay) + ' days ago';
+                    } else if (elapsed > msPerMonth) {
+                        return '> 1 month'
                     }
                 }
             </script>
@@ -143,27 +194,47 @@
                         </div>
                         <script>
                             function checkGoogleAuthStatus() {
-                                if ('<%= userGoogleToken %>' !== '') {
+                                // Check if user has an access token
+                                if (userHasToken === 'true') {
+                                    // Check if access token is expired and refresh it if it is 
+                                    const myDate = new Date();
+                                    const nowDate = myDate.setSeconds(myDate.getSeconds() + 1);
 
-                                    const currentDate = new Date();
-                                    const futureDate = currentDate.setHours(currentDate.getHours() + 2);
+                                    if ('<%= userExpires %>' <= nowDate) {
+                                        // Set Google button as signed in or out depending on access token status
+                                        const btnGoogleOut = document.getElementById('google-signedout');
+                                        const btnGoogleIn = document.getElementById('google-signedin');
+                                        const btnGoogleDiv = document.getElementById('btn-google-signin');
 
-                                    console.log('DB DATE:', '<%= userExpires %>')
-                                    console.log('TEST DATE:', futureDate)
+                                        btnGoogleOut.style.display = 'inline';
+                                        btnGoogleIn.style.display = 'none';
+                                        btnGoogleDiv.style.width = '160px';
 
-                                    if ('<%= userExpires %>' <= new Date(futureDate)) {
-                                        console.log('need refresh')
+                                        return isUserGoogleAuthed = false;
                                     } else {
-                                        console.log('token active')
-                                    }
+                                        // Set Google button as signed in or out depending on access token status
+                                        const btnGoogleOut = document.getElementById('google-signedout');
+                                        const btnGoogleIn = document.getElementById('google-signedin');
+                                        const btnGoogleDiv = document.getElementById('btn-google-signin');
 
+                                        btnGoogleOut.style.display = 'none';
+                                        btnGoogleIn.style.display = 'inline';
+                                        btnGoogleDiv.style.width = '200px';
+
+                                        return isUserGoogleAuthed = true;
+                                    }
+                                } else {
+                                    // If user doesn't have an access token
+                                    // Set Google button as signed in or out depending on access token status
                                     const btnGoogleOut = document.getElementById('google-signedout');
                                     const btnGoogleIn = document.getElementById('google-signedin');
                                     const btnGoogleDiv = document.getElementById('btn-google-signin');
 
-                                    btnGoogleOut.style.display = 'none';
-                                    btnGoogleIn.style.display = 'inline';
-                                    btnGoogleDiv.style.width = '200px';
+                                    btnGoogleOut.style.display = 'inline';
+                                    btnGoogleIn.style.display = 'none';
+                                    btnGoogleDiv.style.width = '160px';
+
+                                    return isUserGoogleAuthed = false;
                                 }
                             }
                         </script>
@@ -286,8 +357,7 @@
 
                                                     <script>
                                                         $(document).ready(function () {
-                                                            var player;
-
+                                                            let player;
                                                             player = new YT.Player('<%= id %>', {
                                                                 height: '144',
                                                                 width: '256',
@@ -322,14 +392,14 @@
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
                 <div id="toastError" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-body text-light bg-danger">
-                        Not logged in to YouTube
+                        Please sign in with Google first
                     </div>
                 </div>
             </div>
 
             <!-- Toast Success -->
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-body text-light bg-primary">
                         Like added to video
                     </div>

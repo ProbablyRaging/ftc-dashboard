@@ -8,6 +8,10 @@ const testVideoList = mongoose.Schema({
     videoIds: {
         type: Array,
         required: true
+    },
+    timestamp: {
+        type: String,
+        required: true
     }
 });
 
