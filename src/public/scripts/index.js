@@ -1,21 +1,3 @@
-// Check if user has signed in via Google
-// if (top.location.pathname.split('/')[1] === 'creatorcrew') {
-//     $(window).on('load', function () {
-//         setTimeout(() => {
-//             if ('<%= userGoogleToken %>' !== '') {
-//                 console.log('<%= userGoogleToken %>')
-//                 const btnGoogleOut = document.getElementById('google-signedout');
-//                 const btnGoogleIn = document.getElementById('google-signedin');
-//                 const btnGoogleDiv = document.getElementById('btn-google-signin');
-
-//                 btnGoogleOut.style.display = 'none';
-//                 btnGoogleIn.style.display = 'inline';
-//                 btnGoogleDiv.style.width = '200px';
-//             }
-//         }, 500);
-//     });
-// }
-
 // Loading spinner
 if (top.location.pathname.split('/')[1] === 'logs' || top.location.pathname.split('/')[1] === 'leaderboards') {
     $(window).on('load', function () {
@@ -231,26 +213,30 @@ function updateRuleInDatabase() {
 }
 
 // Delay submit for toast
-const getForm = document.getElementById('rule-form');
-getForm.addEventListener('submit', handleSubmit);
+if (top.location.pathname.split('/')[1] === 'rules') {
+    const getForm = document.getElementById('rule-form');
+    getForm.addEventListener('submit', handleSubmit);
 
-function handleSubmit(event) {
-    event.preventDefault();
-    submitTimer = setTimeout(() => {
-        this.submit();
-    }, 2000)
-};
+    function handleSubmit(event) {
+        event.preventDefault();
+        submitTimer = setTimeout(() => {
+            this.submit();
+        }, 2000)
+    };
+}
 
 // Apply toast
-const staffForm = document.getElementById('staff-form');
-staffForm.addEventListener('submit', handleSubmit);
+if (top.location.pathname.split('/')[1] === 'apply') {
+    const staffForm = document.getElementById('staff-form');
+    staffForm.addEventListener('submit', handleSubmit);
 
-function handleSubmit(event) {
-    event.preventDefault();
-    submitTimer = setTimeout(() => {
-        this.submit();
-    }, 2000)
-};
+    function handleSubmit(event) {
+        event.preventDefault();
+        submitTimer = setTimeout(() => {
+            this.submit();
+        }, 2000)
+    };
+}
 
 const toastTrigger2 = document.getElementById('liveToastBtn');
 const toastLiveExample2 = document.getElementById('liveToast');

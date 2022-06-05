@@ -73,7 +73,14 @@
                         if (watchTimeLogs.get(videoId) + 6 < currentWatchTime) {
                             watchStatus.style.color = "#ff7070fe";
                             playerBorder.style.borderColor = "#ff7070fe";
-
+                            // Notify staff that a video was skipped
+                            $.post({
+                                url: `/creatorcrew/notify`,
+                                type: 'POST',
+                                headers: { "Content-Type": "application/json" },
+                                dataType: 'json',
+                                data: JSON.stringify({ "videoId": `${videoId}` })
+                            });
                             // Log if a video was skipped
                             detectedSkips.set(videoId)
                         }
@@ -88,13 +95,13 @@
                         watchTimeLogs.set(videoId, currentWatchTime)
 
                         // If the minimum watch time is complete
-                        if (!detectedSkips && currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration) {
+                        if (!detectedSkips.has(videoId) && currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration) {
                             watchStatus.style.color = "#70ffbafe";
                             playerBorder.style.borderColor = "#70ffbafe";
 
                             // Send a POST to remove the video from the user's video list
                             $.post({
-                                url: `/creatorcrew`,
+                                url: `/creatorcrew/pull`,
                                 type: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 dataType: 'json',
@@ -131,32 +138,6 @@
                     } else {
                         const toast = new bootstrap.Toast(toastError);
                         toast.show();
-                    }
-                }
-
-                function dateAddedToDatabase(dateToCheck) {
-                    const msPerMinute = 60;
-                    const msPerHour = msPerMinute * 60;
-                    const msPerDay = msPerHour * 24;
-                    const msPerMonth = msPerDay * 30;
-
-                    const myDate = new Date();
-                    const nowDate = myDate.setSeconds(myDate.getSeconds() + 1);
-                    const elapsed = nowDate.toString().slice(0, 10) - new Date(dateToCheck);
-
-                    if (elapsed < msPerMinute) {
-                        return Math.floor(elapsed / 1000) + ' seconds ago';
-                    }
-                    else if (elapsed < msPerHour) {
-                        return Math.floor(elapsed / msPerMinute) + ' minutes ago';
-                    }
-                    else if (elapsed < msPerDay) {
-                        return Math.floor(elapsed / msPerHour) + ' hours ago';
-                    }
-                    else if (elapsed < msPerMonth) {
-                        return Math.floor(elapsed / msPerDay) + ' days ago';
-                    } else if (elapsed > msPerMonth) {
-                        return '> 1 month'
                     }
                 }
             </script>
@@ -332,9 +313,9 @@
 
                                     <div class="cc-videos">
                                         <% for (const data of results) { %>
-                                            <% const { videoIds }=data; %>
+                                            <% const { videoQueue }=data; %>
 
-                                                <% videoIds.forEach(id=> { %>
+                                                <% videoQueue.forEach(id=> { %>
                                                     <div class="video-wrapper">
                                                         <p class="video-title" id="<%= id %>-video-title">&nbsp;</p>
                                                         <div class="ytplayer" id="<%= id %>" disablePictureInPicture>
