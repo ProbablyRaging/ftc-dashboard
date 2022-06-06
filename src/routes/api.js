@@ -33,7 +33,7 @@ router.post('/video-status', async (req, res) => {
         const userData = await googleUser.findOne({ discordId: req.user.userId });
         if (userData.accessToken) {
             // Send POST requent to Google's API to see if the video has been liked
-            await fetch(`https://youtube.googleapis.com/youtube/v3/videos/getRating?id=${videoId}&key=AIzaSyDj2ewTO3m-BPVxMoFoWHNZmRLMyu3h2fw`, {
+            await fetch(`https://youtube.googleapis.com/youtube/v3/videos/getRating?id=${videoId}&key=${process.env.GAPI_KEY}`, {
                 method: 'GET',
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${userData.accessToken}` }
             }).then(async response => {
