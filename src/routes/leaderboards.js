@@ -1,7 +1,5 @@
 const router = require('express').Router();
 const { isAuthortized } = require('../strategies/auth_check');
-const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const fetch = require('node-fetch');
 const mongo = require('../database/mongodb');
 const rankSchema = require('../schema/rank_schema');

@@ -6,7 +6,6 @@ const session = require('express-session');
 const mongoStore = require('connect-mongo');
 const passport = require('passport');
 const favicon = require('serve-favicon');
-const bodyParser = require('body-parser');
 const discordStrategy = require('./strategies/discord_strategy');
 const { isAuthortized } = require('./strategies/auth_check');
 const mongo = require('./database/mongodb');
@@ -45,8 +44,7 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(bodyParser.json());
+app.use(express.json())
 
 // Passport
 app.use(passport.initialize());

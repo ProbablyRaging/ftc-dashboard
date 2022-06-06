@@ -1,16 +1,32 @@
 const router = require('express').Router();
+const { convertTimestampToRelativeTime } = require('../views/functions/index');
 const fetch = require('node-fetch');
-const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const ccVideoQueue = require('../schema/creator_crew/video_queue');
 const googleUser = require('../schema/google_user');
 
 // Creator crew GET
 router.get('/', async (req, res) => {
     if (req.user?.roles.includes('841580486517063681')) {
+        // Result math for pagination
+        const total = (await ccVideoQueue.find({ userId: req.user.userId })).length;
+
+        let { page, size } = req.query;
+
+        if (page <= 0) return res.redirect('/creatorcrew');
+
+        if (!page) {
+            page = 1;
+        }
+        if (!size) {
+            size = 10;
+        }
+
+        const skip = (page - 1) * size;
+        const limit = parseInt(size);
+
         // Fetch the users video queue and check if they have an access token
         const userData = await googleUser.findOne({ discordId: req.user.userId });
-        const results = await ccVideoQueue.find({ userId: req.user.userId });
+        const results = await ccVideoQueue.find({ userId: req.user.userId }).sort({ '_id': -1 }).limit(limit).skip(skip);
 
         if (userData.accessToken) {
             userHasToken = true;
@@ -18,19 +34,20 @@ router.get('/', async (req, res) => {
             userHasToken = false
         }
 
+        let videoArr = [];
         for (const data of results) {
-            const { videoQueue } = data;
-            videoCount = videoQueue.length;
+            const { videoId, timestamp } = data;
+            videoArr.push({ id: videoId, timestamp })
         }
+        const videoCount = videoArr.length;
 
         res.render('creatorcrew', {
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
             userExpires: userData.expires,
-            results,
-            userHasToken,
-            videoCount
+            convertTimestampToRelativeTime,
+            videoArr, userHasToken, videoCount, skip, limit, page, total
         });
     } else {
         res.redirect('/');
@@ -38,18 +55,18 @@ router.get('/', async (req, res) => {
 });
 
 // POST route for removing video ids from a user's queue
-router.post('/pull', urlencodedParser, async (req, res) => {
+router.post('/completed', async (req, res) => {
     const reqUserId = req.user.userId;
     const videoId = req.body.videoId;
-    await ccVideoQueue.updateOne(
-        { userId: reqUserId },
-        { $pull: { 'videoQueue': videoId } }
-    );
+    await ccVideoQueue.findOneAndDelete({
+        userId: reqUserId,
+        videoId: videoId
+    })
     res.sendStatus(204)
 });
 
 // POST route for notifying staff if a user skips/seeks a video
-router.post('/notify', urlencodedParser, async (req, res) => {
+router.post('/notify', async (req, res) => {
     // Create webhook
     const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
     const body = { name: `CreatorBot`, avatar: process.env.BOT_IMG_URI };
@@ -60,7 +77,8 @@ router.post('/notify', urlencodedParser, async (req, res) => {
         const body = {
             content: `${process.env.AUTH_ROLE_ID}
 **Creator Crew - SKIP/SEEK DETECTED**
-A skip or seek interaction was detected on a video with the ID \`${req.body.videoId}\` that <@${req.user.userId}> was watching` };
+A skip or seek interaction was detected on a video with the ID \`${req.body.videoId}\` that <@${req.user.userId}> was watching`
+        };
         await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
             // Delete webhook
             await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}`, { method: 'DELETE', headers: headers });

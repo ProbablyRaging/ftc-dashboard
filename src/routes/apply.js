@@ -1,7 +1,5 @@
 require('dotenv').config();
 const router = require('express').Router();
-const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const mongo = require('../database/mongodb');
 const staffApplicationSchema = require('../schema/staff_applications_schema');
 const fetch = require('node-fetch');
@@ -24,7 +22,7 @@ router.get('/', async (req, res) => {
 });
 
 // Apply root POST
-router.post('/', urlencodedParser, async (req, res) => {
+router.post('/', async (req, res) => {
     // Create webhook
     const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
     const body = { name: `CreatorBot`, avatar: process.env.BOT_IMG_URI };

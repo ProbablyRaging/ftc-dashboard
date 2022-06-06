@@ -4,144 +4,12 @@
 
             <script>
                 const watchTimeLogs = new Map();
+                const videoLiked = new Map();
                 const completedVideos = new Map();
                 const detectedSkips = new Map();
                 const userHasToken = '<%= userHasToken %>';
+                const userExpires = '<%= userExpires %>';
                 let isUserGoogleAuthed = false;
-
-                // When the player is ready
-                function onPlayerReady(event) {
-                    const videoId = event.target.i.id;
-                    const videoTitle = event.target.getVideoData().title.slice(0, 40) + '...';
-                    const setVideoTitle = document.getElementById(`${videoId}-video-title`);
-                    setVideoTitle.innerHTML = videoTitle;
-                    // Set the player volume to 0
-                    event.target.setVolume(0);
-                }
-
-                // When the player state changes (i.e. pause, play, etc..)
-                function onPlayerStateChange(event) {
-                    // Check if the user is signed in via Google
-                    if (isUserGoogleAuthed) {
-                        const videoId = event.target.i.id;
-                        const currentWatchTime = event.target.getCurrentTime();
-                        const watchStatus = document.getElementById(`${videoId}-watch-status`);
-                        const playerBorder = document.getElementById(`${videoId}`);
-
-                        // If the player state is 1=PLAYING
-                        if (event.data === 1) {
-                            // When initially starting the video, we seek to the beginning
-                            if (!watchTimeLogs.has(videoId) && !completedVideos.has(videoId)) event.target.seekTo(0.01);
-
-                            // Change border and status indicator
-                            watchStatus.style.color = "#ffb770fe";
-                            playerBorder.style.borderColor = "#ffb770fe";
-
-                            // If the videoId isn't in our map, we add it and start an interval to keep checking the video status
-                            if (!watchTimeLogs.has(videoId)) {
-                                watchTimeLogs.set(videoId, currentWatchTime);
-
-                                log = setInterval(() => {
-                                    checkVideoStatus(event, videoId);
-                                }, 5000);
-                            }
-                        }
-                    } else {
-                        // If the user is not signed in via Google, stop playing the video and issue a toast
-                        if (event.data === 1) {
-                            event.target.seekTo(0.01);
-                            event.target.stopVideo();
-                            const toast = new bootstrap.Toast(toastError);
-                            toast.show();
-                        }
-                    }
-                }
-
-                // Periodically check the status of the video
-                function checkVideoStatus(event, videoId) {
-                    const currentWatchTime = event.target.getCurrentTime();
-                    const totalDuration = event.target.getDuration();
-                    const watchStatus = document.getElementById(`${videoId}-watch-status`);
-                    const playerBorder = document.getElementById(`${videoId}`);
-                    const statusIndicator = document.getElementById(`${videoId}-watch-status`);
-
-                    // Make sure our map contains the videoId
-                    if (watchTimeLogs.has(videoId)) {
-                        console.log('VIDEO:', videoId, 'LOGGED:', watchTimeLogs.get(videoId) + 6, 'NEW', currentWatchTime)
-
-                        // Check if a video has been skipped/seeked
-                        if (watchTimeLogs.get(videoId) + 6 < currentWatchTime) {
-                            watchStatus.style.color = "#ff7070fe";
-                            playerBorder.style.borderColor = "#ff7070fe";
-                            // Notify staff that a video was skipped
-                            if (!detectedSkips.has(videoId)) {
-                                $.post({
-                                    url: `/creatorcrew/notify`,
-                                    type: 'POST',
-                                    headers: { "Content-Type": "application/json" },
-                                    dataType: 'json',
-                                    data: JSON.stringify({ "videoId": `${videoId}` })
-                                });
-                            }
-                            // Log if a video was skipped
-                            detectedSkips.set(videoId)
-                        }
-
-                        // If a video has been skipped
-                        if (detectedSkips.has(videoId)) {
-                            watchStatus.style.color = "#ff7070fe";
-                            playerBorder.style.borderColor = "#ff7070fe";
-                        }
-
-                        // Update our map
-                        watchTimeLogs.set(videoId, currentWatchTime)
-
-                        // If the minimum watch time is complete
-                        if (!detectedSkips.has(videoId) && currentWatchTime >= 60 || currentWatchTime + 4 >= totalDuration) {
-                            watchStatus.style.color = "#70ffbafe";
-                            playerBorder.style.borderColor = "#70ffbafe";
-
-                            // Send a POST to remove the video from the user's video list
-                            $.post({
-                                url: `/creatorcrew/pull`,
-                                type: 'POST',
-                                headers: { "Content-Type": "application/json" },
-                                dataType: 'json',
-                                data: JSON.stringify({ "videoId": `${videoId}` })
-                            });
-
-                            // Remove the video from our log and mark it as completed
-                            watchTimeLogs.delete(videoId);
-                            completedVideos.set(videoId);
-                        }
-                    }
-                }
-
-                // When the like button below a video is clicked
-                function likeButton(videoId) {
-                    const videoLikeButton = document.getElementById(`${videoId}-like-button`);
-
-                    // Check if the user has logged in via YouTube and has an access token
-                    if (isUserGoogleAuthed) {
-                        videoLikeButton.classList.remove('unliked');
-                        videoLikeButton.classList.add('liked');
-
-                        // Send a POST to Google's API rate route
-                        $.post({
-                            url: '/api/like-video',
-                            type: 'POST',
-                            headers: { "Content-Type": "application/json" },
-                            dataType: 'json',
-                            data: JSON.stringify({ "videoId": videoId, "discordId": '<%= userId %>' })
-                        });
-
-                        const toast = new bootstrap.Toast(successToast);
-                        toast.show();
-                    } else {
-                        const toast = new bootstrap.Toast(toastError);
-                        toast.show();
-                    }
-                }
             </script>
 
             <!-- Content Box -->
@@ -156,71 +24,44 @@
                             </h5>
                         </div>
 
-                        <div class="btn-google-signin" id="btn-google-signin"
-                            onclick="window.location.href = '/google'">
-                            <div class="btn-google-wrapper">
-                                <div class="btn-google-icon">
-                                    <div class="btn-google-icon-image">
-                                        <img src="https://www.shareicon.net/data/512x512/2016/07/10/119930_google_512x512.png"
-                                            onload="checkGoogleAuthStatus()">
+                        <!-- Sign In Modal -->
+                        <div class="sign-in-modal">
+                            <div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p class="modal-btn-title">Please sign in</p>
+                                            <hr class="content-box-separator">
+                                            <div class="modal-contant-wrapper">
+                                                <div class="btn-google-signin" id="btn-google-signin"
+                                                    onclick="window.location.href = '/google'">
+                                                    <div class="btn-google-wrapper">
+                                                        <div class="btn-google-icon">
+                                                            <div class="btn-google-icon-image">
+                                                                <img
+                                                                    src="https://www.shareicon.net/data/512x512/2016/07/10/119930_google_512x512.png">
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-google-content">
+                                                            <span class="btn-google-text" id="google-signedout">
+                                                                Sign in with Google
+                                                            </span>
+                                                            <span class="btn-google-text" id="google-signedin"
+                                                                style="display: none;">
+                                                                Signed in with Google
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p class="modal-btn-footer"><a href="/privacypolicy">Privacy Policy</a>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="btn-google-content">
-                                    <span class="btn-google-text" id="google-signedout">
-                                        Sign in with Google
-                                    </span>
-                                    <span class="btn-google-text" id="google-signedin" style="display: none;">
-                                        Signed in with Google
-                                    </span>
                                 </div>
                             </div>
                         </div>
-                        <script>
-                            function checkGoogleAuthStatus() {
-                                // Check if user has an access token
-                                if (userHasToken === 'true') {
-                                    // Check if access token is expired and refresh it if it is 
-                                    const myDate = new Date();
-                                    const nowDate = myDate.setSeconds(myDate.getSeconds() + 1);
-
-                                    if ('<%= userExpires %>' <= nowDate) {
-                                        // Set Google button as signed in or out depending on access token status
-                                        const btnGoogleOut = document.getElementById('google-signedout');
-                                        const btnGoogleIn = document.getElementById('google-signedin');
-                                        const btnGoogleDiv = document.getElementById('btn-google-signin');
-
-                                        btnGoogleOut.style.display = 'inline';
-                                        btnGoogleIn.style.display = 'none';
-                                        btnGoogleDiv.style.width = '160px';
-
-                                        return isUserGoogleAuthed = false;
-                                    } else {
-                                        // Set Google button as signed in or out depending on access token status
-                                        const btnGoogleOut = document.getElementById('google-signedout');
-                                        const btnGoogleIn = document.getElementById('google-signedin');
-                                        const btnGoogleDiv = document.getElementById('btn-google-signin');
-
-                                        btnGoogleOut.style.display = 'none';
-                                        btnGoogleIn.style.display = 'inline';
-                                        btnGoogleDiv.style.width = '200px';
-
-                                        return isUserGoogleAuthed = true;
-                                    }
-                                } else {
-                                    // If user doesn't have an access token
-                                    // Set Google button as signed in or out depending on access token status
-                                    const btnGoogleOut = document.getElementById('google-signedout');
-                                    const btnGoogleIn = document.getElementById('google-signedin');
-                                    const btnGoogleDiv = document.getElementById('btn-google-signin');
-
-                                    btnGoogleOut.style.display = 'inline';
-                                    btnGoogleIn.style.display = 'none';
-                                    btnGoogleDiv.style.width = '160px';
-
-                                    return isUserGoogleAuthed = false;
-                                }
-                            }
-                        </script>
 
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-secondary btn-sm modal-btn" data-bs-toggle="modal"
@@ -229,72 +70,88 @@
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Creator Crew Information</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h1>Instructions</h1>
-                                        <ul>
-                                            <li><strong>1.</strong> Sign in to YouTube via the <strong>Sign in with
-                                                    Google</strong> button</li>
-                                            <li><strong>2.</strong> Press play on all, or as many videos as you want to
-                                            </li>
-                                            <li><strong>3.</strong> Click the like button below all the videos that you
-                                                are watching</li>
-                                            <li><strong>4.</strong> Allow each video to play for 10 minutes until the
-                                                status indicator turns green</li>
-                                        </ul>
-                                        <br>
-                                        <h1>Requirements</h1>
-                                        <ul>
-                                            <li><strong>1.</strong> You <strong>must</strong> like, and watch each video
-                                                for a
-                                                <strong>minimum of 10 minutes</strong> for it to be removed from
-                                                your queue
-                                            </li>
-                                            <li><strong>2.</strong> You <strong>must not</strong> skip or seek through
-                                                any
-                                                portion of the video</li>
-                                        </ul>
-                                        <br>
-                                        <h1>Information</h1>
-                                        <ul>
-                                            <li>- To play more videos simultaneously, go you any <a
-                                                    href="https://www.youtube.com/">YouTube</a> video, set the playback
-                                                quality to 144p, then refresh this page. All videos will now be played
-                                                at
-                                                144p</li>
-                                            <li>- You can watch videos for longer than 10 minutes if you want to</li>
-                                            <li>- Exiting or refreshing the page before a video has a green status
-                                                indicator will reset the watch time for that video</li>
-                                            <li>- Videos that are in your queue for longer than 3 days will be flagged
-                                                and you may be removed from the group if this happens frequently</li>
-                                        </ul>
-                                        <br>
-                                        <h1>Video Status Indicators</h1>
-                                        <ul>
-                                            <li><i class="fa-solid fa-circle status-unwatched"></i> - video is ready to
-                                                be watched</li>
-                                            <li><i class="fa-solid fa-circle status-watching"></i> - video is currently
-                                                being watched</li>
-                                            <li><i class="fa-solid fa-circle status-watched"></i> - watch time for this
-                                                video is completed</li>
-                                            <li><i class="fa-solid fa-circle status-skipped"></i> - video skip or
-                                                seeking detected</li>
+                        <div class="cc-information-modal">
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Creator Crew Information</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h1>Instructions</h1>
+                                            <ul>
+                                                <li><strong>1.</strong> Sign in to YouTube via the <strong>Sign in with
+                                                        Google</strong> button</li>
+                                                <li><strong>2.</strong> Press play on all, or as many videos as you want
+                                                    to
+                                                </li>
+                                                <li><strong>3.</strong> Click the like button below all the videos that
+                                                    you
+                                                    are watching</li>
+                                                <li><strong>4.</strong> Allow each video to play for 10 minutes until
+                                                    the
+                                                    status indicator turns green</li>
+                                            </ul>
                                             <br>
-                                            <li class="modal-info"><i>If you have any issues, please contact
-                                                    ProbablyRaging and provide any necessary screenshots</i></li>
-                                        </ul>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                                            <h1>Requirements</h1>
+                                            <ul>
+                                                <li><strong>1.</strong> You <strong>must</strong> like, and watch each
+                                                    video
+                                                    for a
+                                                    <strong>minimum of 10 minutes</strong> for it to be removed from
+                                                    your queue
+                                                </li>
+                                                <li><strong>2.</strong> You <strong>must not</strong> skip or seek
+                                                    through
+                                                    any
+                                                    portion of the video</li>
+                                            </ul>
+                                            <br>
+                                            <h1>Information</h1>
+                                            <ul>
+                                                <li>- To play more videos simultaneously, go you any <a
+                                                        href="https://www.youtube.com/">YouTube</a> video, set the
+                                                    playback
+                                                    quality to 144p, then refresh this page. All videos will now be
+                                                    played
+                                                    at
+                                                    144p</li>
+                                                <li>- You can watch videos for longer than 10 minutes if you want to
+                                                </li>
+                                                <li>- Exiting or refreshing the page before a video has a green status
+                                                    indicator will reset the watch time for that video</li>
+                                                <li>- Videos that are in your queue for longer than 3 days will be
+                                                    flagged
+                                                    and you may be removed from the group if this happens frequently
+                                                </li>
+                                            </ul>
+                                            <br>
+                                            <h1>Video Status Indicators</h1>
+                                            <ul>
+                                                <li><i class="fa-solid fa-circle status-unwatched"></i> - video is ready
+                                                    to
+                                                    be watched</li>
+                                                <li><i class="fa-solid fa-circle status-watching"></i> - video is
+                                                    currently
+                                                    being watched</li>
+                                                <li><i class="fa-solid fa-circle status-watched-not-liked"></i> -
+                                                    waiting for video to be liked</li>
+                                                <li><i class="fa-solid fa-circle status-watched"></i> - watch time and
+                                                    liking completed</li>
+                                                <li><i class="fa-solid fa-circle status-skipped"></i> - video skip or
+                                                    seeking detected</li>
+                                                <br>
+                                                <li class="modal-info"><i>If you have any issues, please contact
+                                                        ProbablyRaging and provide any necessary screenshots</i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -304,65 +161,82 @@
                     <hr class="content-box-separator">
 
                     <div>
-                        <% if (videoCount===undefined) { %>
-                            <p class="queue-status">There are currently no videos in your queue, check back later
-                            </p>
-                            <% } else { %>
-                                <p class="queue-status">There are currently <strong>
-                                        <%= videoCount %>
-                                    </strong> videos in your queue</p>
-                                <% } %>
+                        <div class="pagination-wrapper">
+                            <% if (videoCount===undefined) { %>
+                                <p class="queue-status">There are currently no videos in your queue, check back later
+                                </p>
+                                <% } else { %>
+                                    <% const currentCount = (total <= 0) ? 0 : skip + 1 %> 
+                                            <% const totalMath=(limit * page> total) ? total : limit * page %>
+                                                <p class="queue-status">Showing <code><%= currentCount %></code> to
+                                                    <code><%= totalMath %></code> of <code><%= total %></code> videos in
+                                                    your
+                                                    queue
+                                                </p>
+                                                <% } %>
 
-                                    <div class="cc-videos">
-                                        <% for (const data of results) { %>
-                                            <% const { videoQueue }=data; %>
-
-                                                <% videoQueue.forEach(id=> { %>
-                                                    <div class="video-wrapper">
-                                                        <p class="video-title" id="<%= id %>-video-title">&nbsp;</p>
-                                                        <div class="ytplayer" id="<%= id %>" disablePictureInPicture>
-                                                        </div>
-                                                        <div class="video-status">
-                                                            <p class="video-info status-text" id="title-<%= id %>">
-                                                                <strong>Video Author: ProbablyRaging</strong>&nbsp;<br>
-                                                                <strong>Video ID:</strong> <code><%= id %></code><br>
-                                                                <strong>Status:</strong> <i
-                                                                    class="fa-solid fa-circle status-unwatched"
-                                                                    id="<%= id %>-watch-status"></i>
-                                                            </p>
-                                                            <p class="video-like"><button
-                                                                    class="fa-solid fa-thumbs-up btn-outline-secondary unliked"
-                                                                    id="<%= id %>-like-button"
-                                                                    onclick="likeButton('<%= id %>')"></button>
-                                                            </p>
-                                                        </div>
+                                                    <!-- Pagination -->
+                                                    <div class="pagination">
+                                                        <section class="pagination-button"
+                                                            onclick="navigateDownPagination()">
+                                                            <i class="fa fa-arrow-left"></i>
+                                                        </section>
+                                                        <p class="page-count">
+                                                            <%= page %>
+                                                        </p>
+                                                        <% if (skip + 10 < total) { %>
+                                                            <section class="pagination-button"
+                                                                onclick="navigateUpPagination()">
+                                                                <i class="fa fa-arrow-right"></i>
+                                                            </section>
+                                                            <% } %>
                                                     </div>
+                        </div>
 
-                                                    <script>
-                                                        $(document).ready(function () {
-                                                            let player;
-                                                            player = new YT.Player('<%= id %>', {
-                                                                height: '144',
-                                                                width: '256',
-                                                                videoId: '<%= id %>', // Video ID fetched from database
-                                                                playerVars: {
-                                                                    'autoplay': 0,
-                                                                    'playsinline': 1,
-                                                                    'controls': 0, // Remove the play/skip buttons and the seek bar
-                                                                    'enablejsapi': 1, // Allows the player to be controlled with API calles
-                                                                    'disablekb': 1 // Disable keyboard shortcuts
-                                                                },
-                                                                events: {
-                                                                    'onReady': onPlayerReady,
-                                                                    'onStateChange': onPlayerStateChange // Function for checking the state change on each iframe (i.e. pause, play)
-                                                                }
-                                                            });
-                                                        });
-                                                    </script>
-
-                                                    <% }) %>
-                                                        <% } %>
+                        <div class="cc-videos">
+                            <% videoArr.forEach(video=> { %>
+                                <div class="video-wrapper">
+                                    <p class="video-title" id="<%= video.id %>-video-title">&nbsp;</p>
+                                    <div class="ytplayer" id="<%= video.id %>" disablePictureInPicture>
                                     </div>
+                                    <div class="video-status">
+                                        <p class="video-info status-text" id="title-<%= video.id %>">
+                                            <strong>Video ID:</strong> <code><%= video.id %></code><br>
+                                            <strong>Status:</strong> <i class="fa-solid fa-circle status-unwatched"
+                                                id="<%= video.id %>-watch-status"></i><br>
+                                            added <%- convertTimestampToRelativeTime(video.timestamp) %>
+                                        </p>
+                                        <p class="video-like"><button
+                                                class="fa-solid fa-thumbs-up btn-outline-secondary unliked"
+                                                id="<%= video.id %>-like-button"
+                                                onclick="likeButton('<%= video.id %>')"></button>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(document).ready(function () {
+                                        let player;
+                                        player = new YT.Player('<%= video.id %>', {
+                                            height: '144',
+                                            width: '256',
+                                            videoId: '<%= video.id %>', // Video ID fetched from database
+                                            playerVars: {
+                                                'autoplay': 0,
+                                                'playsinline': 1,
+                                                'controls': 0, // Remove the play/skip buttons and the seek bar
+                                                'enablejsapi': 1, // Allows the player to be controlled with API calles
+                                                'disablekb': 1 // Disable keyboard shortcuts
+                                            },
+                                            events: {
+                                                'onReady': onPlayerReady,
+                                                'onStateChange': onPlayerStateChange // Function for checking the state change on each iframe (i.e. pause, play)
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <% }) %>
+                        </div>
 
                     </div>
                 </div>

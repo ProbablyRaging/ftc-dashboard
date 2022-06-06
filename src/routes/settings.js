@@ -1,7 +1,5 @@
 const router = require('express').Router();
 const { isAuthortized } = require('../strategies/auth_check');
-const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const mongo = require('../database/mongodb');
 const ruleSchema = require('../schema/rule_schema');
 
@@ -25,7 +23,7 @@ router.get('/rules', isAuthortized, async (req, res) => {
 });
 
 // Rules POST
-router.post('/rules', isAuthortized, urlencodedParser, async (req, res) => {
+router.post('/rules', isAuthortized, async (req, res) => {
     const ruleToUpdate = req.body.rule?.toLowerCase();
     const ruleNewValue = req.body.input;
 
