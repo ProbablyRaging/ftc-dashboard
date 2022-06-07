@@ -38,9 +38,14 @@ router.post('/video-status', async (req, res) => {
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${userData.accessToken}` }
             }).then(async response => {
                 const data = await response.json();
-                data.items.forEach(item => {
-                    res.send({ "status": item.rating })
-                });
+
+                if (data) {
+                    data.items.forEach(item => {
+                        res.send({ "status": item.rating })
+                    });
+                } else {
+                    res.sendStatus(401);
+                }
             });
         } else {
             res.sendStatus(401);
