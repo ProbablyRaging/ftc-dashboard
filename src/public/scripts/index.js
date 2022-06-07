@@ -290,7 +290,7 @@ function checkVideoStatus(event, videoId) {
     // Make sure our map contains the videoId
     if (watchTimeLogs.has(videoId)) {
         // Check if a video has been skipped/seeked
-        if (watchTimeLogs.get(videoId) + 6 < currentWatchTime) {
+        if (watchTimeLogs.get(videoId) + 10 < currentWatchTime) {
             watchStatus.style.color = "#ff7070fe";
             playerBorder.style.borderColor = "#ff7070fe";
             // Notify staff that a video was skipped
