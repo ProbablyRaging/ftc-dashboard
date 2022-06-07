@@ -80,6 +80,7 @@ const btnGroupOne = document.getElementById('group-one-visible');
 const btnGroupTwo = document.getElementById('group-two-visible');
 const btnGroupThree = document.getElementById('group-three-visible');
 const btnGroupFour = document.getElementById('group-four-visible');
+const btnGroupFive = document.getElementById('group-five-visible');
 
 if (btnGroupOne) {
     btnGroupOne.onclick = function () {
@@ -146,6 +147,23 @@ if (btnGroupFour) {
             $("#collapse-four").removeClass('rotated');
 
             $("#group-four-hidden").attr("id", "group-four-visible");
+        }
+    }
+}
+if (btnGroupFive) {
+    btnGroupFive.onclick = function () {
+        if (btnGroupFive.id === "group-five-visible") {
+            $(".group-five").slideUp(150);
+
+            $("#collapse-five").addClass('rotated');
+
+            $("#group-five-visible").attr("id", "group-five-hidden");
+        } else {
+            $(".group-five").slideDown(150);
+
+            $("#collapse-five").removeClass('rotated');
+
+            $("#group-five-hidden").attr("id", "group-five-visible");
         }
     }
 }
@@ -271,8 +289,6 @@ function checkVideoStatus(event, videoId) {
 
     // Make sure our map contains the videoId
     if (watchTimeLogs.has(videoId)) {
-        console.log('VIDEO:', videoId, 'LOGGED:', watchTimeLogs.get(videoId) + 6, 'NEW', currentWatchTime)
-
         // Check if a video has been skipped/seeked
         if (watchTimeLogs.get(videoId) + 6 < currentWatchTime) {
             watchStatus.style.color = "#ff7070fe";
@@ -301,13 +317,13 @@ function checkVideoStatus(event, videoId) {
         watchTimeLogs.set(videoId, currentWatchTime);
 
         // If video is completed but not liked
-        if (!videoLiked.has(videoId) && (currentWatchTime >= 15 || currentWatchTime + 4 >= totalDuration)) {
+        if (!videoLiked.has(videoId) && (currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration)) {
             watchStatus.style.color = "#87cbffcc";
             playerBorder.style.borderColor = "#87cbffcc";
         }
 
         // If the minimum watch time is complete
-        if (!detectedSkips.has(videoId) && videoLiked.has(videoId) && (currentWatchTime >= 15 || currentWatchTime + 4 >= totalDuration)) {
+        if (!detectedSkips.has(videoId) && videoLiked.has(videoId) && (currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration)) {
             watchStatus.style.color = "#70ffbafe";
             playerBorder.style.borderColor = "#70ffbafe";
 

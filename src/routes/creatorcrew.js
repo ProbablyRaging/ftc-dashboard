@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
         // Fetch the users video queue and check if they have an access token
         const userData = await googleUser.findOne({ discordId: req.user.userId });
-        const results = await ccVideoQueue.find({ userId: req.user.userId }).sort({ '_id': -1 }).limit(limit).skip(skip);
+        const results = await ccVideoQueue.find({ userId: req.user.userId }).sort({ '_id': 1 }).limit(limit).skip(skip);
 
         if (userData.accessToken) {
             userHasToken = true;
@@ -75,8 +75,7 @@ router.post('/notify', async (req, res) => {
         webhook = await response.json();
         // Send webhook
         const body = {
-            content: `${process.env.AUTH_ROLE_ID}
-**Creator Crew - SKIP/SEEK DETECTED**
+            content: `<@${process.env.AUTH_ROLE_ID}>
 A skip or seek interaction was detected on a video with the ID \`${req.body.videoId}\` that <@${req.user.userId}> was watching`
         };
         await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {

@@ -18,7 +18,7 @@ router.post('/like-video', async (req, res) => {
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${userData.accessToken}` }
         });
 
-        // res.sendStatus(204);
+        res.sendStatus(204);
     } else {
         res.sendStatus(401);
     }

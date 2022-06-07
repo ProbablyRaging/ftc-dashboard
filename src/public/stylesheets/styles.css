@@ -982,6 +982,12 @@ td {
     text-transform: none;
 }
 
+.cc-information-modal .btn-close {
+    background: none;
+    font-size: 22px;
+    color: rgb(255 255 255);
+}
+
 .cc-information-modal .modal-btn:focus {
     box-shadow: none;
 }
@@ -1026,6 +1032,30 @@ td {
 
 .cc-information-modal .modal-info {
     font-size: 12px;
+}
+
+.sign-in-modal .modal-header {
+    background: rgb(31, 33, 41);
+    border: 0;
+    text-transform: uppercase;
+    padding: 10px;
+    margin-bottom: -15px;
+}
+
+.sign-in-modal .btn-close {
+    background: none;
+    font-size: 20px;
+    color: #fff;
+}
+
+.sign-in-modal .btn-close:focus {
+    box-shadow: none;
+}
+
+.sign-in-modal .modal-content {
+    background: none !important;
+    -webkit-box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.65);
+    box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.65);
 }
 
 .sign-in-modal .modal-body {

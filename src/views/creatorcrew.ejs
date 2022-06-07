@@ -30,9 +30,13 @@
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
-                                        <div class="modal-body">
-                                            <p class="modal-btn-title">Please sign in</p>
-                                            <hr class="content-box-separator">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Please sign in</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close" onclick="window.location = '/dashboard'"><i class="fa-solid fa-xmark"></i></button>
+                                        </div>
+                                            <div class="modal-body">
+                                                <hr class="content-box-separator">
                                             <div class="modal-contant-wrapper">
                                                 <div class="btn-google-signin" id="btn-google-signin"
                                                     onclick="window.location.href = '/google'">
@@ -78,7 +82,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Creator Crew Information</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                                aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                                         </div>
                                         <div class="modal-body">
                                             <h1>Instructions</h1>
@@ -224,9 +228,9 @@
                                             playerVars: {
                                                 'autoplay': 0,
                                                 'playsinline': 1,
-                                                'controls': 0, // Remove the play/skip buttons and the seek bar
+                                                'controls': 1, // Remove the play/skip buttons and the seek bar
                                                 'enablejsapi': 1, // Allows the player to be controlled with API calles
-                                                'disablekb': 1 // Disable keyboard shortcuts
+                                                'disablekb': 0 // Disable keyboard shortcuts
                                             },
                                             events: {
                                                 'onReady': onPlayerReady,
