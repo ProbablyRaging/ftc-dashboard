@@ -39,8 +39,8 @@ router.post('/video-status', async (req, res) => {
             }).then(async response => {
                 const data = await response.json();
 
-                if (data) {
-                    data.items.forEach(item => {
+                if (data?.items) {
+                    data?.items.forEach(item => {
                         res.send({ "status": item.rating })
                     });
                 } else {

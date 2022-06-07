@@ -289,20 +289,21 @@ function checkVideoStatus(event, videoId) {
 
     // Make sure our map contains the videoId
     if (watchTimeLogs.has(videoId)) {
+        console.log('VIDEO:', videoId, 'LOGGED:', watchTimeLogs.get(videoId) + 6, 'NEW', currentWatchTime)
         // Check if a video has been skipped/seeked
-        if (watchTimeLogs.get(videoId) + 10 < currentWatchTime) {
+        if (watchTimeLogs.get(videoId) + 6 < currentWatchTime) {
             watchStatus.style.color = "#ff7070fe";
             playerBorder.style.borderColor = "#ff7070fe";
             // Notify staff that a video was skipped
-            if (!detectedSkips.has(videoId)) {
-                $.post({
-                    url: `/creatorcrew/notify`,
-                    type: 'POST',
-                    headers: { "Content-Type": "application/json" },
-                    dataType: 'json',
-                    data: JSON.stringify({ "videoId": `${videoId}` })
-                });
-            }
+            // if (!detectedSkips.has(videoId)) {
+            //     $.post({
+            //         url: `/creatorcrew/notify`,
+            //         type: 'POST',
+            //         headers: { "Content-Type": "application/json" },
+            //         dataType: 'json',
+            //         data: JSON.stringify({ "videoId": `${videoId}` })
+            //     });
+            // }
             // Log if a video was skipped
             detectedSkips.set(videoId)
         }

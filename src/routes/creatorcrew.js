@@ -80,7 +80,7 @@ router.post('/notify', async (req, res) => {
         webhook = await response.json();
         // Send webhook
         const body = {
-            content: `<@&${process.env.AUTH_ROLE_ID}>
+            content: `&${process.env.AUTH_ROLE_ID}
 A skip or seek interaction was detected on a video with the ID \`${req.body.videoId}\` that <@${req.user.userId}> was watching`
         };
         await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
