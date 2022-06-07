@@ -25,7 +25,8 @@ const applicationsRoute = require('./routes/applications');
 const applyRoute = require('./routes/apply');
 const leaderboardsRoute = require('./routes/leaderboards');
 const creatorcrewRoute = require('./routes/creatorcrew');
-const privacypolicyRoute = require('./routes/privacypolicy');
+const privacyRoute = require('./routes/privacy');
+const aboutRoute = require('./routes/about');
 
 // Error Routes
 const forbiddenRoute = require('./routes/forbidden');
@@ -65,7 +66,8 @@ app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
 app.use('/leaderboards', leaderboardsRoute);
 app.use('/creatorcrew', creatorcrewRoute);
-app.use('/privacypolicy', privacypolicyRoute);
+app.use('/privacy', privacyRoute);
+app.use('/about', aboutRoute);
 
 app.get('/', (req, res) => {
     if (req.user) {

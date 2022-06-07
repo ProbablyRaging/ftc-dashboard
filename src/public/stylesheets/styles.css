@@ -1181,41 +1181,6 @@ td {
     margin-top: -5px;
 }
 
-.privacy-policy a {
-    color: rgb(158, 207, 255);
-    text-decoration: none;
-}
-
-.privacy-policy strong {
-    color: #fff;
-}
-
-.privacy-policy ul {
-    display: block;
-    list-style-type: disc;
-    padding-inline-start: 40px;
-}
-
-.privacy-policy h1 {
-    color: #fff;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.privacy-policy h2 {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.privacy-policy h3 {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-
-
 /* Mobile Compat */
 @media only screen and (max-width: 480px) {
     .d-flex {
