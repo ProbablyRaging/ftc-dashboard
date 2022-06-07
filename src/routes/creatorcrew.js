@@ -28,27 +28,32 @@ router.get('/', async (req, res) => {
         const userData = await googleUser.findOne({ discordId: req.user.userId });
         const results = await ccVideoQueue.find({ userId: req.user.userId }).sort({ '_id': 1 }).limit(limit).skip(skip);
 
-        if (userData.accessToken) {
-            userHasToken = true;
-        } else {
-            userHasToken = false
-        }
+        // If user doesn't have a googleUser entry, resirect them to sign in
+        if (!userData) {
+            res.redirect('/google');
+        } else {            
+            if (userData.accessToken) {
+                userHasToken = true;
+            } else {
+                userHasToken = false;
+            }
 
-        let videoArr = [];
-        for (const data of results) {
-            const { videoId, timestamp } = data;
-            videoArr.push({ id: videoId, timestamp })
-        }
-        const videoCount = videoArr.length;
+            let videoArr = [];
+            for (const data of results) {
+                const { videoId, timestamp } = data;
+                videoArr.push({ id: videoId, timestamp })
+            }
+            const videoCount = videoArr.length;
 
-        res.render('creatorcrew', {
-            username: `${req.user.username}#${req.user.discriminator}`,
-            userId: req.user.userId,
-            avatar: req.user.avatar,
-            userExpires: userData.expires,
-            convertTimestampToRelativeTime,
-            videoArr, userHasToken, videoCount, skip, limit, page, total
-        });
+            res.render('creatorcrew', {
+                username: `${req.user.username}#${req.user.discriminator}`,
+                userId: req.user.userId,
+                avatar: req.user.avatar,
+                userExpires: userData.expires,
+                convertTimestampToRelativeTime,
+                videoArr, userHasToken, videoCount, skip, limit, page, total
+            });
+        }
     } else {
         res.redirect('/');
     }
