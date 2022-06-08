@@ -250,7 +250,7 @@ function onPlayerStateChange(event) {
         const currentWatchTime = event.target.getCurrentTime();
         const watchStatus = document.getElementById(`${videoId}-watch-status`);
         const playerBorder = document.getElementById(`${videoId}`);
-
+        console.log(event.data)
         // If the player state is 1=PLAYING
         if (event.data === 1) {
             // When initially starting the video, we seek to the beginning
@@ -305,7 +305,8 @@ function checkVideoStatus(event, videoId) {
             //     });
             // }
             // Log if a video was skipped
-            detectedSkips.set(videoId)
+            detectedSkips.set(videoId);
+            console.log('VIDEO:', videoId, 'SKIP DETECTED');
         }
 
         // If a video has been skipped

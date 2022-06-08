@@ -18,7 +18,7 @@ passport.use(new discordStrategy({
     callbackURL: process.env.CLIENT_REDIRECT,
     scope: ['identify', 'guilds']
 }, async (accessToken, refreshToken, profile, done) => {
-    try {
+    // try {
         const user = await discordUser.findOne({ userId: profile.id });
 
         const headers = {
@@ -29,14 +29,17 @@ passport.use(new discordStrategy({
         const discordUserData = await resolve.json();
 
         // TODO: Check if we resolved a GET request. If not they are likely not in the server and this might cause errors
+
+        // If user is a staff member
         if (discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
+            // If they already have a database entry
             if (user) {
                 await discordUser.findOneAndUpdate({
                     userId: profile.id
                 }, {
                     username: profile.username,
                     discriminator: profile.discriminator,
-                    avatar: profile.avatar,
+                    avatar: profile.avatar || 'null',
                     accessToken: accessToken,
                     refreshToken: refreshToken,
                     guilds: profile.guilds,
@@ -50,7 +53,7 @@ passport.use(new discordStrategy({
                     userId: profile.id,
                     username: profile.username,
                     discriminator: profile.discriminator,
-                    avatar: profile.avatar,
+                    avatar: profile.avatar || 'null',
                     accessToken: accessToken,
                     refreshToken: refreshToken,
                     guilds: profile.guilds,
@@ -61,13 +64,13 @@ passport.use(new discordStrategy({
                 const savedUser = await newUser.save();
                 done(null, savedUser);
             }
-        } else if (discordUserData?.roles.includes(`846007549621960705`)) {
+        } else if (discordUserData.joined_at) {
             if (user) {
                 await discordUser.findOneAndUpdate({
                     userId: profile.id
                 }, {
                     username: profile.username,
-                    discriminator: profile.discriminator,
+                    discriminator: profile.discriminator || 'null',
                     avatar: profile.avatar,
                     accessToken: accessToken,
                     refreshToken: refreshToken,
@@ -82,7 +85,7 @@ passport.use(new discordStrategy({
                     userId: profile.id,
                     username: profile.username,
                     discriminator: profile.discriminator,
-                    avatar: profile.avatar,
+                    avatar: profile.avatar || 'null',
                     accessToken: accessToken,
                     refreshToken: refreshToken,
                     guilds: profile.guilds,
@@ -96,8 +99,8 @@ passport.use(new discordStrategy({
         } else {
             done(null, null)
         }
-    } catch (err) {
-        console.error(err);
-        done(err, null);
-    }
+    // } catch (err) {
+    //     console.error(err);
+    //     done(err, null);
+    // }
 }));
