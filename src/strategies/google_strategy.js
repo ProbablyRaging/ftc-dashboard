@@ -11,6 +11,7 @@ module.exports = (passport) => {
     },
         async (request, accessToken, refreshToken, profile, done) => {
             try {
+                console.log(req.user)
                 if (req.user) {
                     let existingUser = await googleUser.find({ discordId: request.user.userId });
 
