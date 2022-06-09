@@ -232,7 +232,7 @@ button:focus {
     outline: none;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
     .main-menu {
         display: block;
         background: #1F2129;

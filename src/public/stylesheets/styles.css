@@ -1259,7 +1259,7 @@ td {
 }
 
 /* Mobile Compat */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
     .d-flex {
         display: none !important;
     }
@@ -1287,5 +1287,24 @@ td {
 
     .cc-videos {
         grid-template-columns: 1fr;
+    }
+
+    .pagination-wrapper {
+        flex-wrap: wrap;
+        display: inline;
+    }
+
+    .queue-status {
+        text-align: center;
+    }
+
+    .pagination-wrapper .pagination {
+        margin-left: 0;
+        margin: 10px;
+    }
+
+    .cc-information-modal .modal-content {
+        margin-left: 0;
+        min-width: 0 !important;
     }
 }
