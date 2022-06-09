@@ -3,10 +3,7 @@
         <%- include('partials/container') -%>
 
             <script>
-                const watchTimeLogs = new Map();
-                const videoLiked = new Map();
-                const completedVideos = new Map();
-                const detectedSkips = new Map();
+                const userId = '<%= userId %>';
                 const userHasToken = '<%= userHasToken %>';
                 const userExpires = '<%= userExpires %>';
                 let isUserGoogleAuthed = false;
@@ -33,10 +30,11 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Please sign in</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close" onclick="window.location = '/dashboard'"><i class="fa-solid fa-xmark"></i></button>
+                                                aria-label="Close" onclick="window.location = '/dashboard'"><i
+                                                    class="fa-solid fa-xmark"></i></button>
                                         </div>
-                                            <div class="modal-body">
-                                                <hr class="content-box-separator">
+                                        <div class="modal-body">
+                                            <hr class="content-box-separator">
                                             <div class="modal-contant-wrapper">
                                                 <div class="btn-google-signin" id="btn-google-signin"
                                                     onclick="window.location.href = '/google'">
@@ -170,31 +168,36 @@
                                 <p class="queue-status">There are currently no videos in your queue, check back later
                                 </p>
                                 <% } else { %>
-                                    <% const currentCount = (total <= 0) ? 0 : skip + 1 %> 
-                                            <% const totalMath=(limit * page> total) ? total : limit * page %>
-                                                <p class="queue-status">Showing <code><%= currentCount %></code> to
-                                                    <code><%= totalMath %></code> of <code><%= total %></code> videos in
-                                                    your
-                                                    queue
-                                                </p>
-                                                <% } %>
+                                    <% const currentCount=(total <=0) ? 0 : skip + 1 %>
+                                        <% const totalMath=(limit * page> total) ? total : limit * page %>
+                                            <p class="queue-status">Showing <code><%= currentCount %></code> to
+                                                <code><%= totalMath %></code> of <code><%= total %></code> videos in
+                                                your
+                                                queue
+                                            </p>
+                                            <% } %>
 
-                                                    <!-- Pagination -->
-                                                    <div class="pagination">
-                                                        <section class="pagination-button"
-                                                            onclick="navigateDownPagination()">
-                                                            <i class="fa fa-arrow-left"></i>
-                                                        </section>
-                                                        <p class="page-count">
-                                                            <%= page %>
-                                                        </p>
-                                                        <% if (skip + 10 < total) { %>
-                                                            <section class="pagination-button"
-                                                                onclick="navigateUpPagination()">
+                                                <!-- Pagination -->
+                                                <div class="pagination">
+                                                    <button type="button" title="previous" class="pagination-button"
+                                                        onclick="navigateDownPagination()">
+                                                        <i class="fa fa-arrow-left"></i>
+                                                    </button>
+                                                    <p class="page-count">
+                                                        <%= page %>
+                                                    </p>
+                                                    <% if (skip + 10 < total) { %>
+                                                        <button type="button" title="next" class="pagination-button"
+                                                            onclick="navigateUpPagination()">
+                                                            <i class="fa fa-arrow-right"></i>
+                                                        </button>
+                                                        <% } else { %>
+                                                            <button type="button" title="next" class="pagination-button"
+                                                                onclick="navigateUpPagination()" disabled>
                                                                 <i class="fa fa-arrow-right"></i>
-                                                            </section>
+                                                            </button>
                                                             <% } %>
-                                                    </div>
+                                                </div>
                         </div>
 
                         <div class="cc-videos">
@@ -210,11 +213,17 @@
                                                 id="<%= video.id %>-watch-status"></i><br>
                                             added <%- convertTimestampToRelativeTime(video.timestamp) %>
                                         </p>
-                                        <p class="video-like"><button
-                                                class="fa-solid fa-thumbs-up btn-outline-secondary unliked"
-                                                id="<%= video.id %>-like-button"
-                                                onclick="likeButton('<%= video.id %>')"></button>
-                                        </p>
+                                        <div class="player-controls">
+                                            <p class="video-like"><button
+                                                    class="fa-solid fa-thumbs-up btn-outline-secondary unliked"
+                                                    id="<%= video.id %>-like-button"
+                                                    onclick="likeButton('<%= video.id %>')"></button>
+                                            </p>
+                                            <p class="video-volume"><button
+                                                    class="fa-solid fa-volume-high btn-outline-secondary unmute"
+                                                    id="<%= video.id %>-volume-button"></button>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -228,13 +237,27 @@
                                             playerVars: {
                                                 'autoplay': 0,
                                                 'playsinline': 1,
-                                                'controls': 0, // Remove the play/skip buttons and the seek bar
+                                                'controls': 1, // Remove the play/skip buttons and the seek bar
                                                 'enablejsapi': 1, // Allows the player to be controlled with API calles
-                                                'disablekb': 1 // Disable keyboard shortcuts
+                                                'disablekb': 0 // Disable keyboard shortcuts
                                             },
                                             events: {
                                                 'onReady': onPlayerReady,
                                                 'onStateChange': onPlayerStateChange // Function for checking the state change on each iframe (i.e. pause, play)
+                                            }
+                                        });
+
+                                        // Mute and unmute button for each player
+                                        const muteUnmuteBtn = document.getElementById('<%= video.id %>-volume-button');                                        
+                                        muteUnmuteBtn.addEventListener('click', function (event) {
+                                            if (player.isMuted()) {                                                
+                                                muteUnmuteBtn.classList.remove('fa-volume-high', 'unmute');
+                                                muteUnmuteBtn.classList.add('fa-volume-xmark', 'mute');
+                                                player.unMute();
+                                            } else {
+                                                muteUnmuteBtn.classList.remove('fa-volume-xmark', 'mute');
+                                                muteUnmuteBtn.classList.add('fa-volume-high', 'unmute');
+                                                player.mute();
                                             }
                                         });
                                     });
@@ -267,4 +290,5 @@
                 </div>
             </div>
 
+            <script src="/scripts/creatorcrew.js"></script>
             <%- include('partials/footer') -%>

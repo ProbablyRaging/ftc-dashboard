@@ -18,7 +18,7 @@ passport.use(new discordStrategy({
     callbackURL: process.env.CLIENT_REDIRECT,
     scope: ['identify', 'guilds']
 }, async (accessToken, refreshToken, profile, done) => {
-    // try {
+    try {
         const user = await discordUser.findOne({ userId: profile.id });
 
         const headers = {
@@ -99,8 +99,8 @@ passport.use(new discordStrategy({
         } else {
             done(null, null)
         }
-    // } catch (err) {
-    //     console.error(err);
-    //     done(err, null);
-    // }
+    } catch (err) {
+        console.error(err);
+        done(err, null);
+    }
 }));

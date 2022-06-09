@@ -1,4 +1,5 @@
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
+const req = require("express/lib/request");
 const googleUser = require("../schema/google_user");
 
 module.exports = (passport) => {
@@ -10,30 +11,35 @@ module.exports = (passport) => {
     },
         async (request, accessToken, refreshToken, profile, done) => {
             try {
-                let existingUser = await googleUser.find({ discordId: request.user.userId });
+                if (req.user) {
+                    let existingUser = await googleUser.find({ discordId: request.user.userId });
 
-                const currentDate = new Date();
-                const futureDate = currentDate.setHours(currentDate.getHours() + 1)
-                
-                if (existingUser.length > 0) {
-                    await googleUser.findOneAndUpdate({
-                        discordId: request.user.userId
-                    }, {
+                    const currentDate = new Date();
+                    const futureDate = currentDate.setHours(currentDate.getHours() + 1)
+
+                    if (existingUser.length > 0) {
+                        await googleUser.findOneAndUpdate({
+                            discordId: request.user.userId
+                        }, {
+                            accessToken: accessToken,
+                            expires: futureDate
+                        });
+
+                        return done(null, existingUser);
+                    }
+
+                    const newUser = await googleUser.create({
+                        discordId: request.user.userId,
                         accessToken: accessToken,
+                        refreshToken: refreshToken,
                         expires: futureDate
                     });
-
-                    return done(null, existingUser);
+                    await newUser.save();
+                    return done(null, newUser);
+                } else {
+                    return done(null, null)
                 }
 
-                const newUser = await googleUser.create({
-                    discordId: request.user.userId,
-                    accessToken: accessToken,
-                    refreshToken: refreshToken,
-                    expires: futureDate
-                });
-                await newUser.save();
-                return done(null, newUser);
             } catch (error) {
                 return done(error, false)
             }

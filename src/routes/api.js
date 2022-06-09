@@ -37,7 +37,7 @@ router.post('/video-status', async (req, res) => {
                 method: 'GET',
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${userData.accessToken}` }
             }).then(async response => {
-                const data = await response.json();
+                const data = await response?.json();
 
                 if (data?.items) {
                     data?.items.forEach(item => {
@@ -46,7 +46,7 @@ router.post('/video-status', async (req, res) => {
                 } else {
                     res.sendStatus(401);
                 }
-            });
+            }).catch(err => console.err('CAUGHT ERROR', err));
         } else {
             res.sendStatus(401);
         }

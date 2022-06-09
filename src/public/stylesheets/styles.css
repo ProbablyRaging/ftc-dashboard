@@ -714,11 +714,19 @@ td {
     filter: drop-shadow(2px 2px 2px #222);
 }
 
-.pagination-button:hover {
+.pagination-button:hover:enabled {
     background-color: #5fa2db;
     -webkit-transition: background-color 200ms linear;
     -ms-transition: background-color 200ms linear;
     transition: background-color 200ms linear;
+}
+
+.pagination button:disabled {
+    color: #423f3f;
+}
+
+.pagination button:hover:disabled {
+    cursor: default;
 }
 
 .pagination-button .fa {
@@ -1089,7 +1097,7 @@ td {
     margin-bottom: 10px;
 }
 
-.sign-in-modal .modal-contant-wrapper {    
+.sign-in-modal .modal-contant-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1102,7 +1110,8 @@ td {
 }
 
 .cc-videos {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
@@ -1127,7 +1136,7 @@ td {
 .cc-videos .ytplayer {
     min-width: 254px;
     min-height: 142px;
-    border: 1px solid #ff7070fe;
+    border: 1px solid #b0a1fdfe;
     border-radius: 4px;
     -webkit-box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.65);
     box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.65);
@@ -1205,6 +1214,44 @@ td {
 .video-like .liked:hover {
     color: #fff;
     background: #70ffbafe;
+}
+
+.video-volume .unmute {
+    color: #b6b6b6fe;
+    padding: 5px 16px !important;
+    border: none;
+    border-radius: 4px;
+    background: rgb(94, 94, 94);
+    font-size: 12px;
+    margin: 0px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all .15s ease-in-out, color .15s ease-in-out;
+}
+
+.video-volume .unmute:hover {
+    background: rgb(106, 106, 106);
+    ;
+}
+
+.video-volume .mute {
+    min-width: 47px;
+    min-height: 22px;
+    color: #b6b6b6fe;
+    padding: 5px 16px !important;
+    border: none;
+    border-radius: 4px;
+    background: rgb(94, 94, 94);
+    font-size: 12px;
+    margin: 0px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all .15s ease-in-out, color .15s ease-in-out;
+}
+
+.video-volume .mute:hover {
+    background: rgb(106, 106, 106);
+    ;
 }
 
 .cc-videos .video-info {

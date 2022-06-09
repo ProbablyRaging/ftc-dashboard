@@ -67,7 +67,7 @@ router.post('/completed', async (req, res) => {
         userId: reqUserId,
         videoId: videoId
     })
-    res.sendStatus(204)
+    res.sendStatus(204);
 });
 
 // POST route for notifying staff if a user skips/seeks a video
@@ -76,11 +76,11 @@ router.post('/notify', async (req, res) => {
     const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
     const body = { name: `CreatorBot`, avatar: process.env.BOT_IMG_URI };
     let webhook;
-    await fetch(`https://discord.com/api/v9/channels/${process.env.STAFF_CHANNEL}/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+    await fetch(`https://discord.com/api/v9/channels/924271299004600350/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
         webhook = await response.json();
         // Send webhook
         const body = {
-            content: `&${process.env.AUTH_ROLE_ID}
+            content: `<@438434841617367080>
 A skip or seek interaction was detected on a video with the ID \`${req.body.videoId}\` that <@${req.user.userId}> was watching`
         };
         await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
