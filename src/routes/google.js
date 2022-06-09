@@ -10,10 +10,10 @@ router.get('/', passport.authenticate('google', {
 }));
 
 // Redirect
-router.get('/callback', passport.authenticate('google', { session: false }),
-    (req, res) => {
-        res.redirect('/creatorcrew');
-    }
-);
+router.get('/callback', passport.authenticate('google', { 
+    failureRedirect: '/',
+    successRedirect: '/creatorcrew',
+    session: false
+}));
 
 module.exports = router;
