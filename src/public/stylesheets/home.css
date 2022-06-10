@@ -109,23 +109,18 @@ var {
 }
 
 body {
-    width: 100vw;
-    max-height: 100vh;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    font-family: proxima-nova, sans-serif, Helvetica, arial, sans-serif;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
     line-height: 23px;
-    margin: 0px auto;
     scroll-behavior: smooth;
     background-color: rgb(31 33 41);
     color: rgb(155, 157, 159);
     font-family: proxima-nova, sans-serif;
     font-weight: 400;
+}
+
+.page-mount {
+    min-height: calc(100vh - 70px)
 }
 
 .topbar {
@@ -658,6 +653,11 @@ body {
         flex-wrap: wrap;
         margin-left: 50px;
         justify-content: center;
+    }
+
+    .footer-wrapper {
+        padding: 0;
+        width: unset;
     }
 
     .footer-text {
