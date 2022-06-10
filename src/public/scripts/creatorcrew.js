@@ -44,10 +44,12 @@ function onPlayerReady(event) {
             headers: { "Content-Type": "application/json" },
             dataType: 'json',
             data: JSON.stringify({ "videoId": `${videoId}` })
-        }, function (data) {
+        }, (data) => {
+            console.log(data)
             // If the video was previously liked, set the buttons class to 'liked'
             if (data.status === 'like') {
                 const videoLikeButton = document.getElementById(`${videoId}-like-button`);
+                videoLikeButton.classList.remove('unliked');
                 videoLikeButton.classList.add('liked');
                 // Add the video to the map
                 videoLiked.set(videoId);
@@ -189,35 +191,54 @@ function likeButton(videoId) {
     const playerBorder = document.getElementById(`${videoId}`);
     // Check if the user has logged in via YouTube and has an access token
     if (isUserGoogleAuthed) {
-        // Add video to the liked videos map
-        videoLiked.set(videoId);
-        videoLikeButton.classList.remove('unliked');
-        videoLikeButton.classList.add('liked');
-        // Send a POST to Google's API rate route
-        $.post({
-            url: '/api/like-video',
-            type: 'POST',
-            headers: { "Content-Type": "application/json" },
-            dataType: 'json',
-            data: JSON.stringify({ "videoId": videoId })
-        });
-        const toast = new bootstrap.Toast(successToast);
-        toast.show();
-        // If a video is liked when it's watch time is already completed
-        if (!detectedSkips.has(videoId) && completedVideos.has(videoId)) {
-            watchStatus.style.color = "#70ffbafe";
-            playerBorder.style.borderColor = "#70ffbafe";
-            // Send a POST to remove the video from the user's video list
+        // If user hasn't liked the video yet
+        if (videoLikeButton.classList.contains('unliked')) {
+            // Send a POST to Google's API rate route
             $.post({
-                url: `/creatorcrew/completed`,
+                url: '/api/like-video',
                 type: 'POST',
                 headers: { "Content-Type": "application/json" },
                 dataType: 'json',
-                data: JSON.stringify({ "videoId": `${videoId}` })
+                data: JSON.stringify({ "videoId": videoId })
+            }, (data) => {
+                // Check our response to see if the video was successfully liked or not. Failures could mean a user is not liked in, their access token expired, or they did now approve scopes
+                if (data.status === 204) {
+                    // Add video to the liked videos map
+                    videoLiked.set(videoId);
+                    videoLikeButton.classList.remove('unliked');
+                    videoLikeButton.classList.add('liked');
+                    // If a video is liked when it's watch time is already completed
+                    if (!detectedSkips.has(videoId) && completedVideos.has(videoId)) {
+                        watchStatus.style.color = "#70ffbafe";
+                        playerBorder.style.borderColor = "#70ffbafe";
+                        // Send a POST to remove the video from the user's video list
+                        $.post({
+                            url: `/creatorcrew/completed`,
+                            type: 'POST',
+                            headers: { "Content-Type": "application/json" },
+                            dataType: 'json',
+                            data: JSON.stringify({ "videoId": `${videoId}` })
+                        });
+                    }
+                    // Show success toast
+                    const toast = new bootstrap.Toast(successToast);
+                    toast.show();
+                } else if (data.status === 401) {
+                    // Show error toast
+                    const toast = new bootstrap.Toast(errorToast);
+                    toast.show();
+                } else {
+                    const toast = new bootstrap.Toast(errorToast);
+                    toast.show();
+                }
             });
+        } else {
+            // If the user has already liked this video
+            const toast = new bootstrap.Toast(cautionToast);
+            toast.show();
         }
     } else {
-        const toast = new bootstrap.Toast(toastError);
+        const toast = new bootstrap.Toast(errorToast);
         toast.show();
     }
 }

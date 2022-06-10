@@ -16,11 +16,18 @@ router.post('/like-video', async (req, res) => {
         await fetch(`https://youtube.googleapis.com/youtube/v3/videos/rate?id=${req.body.videoId}&rating=like&key=${process.env.GAPI_KEY}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${userData.accessToken}` }
-        });
-
-        res.sendStatus(204);
+        }).then(async response => {
+            const data = await response;
+            if (data.status === 204) {
+                res.send({ "status": data.status });
+            } else if (data.status === 401) {
+                res.send({ "status": data.status });
+            } else {
+                res.send({ "status": data.status });
+            }
+        }).catch(err => console.error('CAUGHT ERROR', err));
     } else {
-        res.sendStatus(401);
+        res.redirect('/google')
     }
 });
 
@@ -46,7 +53,7 @@ router.post('/video-status', async (req, res) => {
                 } else {
                     res.sendStatus(401);
                 }
-            }).catch(err => console.err('CAUGHT ERROR', err));
+            }).catch(err => console.error('CAUGHT ERROR', err));
         } else {
             res.sendStatus(401);
         }
