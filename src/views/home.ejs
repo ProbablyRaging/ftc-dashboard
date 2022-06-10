@@ -5,8 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimal-ui">
-    <meta name="theme-color" content="#1F2129">
+    <meta name="viewport" content="width=device-width">
 
     <title>CHDashboard</title>
 
@@ -47,7 +46,6 @@
 
 <body>
     <div class="page-mount" id="page-mount container-fluid">
-        <div class="topbar">
             <div class="topbar-flex">
                 <a href="/">
                     <div class="logo-wrapper">
@@ -70,7 +68,6 @@
                     </button>
                 </div>
             </div>
-        </div>
 
         <div class="main-content">
             <div class="main-content-inner">
@@ -81,36 +78,31 @@
                                 CreatorHub Dashboard
                             </h1>
                             <div class="content-description">
-                                Edit bot configs, view leaderboards and ranks, watch your Creator Crew queue, and much
-                                more..
+                                Edit bot configs, view leaderboards and ranks, watch your Creator Crew queue, and much more..
                             </div>
                             <div class="content-body">
                                 <ul class="body-list">
                                     <li class="body-list-item">
                                         <div class="list-div">
-                                            <img class="list-img"
-                                                src="https://cdn-icons-png.flaticon.com/512/3953/3953226.png">
+                                            <img class="list-img" src="https://cdn-icons-png.flaticon.com/512/3953/3953226.png">
                                         </div>
                                         <span>Bot configuration</span>
                                     </li>
                                     <li class="body-list-item">
                                         <div class="list-div">
-                                            <img class="list-img"
-                                                src="https://cdn-icons-png.flaticon.com/512/1007/1007223.png">
+                                            <img class="list-img" src="https://cdn-icons-png.flaticon.com/512/1007/1007223.png">
                                         </div>
                                         <span>Leaderboards</span>
                                     </li>
                                     <li class="body-list-item">
                                         <div class="list-div">
-                                            <img class="list-img"
-                                                src="https://cdn-icons-png.flaticon.com/512/490/490576.png">
+                                            <img class="list-img" src="https://cdn-icons-png.flaticon.com/512/490/490576.png">
                                         </div>
                                         <span>Ranks</span>
                                     </li>
                                     <li class="body-list-item">
                                         <div class="list-div">
-                                            <img class="list-img"
-                                                src="https://cdn-icons-png.flaticon.com/512/1179/1179069.png">
+                                            <img class="list-img" src="https://cdn-icons-png.flaticon.com/512/1179/1179069.png">
                                         </div>
                                         <span>Creator Crew Queue</span>
                                     </li>
@@ -120,17 +112,15 @@
                                     <button class="btn-signin" onclick="window.location='/auth'">
                                         Sign in via Discord
                                     </button>
-                                    <button class="btn-join"
-                                        onclick="location.href = 'https://www.discord.gg/creatorhub'">
-                                        Join Discord
+                                    <button class="btn-join" onclick="location.href = 'https://www.discord.gg/creatorhub'">
+                                        Join CreatorHub
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="iframe-container">
-                            <iframe class="discord-iframe"
-                                src="https://discord.com/widget?id=820889004055855144&theme=dark" width="350"
+                            <iframe class="discord-iframe" src="https://discord.com/widget?id=820889004055855144&theme=dark" width="350"
                                 height="500" allowtransparency="true" frameborder="0"
                                 sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                         </div>
@@ -139,21 +129,20 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="footer">
-        <div class="footer-wrapper">
-            <h3 class="footer-text">
-                We provide help for platforms and software such as..
-            </h3>
-            <ul class="footer-list">
-                <li class="footer-list-item"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"></li>
-                <li class="footer-list-item"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png"></li>
-                <li class="footer-list-item"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"></li>
-                <li class="footer-list-item"><img src="https://i.imgur.com/2yTtQc8.png"></li>
-                <li class="footer-list-item"><img src="https://i.imgur.com/HnKJepU.png"></li>
-            </ul>
+        <div class="footer">
+            <div class="footer-wrapper">
+                <h3 class="footer-text">
+                    We provide help for platforms and software such as..
+                </h3>
+                <ul class="footer-list">
+                    <li class="footer-list-item"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"></li>
+                    <li class="footer-list-item"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png"></li>
+                    <li class="footer-list-item"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"></li>
+                    <li class="footer-list-item"><img src="https://i.imgur.com/2yTtQc8.png"></li>
+                    <li class="footer-list-item"><img src="https://i.imgur.com/HnKJepU.png"></li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-    <%- include('partials/footer') -%>
+        <%- include('partials/footer') -%>
