@@ -1143,13 +1143,9 @@ td {
 
 .expanded-video {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.expanded-video .video-wrapper {
-    width: 1536px;
-    height: 864px;
 }
 
 .expanded-video .ytplayer {

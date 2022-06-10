@@ -256,16 +256,29 @@ function expandContractButton(videoId) {
     const expandVideoDiv = document.getElementById('expanded-video');
     const childrenInDivCount = expandVideoDiv.getElementsByTagName('*').length;
 
+    console.log(childrenInDivCount)
 
     if (!expandVideo.classList.contains('expanded')) {
         if (childrenInDivCount === 0) {
-            $(`#${videoId}-video-wrapper`).prependTo($(".expanded-video"));
+            $(`#${videoId}-video-wrapper`).prependTo($(".expanded-video"))
+                .animate({
+                    width: 1280,
+                    height: 720,
+                    maxWidth: '100%'
+                }, 200)
+
             $(`#${videoId}`).toggleClass('expanded');
             $(`#${videoId}-expand-button`).toggleClass("fa-expand fa-compress");
+            $('.expanded-video').append('<hr class="content-box-separator ex-sep">');
         }
     } else if (expandVideo.classList.contains('expanded')) {
-        $(`#${videoId}-video-wrapper`).prependTo($(".cc-videos"));
-            $(`#${videoId}`).toggleClass('expanded');
-            $(`#${videoId}-expand-button`).toggleClass("fa-compress fa-expand");
+        $(`#${videoId}-video-wrapper`).prependTo($(".cc-videos"))
+            .css({
+                width: 'unset',
+                height: 'unset',
+            })
+        $(`#${videoId}`).toggleClass('expanded');
+        $(`#${videoId}-expand-button`).toggleClass("fa-compress fa-expand");
+        $(`.ex-sep`).remove()
     }
 }
