@@ -41,8 +41,7 @@
                                                     <div class="btn-google-wrapper">
                                                         <div class="btn-google-icon">
                                                             <div class="btn-google-icon-image">
-                                                                <img
-                                                                    src="/images/119930_google_512x512.png">
+                                                                <img src="/images/119930_google_512x512.png">
                                                             </div>
                                                         </div>
                                                         <div class="btn-google-content">
@@ -200,9 +199,10 @@
                                                 </div>
                         </div>
 
+                        <div class="expanded-video" id="expanded-video"></div>
                         <div class="cc-videos">
                             <% videoArr.forEach(video=> { %>
-                                <div class="video-wrapper">
+                                <div class="video-wrapper" id="<%= video.id %>-video-wrapper">
                                     <p class="video-title" id="<%= video.id %>-video-title">&nbsp;</p>
                                     <div class="ytplayer" id="<%= video.id %>" disablePictureInPicture>
                                     </div>
@@ -214,14 +214,16 @@
                                             added <%- convertTimestampToRelativeTime(video.timestamp) %>
                                         </p>
                                         <div class="player-controls">
-                                            <p class="video-like"><button
-                                                    class="fa-solid fa-thumbs-up btn-outline-secondary unliked"
+                                            <p class="video-like"><button class="fa-solid fa-thumbs-up unliked"
                                                     id="<%= video.id %>-like-button"
                                                     onclick="likeButton('<%= video.id %>')"></button>
                                             </p>
-                                            <p class="video-volume"><button
-                                                    class="fa-solid fa-volume-high btn-outline-secondary unmute"
+                                            <p class="video-volume"><button class="fa-solid fa-volume-high unmute"
                                                     id="<%= video.id %>-volume-button"></button>
+                                            </p>
+                                            <p class="video-expand"><button class="fa-solid fa-expand contracted"
+                                                    id="<%= video.id %>-expand-button"
+                                                    onclick="expandContractButton('<%= video.id %>')"></button>
                                             </p>
                                         </div>
                                     </div>
@@ -237,7 +239,7 @@
                                             playerVars: {
                                                 'autoplay': 0,
                                                 'playsinline': 1,
-                                                'controls': 0, // Remove the play/skip buttons and the seek bar
+                                                'controls': 1, // Remove the play/skip buttons and the seek bar
                                                 'enablejsapi': 1, // Allows the player to be controlled with API calles
                                                 'disablekb': 1 // Disable keyboard shortcuts
                                             },
@@ -248,16 +250,36 @@
                                         });
 
                                         // Mute and unmute button for each player
-                                        const muteUnmuteBtn = document.getElementById('<%= video.id %>-volume-button');                                        
+                                        const muteUnmuteBtn = document.getElementById('<%= video.id %>-volume-button');
                                         muteUnmuteBtn.addEventListener('click', function (event) {
-                                            if (player.isMuted()) {                                                
-                                                muteUnmuteBtn.classList.remove('fa-volume-high', 'unmute');
-                                                muteUnmuteBtn.classList.add('fa-volume-xmark', 'mute');
+                                            if (player.isMuted()) {
+                                                $('#<%= video.id %>-volume-button').animate({
+                                                    opacity: 0.6
+                                                }, 200);
+                                                setTimeout(() => {
+                                                    $('#<%= video.id %>-volume-button').removeClass('fa-volume-high')
+                                                    $('#<%= video.id %>-volume-button').addClass('fa-volume-xmark')
+                                                    $('#<%= video.id %>-volume-button').removeClass('unmute')
+                                                    $('#<%= video.id %>-volume-button').addClass('mute')
+                                                }, 150);
+                                                $('#<%= video.id %>-volume-button').animate({
+                                                    opacity: 1
+                                                }, 200);
                                                 player.unMute();
                                                 player.setVolume(50);
                                             } else {
-                                                muteUnmuteBtn.classList.remove('fa-volume-xmark', 'mute');
-                                                muteUnmuteBtn.classList.add('fa-volume-high', 'unmute');
+                                                $('#<%= video.id %>-volume-button').animate({
+                                                    opacity: 0.6
+                                                }, 150);
+                                                setTimeout(() => {
+                                                    $('#<%= video.id %>-volume-button').removeClass('fa-volume-xmark')
+                                                    $('#<%= video.id %>-volume-button').addClass('fa-volume-high')
+                                                    $('#<%= video.id %>-volume-button').removeClass('mute')
+                                                    $('#<%= video.id %>-volume-button').addClass('unmute')
+                                                }, 200);
+                                                $('#<%= video.id %>-volume-button').animate({
+                                                    opacity: 1
+                                                }, 200);
                                                 player.mute();
                                             }
                                         });

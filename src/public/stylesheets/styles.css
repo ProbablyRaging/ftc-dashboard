@@ -1119,13 +1119,11 @@ td {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     background: #00000042;
     padding: 10px;
     margin-right: 12px;
     margin-bottom: 12px;
     border-radius: 8px;
-    border-top-left-radius: 0;
 }
 
 .video-title {
@@ -1143,11 +1141,26 @@ td {
     box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.65);
 }
 
+.expanded-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.expanded-video .video-wrapper {
+    width: 1536px;
+    height: 864px;
+}
+
+.expanded-video .ytplayer {
+    width: 100%;
+    height: 100%;
+}
+
 .video-status {
     display: flex;
     margin-top: 5px;
     justify-content: space-between;
-    width: 95%;
 }
 
 .video-status .status-text {
@@ -1179,15 +1192,20 @@ td {
     color: #ff7070fe;
 }
 
-.video-like {
-    margin-top: 2px;
+.player-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.player-controls button {
+    min-width: 28px !important;
 }
 
 .video-like .unliked {
-    color: #ff7070fe;
-    padding: 5px 16px !important;
-    border: 1px solid #ff7070fe;
-    border-radius: 4px;
+    color: #fff;
+    padding: 5px 5px !important;
+    border: none;
     background: none;
     font-size: 14px;
     margin: 0px;
@@ -1197,9 +1215,8 @@ td {
 
 .video-like .liked {
     color: #70ffbafe;
-    padding: 5px 16px !important;
-    border: 1px solid #70ffbafe;
-    border-radius: 4px;
+    padding: 5px 5px !important;
+    border: none;
     background: none;
     font-size: 14px;
     margin: 0px;
@@ -1208,51 +1225,69 @@ td {
 }
 
 .video-like .unliked:hover {
-    color: #fff;
-    background: #ff7070fe;
-}
-
-.video-like .liked:hover {
-    color: #fff;
-    background: #70ffbafe;
+    color: #b2ffdafe;
 }
 
 .video-volume .unmute {
-    color: #b6b6b6fe;
-    padding: 5px 16px !important;
+    color: #fff;
+    padding: 5px 5px !important;
     border: none;
-    border-radius: 4px;
-    background: rgb(94, 94, 94);
-    font-size: 12px;
+    background: none;
+    font-size: 14px;
     margin: 0px;
-    margin-top: 10px;
     cursor: pointer;
-    transition: all .15s ease-in-out, color .15s ease-in-out;
+    transition: background .15s ease-in-out, color .15s ease-in-out;
 }
 
 .video-volume .unmute:hover {
-    background: rgb(106, 106, 106);
-    ;
+    color: rgb(223, 223, 223);
 }
 
 .video-volume .mute {
-    min-width: 47px;
-    min-height: 22px;
-    color: #b6b6b6fe;
-    padding: 5px 16px !important;
+    color: #fff;
+    padding: 5px 5px !important;
     border: none;
-    border-radius: 4px;
-    background: rgb(94, 94, 94);
-    font-size: 12px;
+    background: none;
+    font-size: 14px;
     margin: 0px;
-    margin-top: 10px;
+    min-width: 17.5px;
     cursor: pointer;
-    transition: all .15s ease-in-out, color .15s ease-in-out;
+    transition: background .15s ease-in-out, color .15s ease-in-out;
 }
 
 .video-volume .mute:hover {
-    background: rgb(106, 106, 106);
-    ;
+    color: rgb(223, 223, 223);
+}
+
+.video-expand .contracted {
+    color: #fff;
+    padding: 5px 5px !important;
+    border: none;
+    background: none;
+    font-size: 14px;
+    margin: 0px;
+    cursor: pointer;
+    transition: background .15s ease-in-out, color .15s ease-in-out;
+}
+
+.video-expand .contracted:hover {
+    color: rgb(223, 223, 223);
+}
+
+.video-contract .expanded {
+    color: #fff;
+    padding: 5px 5px !important;
+    border: none;
+    background: none;
+    font-size: 14px;
+    margin: 0px;
+    min-width: 17.5px;
+    cursor: pointer;
+    transition: background .15s ease-in-out, color .15s ease-in-out;
+}
+
+.video-contract .expanded:hover {
+    color: rgb(223, 223, 223);
 }
 
 .cc-videos .video-info {

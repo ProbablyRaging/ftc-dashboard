@@ -45,7 +45,6 @@ function onPlayerReady(event) {
             dataType: 'json',
             data: JSON.stringify({ "videoId": `${videoId}` })
         }, (data) => {
-            console.log(data)
             // If the video was previously liked, set the buttons class to 'liked'
             if (data.status === 'like') {
                 const videoLikeButton = document.getElementById(`${videoId}-like-button`);
@@ -205,8 +204,16 @@ function likeButton(videoId) {
                 if (data.status === 204) {
                     // Add video to the liked videos map
                     videoLiked.set(videoId);
-                    videoLikeButton.classList.remove('unliked');
-                    videoLikeButton.classList.add('liked');
+                    $(`#${videoId}-like-button`).animate({
+                        opacity: 0.6
+                    }, 200);
+                    setTimeout(() => {
+                        $(`#${videoId}-like-button`).removeClass('unliked')
+                        $(`#${videoId}-like-button`).addClass('liked')
+                    }, 150);
+                    $(`#${videoId}-like-button`).animate({
+                        opacity: 1
+                    }, 200);
                     // If a video is liked when it's watch time is already completed
                     if (!detectedSkips.has(videoId) && completedVideos.has(videoId)) {
                         watchStatus.style.color = "#70ffbafe";
@@ -240,5 +247,25 @@ function likeButton(videoId) {
     } else {
         const toast = new bootstrap.Toast(errorToast);
         toast.show();
+    }
+}
+
+function expandContractButton(videoId) {
+    const expandVideo = document.getElementById(videoId);
+
+    const expandVideoDiv = document.getElementById('expanded-video');
+    const childrenInDivCount = expandVideoDiv.getElementsByTagName('*').length;
+
+
+    if (!expandVideo.classList.contains('expanded')) {
+        if (childrenInDivCount === 0) {
+            $(`#${videoId}-video-wrapper`).prependTo($(".expanded-video"));
+            $(`#${videoId}`).toggleClass('expanded');
+            $(`#${videoId}-expand-button`).toggleClass("fa-expand fa-compress");
+        }
+    } else if (expandVideo.classList.contains('expanded')) {
+        $(`#${videoId}-video-wrapper`).prependTo($(".cc-videos"));
+            $(`#${videoId}`).toggleClass('expanded');
+            $(`#${videoId}-expand-button`).toggleClass("fa-compress fa-expand");
     }
 }
