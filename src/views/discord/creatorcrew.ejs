@@ -215,16 +215,28 @@
                                         </p>
                                         <div class="player-controls">
                                             <p class="video-like"><button class="fa-solid fa-thumbs-up unliked"
-                                                    id="<%= video.id %>-like-button"
-                                                    onclick="likeButton('<%= video.id %>')"></button>
+                                                    id="<%= video.id %>-like-button" data-bs-toggle="tooltip"
+                                                    data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                                                    title="Like" onclick="likeButton('<%= video.id %>')"></button>
                                             </p>
                                             <p class="video-volume"><button class="fa-solid fa-volume-high unmute"
-                                                    id="<%= video.id %>-volume-button"></button>
+                                                    id="<%= video.id %>-volume-button" data-bs-toggle="tooltip"
+                                                    data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                                                    title="Mute/Unmute"></button>
                                             </p>
                                             <p class="video-expand"><button class="fa-solid fa-expand contracted"
-                                                    id="<%= video.id %>-expand-button"
+                                                    id="<%= video.id %>-expand-button" data-bs-toggle="tooltip"
+                                                    data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                                                    title="Expland/Contract"
                                                     onclick="expandContractButton('<%= video.id %>')"></button>
                                             </p>
+                                            <% if (userId===video.author) { %>
+                                                <p class="video-delete" id="<%= video.id %>-video-delete"><button class="fa-solid fa-circle-xmark"
+                                                        id="<%= video.id %>-delete-button" data-bs-toggle="tooltip"
+                                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                                                        title="Remove from queue" onclick="removeVideoFromQueue('<%= video.id %>')"></button>
+                                                </p>
+                                                <% } %>
                                         </div>
                                     </div>
                                 </div>
@@ -309,6 +321,15 @@
                 <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-body text-light bg-primary">
                         Like added to video
+                    </div>
+                </div>
+            </div>
+
+            <!-- Removed Success Toast -->
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="removedSuccessToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body text-light bg-primary">
+                        Video removed from queue
                     </div>
                 </div>
             </div>

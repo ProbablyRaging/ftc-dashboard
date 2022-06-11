@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
         // If user doesn't have a googleUser entry, resirect them to sign in
         if (!userData) {
             res.redirect('/google');
-        } else {            
+        } else {
             if (userData.accessToken) {
                 userHasToken = true;
             } else {
@@ -40,8 +40,8 @@ router.get('/', async (req, res) => {
 
             let videoArr = [];
             for (const data of results) {
-                const { videoId, timestamp } = data;
-                videoArr.push({ id: videoId, timestamp })
+                const { videoId, videoAuthor, timestamp } = data;
+                videoArr.push({ id: videoId, author: videoAuthor, timestamp });
             }
             const videoCount = videoArr.length;
 
@@ -60,14 +60,14 @@ router.get('/', async (req, res) => {
 });
 
 // POST route for removing video ids from a user's queue
-router.post('/completed', async (req, res) => {
+router.post('/remove', async (req, res) => {
     const reqUserId = req.user.userId;
     const videoId = req.body.videoId;
     await ccVideoQueue.findOneAndDelete({
         userId: reqUserId,
         videoId: videoId
-    })
-    res.sendStatus(204);
+    });
+    res.send({ "status": "ok" });
 });
 
 // POST route for notifying staff if a user skips/seeks a video

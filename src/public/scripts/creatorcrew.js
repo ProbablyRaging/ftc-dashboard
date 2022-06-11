@@ -171,7 +171,7 @@ function checkVideoStatus(event, videoId) {
         playerBorder.style.borderColor = "#70ffbafe";
         // Send a POST to remove the video from the user's video list
         $.post({
-            url: `/creatorcrew/completed`,
+            url: `/creatorcrew/remove`,
             type: 'POST',
             headers: { "Content-Type": "application/json" },
             dataType: 'json',
@@ -220,7 +220,7 @@ function likeButton(videoId) {
                         playerBorder.style.borderColor = "#70ffbafe";
                         // Send a POST to remove the video from the user's video list
                         $.post({
-                            url: `/creatorcrew/completed`,
+                            url: `/creatorcrew/remove`,
                             type: 'POST',
                             headers: { "Content-Type": "application/json" },
                             dataType: 'json',
@@ -265,8 +265,10 @@ function expandContractButton(videoId) {
                     width: 1280,
                     height: 720,
                     maxWidth: '100%'
-                }, 200)
-
+                }, 200);
+            $(`#${videoId}-video-delete`).css({
+                top: -690,
+            });
             $(`#${videoId}`).toggleClass('expanded');
             $(`#${videoId}-expand-button`).toggleClass("fa-expand fa-compress");
             $('.expanded-video').append('<hr class="content-box-separator ex-sep">');
@@ -276,9 +278,29 @@ function expandContractButton(videoId) {
             .css({
                 width: 'unset',
                 height: 'unset',
-            })
+            });
+        $(`#${videoId}-video-delete`).css({
+            top: -220,
+        });
         $(`#${videoId}`).toggleClass('expanded');
         $(`#${videoId}-expand-button`).toggleClass("fa-compress fa-expand");
         $(`.ex-sep`).remove()
     }
+}
+
+function removeVideoFromQueue(videoId) {
+    // Send a POST to remove the video from the user's video list
+    $.post({
+        url: `/creatorcrew/remove`,
+        type: 'POST',
+        headers: { "Content-Type": "application/json" },
+        dataType: 'json',
+        data: JSON.stringify({ "videoId": `${videoId}` })
+    }, (data) => {
+        if (data.status === 'ok') {
+            $(`#${videoId}-video-wrapper`).hide(200)
+            const toast = new bootstrap.Toast(removedSuccessToast);
+            toast.show();
+        }
+    });
 }

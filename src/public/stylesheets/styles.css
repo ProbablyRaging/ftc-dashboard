@@ -1189,9 +1189,8 @@ td {
 }
 
 .player-controls {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .player-controls button {
@@ -1284,6 +1283,30 @@ td {
 
 .video-contract .expanded:hover {
     color: rgb(223, 223, 223);
+}
+
+.video-delete {
+    position: relative;
+    top: -820%;
+    right: -280%;
+    width: 14px;
+    height: 14px;
+}
+
+.video-delete button {
+    color: #ff7070fe;
+    padding: 5px 5px !important;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    font-size: 14px;
+    margin: 0px;
+    cursor: pointer;
+    transition: background .15s ease-in-out, color .15s ease-in-out;
+}
+
+.video-delete:hover button {
+    color: #ff4b4bfe;
 }
 
 .cc-videos .video-info {
