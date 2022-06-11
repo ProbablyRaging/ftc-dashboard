@@ -10,24 +10,42 @@
                 <div class="stat-content-box">
                     <div class="content-box-div">
                         <div class="stat-content-box-content">
-                            <i class="fa-solid fa-circle online"> Online</i> <p class="member-count"><%= onlineMembers %></p>
+                            <i class="fa-solid fa-circle online"> Online</i>
+                            <p class="member-count">
+                                <%= onlineMembers %>
+                            </p>
                         </div>
                         <div class="stat-content-box-content">
-                            <i class="fa-solid fa-circle offline"> Offline</i> <p class="member-count"><%= totalMembers %></p>
+                            <i class="fa-solid fa-circle offline"> Offline</i>
+                            <p class="member-count">
+                                <%= totalMembers %>
+                            </p>
                         </div>
                     </div>
                     <div class="server-stats">
                         <div class="sub-stats">
-                            <p class="count-title">Text Channels:</p> <p class="stat-counts"><%= text_channel_count %></p>
+                            <p class="count-title">Text Channels:</p>
+                            <p class="stat-counts">
+                                <%= text_channel_count %>
+                            </p>
                         </div>
                         <div class="sub-stats">
-                            <p class="count-title">Voice Channels:</p> <p class="stat-counts"><%= voice_channel_count %></p>
+                            <p class="count-title">Voice Channels:</p>
+                            <p class="stat-counts">
+                                <%= voice_channel_count %>
+                            </p>
                         </div>
                         <div class="sub-stats">
-                            <p class="count-title">Categories:</p> <p class="stat-counts"><%= category_count %></p>
+                            <p class="count-title">Categories:</p>
+                            <p class="stat-counts">
+                                <%= category_count %>
+                            </p>
                         </div>
                         <div class="sub-stats">
-                            <p class="count-title">Roles:</p> <p class="stat-counts"><%= role_count %></p>
+                            <p class="count-title">Roles:</p>
+                            <p class="stat-counts">
+                                <%= role_count %>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -95,6 +113,39 @@
                                 </div>
                                 <h5 class="button-title">Applications</h5>
                                 <div class="button-description">View new and old staff applications</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+            <!--  -->
+
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Creator Crew</div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content">
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/creatorcrew';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/4880/4880410.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Creator Crew Queue</h5>
+                                <div class="button-description">Watch and like your Creator Crew queue videos</div>
                             </div>
                         </div>
                     </div>

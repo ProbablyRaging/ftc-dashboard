@@ -257,7 +257,8 @@ button:focus {
     #group-one-visible,
     #group-two-visible,
     #group-three-visible,
-    #group-four-visible {
+    #group-four-visible,
+    #group-five-visible {
         display: none;
     }
 }
