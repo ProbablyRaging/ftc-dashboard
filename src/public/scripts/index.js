@@ -1,3 +1,4 @@
+// Pull down to refresh
 var pStart = { x: 0, y: 0 };
 var pStop = { x: 0, y: 0 };
 
@@ -56,12 +57,6 @@ document.addEventListener(
   },
   false
 );
-
-
-
-
-
-
 
 // Loading spinner
 if (top.location.pathname.split('/')[1] === 'logs' || top.location.pathname.split('/')[1] === 'leaderboards') {
