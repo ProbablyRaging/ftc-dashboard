@@ -1,0 +1,107 @@
+<%- include('../partials/guest/guest_header') -%>
+    <%- include('../partials/guest/guest_topbar') -%>
+        <%- include('../partials/container') -%>
+
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Staff Application</div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content-row">
+
+                            <!-- Form -->
+                            <div class="mb-3-staff">
+                                <input name="username" id="username-input" role="textbox"
+                                    class="bg-grey-700 rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox-sm"
+                                    data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
+                                    style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
+                                    spellcheck="false" value="<%= username %>" disabled required>
+                            </div>
+
+                            <select name="age" class="form-select content-box-select" id="age-selector" required>
+                                <option class="select-option" value="" selected disabled>Age
+                                </option>
+                                <option class="select-option" value="13-17">13-17
+                                </option>
+                                <option class="select-option" value="18-29">18-29
+                                </option>
+                                <option class="select-option" value="30+">30+
+                                </option>
+                            </select>
+
+                            <div class="mb-3-staff">
+                                <input name="region" id="region-input" role="textbox"
+                                    class="bg-grey-700 rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox-sm"
+                                    data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
+                                    style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
+                                    spellcheck="false" placeholder="Region: (E.g. Australia)" required>
+                            </div>
+
+                            <div class="mb-3-staff">
+                                <textarea name="about" id="about-input" role="textbox"
+                                    class="bg-grey-700 !min-h-[112px] rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox"
+                                    data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
+                                    style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
+                                    spellcheck="false"
+                                    placeholder="Tell us something about yourself, why you want to be staff, if you have any previous experience, etc.."
+                                    required></textarea>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-primary submit-btn"
+                                    onclick="submitStaffApplication()">Save</button>
+                            </div>
+
+                            <!-- Toast Error -->
+                            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                                <div id="errorToast" class="toast" role="alert" aria-live="assertive"
+                                    aria-atomic="true">
+                                    <div class="toast-body text-light bg-danger">
+                                        Please fill out the required fields
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Toast Success -->
+                            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                                <div id="successToast" class="toast" role="alert" aria-live="assertive"
+                                    aria-atomic="true">
+                                    <div class="toast-body text-light bg-primary">
+                                        You application has been submitted
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Toast Success -->
+                            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                                <div id="cautionToast" class="toast" role="alert" aria-live="assertive"
+                                    aria-atomic="true">
+                                    <div class="toast-body text-dark bg-warning">
+                                        An unknown error occurred
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--  -->
+
+            </div>
+            </div>
+            <!--  -->
+
+            <%- include('../partials/footer') -%>

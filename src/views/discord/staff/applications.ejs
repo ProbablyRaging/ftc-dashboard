@@ -1,0 +1,58 @@
+<%- include('../partials/header') -%>
+    <%- include('../partials/topbar') -%>
+        <%- include('../partials/container') -%>
+
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Staff Applications</div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content-column">
+
+                            <% for (const data of results) { %>
+                                <% const { username, discriminator }= data %>
+                                    <!-- Card -->
+                                    <div class="card" style="width: 18rem">
+                                        <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.png?size=512"
+                                            class="card-img-top card-img-crop" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <%= data.username %>#<%= data.discriminator %>
+                                            </h5>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><strong>Age</strong><br>
+                                                <%= data.age %>
+                                            </li>
+                                            <li class="list-group-item"><strong>Region</strong><br>
+                                                <%= data.region %>
+                                            </li>
+                                            <li class="list-group-item"><strong>About</strong><br>
+                                                <%= data.about %>
+                                            </li>
+                                        </ul>
+                                        <div class="card-footer">
+                                        </div>
+                                    </div>
+
+                                    <% } %>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--  -->
+
+                <%- include('../partials/footer') -%>

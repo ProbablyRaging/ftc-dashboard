@@ -1,6 +1,6 @@
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const req = require("express/lib/request");
-const googleUser = require("../schema/google_user");
+const googleUser = require("../schema/misc/google_user");
 
 module.exports = (passport) => {
     passport.use(new GoogleStrategy({

@@ -1,6 +1,6 @@
 const discordStrategy = require('passport-discord').Strategy;
 const passport = require('passport');
-const discordUser = require('../schema/discord_user');
+const discordUser = require('../schema/misc/discord_user');
 const fetch = require('node-fetch');
 
 passport.serializeUser((user, done) => {

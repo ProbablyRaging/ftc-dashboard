@@ -1,0 +1,251 @@
+<%- include('../partials/header') -%>
+    <%- include('../partials/topbar') -%>
+        <%- include('../partials/container') -%>
+
+            <div class="content-page-title">
+                <p class="content-page-header">Welcome back, <%= username %>
+                </p>
+
+                <!-- Content Box -->
+                <div class="stat-content-box">
+                    <div class="content-box-div">
+                        <div class="stat-content-box-content">
+                            <i class="fa-solid fa-circle online"> Online</i> <p class="member-count"><%= onlineMembers %></p>
+                        </div>
+                        <div class="stat-content-box-content">
+                            <i class="fa-solid fa-circle offline"> Offline</i> <p class="member-count"><%= totalMembers %></p>
+                        </div>
+                    </div>
+                    <div class="server-stats">
+                        <div class="sub-stats">
+                            <p class="count-title">Text Channels:</p> <p class="stat-counts"><%= text_channel_count %></p>
+                        </div>
+                        <div class="sub-stats">
+                            <p class="count-title">Voice Channels:</p> <p class="stat-counts"><%= voice_channel_count %></p>
+                        </div>
+                        <div class="sub-stats">
+                            <p class="count-title">Categories:</p> <p class="stat-counts"><%= category_count %></p>
+                        </div>
+                        <div class="sub-stats">
+                            <p class="count-title">Roles:</p> <p class="stat-counts"><%= role_count %></p>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+
+            </div>
+
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Command Management</div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content">
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/settings/rules';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3251/3251560.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Rule</h5>
+                                <div class="button-description">Change the rules everywhere they are used on the
+                                    server</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+            <!--  -->
+
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Staff Applications</div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content">
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/applications';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/138/138849.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Applications</h5>
+                                <div class="button-description">View new and old staff applications</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+            <!--  -->
+
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Server Logs</div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content">
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/logs/warnings';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/564/564619.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Warnings</h5>
+                                <div class="button-description">A log of warnings issued to members</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/logs/mutes';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/945/945154.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Mutes and Timeouts</h5>
+                                <div class="button-description">A log of members who have been muted or timed out</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/logs/bans';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/7195/7195822.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Bans and Unbans</h5>
+                                <div class="button-description">A log of members who have been banned or unbanned</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/logs/message-deletes';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3221/3221897.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Message Deletes</h5>
+                                <div class="button-description">A log of channel messages that have been deleted</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/logs/blacklists';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2165/2165366.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Blacklisted Messages</h5>
+                                <div class="button-description">A log of blacklisted messages</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/logs/commands';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/4248/4248402.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Command Usage</h5>
+                                <div class="button-description">A log of commands that have been used in the server
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+            <!--  -->
+
+            <!-- Content Box -->
+            <div class="content-box">
+                <div class="content-box-div">
+
+                    <!-- Content Box Inner -->
+                    <header class="content-box-title-class">
+                        <div class="content-box-title-flex">
+                            <h5 class="content-box-title-decor">
+                                <div class="content-box-title">Leaderboard</div>
+
+                            </h5>
+                        </div>
+                    </header>
+
+                    <hr class="content-box-separator">
+
+                    <div>
+                        <div class="content-box-content">
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/leaderboards/ranks';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/490/490576.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Ranks</h5>
+                                <div class="button-description">A leaderboard for the server ranks</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/leaderboards/messages';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Messages</h5>
+                                <div class="button-description">A leaderboard for the server messages</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/leaderboards/lastletter';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/773/773228.png" class="button-img">
+                                </div>
+                                <h5 class="button-title">Last Letter Game</h5>
+                                <div class="button-description">A leaderboard for the last letter game</div>
+                            </div>
+
+                            <!-- Dashboard Button -->
+                            <div class="content-box-button" onclick="location.href = '/leaderboards/counting';">
+                                <div class="button-img-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/7173/7173821.png"
+                                        class="button-img">
+                                </div>
+                                <h5 class="button-title">Counting Game</h5>
+                                <div class="button-description">A leaderboard for the counting game</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+            <!--  -->
+
+            <%- include('../partials/footer') -%>

@@ -1,0 +1,58 @@
+<%- include('../partials/guest/guest_header') -%>
+    <%- include('../partials/guest/guest_topbar') -%>
+        <%- include('../partials/container') -%>
+
+            <% function numberWithCommas(x) { %>
+                <% return x?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "," ); %>
+                    <% } %>
+
+                        <!-- Content Box -->
+                        <div class="content-box">
+                            <div class="content-box-div">
+
+                                <!-- Content Box Inner -->
+                                <header class="content-box-title-class">
+                                    <div class="content-box-title-flex">
+                                        <h5 class="content-box-title-decor">
+                                            <div class="content-box-title">Message Leaderboard</div>
+
+                                        </h5>
+                                    </div>
+                                </header>
+
+                                <hr class="content-box-separator">
+
+                                <div class="leaderboard">
+                                    <table class="leaderboard-table">
+                                        <tbody>
+                                            <% for (var i = 0; i < dataArr.length; i++) { %>
+
+                                                <tr>
+                                                    <td class="rank">
+                                                        <%= dataArr[i].rank %>
+                                                    </td>
+                                                    <td class="message-count"><strong>Rank</strong>
+                                                        <p class="level"><%= numberWithCommas(dataArr[i].level) %></p>
+                                                    </td>
+                                                    <td class="nick">
+                                                        <img class="leaderboard-avatar"
+                                                            src="https://cdn.discordapp.com/avatars/<%= dataArr[i].id %>/<%= dataArr[i].avatar %>.png">
+                                                        <%= dataArr[i].username %>
+                                                    </td>
+                                                    <td class="message-count"><strong>Messages</strong>
+                                                        <%= numberWithCommas(dataArr[i].msgCount) %>
+                                                    </td>
+                                                    <td class="xp"><strong>XP</strong>
+                                                        <%= numberWithCommas(dataArr[i].xp) %>
+                                                    </td>
+                                                </tr>
+
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <%- include('../partials/guest/guest_footer') -%>
