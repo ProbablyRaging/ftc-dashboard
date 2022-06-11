@@ -1153,13 +1153,13 @@ td {
     height: 100%;
 }
 
-.video-status {
+.player-information-wrapper {
     display: flex;
     margin-top: 5px;
     justify-content: space-between;
 }
 
-.video-status .status-text {
+.player-information {
     font-size: 10px;
 }
 

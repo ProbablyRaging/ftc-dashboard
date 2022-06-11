@@ -206,13 +206,19 @@
                                     <p class="video-title" id="<%= video.id %>-video-title">&nbsp;</p>
                                     <div class="ytplayer" id="<%= video.id %>" disablePictureInPicture>
                                     </div>
-                                    <div class="video-status">
-                                        <p class="video-info status-text" id="title-<%= video.id %>">
-                                            <strong>Video ID:</strong> <code><%= video.id %></code><br>
-                                            <strong>Status:</strong> <i class="fa-solid fa-circle status-unwatched"
-                                                id="<%= video.id %>-watch-status"></i><br>
-                                            added <%- convertTimestampToRelativeTime(video.timestamp) %>
-                                        </p>
+                                    <div class="player-information-wrapper">
+                                        <div class="player-information">
+                                            <p class="video-id">
+                                                <strong>Video ID:</strong> <code><%= video.id %></code><br>
+                                            </p>
+                                            <p class="video-status">
+                                                <strong>Status:</strong> <i class="fa-solid fa-circle status-unwatched"
+                                                    id="<%= video.id %>-watch-status"> 00:00 / 00:00</i>
+                                            </p>
+                                            <p class="video-added">
+                                                added <%- convertTimestampToRelativeTime(video.timestamp) %>
+                                            </p>
+                                        </div>
                                         <div class="player-controls">
                                             <p class="video-like"><button class="fa-solid fa-thumbs-up unliked"
                                                     id="<%= video.id %>-like-button" data-bs-toggle="tooltip"
@@ -231,10 +237,12 @@
                                                     onclick="expandContractButton('<%= video.id %>')"></button>
                                             </p>
                                             <% if (userId===video.author) { %>
-                                                <p class="video-delete" id="<%= video.id %>-video-delete"><button class="fa-solid fa-circle-xmark"
+                                                <p class="video-delete" id="<%= video.id %>-video-delete"><button
+                                                        class="fa-solid fa-circle-xmark"
                                                         id="<%= video.id %>-delete-button" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                                                        title="Remove from queue" onclick="removeVideoFromQueue('<%= video.id %>')"></button>
+                                                        title="Remove from queue"
+                                                        onclick="removeVideoFromQueue('<%= video.id %>')"></button>
                                                 </p>
                                                 <% } %>
                                         </div>
@@ -251,7 +259,7 @@
                                             playerVars: {
                                                 'autoplay': 0,
                                                 'playsinline': 1,
-                                                'controls': 0, // Remove the play/skip buttons and the seek bar
+                                                'controls': 1, // Remove the play/skip buttons and the seek bar
                                                 'enablejsapi': 1, // Allows the player to be controlled with API calles
                                                 'disablekb': 1 // Disable keyboard shortcuts
                                             },

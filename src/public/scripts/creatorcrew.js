@@ -58,7 +58,26 @@ function onPlayerReady(event) {
     const videoId = event.target.i.id;
     const videoTitle = event.target.getVideoData().title.slice(0, 40) + '...';
     const setVideoTitle = document.getElementById(`${videoId}-video-title`);
+    const setVideoTimer = document.getElementById(`${videoId}-watch-status`);
     setVideoTitle.innerHTML = videoTitle;
+    // Interval to display the current watch time and duration
+    setInterval(() => {
+        const currentWatchTime = event.target.getCurrentTime();
+        const totalDuration = event.target.getDuration();
+        let currentTimer;
+        if (currentWatchTime >= 3600) {
+            currentTimer = new Date(currentWatchTime * 1000).toISOString().substr(11, 8);
+        } else {
+            currentTimer = new Date(currentWatchTime * 1000).toISOString().substr(11, 8).slice(3, 8);
+        }
+        let totalTimer;
+        if (totalDuration >= 3600) {
+            totalTimer = new Date(totalDuration * 1000).toISOString().substr(11, 8);
+        } else {
+            totalTimer = new Date(totalDuration * 1000).toISOString().substr(11, 8).slice(3, 8);
+        }
+        setVideoTimer.innerHTML = ' ' + currentTimer + ' / ' + totalTimer;
+    }, 1000);
     // Set the player volume to 0
     event.target.setVolume(0);
 }
