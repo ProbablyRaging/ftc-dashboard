@@ -148,7 +148,7 @@ function onPlayerStateChange(event) {
         if (event.data === 1) {
             event.target.seekTo(0.01);
             event.target.stopVideo();
-            const toast = new bootstrap.Toast(toastError);
+            const toast = new bootstrap.Toast(errorToast);
             toast.show();
         }
     }
