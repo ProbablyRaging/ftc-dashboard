@@ -23,8 +23,6 @@ router.get('/', async (req, res) => {
 
 // Apply root POST
 router.post('/', async (req, res) => {
-    console.log(req.body)
-
     if (req.body && req.body.username && req.body.age && req.body.region && req.body.about) {
         // Create webhook
         const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };

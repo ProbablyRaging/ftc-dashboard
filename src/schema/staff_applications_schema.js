@@ -14,6 +14,10 @@ const staffApplicationSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    avatar: {
+        type: String,
+        required: false
+    },
     age: {
         type: String,
         required: true
