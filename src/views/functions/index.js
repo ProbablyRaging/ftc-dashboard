@@ -26,7 +26,7 @@ function convertTimestampToRelativeTime(dateToConvert) {
         }
     } else if (elapsed < msPerMonth) {
         if (Math.round(elapsed / msPerDay) > 3) {
-            return 'more than 3 days ago';
+            return ' >3 days ago';
         } else if (Math.round(elapsed / msPerDay) > 1) {
             return Math.round(elapsed / msPerDay) + ' days ago';
         } else {
