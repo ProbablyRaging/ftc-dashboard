@@ -25,6 +25,7 @@ const applicationsRoute = require('./routes/applications');
 const applyRoute = require('./routes/apply');
 const leaderboardsRoute = require('./routes/leaderboards');
 const creatorcrewRoute = require('./routes/creatorcrew');
+const ccinfoRoute = require('./routes/ccinfo');
 const privacyRoute = require('./routes/privacy');
 const aboutRoute = require('./routes/about');
 
@@ -66,6 +67,7 @@ app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
 app.use('/leaderboards', leaderboardsRoute);
 app.use('/creatorcrew', creatorcrewRoute);
+app.use('/ccinfo', ccinfoRoute);
 app.use('/privacy', privacyRoute);
 app.use('/about', aboutRoute);
 
