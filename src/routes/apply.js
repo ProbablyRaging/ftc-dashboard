@@ -26,27 +26,33 @@ router.post('/', async (req, res) => {
     // Log application to database
     mongo.then(async mongo => {
         await staffApplicationSchema.create({
-            userId: req.user.userId
+            userId: req.user.userId,
+            username: req.user.username,
+            discriminator: req.user.discriminator,
+            avatar: req.user.avatar,
+            age: req.body.age,
+            region: req.body.region,
+            about: req.body.about
         });
     });
 
     // Create webhook
-    const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
-    const body = { name: `CreatorBot`, avatar: process.env.BOT_IMG_URI };
-    let webhook;
-    await fetch(`https://discord.com/api/v9/channels/${process.env.STAFF_CHANNEL}/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
-        webhook = await response.json();
-        // Send webhook
-        const body = {
-            content: `${process.env.AUTH_ROLE_ID}
-There is a new staff application, [click here](https://www.creatorhub.info/applications) to view it` };
-        await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
-            // Delete webhook
-            await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}`, { method: 'DELETE', headers: headers });
-        });
-    });
+//     const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
+//     const body = { name: `CreatorBot`, avatar: process.env.BOT_IMG_URI };
+//     let webhook;
+//     await fetch(`https://discord.com/api/v9/channels/${process.env.STAFF_CHANNEL}/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+//         webhook = await response.json();
+//         // Send webhook
+//         const body = {
+//             content: `${process.env.AUTH_ROLE_ID}
+// There is a new staff application, [click here](https://www.creatorhub.info/applications) to view it` };
+//         await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+//             // Delete webhook
+//             await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}`, { method: 'DELETE', headers: headers });
+//         });
+//     });
 
-    res.redirect('/apply');
+//     res.redirect('/apply');
 });
 
 module.exports = router;
