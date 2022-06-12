@@ -335,6 +335,10 @@ h5 {
     transition: all .2s linear;
 }
 
+.content-box-title-class:hover .fa-angle-up {
+    color: rgb(255, 255, 255) !important;
+}
+
 hr {
     height: 0;
     color: inherit;
