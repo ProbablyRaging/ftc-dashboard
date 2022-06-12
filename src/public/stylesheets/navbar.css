@@ -1,9 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
+:root {
+    --main-bg-color: rgb(31, 33, 41);
+    --main-border-color: rgb(49, 52, 66);
+}
+
 .main-menu {
     display: block;
-    background: #1F2129;
-    border-right: 1px solid rgb(49, 52, 66);
+    background: var(--main-bg-color);
+    border-right: 1px solid var(--main-border-color);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -198,6 +203,9 @@ nav.main-menu li.active>a,
 .no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
 .dashboard-page nav.dashboard-menu ul li.active a {
     color: rgb(255, 255, 255) !important;
+    background-color: #0000001a;
+    border-radius: 4px;
+    margin-left: 10px;
 }
 
 .nav-logo-div {
@@ -235,8 +243,8 @@ button:focus {
 @media only screen and (max-width: 768px) {
     .main-menu {
         display: block;
-        background: #1F2129;
-        border-right: 1px solid rgb(49, 52, 66);
+        background: var(--main-bg-color);
+        border-right: 1px solid var(--main-border-color);
         position: absolute;
         top: 0;
         bottom: 0;

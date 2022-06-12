@@ -19,36 +19,34 @@
                     <hr class="content-box-separator">
 
                     <div>
-                        <div class="content-box-content-column">
+                        <div class="app-content-box">
 
                             <% for (const data of results) { %>
-                                <% const { username, discriminator }= data %>
-                                    <!-- Card -->
-                                    <div class="card" style="width: 18rem">
+                                <% const { userId, username, avatar, discriminator }=data %>
+                                    <div class="app-wrapper">
                                         <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.png?size=512"
-                                            class="card-img-top card-img-crop" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <%= data.username %>#<%= data.discriminator %>
-                                            </h5>
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><strong>Age</strong><br>
+                                            class="app-img" alt="...">
+
+                                        <div class="app-user">
+                                            <p class="app-username">
+                                                <%= username %>#<%= discriminator %>
+                                            </p>
+
+                                            <p class="app-age app-section">
+                                                <strong>Age:</strong>
                                                 <%= data.age %>
-                                            </li>
-                                            <li class="list-group-item"><strong>Region</strong><br>
+                                            </p>
+                                            <p class="app-region app-section">
+                                                <strong>Region:</strong>
                                                 <%= data.region %>
-                                            </li>
-                                            <li class="list-group-item"><strong>About</strong><br>
+                                            </p>
+                                            <p class="app-about app-section">
+                                                <strong>About:</strong>
                                                 <%= data.about %>
-                                            </li>
-                                        </ul>
-                                        <div class="card-footer">
+                                            </p>
                                         </div>
                                     </div>
-
                                     <% } %>
-
                         </div>
 
                     </div>
