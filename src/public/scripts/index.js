@@ -246,7 +246,7 @@ if (boxFiveBtn) {
             $("#content-five").slideDown(150);
             $("#separator-five").slideDown(150);
             $("#dash-collapse-five").removeClass('rotated');
-            $("#box-ofivene-hidden").attr("id", "box-five");
+            $("#box-five-hidden").attr("id", "box-five");
         }
     }
 }
