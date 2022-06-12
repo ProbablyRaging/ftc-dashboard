@@ -10,6 +10,7 @@ router.get('/', isAuthortized, async (req, res) => {
         const results = await staffApplicationSchema.find().limit(9);
 
         res.render('applications', {
+            useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,

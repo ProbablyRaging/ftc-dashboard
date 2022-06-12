@@ -1,170 +1,174 @@
 <%- include('../partials/guest/guest_header') -%>
-    <%- include('../partials/guest/guest_topbar') -%>
-        <%- include('../partials/container') -%>
+<%- include('../partials/guest/guest_topbar') -%>
+<%- include('../partials/container') -%>
 
-            <div class="content-page-title">
-                <p class="content-page-header">Welcome back, <%= username %>
-                </p>
+<div class="content-page-title">
+    <p class="content-page-header">Welcome back, <%= username %>
+    </p>
 
-                <!-- Content Box -->
-                <div class="stat-content-box">
-                    <div class="content-box-div">
-                        <div class="stat-content-box-content">
-                            <i class="fa-solid fa-circle online"> Online</i> <p class="member-count"><%= onlineMembers %></p>
-                        </div>
-                        <div class="stat-content-box-content">
-                            <i class="fa-solid fa-circle offline"> Offline</i> <p class="member-count"><%= totalMembers %></p>
-                        </div>
-                    </div>
-                    <div class="server-stats">
-                        <div class="sub-stats">
-                            <p class="count-title">Text Channels:</p> <p class="stat-counts"><%= text_channel_count %></p>
-                        </div>
-                        <div class="sub-stats">
-                            <p class="count-title">Voice Channels:</p> <p class="stat-counts"><%= voice_channel_count %></p>
-                        </div>
-                        <div class="sub-stats">
-                            <p class="count-title">Categories:</p> <p class="stat-counts"><%= category_count %></p>
-                        </div>
-                        <div class="sub-stats">
-                            <p class="count-title">Roles:</p> <p class="stat-counts"><%= role_count %></p>
-                        </div>
-                    </div>
-                </div>
-                <!--  -->
-                
+    <!-- Content Box -->
+    <div class="stat-content-box">
+        <div class="content-box-div">
+            <div class="stat-content-box-content">
+                <i class="fa-solid fa-circle online"> Online</i>
+                <p class="member-count"><%= onlineMembers %></p>
             </div>
-
-            <!-- Content Box -->
-            <div class="content-box">
-                <div class="content-box-div">
-
-                    <!-- Content Box Inner -->
-                    <header class="content-box-title-class">
-                        <div class="content-box-title-flex">
-                            <h5 class="content-box-title-decor">
-                                <div class="content-box-title">Applications</div>
-
-                            </h5>
-                        </div>
-                    </header>
-
-                    <hr class="content-box-separator">
-
-                    <div>
-                        <div class="content-box-content">
-                            <!-- Dashboard Button -->
-                            <div class="content-box-button" onclick="location.href = '/apply';">
-                                <div class="button-img-container">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/138/138849.png" class="button-img">
-                                </div>
-                                <h5 class="button-title">Apply</h5>
-                                <div class="button-description">Apply for a server staff position</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                </div>
+            <div class="stat-content-box-content">
+                <i class="fa-solid fa-circle offline"> Offline</i>
+                <p class="member-count"><%= totalMembers %></p>
             </div>
-            <!--  -->
+        </div>
+        <div class="server-stats">
+            <div class="sub-stats">
+                <p class="count-title">Text Channels:</p>
+                <p class="stat-counts"><%= text_channel_count %></p>
+            </div>
+            <div class="sub-stats">
+                <p class="count-title">Voice Channels:</p>
+                <p class="stat-counts"><%= voice_channel_count %></p>
+            </div>
+            <div class="sub-stats">
+                <p class="count-title">Categories:</p>
+                <p class="stat-counts"><%= category_count %></p>
+            </div>
+            <div class="sub-stats">
+                <p class="count-title">Roles:</p>
+                <p class="stat-counts"><%= role_count %></p>
+            </div>
+        </div>
+    </div>
+    <!--  -->
 
-            <!-- Content Box -->
-            <div class="content-box">
-                <div class="content-box-div">
+</div>
 
-                    <!-- Content Box Inner -->
-                    <header class="content-box-title-class">
-                        <div class="content-box-title-flex">
-                            <h5 class="content-box-title-decor">
-                                <div class="content-box-title">Creator Crew</div>
+<!-- Content Box -->
+<div class="content-box">
+    <div class="content-box-div">
 
-                            </h5>
-                        </div>
-                    </header>
+        <!-- Content Box Inner -->
+        <header class="content-box-title-class">
+            <div class="content-box-title-flex">
+                <h5 class="content-box-title-decor">
+                    <div class="content-box-title">Applications</div>
 
-                    <hr class="content-box-separator">
+                </h5>
+            </div>
+        </header>
 
-                    <div>
-                        <div class="content-box-content">
-                            <!-- Dashboard Button -->
-                            <div class="content-box-button" onclick="location.href = '/creatorcrew';">
-                                <div class="button-img-container">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/4880/4880410.png" class="button-img">
-                                </div>
-                                <h5 class="button-title">Creator Crew Queue</h5>
-                                <div class="button-description">Watch and like your Creator Crew queue videos</div>
-                            </div>
-                        </div>
+        <hr class="content-box-separator">
+
+        <div>
+            <div class="content-box-content">
+                <!-- Dashboard Button -->
+                <div class="content-box-button" onclick="location.href = '/apply';">
+                    <div class="button-img-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/138/138849.png" class="button-img">
                     </div>
-                    <!--  -->
+                    <h5 class="button-title">Apply</h5>
+                    <div class="button-description">Apply for a server staff position</div>
                 </div>
             </div>
-            <!--  -->
+        </div>
+        <!--  -->
+    </div>
+</div>
+<!--  -->
 
-            <!-- Content Box -->
-            <div class="content-box">
-                <div class="content-box-div">
+<!-- Content Box -->
+<div class="content-box">
+    <div class="content-box-div">
 
-                    <!-- Content Box Inner -->
-                    <header class="content-box-title-class">
-                        <div class="content-box-title-flex">
-                            <h5 class="content-box-title-decor">
-                                <div class="content-box-title">Leaderboard</div>
+        <!-- Content Box Inner -->
+        <header class="content-box-title-class">
+            <div class="content-box-title-flex">
+                <h5 class="content-box-title-decor">
+                    <div class="content-box-title">Creator Crew</div>
 
-                            </h5>
-                        </div>
-                    </header>
+                </h5>
+            </div>
+        </header>
 
-                    <hr class="content-box-separator">
+        <hr class="content-box-separator">
 
-                    <div>
-                        <div class="content-box-content">
-                            <!-- Dashboard Button -->
-                            <div class="content-box-button" onclick="location.href = '/leaderboards/ranks';">
-                                <div class="button-img-container">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/490/490576.png" class="button-img">
-                                </div>
-                                <h5 class="button-title">Ranks</h5>
-                                <div class="button-description">A leaderboard for the server ranks</div>
-                            </div>
-
-                            <!-- Dashboard Button -->
-                            <div class="content-box-button" onclick="location.href = '/leaderboards/messages';">
-                                <div class="button-img-container">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png"
-                                        class="button-img">
-                                </div>
-                                <h5 class="button-title">Messages</h5>
-                                <div class="button-description">A leaderboard for the server messages</div>
-                            </div>
-
-                            <!-- Dashboard Button -->
-                            <div class="content-box-button" onclick="location.href = '/leaderboards/lastletter';">
-                                <div class="button-img-container">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/773/773228.png" class="button-img">
-                                </div>
-                                <h5 class="button-title">Last Letter Game</h5>
-                                <div class="button-description">A leaderboard for the last letter game</div>
-                            </div>
-
-                            <!-- Dashboard Button -->
-                            <div class="content-box-button" onclick="location.href = '/leaderboards/counting';">
-                                <div class="button-img-container">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/7173/7173821.png"
-                                        class="button-img">
-                                </div>
-                                <h5 class="button-title">Counting Game</h5>
-                                <div class="button-description">A leaderboard for the counting game</div>
-                            </div>
-                        </div>
+        <div>
+            <div class="content-box-content">
+                <!-- Dashboard Button -->
+                <div class="content-box-button" onclick="location.href = '/creatorcrew';">
+                    <div class="button-img-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4880/4880410.png" class="button-img">
                     </div>
-                    <!--  -->
+                    <h5 class="button-title">Creator Crew Queue</h5>
+                    <div class="button-description">Watch and like your Creator Crew queue videos</div>
                 </div>
             </div>
-            <!--  -->
+        </div>
+        <!--  -->
+    </div>
+</div>
+<!--  -->
+
+<!-- Content Box -->
+<div class="content-box">
+    <div class="content-box-div">
+
+        <!-- Content Box Inner -->
+        <header class="content-box-title-class">
+            <div class="content-box-title-flex">
+                <h5 class="content-box-title-decor">
+                    <div class="content-box-title">Leaderboard</div>
+
+                </h5>
+            </div>
+        </header>
+
+        <hr class="content-box-separator">
+
+        <div>
+            <div class="content-box-content">
+                <!-- Dashboard Button -->
+                <div class="content-box-button" onclick="location.href = '/leaderboards/ranks';">
+                    <div class="button-img-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/490/490576.png" class="button-img">
+                    </div>
+                    <h5 class="button-title">Ranks</h5>
+                    <div class="button-description">A leaderboard for the server ranks</div>
+                </div>
+
+                <!-- Dashboard Button -->
+                <div class="content-box-button" onclick="location.href = '/leaderboards/messages';">
+                    <div class="button-img-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png" class="button-img">
+                    </div>
+                    <h5 class="button-title">Messages</h5>
+                    <div class="button-description">A leaderboard for the server messages</div>
+                </div>
+
+                <!-- Dashboard Button -->
+                <div class="content-box-button" onclick="location.href = '/leaderboards/lastletter';">
+                    <div class="button-img-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/773/773228.png" class="button-img">
+                    </div>
+                    <h5 class="button-title">Last Letter Game</h5>
+                    <div class="button-description">A leaderboard for the last letter game</div>
+                </div>
+
+                <!-- Dashboard Button -->
+                <div class="content-box-button" onclick="location.href = '/leaderboards/counting';">
+                    <div class="button-img-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7173/7173821.png" class="button-img">
+                    </div>
+                    <h5 class="button-title">Counting Game</h5>
+                    <div class="button-description">A leaderboard for the counting game</div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+    </div>
+</div>
+<!--  -->
 
 
 
-            <%- include('../partials/footer') -%>
+<%- include('../partials/footer') -%>
 
-                <%- include('../partials/guest/guest_footer') -%>
+<%- include('../partials/guest/guest_footer') -%>

@@ -53,7 +53,11 @@
 <body>
     <div id="page-mount container-fluid">
         <div class="page-div container-fluid">
+            <% if (useStaffNavbar) { %>
             <%- include('./navbar') -%>
-                <div class="spinner-div spinner">
-                    
-                    <div class="page-content content-body !overflow-hidden hidden">
+            <% } else { %>
+            <%- include('./guest/guest_navbar') -%>
+            <% } %>
+            <div class="spinner-div spinner">
+
+                <div class="page-content content-body !overflow-hidden hidden">

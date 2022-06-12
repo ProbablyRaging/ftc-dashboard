@@ -1,357 +1,383 @@
-<%- include('../partials/guest/guest_header') -%>
-    <%- include('../partials/guest/guest_topbar') -%>
-        <%- include('../partials/container') -%>
+<%- include('../partials/header') -%>
+<%- include('../partials/topbar') -%>
+<%- include('../partials/container') -%>
 
-            <script>
-                const userId = '<%= userId %>';
-                const userHasToken = '<%= userHasToken %>';
-                const userExpires = '<%= userExpires %>';
-                let isUserGoogleAuthed = false;
-            </script>
+<script>
+    const userId = '<%= userId %>';
+    const userHasToken = '<%= userHasToken %>';
+    const userExpires = '<%= userExpires %>';
+    let isUserGoogleAuthed = false;
+</script>
 
-            <!-- Content Box -->
-            <div class="content-box">
-                <div class="content-box-div">
+<!-- Content Box -->
+<div class="content-box">
+    <div class="content-box-div">
 
-                    <!-- Content Box Inner -->
-                    <header class="content-box-title-class">
-                        <div class="content-box-title-flex">
-                            <h5 class="content-box-title-decor">
-                                <div class="content-box-title">Creator Crew Queue</div>
-                            </h5>
-                        </div>
+        <!-- Content Box Inner -->
+        <header class="content-box-title-class">
+            <div class="content-box-title-flex">
+                <h5 class="content-box-title-decor">
+                    <div class="content-box-title">Creator Crew Queue</div>
+                </h5>
+            </div>
 
-                        <!-- Sign In Modal -->
-                        <div class="sign-in-modal">
-                            <div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Please sign in</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close" onclick="window.location = '/dashboard'"><i
-                                                    class="fa-solid fa-xmark"></i></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <hr class="content-box-separator">
-                                            <div class="modal-contant-wrapper">
-                                                <div class="btn-google-signin" id="btn-google-signin"
-                                                    onclick="window.location.href = '/google'">
-                                                    <div class="btn-google-wrapper">
-                                                        <div class="btn-google-icon">
-                                                            <div class="btn-google-icon-image">
-                                                                <img src="/images/119930_google_512x512.png">
-                                                            </div>
-                                                        </div>
-                                                        <div class="btn-google-content">
-                                                            <span class="btn-google-text" id="google-signedout">
-                                                                Sign in with Google
-                                                            </span>
-                                                            <span class="btn-google-text" id="google-signedin"
-                                                                style="display: none;">
-                                                                Signed in with Google
-                                                            </span>
-                                                        </div>
-                                                    </div>
+            <!-- Sign In Modal -->
+            <div class="sign-in-modal">
+                <div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Please sign
+                                    in</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    onclick="window.location = '/dashboard'"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <div class="modal-body">
+                                <hr class="content-box-separator">
+                                <div class="modal-contant-wrapper">
+                                    <div class="btn-google-signin" id="btn-google-signin"
+                                        onclick="window.location.href = '/google'">
+                                        <div class="btn-google-wrapper">
+                                            <div class="btn-google-icon">
+                                                <div class="btn-google-icon-image">
+                                                    <img src="/images/119930_google_512x512.png">
                                                 </div>
-                                                <p class="modal-btn-footer"><a href="/privacy">Privacy Policy</a>
-                                                </p>
+                                            </div>
+                                            <div class="btn-google-content">
+                                                <span class="btn-google-text" id="google-signedout">
+                                                    Sign in with Google
+                                                </span>
+                                                <span class="btn-google-text" id="google-signedin"
+                                                    style="display: none;">
+                                                    Signed in with Google
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="modal-btn-footer"><a href="/privacy">Privacy
+                                            Policy</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-outline-secondary btn-sm modal-btn" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            Information
-                        </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-secondary btn-sm modal-btn" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Information
+            </button>
 
-                        <!-- Modal -->
-                        <div class="cc-information-modal">
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Creator Crew Information</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h1>Instructions</h1>
-                                            <ul>
-                                                <li><strong>1.</strong> Sign in to YouTube via the <strong>Sign in with
-                                                        Google</strong> button</li>
-                                                <li><strong>2.</strong> Press play on all, or as many videos as you want
-                                                    to
-                                                </li>
-                                                <li><strong>3.</strong> Click the like button below all the videos that
-                                                    you
-                                                    are watching</li>
-                                                <li><strong>4.</strong> Allow each video to play for 10 minutes until
-                                                    the
-                                                    status indicator turns green</li>
-                                            </ul>
-                                            <br>
-                                            <h1>Requirements</h1>
-                                            <ul>
-                                                <li><strong>1.</strong> You <strong>must</strong> like, and watch each
-                                                    video
-                                                    for a
-                                                    <strong>minimum of 10 minutes</strong> for it to be removed from
-                                                    your queue
-                                                </li>
-                                                <li><strong>2.</strong> You <strong>must not</strong> skip or seek
-                                                    through
-                                                    any
-                                                    portion of the video</li>
-                                            </ul>
-                                            <br>
-                                            <h1>Information</h1>
-                                            <ul>
-                                                <li>- To play more videos simultaneously, go you any <a
-                                                        href="https://www.youtube.com/">YouTube</a> video, set the
-                                                    playback
-                                                    quality to 144p, then refresh this page. All videos will now be
-                                                    played
-                                                    at
-                                                    144p</li>
-                                                <li>- You can watch videos for longer than 10 minutes if you want to
-                                                </li>
-                                                <li>- Exiting or refreshing the page before a video has a green status
-                                                    indicator will reset the watch time for that video</li>
-                                                <li>- Videos that are in your queue for longer than 3 days will be
-                                                    flagged
-                                                    and you may be removed from the group if this happens frequently
-                                                </li>
-                                            </ul>
-                                            <br>
-                                            <h1>Video Status Indicators</h1>
-                                            <ul>
-                                                <li><i class="fa-solid fa-circle status-unwatched"></i> - video is ready
-                                                    to
-                                                    be watched</li>
-                                                <li><i class="fa-solid fa-circle status-watching"></i> - video is
-                                                    currently
-                                                    being watched</li>
-                                                <li><i class="fa-solid fa-circle status-watched-not-liked"></i> -
-                                                    waiting for video to be liked</li>
-                                                <li><i class="fa-solid fa-circle status-watched"></i> - watch time and
-                                                    liking completed</li>
-                                                <li><i class="fa-solid fa-circle status-skipped"></i> - video skip or
-                                                    seeking detected</li>
-                                                <br>
-                                                <li class="modal-info"><i>If you have any issues, please contact
-                                                        ProbablyRaging and provide any necessary screenshots</i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
+            <!-- Modal -->
+            <div class="cc-information-modal">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Creator Crew
+                                    Information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
+                                        class="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <div class="modal-body">
+                                <h1>Instructions</h1>
+                                <ul>
+                                    <li><strong>1.</strong> Sign in to YouTube via the
+                                        <strong>Sign in with
+                                            Google</strong> button
+                                    </li>
+                                    <li><strong>2.</strong> Press play on all, or as many
+                                        videos as you want
+                                        to
+                                    </li>
+                                    <li><strong>3.</strong> Click the like button below all
+                                        the videos that
+                                        you
+                                        are watching</li>
+                                    <li><strong>4.</strong> Allow each video to play for 10
+                                        minutes until
+                                        the
+                                        status indicator turns green</li>
+                                </ul>
+                                <br>
+                                <h1>Requirements</h1>
+                                <ul>
+                                    <li><strong>1.</strong> You <strong>must</strong> like,
+                                        and watch each
+                                        video
+                                        for a
+                                        <strong>minimum of 10 minutes</strong> for it to be
+                                        removed from
+                                        your queue
+                                    </li>
+                                    <li><strong>2.</strong> You <strong>must not</strong>
+                                        skip or seek
+                                        through
+                                        any
+                                        portion of the video</li>
+                                </ul>
+                                <br>
+                                <h1>Information</h1>
+                                <ul>
+                                    <li>- To play more videos simultaneously, go you any <a
+                                            href="https://www.youtube.com/">YouTube</a>
+                                        video, set the
+                                        playback
+                                        quality to 144p, then refresh this page. All videos
+                                        will now be
+                                        played
+                                        at
+                                        144p</li>
+                                    <li>- You can watch videos for longer than 10 minutes if
+                                        you want to
+                                    </li>
+                                    <li>- Exiting or refreshing the page before a video has
+                                        a green status
+                                        indicator will reset the watch time for that video
+                                    </li>
+                                    <li>- Videos that are in your queue for longer than 3
+                                        days will be
+                                        flagged
+                                        and you may be removed from the group if this
+                                        happens frequently
+                                    </li>
+                                </ul>
+                                <br>
+                                <h1>Video Status Indicators</h1>
+                                <ul>
+                                    <li><i class="fa-solid fa-circle status-unwatched"></i>
+                                        - video is ready
+                                        to
+                                        be watched</li>
+                                    <li><i class="fa-solid fa-circle status-watching"></i> -
+                                        video is
+                                        currently
+                                        being watched</li>
+                                    <li><i class="fa-solid fa-circle status-watched-not-liked"></i>
+                                        -
+                                        waiting for video to be liked</li>
+                                    <li><i class="fa-solid fa-circle status-watched"></i> -
+                                        watch time and
+                                        liking completed</li>
+                                    <li><i class="fa-solid fa-circle status-skipped"></i> -
+                                        video skip or
+                                        seeking detected</li>
+                                    <br>
+                                    <li class="modal-info"><i>If you have any issues, please
+                                            contact
+                                            ProbablyRaging and provide any necessary
+                                            screenshots</i></li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
-                    </header>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-                    <hr class="content-box-separator">
+        <hr class="content-box-separator">
 
-                    <div>
-                        <div class="pagination-wrapper">
-                            <% if (videoCount===undefined) { %>
-                                <p class="queue-status">There are currently no videos in your queue, check back later
+        <div>
+            <div class="pagination-wrapper">
+                <% if (videoCount===undefined) { %>
+                <p class="queue-status">There are currently no videos in your queue,
+                    check back later
+                </p>
+                <% } else { %>
+                <% const currentCount=(total <=0) ? 0 : skip + 1 %>
+                <% const totalMath=(limit * page> total) ? total : limit * page
+                                                            %>
+                <p class="queue-status">Showing
+                    <code><%= currentCount %></code> to
+                    <code><%= totalMath %></code> of
+                    <code><%= total %></code> videos in
+                    your
+                    queue
+                </p>
+                <% } %>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button type="button" title="previous" class="pagination-button" onclick="navigateDownPagination()">
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <p class="page-count">
+                        <%= page %>
+                    </p>
+                    <% if (skip + 10 < total) { %>
+                    <button type="button" title="next" class="pagination-button" onclick="navigateUpPagination()">
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                    <% } else { %>
+                    <button type="button" title="next" class="pagination-button" onclick="navigateUpPagination()"
+                        disabled>
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="expanded-video" id="expanded-video"></div>
+            <div class="cc-videos">
+                <% videoArr.forEach(video=> { %>
+                <div class="video-wrapper" id="<%= video.id %>-video-wrapper">
+                    <p class="video-title" id="<%= video.id %>-video-title">&nbsp;</p>
+                    <div class="ytplayer" id="<%= video.id %>" disablePictureInPicture>
+                    </div>
+                    <div class="player-information-wrapper">
+                        <div class="player-information">
+                            <p class="video-id">
+                                <strong>Video ID:</strong>
+                                <code><%= video.id %></code><br>
+                            </p>
+                            <p class="video-status">
+                                <strong>Status:</strong> <i class="fa-solid fa-circle status-unwatched"
+                                    id="<%= video.id %>-watch-status"> 00:00 / 00:00</i>
+                            </p>
+                            <p class="video-added">
+                                added <%-
+                                                                    convertTimestampToRelativeTime(video.timestamp) %>
+                            </p>
+                        </div>
+                        <div class="player-controls-wrapper">
+                            <div class="player-controls">
+                                <p class="video-expand"><button class="fa-solid fa-expand contracted"
+                                        id="<%= video.id %>-expand-button" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                                        title="Expland/Contract"
+                                        onclick="expandContractButton('<%= video.id %>')"></button>
                                 </p>
-                                <% } else { %>
-                                    <% const currentCount=(total <=0) ? 0 : skip + 1 %>
-                                        <% const totalMath=(limit * page> total) ? total : limit * page %>
-                                            <p class="queue-status">Showing <code><%= currentCount %></code> to
-                                                <code><%= totalMath %></code> of <code><%= total %></code> videos in
-                                                your
-                                                queue
-                                            </p>
-                                            <% } %>
-
-                                                <!-- Pagination -->
-                                                <div class="pagination">
-                                                    <button type="button" title="previous" class="pagination-button"
-                                                        onclick="navigateDownPagination()">
-                                                        <i class="fa fa-arrow-left"></i>
-                                                    </button>
-                                                    <p class="page-count">
-                                                        <%= page %>
-                                                    </p>
-                                                    <% if (skip + 10 < total) { %>
-                                                        <button type="button" title="next" class="pagination-button"
-                                                            onclick="navigateUpPagination()">
-                                                            <i class="fa fa-arrow-right"></i>
-                                                        </button>
-                                                        <% } else { %>
-                                                            <button type="button" title="next" class="pagination-button"
-                                                                onclick="navigateUpPagination()" disabled>
-                                                                <i class="fa fa-arrow-right"></i>
-                                                            </button>
-                                                            <% } %>
-                                                </div>
+                                <p class="video-volume"><button class="fa-solid fa-volume-high unmute"
+                                        id="<%= video.id %>-volume-button" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                                        title="Mute/Unmute"></button>
+                                </p>
+                                <p class="video-like"><button class="fa-solid fa-thumbs-up unliked"
+                                        id="<%= video.id %>-like-button" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" title="Like"
+                                        onclick="likeButton('<%= video.id %>')"></button>
+                                </p>
+                            </div>
+                            <% if (userId===video.author) { %>
+                            <div class="video-delete">
+                                <button class="<%= video.id %>-delete-button" id="<%= video.id %>-delete-button"
+                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    data-bs-custom-class="custom-tooltip" title="Remove your own video from your queue"
+                                    onclick="removeVideoFromQueue('<%= video.id %>')">Remove</button>
+                            </div>
+                            <% } %>
                         </div>
-
-                        <div class="expanded-video" id="expanded-video"></div>
-                        <div class="cc-videos">
-                            <% videoArr.forEach(video=> { %>
-                                <div class="video-wrapper" id="<%= video.id %>-video-wrapper">
-                                    <p class="video-title" id="<%= video.id %>-video-title">&nbsp;</p>
-                                    <div class="ytplayer" id="<%= video.id %>" disablePictureInPicture>
-                                    </div>
-                                    <div class="player-information-wrapper">
-                                        <div class="player-information">
-                                            <p class="video-id">
-                                                <strong>Video ID:</strong> <code><%= video.id %></code><br>
-                                            </p>
-                                            <p class="video-status">
-                                                <strong>Status:</strong> <i class="fa-solid fa-circle status-unwatched"
-                                                    id="<%= video.id %>-watch-status"> 00:00 / 00:00</i>
-                                            </p>
-                                            <p class="video-added">
-                                                added <%- convertTimestampToRelativeTime(video.timestamp) %>
-                                            </p>
-                                        </div>
-                                        <div class="player-controls-wrapper">
-                                            <div class="player-controls">
-                                                <p class="video-expand"><button class="fa-solid fa-expand contracted"
-                                                        id="<%= video.id %>-expand-button" data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                                                        title="Expland/Contract"
-                                                        onclick="expandContractButton('<%= video.id %>')"></button>
-                                                </p>
-                                                <p class="video-volume"><button class="fa-solid fa-volume-high unmute"
-                                                        id="<%= video.id %>-volume-button" data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                                                        title="Mute/Unmute"></button>
-                                                </p>
-                                                <p class="video-like"><button class="fa-solid fa-thumbs-up unliked"
-                                                        id="<%= video.id %>-like-button" data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                                                        title="Like" onclick="likeButton('<%= video.id %>')"></button>
-                                                </p>
-                                            </div>
-                                            <% if (userId===video.author) { %>
-                                                <div class="video-delete">
-                                                    <button class="<%= video.id %>-delete-button"
-                                                        id="<%= video.id %>-delete-button" data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-                                                        title="Remove your own video from your queue"
-                                                        onclick="removeVideoFromQueue('<%= video.id %>')">Remove</button>
-                                                </div>
-                                                <% } %>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <script>
-                                    $(document).ready(function () {
-                                        let player;
-                                        player = new YT.Player('<%= video.id %>', {
-                                            height: '144',
-                                            width: '256',
-                                            videoId: '<%= video.id %>', // Video ID fetched from database
-                                            playerVars: {
-                                                'autoplay': 0,
-                                                'playsinline': 1,
-                                                'controls': 0, // Remove the play/skip buttons and the seek bar
-                                                'enablejsapi': 1, // Allows the player to be controlled with API calles
-                                                'disablekb': 1 // Disable keyboard shortcuts
-                                            },
-                                            events: {
-                                                'onReady': onPlayerReady,
-                                                'onStateChange': onPlayerStateChange // Function for checking the state change on each iframe (i.e. pause, play)
-                                            }
-                                        });
-
-                                        // Mute and unmute button for each player
-                                        const muteUnmuteBtn = document.getElementById('<%= video.id %>-volume-button');
-                                        muteUnmuteBtn.addEventListener('click', function (event) {
-                                            if (player.isMuted()) {
-                                                $('#<%= video.id %>-volume-button').animate({
-                                                    opacity: 0.6
-                                                }, 200);
-                                                setTimeout(() => {
-                                                    $('#<%= video.id %>-volume-button').removeClass('fa-volume-high')
-                                                    $('#<%= video.id %>-volume-button').addClass('fa-volume-xmark')
-                                                    $('#<%= video.id %>-volume-button').removeClass('unmute')
-                                                    $('#<%= video.id %>-volume-button').addClass('mute')
-                                                }, 150);
-                                                $('#<%= video.id %>-volume-button').animate({
-                                                    opacity: 1
-                                                }, 200);
-                                                player.unMute();
-                                                player.setVolume(50);
-                                            } else {
-                                                $('#<%= video.id %>-volume-button').animate({
-                                                    opacity: 0.6
-                                                }, 150);
-                                                setTimeout(() => {
-                                                    $('#<%= video.id %>-volume-button').removeClass('fa-volume-xmark')
-                                                    $('#<%= video.id %>-volume-button').addClass('fa-volume-high')
-                                                    $('#<%= video.id %>-volume-button').removeClass('mute')
-                                                    $('#<%= video.id %>-volume-button').addClass('unmute')
-                                                }, 200);
-                                                $('#<%= video.id %>-volume-button').animate({
-                                                    opacity: 1
-                                                }, 200);
-                                                player.mute();
-                                            }
-                                        });
-                                    });
-                                </script>
-                                <% }) %>
-                        </div>
-
                     </div>
                 </div>
-                <!--  -->
 
+                <script>
+                    $(document).ready(function () {
+                        let player;
+                        player = new YT.Player('<%= video.id %>', {
+                            height: '144',
+                            width: '256',
+                            videoId: '<%= video.id %>', // Video ID fetched from database
+                            playerVars: {
+                                'autoplay': 0,
+                                'playsinline': 1,
+                                'controls': 0, // Remove the play/skip buttons and the seek bar
+                                'enablejsapi': 1, // Allows the player to be controlled with API calles
+                                'disablekb': 1 // Disable keyboard shortcuts
+                            },
+                            events: {
+                                'onReady': onPlayerReady,
+                                'onStateChange': onPlayerStateChange // Function for checking the state change on each iframe (i.e. pause, play)
+                            }
+                        });
+
+                        // Mute and unmute button for each player
+                        const muteUnmuteBtn = document.getElementById('<%= video.id %>-volume-button');
+                        muteUnmuteBtn.addEventListener('click', function (event) {
+                            if (player.isMuted()) {
+                                $('#<%= video.id %>-volume-button').animate({
+                                    opacity: 0.6
+                                }, 200);
+                                setTimeout(() => {
+                                    $('#<%= video.id %>-volume-button').removeClass('fa-volume-high')
+                                    $('#<%= video.id %>-volume-button').addClass('fa-volume-xmark')
+                                    $('#<%= video.id %>-volume-button').removeClass('unmute')
+                                    $('#<%= video.id %>-volume-button').addClass('mute')
+                                }, 150);
+                                $('#<%= video.id %>-volume-button').animate({
+                                    opacity: 1
+                                }, 200);
+                                player.unMute();
+                                player.setVolume(50);
+                            } else {
+                                $('#<%= video.id %>-volume-button').animate({
+                                    opacity: 0.6
+                                }, 150);
+                                setTimeout(() => {
+                                    $('#<%= video.id %>-volume-button').removeClass('fa-volume-xmark')
+                                    $('#<%= video.id %>-volume-button').addClass('fa-volume-high')
+                                    $('#<%= video.id %>-volume-button').removeClass('mute')
+                                    $('#<%= video.id %>-volume-button').addClass('unmute')
+                                }, 200);
+                                $('#<%= video.id %>-volume-button').animate({
+                                    opacity: 1
+                                }, 200);
+                                player.mute();
+                            }
+                        });
+                    });
+                </script>
+                <% }) %>
             </div>
-            <!--  -->
 
-            <!-- Toast Error -->
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body text-light bg-danger">
-                        Please sign in with Google first
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+    <!--  -->
 
-            <!-- Toast Success -->
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body text-light bg-primary">
-                        Like added to video
-                    </div>
-                </div>
-            </div>
+</div>
+<!--  -->
 
-            <!-- Removed Success Toast -->
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="removedSuccessToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body text-light bg-primary">
-                        Video removed from queue
-                    </div>
-                </div>
-            </div>
+<!-- Toast Error -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-light bg-danger">
+            Please sign in with Google first
+        </div>
+    </div>
+</div>
 
-            <!-- Toast Success -->
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="cautionToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body text-dark bg-warning">
-                        You have already liked this video
-                    </div>
-                </div>
-            </div>
+<!-- Toast Success -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-light bg-primary">
+            Like added to video
+        </div>
+    </div>
+</div>
 
-            <script src="/scripts/creatorcrew.js"></script>
-            <%- include('../partials/footer') -%>
+<!-- Removed Success Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="removedSuccessToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-light bg-primary">
+            Video removed from queue
+        </div>
+    </div>
+</div>
+
+<!-- Toast Success -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="cautionToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-dark bg-warning">
+            You have already liked this video
+        </div>
+    </div>
+</div>
+
+<script src="/scripts/creatorcrew.js"></script>
+<%- include('../partials/footer') -%>

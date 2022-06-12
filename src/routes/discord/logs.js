@@ -36,6 +36,7 @@ router.get('/warnings', isAuthortized, async (req, res) => {
         const total = (await warnSchema.find()).length;
 
         res.render('warnings', {
+            useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
@@ -68,6 +69,7 @@ router.get('/mutes', isAuthortized, async (req, res) => {
         const total = (await muteTimeoutSchema.find()).length;
 
         res.render('mutes', {
+            useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
@@ -100,6 +102,7 @@ router.get('/bans', isAuthortized, async (req, res) => {
         const total = (await banUnbanSchema.find()).length;
 
         res.render('bans', {
+            useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
@@ -132,6 +135,7 @@ router.get('/blacklists', isAuthortized, async (req, res) => {
         const total = (await blacklistSchema.find()).length;
 
         res.render('blacklists', {
+            useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
@@ -164,6 +168,7 @@ router.get('/commands', isAuthortized, async (req, res) => {
         const total = (await commandUsageSchema.find()).length;
 
         res.render('commands', {
+            useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
@@ -196,6 +201,7 @@ router.get('/message-deletes', isAuthortized, async (req, res) => {
         const total = (await messageDeleteScheme.find()).length;
 
         res.render('message-deletes', {
+            useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,

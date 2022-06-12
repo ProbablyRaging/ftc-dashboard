@@ -32,6 +32,7 @@ router.get('/', isAuthortized, async (req, res) => {
         }
 
         res.render('dashboard', {
+            useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
