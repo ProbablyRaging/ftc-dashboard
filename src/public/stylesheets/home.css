@@ -695,6 +695,13 @@ body {
     font-weight: 600;
 }
 
+.ccinfo-page .body-buttons {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 24px;
+}
+
 /* Mobile Compat */
 @media only screen and (max-width: 1050px) {
     .iframe-container {
