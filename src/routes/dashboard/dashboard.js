@@ -2,9 +2,24 @@ require('dotenv').config();
 const router = require('express').Router();
 const { isAuthortized } = require('../../strategies/auth_check');
 const fetch = require('node-fetch');
+const chartData = require('../../schema/logs/chart_data');
 
 // Staff dashboard root
 router.get('/', isAuthortized, async (req, res) => {
+    const results = await chartData.find().sort({ '_id': -1 }).limit(7);
+
+    let dateArr = [];
+    let joinsArr = [];
+    let messagesArr = [];
+    let bansArr = [];
+    for (const data of results) {
+        const { date, joins, messages, bans } = data;
+        dateArr.push(date);
+        joinsArr.push(joins);
+        messagesArr.push(messages);
+        bansArr.push(bans);
+    }
+
     // Fetch member and channel counts from Discord's API
     Promise.all([
         fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}?with_counts=true`, { headers: { "Authorization": `${process.env.API_TOKEN}` } }).then(resp => resp.json()),
@@ -41,7 +56,8 @@ router.get('/', isAuthortized, async (req, res) => {
             role_count: data[2].length,
             text_channel_count,
             voice_channel_count,
-            category_count
+            category_count,
+            dateArr, joinsArr, messagesArr, bansArr
         });
     });
 });
@@ -49,6 +65,20 @@ router.get('/', isAuthortized, async (req, res) => {
 // User dashboard
 router.get('/guest', async (req, res) => {
     if (req.user) {
+        const results = await chartData.find().sort({ '_id': -1 }).limit(7);
+
+        let dateArr = [];
+        let joinsArr = [];
+        let messagesArr = [];
+        let bansArr = [];
+        for (const data of results) {
+            const { date, joins, messages, bans } = data;
+            dateArr.push(date);
+            joinsArr.push(joins);
+            messagesArr.push(messages);
+            bansArr.push(bans);
+        }
+
         // Fetch member and channel counts from Discord's API
         Promise.all([
             fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}?with_counts=true`, { headers: { "Authorization": `${process.env.API_TOKEN}` } }).then(resp => resp.json()),
@@ -84,7 +114,8 @@ router.get('/guest', async (req, res) => {
                 role_count: data[2].length,
                 text_channel_count,
                 voice_channel_count,
-                category_count
+                category_count,
+                dateArr, joinsArr, messagesArr, bansArr
             });
         });
     } else {

@@ -787,6 +787,27 @@ td {
     margin-left: 10px;
 }
 
+.chart-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.chart-item {
+   width: 49.5%;
+}
+
+.chart-title {
+    margin-bottom: 4px;
+}
+
+.chart-canvas {
+    border-radius: 4px;
+    max-height: 90%;
+}
 
 
 
@@ -893,56 +914,6 @@ td {
     padding: 15px 15px;
     border: none;
 }
-
-/* .btn-google-signin {
-    height: 30px;
-    width: 160px;
-    margin-right: 15px;
-    border-radius: 1px;
-    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-transition: background-color .218s,border-color .218s,box-shadow .218s;
-    transition: background-color .218s,border-color .218s,box-shadow .218s;
-    -webkit-appearance: none;
-    color: rgb(155, 157, 159);
-    background: #00000042;
-    cursor: pointer;
-    outline: none;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    border-radius: 6px;
-}
-
-.btn-google-signin:hover {
-    background: #11111142;
-}
-
-.btn-google-wrapper {
-    height: 100%;
-    width: 100%;
-}
-
-.btn-google-icon {
-    float: left;
-    border-radius: 1px;
-    background: #00000042;
-    padding: 5px;
-}
-
-.btn-google-icon-image {
-    width: 18px;
-    height: 18px;
-}
-
-.btn-google-content {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 30px;
-} */
 
 .btn-google-signin {
     height: 40px;
@@ -1373,5 +1344,9 @@ td {
 @media only screen and (max-width: 460px) {
     .video-wrapper {
         width: 100%;
+    }
+
+    .chart-wrapper {
+        display: none;
     }
 }

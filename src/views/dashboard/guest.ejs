@@ -2,6 +2,13 @@
 <%- include('../partials/guest/guest_topbar') -%>
 <%- include('../partials/container') -%>
 
+<script>
+    const dateArr = '<%- dateArr %>';
+    const joinsArr = '<%- joinsArr %>';
+    const messagesArr = '<%- messagesArr %>';
+    const bansArr = '<%- bansArr %>';
+</script>
+
 <div class="content-page-title">
     <p class="content-page-header">Welcome back, <%= username %>
     </p>
@@ -38,8 +45,21 @@
         </div>
     </div>
     <!--  -->
+</div>
+
+<!-- Charts -->
+<div class="chart-wrapper">
+    <div class="joins-chart chart-item">
+        Members Joined (7 Days)
+        <canvas class="chart-canvas" id="joinsChart"></canvas>
+    </div>
+    <div class="messages-chart chart-item">
+        Messages Sent (7 Days)
+        <canvas class="chart-canvas" id="messagesChart"></canvas>
+    </div>
 
 </div>
+<!--  -->
 
 <!-- Content Box -->
 <div class="content-box">
@@ -167,8 +187,6 @@
 </div>
 <!--  -->
 
-
-
+<script src="/scripts/charts.js"></script>
 <%- include('../partials/footer') -%>
-
 <%- include('../partials/guest/guest_footer') -%>

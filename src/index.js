@@ -25,6 +25,8 @@ const ccinfoRoute = require('./routes/dashboard/ccinfo');
 const privacyRoute = require('./routes/dashboard/privacy');
 const aboutRoute = require('./routes/dashboard/about');
 
+const testRoute = require('./routes/dashboard/test');
+
 // Discord Routes
 const logsRoute = require('./routes/discord/logs');
 const settingsRoute = require('./routes/discord/settings');
@@ -68,13 +70,14 @@ app.use('/auth', authRoute);
 app.use('/api', apiRoute);
 app.use('/google', googleRoute);
 
-// Discord Middleware
+// Dashboard Middleware
 app.use('/dashboard', dashboardRoute);
 app.use('/ccinfo', ccinfoRoute);
 app.use('/privacy', privacyRoute);
 app.use('/about', aboutRoute);
+app.use('/test', testRoute);
 
-// Dashboard Middleware
+// Discord Middleware
 app.use('/logs', logsRoute);
 app.use('/settings', settingsRoute);
 app.use('/applications', applicationsRoute);

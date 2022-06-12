@@ -1,0 +1,17 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/topbar') -%>
+<%- include('../partials/container') -%>
+
+<script>
+    const dateArr = '<%- dateArr %>';
+    const joinsArr = '<%- joinsArr %>';
+    const bansArr = '<%- bansArr %>';
+</script>
+
+<div class="chart">
+    Server Joins (7 Days)
+    <canvas class="charts" id="joinsChart"></canvas>
+</div>
+
+<script src="/scripts/charts.js"></script>
+<%- include('../partials/footer') -%>
