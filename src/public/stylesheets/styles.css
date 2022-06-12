@@ -287,6 +287,10 @@ code {
     align-items: center;
 }
 
+.content-box-title-class:hover {
+    cursor: pointer;
+}
+
 .content-box-title-flex {
     flex: 1 1 0%;
 }
@@ -312,6 +316,23 @@ h5 {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
+}
+
+#dash-collapse-one,
+#dash-collapse-two,
+#dash-collapse-three,
+#dash-collapse-four,
+#dash-collapse-five {
+    color: #999;
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding: 0px;
+    margin: 0px;
+    outline: none;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: all .2s linear;
 }
 
 hr {

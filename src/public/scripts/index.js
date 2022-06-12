@@ -168,6 +168,89 @@ if (btnGroupFive) {
     }
 }
 
+// Dashboard categories collapse
+const boxOneBtn = document.getElementById('box-one');
+const boxTwoBtn = document.getElementById('box-two');
+const boxThreeBtn = document.getElementById('box-three');
+const boxFourBtn = document.getElementById('box-four');
+const boxFiveBtn = document.getElementById('box-five');
+
+if (boxOneBtn) {
+    boxOneBtn.onclick = function () {
+        if (boxOneBtn.id === "box-one") {
+            $("#separator-one").slideUp(150);
+            $("#content-one").slideUp(150);
+            $("#dash-collapse-one").addClass('rotated');
+            $("#box-one").attr("id", "box-one-hidden");
+        } else {
+            $("#content-one").slideDown(150);
+            $("#separator-one").slideDown(150);
+            $("#dash-collapse-one").removeClass('rotated');
+            $("#box-one-hidden").attr("id", "box-one");
+        }
+    }
+}
+if (boxTwoBtn) {
+    boxTwoBtn.onclick = function () {
+        if (boxTwoBtn.id === "box-two") {
+            $("#separator-two").slideUp(150);
+            $("#content-two").slideUp(150);
+            $("#dash-collapse-two").addClass('rotated');
+            $("#box-two").attr("id", "box-two-hidden");
+        } else {
+            $("#content-two").slideDown(150);
+            $("#separator-two").slideDown(150);
+            $("#dash-collapse-two").removeClass('rotated');
+            $("#box-two-hidden").attr("id", "box-two");
+        }
+    }
+}
+if (boxThreeBtn) {
+    boxThreeBtn.onclick = function () {
+        if (boxThreeBtn.id === "box-three") {
+            $("#separator-three").slideUp(150);
+            $("#content-three").slideUp(150);
+            $("#dash-collapse-three").addClass('rotated');
+            $("#box-three").attr("id", "box-three-hidden");
+        } else {
+            $("#content-three").slideDown(150);
+            $("#separator-three").slideDown(150);
+            $("#dash-collapse-three").removeClass('rotated');
+            $("#box-three-hidden").attr("id", "box-three");
+        }
+    }
+}
+if (boxFourBtn) {
+    boxFourBtn.onclick = function () {
+        if (boxFourBtn.id === "box-four") {
+            $("#separator-four").slideUp(150);
+            $("#content-four").slideUp(150);
+            $("#dash-collapse-four").addClass('rotated');
+            $("#box-four").attr("id", "box-four-hidden");
+        } else {
+            $("#content-four").slideDown(150);
+            $("#separator-four").slideDown(150);
+            $("#dash-collapse-four").removeClass('rotated');
+            $("#box-four-hidden").attr("id", "box-four");
+        }
+    }
+}
+if (boxFiveBtn) {
+    boxFiveBtn.onclick = function () {
+        if (boxFiveBtn.id === "box-five") {
+            $("#separator-five").slideUp(150);
+            $("#content-five").slideUp(150);
+            $("#dash-collapse-five").addClass('rotated');
+            $("#box-five").attr("id", "box-five-hidden");
+        } else {
+            $("#content-five").slideDown(150);
+            $("#separator-five").slideDown(150);
+            $("#dash-collapse-five").removeClass('rotated');
+            $("#box-ofivene-hidden").attr("id", "box-five");
+        }
+    }
+}
+
 // Topbar profile dropdown
 const profileDropdownMenu = document.getElementById('dropdown-menu');
 
