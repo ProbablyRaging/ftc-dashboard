@@ -5,7 +5,7 @@ const myJoinsChart = new Chart(joinsChart, {
     data: {
         labels: dateArr.split(',').reverse(),
         datasets: [{
-            label: 'Server Bans',
+            label: 'Server Joins',
             data: joinsArr.split(',').reverse(),
             backgroundColor: [
                 'rgb(154, 253, 164)',
