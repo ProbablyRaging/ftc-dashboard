@@ -62,8 +62,8 @@ router.get('/', async (req, res) => {
 
 // POST route for removing video ids from a user's queue
 router.post('/remove', async (req, res) => {
-    const reqUserId = req.user.userId;
-    const videoId = req.body.videoId;
+    const reqUserId = req.user?.userId;
+    const videoId = req.body?.videoId;
     await ccVideoQueue.findOneAndDelete({
         userId: reqUserId,
         videoId: videoId
