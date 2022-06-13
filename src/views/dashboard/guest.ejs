@@ -5,6 +5,7 @@
 <script>
     const dateArr = '<%- dateArr %>';
     const joinsArr = '<%- joinsArr %>';
+    const leavesArr = '<%- leavesArr %>';
     const messagesArr = '<%- messagesArr %>';
     const bansArr = '<%- bansArr %>';
 </script>
@@ -50,14 +51,13 @@
 <!-- Charts -->
 <div class="chart-wrapper">
     <div class="joins-chart chart-item">
-        Members Joined (7 Days)
+        <p class="chart-title">Member Joins/Leaves (7 Days)</p>
         <canvas class="chart-canvas" id="joinsChart"></canvas>
     </div>
     <div class="messages-chart chart-item">
-        Messages Sent (7 Days)
+        <p class="chart-title">Messages Sent (7 Days)</p>
         <canvas class="chart-canvas" id="messagesChart"></canvas>
     </div>
-
 </div>
 <!--  -->
 

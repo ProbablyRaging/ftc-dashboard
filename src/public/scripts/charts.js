@@ -10,8 +10,20 @@ const myJoinsChart = new Chart(joinsChart, {
             backgroundColor: [
                 'rgb(154, 253, 164)',
             ],
-            barThickness: 15,
-            borderColor: ''
+            // barThickness: 15,
+            borderColor: '',
+            categoryPercentage: 0.4,
+            barPercentage: 0.8
+        }, {
+            label: 'Server Leaves',
+            data: leavesArr.split(',').reverse(),
+            backgroundColor: [
+                'rgb(255, 141, 141)',
+            ],
+            // barThickness: 15,
+            borderColor: '',
+            categoryPercentage: 0.4,
+            barPercentage: 0.8
         }]
     },
     plugins: [{
@@ -28,13 +40,19 @@ const myJoinsChart = new Chart(joinsChart, {
     options: {
         layout: {
             padding: {
-                top: 30,
+                top: 5,
                 left: 5
             }
         },
         plugins: {
             legend: {
-                display: false
+                display: true,
+                labels: {
+                    padding: 5,
+                    usePointStyle: true,
+                    boxWidth: 6
+                },
+                align: 'start'
             }
         }
     }
@@ -47,7 +65,7 @@ const myMessagesChart = new Chart(messagesChart, {
     data: {
         labels: dateArr.split(',').reverse(),
         datasets: [{
-            label: 'Messages',
+            label: 'Messages Sent',
             data: messagesArr.split(',').reverse(),
             backgroundColor: [
                 'rgb(153, 197, 255)',
@@ -70,13 +88,19 @@ const myMessagesChart = new Chart(messagesChart, {
     options: {
         layout: {
             padding: {
-                top: 30,
+                top: 5,
                 left: 5
             }
         },
         plugins: {
             legend: {
-                display: false
+                display: true,
+                labels: {
+                    padding: 5,
+                    usePointStyle: true,
+                    boxWidth: 6
+                },
+                align: 'start'
             }
         }
     }

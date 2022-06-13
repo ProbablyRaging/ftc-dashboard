@@ -10,12 +10,14 @@ router.get('/', isAuthortized, async (req, res) => {
 
     let dateArr = [];
     let joinsArr = [];
+    let leavesArr = [];
     let messagesArr = [];
     let bansArr = [];
     for (const data of results) {
-        const { date, joins, messages, bans } = data;
+        const { date, joins, leaves, messages, bans } = data;
         dateArr.push(date);
         joinsArr.push(joins);
+        leavesArr.push(leaves);
         messagesArr.push(messages);
         bansArr.push(bans);
     }
@@ -57,7 +59,7 @@ router.get('/', isAuthortized, async (req, res) => {
             text_channel_count,
             voice_channel_count,
             category_count,
-            dateArr, joinsArr, messagesArr, bansArr
+            dateArr, joinsArr, leavesArr, messagesArr, bansArr
         });
     });
 });
@@ -69,12 +71,14 @@ router.get('/guest', async (req, res) => {
 
         let dateArr = [];
         let joinsArr = [];
+        let leavesArr = [];
         let messagesArr = [];
         let bansArr = [];
         for (const data of results) {
-            const { date, joins, messages, bans } = data;
+            const { date, joins, leaves, messages, bans } = data;
             dateArr.push(date);
             joinsArr.push(joins);
+            leavesArr.push(leaves);
             messagesArr.push(messages);
             bansArr.push(bans);
         }
@@ -115,7 +119,7 @@ router.get('/guest', async (req, res) => {
                 text_channel_count,
                 voice_channel_count,
                 category_count,
-                dateArr, joinsArr, messagesArr, bansArr
+                dateArr, joinsArr, leavesArr, messagesArr, bansArr
             });
         });
     } else {
