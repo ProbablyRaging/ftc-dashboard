@@ -162,7 +162,7 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    min-height: calc(100vh - 190px);
+    min-height: calc(100vh - 140px);
     min-width: 100%;
     background: rgb(31, 33, 41);
 }
