@@ -29,7 +29,6 @@ html {
     -o-tab-size: 4;
     tab-size: 4; */
     scroll-behavior: smooth;
-    height: 100%;
     display: block;
     overflow-y: auto !important;
 }
