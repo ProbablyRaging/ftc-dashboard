@@ -9,7 +9,7 @@
     display: block;
     background: var(--main-bg-color);
     border-right: 1px solid var(--main-border-color);
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     height: 100%;
