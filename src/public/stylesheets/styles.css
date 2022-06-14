@@ -29,7 +29,7 @@ html {
     -o-tab-size: 4;
     tab-size: 4; */
     scroll-behavior: smooth;
-    height: 10px;
+    height: 90vh;
     display: block;
     /* overflow-y: auto !important; */
     overflow-y: scroll;
