@@ -22,6 +22,10 @@
     background-color: #474b54;
 }
 
+html {
+    scroll-behavior: smooth;
+    overflow-y: auto;
+}
 
 a,
 abbr,
