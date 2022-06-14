@@ -206,8 +206,7 @@ code {
 .page-div {
     display: flex;
     flex: 1 1 0%;
-    height: 100vh;
-    overflow-y: hidden;
+    height: 100%;
 }
 
 .\!overflow-hidden {
