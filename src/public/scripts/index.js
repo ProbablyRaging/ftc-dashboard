@@ -259,6 +259,8 @@ topbarMenuBtn.onclick = function () {
     if (dropdownNav.id === "dropdown-nav-hidden") {
         $('#dropdown-nav-hidden').show(200);
         $("#dropdown-nav-hidden").attr("id", "dropdown-nav-visible");
+        $('#topbar-menu-btn').removeClass('fa-bars');
+        $('#topbar-menu-btn').addClass('fa-bars-staggered');
         setTimeout(() => {
             $('.inner-content').css({ height: '100vh' });
         }, 200);
@@ -266,7 +268,8 @@ topbarMenuBtn.onclick = function () {
         $('.inner-content').css({ height: 'unset' });
         $('#dropdown-nav-visible').hide(200);
         $("#dropdown-nav-visible").attr("id", "dropdown-nav-hidden");
-
+        $('#topbar-menu-btn').removeClass('fa-bars-staggered');
+        $('#topbar-menu-btn').addClass('fa-bars');
     }
 }
 
