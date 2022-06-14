@@ -140,6 +140,7 @@ body {
 }
 
 .main-content {
+    flex: 1 0 auto;
     height: 100%;
     margin: 0px auto;
     padding: 0px;
@@ -442,6 +443,7 @@ body {
 }
 
 .footer {
+    flex-shrink: 0;
     height: 100px;
     background-color: rgb(31 33 41);
     display: flex;
@@ -737,6 +739,8 @@ body {
     }
 
     .page-mount {
+        display: flex;
+        flex-direction: column;
         min-width: fit-content;
         height: 100%;
     }
