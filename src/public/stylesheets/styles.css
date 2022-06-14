@@ -1364,6 +1364,7 @@ td {
 @media only screen and (max-width: 768px) {
     .page-formation {
         padding: 15px;
+        margin-top: 66px
     }
 
     .d-flex {
@@ -1373,6 +1374,8 @@ td {
     .mb-4 {
         display: flex;
         flex-wrap: nowrap;
+        position: fixed;
+        width: 100%;
     }
 
     .mr-auto {
