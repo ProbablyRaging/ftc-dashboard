@@ -46,7 +46,7 @@
     height: 36px;
     text-align: center;
     vertical-align: middle;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .nav-image {
@@ -123,8 +123,7 @@
     position: relative;
     display: block;
     width: 100%;
-    /* margin-left: 10px; */
-    margin-bottom: 14px;
+    margin-bottom: 4px;
 }
 
 .dropdown-nav li>a {
@@ -153,7 +152,7 @@
 }
 
 .dropdown-nav .nav-text {
-    font-size: 18px;
+    font-size: 14px;
     position: relative;
     display: table-cell;
     vertical-align: middle;
