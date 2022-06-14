@@ -39,6 +39,11 @@
     background-color: #474b54;
 }
 
+html {
+    height: 100%;
+    width: 100%;
+}
+
 a,
 abbr,
 acronym,
@@ -135,6 +140,7 @@ body {
 }
 
 .main-content {
+    height: 100%;
     margin: 0px auto;
     padding: 0px;
 }
@@ -732,6 +738,7 @@ body {
 
     .page-mount {
         min-width: fit-content;
+        height: 100%;
     }
 
     .iframe-container {
