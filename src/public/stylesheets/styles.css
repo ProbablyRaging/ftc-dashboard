@@ -1465,10 +1465,6 @@ td {
 }
 
 @media only screen and (max-width: 460px) {
-    .video-wrapper {
-        width: 100%;
-    }
-
     .chart-wrapper {
         display: none;
     }
