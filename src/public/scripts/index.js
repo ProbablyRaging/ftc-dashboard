@@ -257,7 +257,8 @@ const dropdownNav = document.getElementById('dropdown-nav-hidden');
 
 topbarMenuBtn.onclick = function () {
     if (dropdownNav.id === "dropdown-nav-hidden") {
-        $('#dropdown-nav-hidden').show(200);
+        $('#profile-dropdown-chevron').hide(200);
+        $('#dropdown-nav-hidden').slideDown(300);
         $("#dropdown-nav-hidden").attr("id", "dropdown-nav-visible");
         $('#topbar-menu-btn').removeClass('fa-bars');
         $('#topbar-menu-btn').addClass('fa-bars-staggered');
@@ -269,10 +270,11 @@ topbarMenuBtn.onclick = function () {
     } else {
         $('.mb-4').css({ position: 'fixed' });
         $('.inner-content').css({ height: 'unset' });
-        $('#dropdown-nav-visible').hide(200);
+        $('#dropdown-nav-visible').slideUp(300);
         $("#dropdown-nav-visible").attr("id", "dropdown-nav-hidden");
         $('#topbar-menu-btn').removeClass('fa-bars-staggered');
         $('#topbar-menu-btn').addClass('fa-bars');
+        $('#profile-dropdown-chevron').show(200);
     }
 }
 
