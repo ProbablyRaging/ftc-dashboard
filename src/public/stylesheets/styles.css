@@ -1163,7 +1163,6 @@ td {
 .cc-videos {
     display: flex;
     flex-wrap: wrap;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .video-wrapper {
@@ -1438,7 +1437,7 @@ td {
     }
 
     .cc-videos {
-        grid-template-columns: 1fr;
+        justify-content: center;
     }
 
     .pagination-wrapper {
