@@ -115,7 +115,7 @@ var {
 
 body {
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     overflow-x: hidden;
     box-sizing: border-box;
     margin: 0px;
@@ -141,7 +141,7 @@ body {
 
 .main-content {
     flex: 1 0 auto;
-    min-height: 100vh;
+    height: 100%;
     margin: 0px auto;
     padding: 0px;
 }
@@ -742,7 +742,7 @@ body {
         display: flex;
         flex-direction: column;
         min-width: fit-content;
-        min-height: 100vh;
+        height: 100%;
     }
 
     .iframe-container {
@@ -759,4 +759,23 @@ body {
         display: none;
     }
 
+}
+
+
+
+
+
+
+
+.page-mount {
+    min-height: 100vh;
+}
+
+.main-content-inner {
+    height: 100vh;
+}
+
+.home-content {
+    min-height: 100vh;
+    background: #272934;
 }
