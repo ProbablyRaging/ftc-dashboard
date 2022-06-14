@@ -262,11 +262,13 @@ topbarMenuBtn.onclick = function () {
         $('#topbar-menu-btn').removeClass('fa-bars');
         $('#topbar-menu-btn').addClass('fa-bars-staggered');
         setTimeout(() => {
+            $('html').css({ overflow: 'hidden' });
             $('.inner-content').css({ height: '100vh' });
             $('.mb-4').css({ position: 'sticky' });
             window.scrollTo(0, 0);
         }, 200);
     } else {
+        $('html').css({ overflow: 'unset' });
         $('.mb-4').css({ position: 'fixed' });
         $('.inner-content').css({ height: 'unset' });
         $('#dropdown-nav-visible').hide(200);
