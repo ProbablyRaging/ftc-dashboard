@@ -251,6 +251,25 @@ if (boxFiveBtn) {
     }
 }
 
+// Show hide top bar menu for smaller displays
+const topbarMenuBtn = document.getElementById('topbar-menu-btn');
+const dropdownNav = document.getElementById('dropdown-nav-hidden');
+
+topbarMenuBtn.onclick = function () {
+    if (dropdownNav.id === "dropdown-nav-hidden") {
+        $('#dropdown-nav-hidden').show(200);
+        $("#dropdown-nav-hidden").attr("id", "dropdown-nav-visible");
+        setTimeout(() => {
+            $('.inner-content').css({ height: '100vh' });
+        }, 200);
+    } else {
+        $('.inner-content').css({ height: 'unset' });
+        $('#dropdown-nav-visible').hide(200);
+        $("#dropdown-nav-visible").attr("id", "dropdown-nav-hidden");
+
+    }
+}
+
 // Topbar profile dropdown
 const profileDropdownMenu = document.getElementById('dropdown-menu');
 

@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="/stylesheets/styles.sass">
     <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/dropdown_nav.css">
     <link rel="stylesheet" href="/stylesheets/topbar.css">
 </head>
 <!-- End Header -->
@@ -64,3 +65,11 @@
             <div class="spinner-div spinner">
 
                 <div class="page-content content-body !overflow-hidden hidden">
+                    <div class="dropdown-nav-menu">
+                        <% if (useStaffNavbar) { %>
+                            <%- include('./dropdown_nav') -%>
+                            <% } else { %>
+                                <%- include('./guest/guest_dropdown_nav') -%>
+
+                            <% } %>
+                    </div>

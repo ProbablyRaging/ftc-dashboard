@@ -131,6 +131,11 @@ code {
     padding: 0;
 }
 
+.dropdown-nav-menu {
+    width: 100%;
+    height: 100%;
+}
+
 .login-full-div {
     overflow-y: auto;
     flex: 1 1 0%;
@@ -785,7 +790,7 @@ td {
     border-radius: 8px;
     height: fit-content;
     padding: 10px;
-    height:fit-content;
+    height: fit-content;
     box-shadow: rgb(0 0 0 / 10%) 2px 4px 4px;
 }
 
@@ -822,7 +827,7 @@ td {
 }
 
 .chart-item {
-   width: 49.5%;
+    width: 49.5%;
 }
 
 .chart-title {
@@ -1314,15 +1319,60 @@ td {
 /* Mobile Compat */
 @media only screen and (max-width: 768px) {
     .page-formation {
-        padding: 20px;
+        padding: 15px;
     }
 
     .d-flex {
         display: none !important;
     }
 
+    .mb-4 {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .mr-auto {
+        display: none;
+    }
+
+    .nav-logo-topbar {
+        display: flex !important;
+    }
+
+    .menu-icon {
+        display: inline !important;
+    }
+
+    .user-info {
+        display: none !important;
+    }
+
     .content-body {
-        margin-left: 60px;
+        margin-left: 0;
+    }
+
+    .server-stats {
+        display: none;
+    }
+
+    .content-page-header {
+        font-size: 16px;
+    }
+
+    .content-box {
+        padding: 16px;
+    }
+
+    .content-box-title-class {
+        margin-bottom: -6px;
+    }
+
+    .content-box-title {
+        font-size: 16px;
+    }
+
+    .content-box-separator {
+        margin: 16px 0;
     }
 
     .content-box-content {

@@ -20,6 +20,47 @@
     border: none !important;
 }
 
+.menu-icon {
+    display: none;
+    font-size: 22px;
+    padding-left: 5px;
+    color: #999;
+    background: none;
+    border: none;
+    margin: 0px;
+    outline: none;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: transform 0.15s ease-out 0s;
+}
+
+.nav-logo-topbar {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.nav-logo-img-topbar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+#nav-text-one-topbar {
+    font-family: 'Mulish', sans-serif;
+    float: left;
+    color: rgba(0, 213, 255, 0.996);
+}
+
+#nav-text-two-topbar {
+    font-family: 'Mulish', sans-serif;
+    float: right;
+    color: rgb(255, 255, 255);
+    margin-right: 10px;
+}
+
 .user-info {
     display: block;
 }
