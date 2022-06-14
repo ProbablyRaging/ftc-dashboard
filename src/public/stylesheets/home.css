@@ -273,13 +273,6 @@ body {
     background: #6874f3;
 }
 
-.nav-items {
-    /* display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-inline-end: 16px; */
-}
-
 .nav-items .link {
     font-family: proxima-nova, sans-serif;
     min-height: 38px;
@@ -767,10 +760,6 @@ body {
     .footer-wrapper {
         justify-content: center;
     }
-
-    /* .privacy-page .content-description {
-        width: 100%;
-    } */
 }
 
 @media only screen and (max-width: 768px) {
