@@ -101,6 +101,8 @@ var {
 }
 
 body {
+    height: 100%;
+    overflow-y: scroll;
     display: block;
     line-height: inherit;
     margin: 0;
