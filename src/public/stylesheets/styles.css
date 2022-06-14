@@ -31,7 +31,7 @@ html {
     scroll-behavior: smooth;
     height: 100%;
     display: block;
-    overflow-y: hidden;
+    overflow-y: auto !important;
 }
 
 a,
