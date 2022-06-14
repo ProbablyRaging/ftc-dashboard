@@ -132,6 +132,48 @@ body {
     font-weight: 400;
 }
 
+html,
+body {
+    height: 100%;
+    background: rgb(31, 33, 41);
+}
+
+.topbar-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 100%;
+    padding: 20px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.nav-items {
+    display: flex;
+}
+
+.flex-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.body-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: calc(100vh - 190px);
+    min-width: 100%;
+    box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 39%);
+}
+
+.page-end-wrapper {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    height: 100px;
+    min-width: 100%;
+}
+
 .topbar {
     position: relative;
     z-index: 2;
@@ -230,10 +272,10 @@ body {
 }
 
 .nav-items {
-    display: flex;
+    /* display: flex;
     -webkit-box-align: center;
     align-items: center;
-    margin-inline-end: 16px;
+    margin-inline-end: 16px; */
 }
 
 .nav-items .link {
@@ -730,52 +772,55 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-    /* .flex-container {
-        flex-wrap: wrap;
-    } */
+    .topbar-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        padding: 20px;
+    }
+
+    .nav-items {
+        display: none;
+    }
 
     .login-button {
         display: none;
     }
 
-    .page-mount {
-        display: flex;
-        flex-direction: column;
-        min-width: fit-content;
-        height: 100%;
+    .body-wrapper {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    .iframe-container {
-        display: none;
+    .body-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .topbar-nav {
-        flex-wrap: wrap;
-        margin-left: 50px;
-        justify-content: center;
+    .body-buttons .btn-signin,
+    .body-buttons .btn-join {
+        padding: 0;
+    }
+
+    .page-end-wrapper {
+        margin-left: -40px;
+    }
+
+    .footer-wrapper {
+        margin: unset;
+        padding: unset;
     }
 
     .footer-text {
         display: none;
     }
 
-}
+    .footer-list-item {
+        width: 30px;
+        height: 30px;
+    }
 
-
-
-
-
-
-
-.page-mount {
-    min-height: 100vh;
-}
-
-.main-content-inner {
-    height: 100vh;
-}
-
-.home-content {
-    min-height: 100vh;
-    background: #272934;
+    .footer-list-item img {
+        width: 40px;
+        height: 40px;
+    }
 }
