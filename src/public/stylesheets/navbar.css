@@ -134,8 +134,8 @@
     text-decoration: none;
     transform: width;
     -webkit-transform: translateZ(0) scale(1, 1);
-    -webkit-transition: all .2s linear;
-    transition: all .2s linear;
+    -webkit-transition: all .0s linear;
+    transition: all .0s linear;
 }
 
 .main-menu .nav-icon {
@@ -206,7 +206,6 @@ nav.main-menu li.active>a,
     color: rgb(255, 255, 255) !important;
     background-color: #0000001a;
     border-radius: 4px;
-    margin-left: 10px;
 }
 
 .nav-logo-div {
