@@ -18,13 +18,13 @@
     <div class="stat-content-box">
         <div class="content-box-div">
             <div class="stat-content-box-content">
-                <i class="fa-solid fa-circle online"> Online</i>
+                <i class="fa-solid fa-circle online"></i><p class="stat-title-online">Online</p>
                 <p class="member-count">
                     <%= onlineMembers %>
                 </p>
             </div>
             <div class="stat-content-box-content">
-                <i class="fa-solid fa-circle offline"> Offline</i>
+                <i class="fa-solid fa-circle offline"></i><p class="stat-title-offline">Online</p>
                 <p class="member-count">
                     <%= totalMembers %>
                 </p>
@@ -84,7 +84,7 @@
                     <div class="content-box-title">Command Management</div>
                 </h5>
             </div>
-            <button class="fa-solid fa-angle-up" id="dash-collapse-one"></button>
+            <button class="fa-solid fa-angle-up" id="dash-collapse-one" name="collapse"></button>
         </header>
 
         <hr class="content-box-separator" id="separator-one">
@@ -94,7 +94,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/settings/rules';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3251/3251560.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3251/3251560.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Rule</h5>
                     <div class="button-description">Change the rules everywhere they are used on the
@@ -118,7 +118,7 @@
                     <div class="content-box-title">Staff Applications</div>
                 </h5>
             </div>
-            <button class="fa-solid fa-angle-up" id="dash-collapse-two"></button>
+            <button class="fa-solid fa-angle-up" id="dash-collapse-two" name="collapse"></button>
         </header>
 
         <hr class="content-box-separator" id="separator-two">
@@ -128,7 +128,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/applications';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/138/138849.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/138/138849.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Applications</h5>
                     <div class="button-description">View new and old staff applications</div>
@@ -151,7 +151,7 @@
                     <div class="content-box-title">Creator Crew</div>
                 </h5>
             </div>
-            <button class="fa-solid fa-angle-up" id="dash-collapse-three"></button>
+            <button class="fa-solid fa-angle-up" id="dash-collapse-three" name="collapse"></button>
         </header>
 
         <hr class="content-box-separator" id="separator-three">
@@ -161,7 +161,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/creatorcrew';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4880/4880410.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4880/4880410.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Creator Crew Queue</h5>
                     <div class="button-description">Watch and like your Creator Crew queue videos</div>
@@ -184,7 +184,7 @@
                     <div class="content-box-title">Server Logs</div>
                 </h5>
             </div>
-            <button class="fa-solid fa-angle-up" id="dash-collapse-four"></button>
+            <button class="fa-solid fa-angle-up" id="dash-collapse-four" name="collapse"></button>
         </header>
 
         <hr class="content-box-separator" id="separator-four">
@@ -194,7 +194,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/logs/warnings';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/564/564619.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/564/564619.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Warnings</h5>
                     <div class="button-description">A log of warnings issued to members</div>
@@ -203,7 +203,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/logs/mutes';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/945/945154.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/945/945154.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Mutes and Timeouts</h5>
                     <div class="button-description">A log of members who have been muted or timed out</div>
@@ -212,7 +212,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/logs/bans';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/7195/7195822.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7195/7195822.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Bans and Unbans</h5>
                     <div class="button-description">A log of members who have been banned or unbanned</div>
@@ -221,7 +221,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/logs/message-deletes';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3221/3221897.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3221/3221897.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Message Deletes</h5>
                     <div class="button-description">A log of channel messages that have been deleted</div>
@@ -230,7 +230,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/logs/blacklists';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2165/2165366.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2165/2165366.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Blacklisted Messages</h5>
                     <div class="button-description">A log of blacklisted messages</div>
@@ -239,7 +239,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/logs/commands';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4248/4248402.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4248/4248402.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Command Usage</h5>
                     <div class="button-description">A log of commands that have been used in the server
@@ -263,7 +263,7 @@
                     <div class="content-box-title">Leaderboard</div>
                 </h5>
             </div>
-            <button class="fa-solid fa-angle-up" id="dash-collapse-five"></button>
+            <button class="fa-solid fa-angle-up" id="dash-collapse-five" name="collapse"></button>
         </header>
 
         <hr class="content-box-separator" id="separator-five">
@@ -273,7 +273,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/leaderboards/ranks';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/490/490576.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/490/490576.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Ranks</h5>
                     <div class="button-description">A leaderboard for the server ranks</div>
@@ -282,7 +282,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/leaderboards/messages';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Messages</h5>
                     <div class="button-description">A leaderboard for the server messages</div>
@@ -291,7 +291,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/leaderboards/lastletter';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/773/773228.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/773/773228.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Last Letter Game</h5>
                     <div class="button-description">A leaderboard for the last letter game</div>
@@ -300,7 +300,7 @@
                 <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/leaderboards/counting';">
                     <div class="button-img-container">
-                        <img src="https://cdn-icons-png.flaticon.com/512/7173/7173821.png" class="button-img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7173/7173821.png" class="button-img" alt="...">
                     </div>
                     <h5 class="button-title">Counting Game</h5>
                     <div class="button-description">A leaderboard for the counting game</div>

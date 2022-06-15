@@ -301,7 +301,7 @@ hr {
 .stat-content-box {
     overflow: hidden;
     align-self: stretch;
-    background-color: var(--main-bg-color);
+    background-color: rgb(23, 24, 30);
     border-radius: 4px;
     padding: 6px;
     padding-left: 18px;
@@ -310,7 +310,7 @@ hr {
 }
 
 .stat-content-box-content {
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     width: 100%;
     gap: 0px !important;
@@ -318,15 +318,23 @@ hr {
 }
 
 .stat-content-box-content .online {
-    color: green;
+    color: rgb(68 184 96);
     font-size: 10px !important;
-    margin-right: 15px;
+    margin-right: 8px;
+}
+
+.stat-title-online {
+    color: rgb(68 184 96);
 }
 
 .stat-content-box-content .offline {
     color: rgb(120, 120, 120);
     font-size: 10px !important;
-    margin-right: 15px;
+    margin-right: 8px;
+}
+
+.stat-title-offline {
+    color: rgb(120, 120, 120);
 }
 
 .member-count {
