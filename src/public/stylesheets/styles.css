@@ -1178,6 +1178,26 @@ hr {
     padding-left: 20px;
 }
 
+.embed-delete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.embed-delete-svg {
+    background: #fff;
+    border-radius: 2px;
+}
+
+.embed-delete button {
+    color: #fe4848fe;
+    background: none;
+    border: none;
+}
+
+.embed-delete-button:hover {
+    color: #ff3d3dfe;
+}
+
 .embed-warnings {
     border-left: 3px solid rgb(255, 176, 85);
 }

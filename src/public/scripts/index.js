@@ -398,3 +398,21 @@ if (toastTrigger2) {
         toast2.show();
     });
 }
+
+// Delete warnings
+function deleteWarning(warnId) {
+    // Send a POST to remove the warning from the database
+    $.post({
+        url: `/logs/warnings/remove`,
+        type: 'POST',
+        headers: { "Content-Type": "application/json" },
+        dataType: 'json',
+        data: JSON.stringify({ "warnId": `${warnId}` })
+    }, (data) => {
+        if (data.status === 'ok') {
+            $(`.${warnId}-embed-wrapper`).hide(200)
+            const toast = new bootstrap.Toast(removedSuccessToast);
+            toast.show();
+        }
+    });
+}

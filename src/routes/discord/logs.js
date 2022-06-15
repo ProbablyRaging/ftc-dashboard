@@ -46,6 +46,14 @@ router.get('/warnings', isAuthortized, async (req, res) => {
     });
 });
 
+router.post('/warnings/remove', async (req, res) => {
+    const warnId = req.body?.warnId;
+    await warnSchema.findOneAndDelete({
+        warnId: warnId
+    });
+    res.send({ "status": "ok" });        
+});
+
 // Mutes and timeouts
 router.get('/mutes', isAuthortized, async (req, res) => {
     mongo.then(async mongo => {
