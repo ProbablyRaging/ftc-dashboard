@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const minifyCSS = require('express-minify');
+const minifyHTML = require('express-minify-html-2');
 const port = process.env.PORT;
 const session = require('express-session');
 const mongoStore = require('connect-mongo');
@@ -13,6 +15,21 @@ const path = require('path');
 
 // Database
 mongo.then(() => console.log('Connected to database')).catch(err => console.error(err));
+
+// Minify CSS HTML
+app.use(minifyCSS());
+app.use(minifyHTML({
+    override: true,
+    exception_url: false,
+    htmlMinifier: {
+        removeComments: true,
+        collapseWhitespace: true,
+        collapseBooleanAttributes: true,
+        removeAttributeQuotes: true,
+        removeEmptyAttributes: true,
+        minifyJS: true
+    }
+}));
 
 // Auth Routes
 const authRoute = require('./routes/auth/auth');
