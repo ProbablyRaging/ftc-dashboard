@@ -6,6 +6,7 @@
 .mb-4 {
     display: flex;
     justify-content: space-between;
+    z-index: 1;
     margin-bottom: 0px !important;
     padding-left: 15px;
     padding-right: 15px;
