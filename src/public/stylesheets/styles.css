@@ -798,11 +798,6 @@ hr {
     font-size: 20px;
 }
 
-.leaderboard-table .message-count,
-.leaderboard-table .xp {
-    width: 8ch;
-}
-
 .leaderboard-table td {
     padding: 15px 15px;
     border: none;
@@ -1370,6 +1365,7 @@ hr {
 
     .leaderboard-table tr {
         display: flex;
+        align-items: center;
     }
 
     .leaderboard .level {
@@ -1378,7 +1374,7 @@ hr {
 
     .level:not(:last-child) {
         margin: 0;
-        margin-right: 0px !important;
+        margin-right: -20px!important;
     }
 
     .leaderboard .nick {

@@ -1,37 +1,40 @@
 <div class="navbar navbar-expand-md navbar-dark topbar-bg-dark mb-4" role="navigation">
     <button class="fa-solid fa-bars menu-icon" id="topbar-menu-btn"></button>
     <form class="d-flex" role="search">
-        <input class="form-control me-2 topbar-search" type="search" placeholder="&#xF002 Search" style="font-family:Arial, FontAwesome"
-            aria-label="Search" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+        <input class="form-control me-2 topbar-search" type="search" placeholder="&#xF002 Search"
+            style="font-family:Arial, FontAwesome" aria-label="Search" data-bs-toggle="tooltip"
+            data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
             title="This search box does nothing right now lol">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 
     <div class="nav-logo-topbar">
-        <img src="../images/chd-logo.webp"
-            class="nav-logo-img-topbar" id="nav-logo-img-topbar">
+        <img src="../images/chd-logo.webp" class="nav-logo-img-topbar" id="nav-logo-img-topbar">
         <p id="nav-text-one-topbar">CH</p>
         <p id="nav-text-two-topbar">Dashboard</p>
     </div>
 
     <ul class="navbar-nav mr-auto">
     </ul>
-    <div class="user-info">
-        <p class="nav-item user">
-            <%= username %>
-        </p>
-        <p class="nav-item userId">
-            ID: <%= userId %>
-        </p>
-    </div>
 
-    <div class="dropstart profile-dropdown" id="profile-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp" class="user-discord-pfp"">
-        <button class="fa-solid fa-angle-down" id="profile-dropdown-chevron"></button>
-        <ul class="dropdown-menu" id="dropdown-menu">
-            <li onclick="location.href='/privacy'"><i class="fa fa-masks-theater"></i>Privacy Policy</li>
-            <hr class="content-box-separator">
-            <li onclick="location.href='/auth/logout'"><i class="fa fa-power-off fa-2x"></i>Logout</li>
-        </ul>
+    <div class="topbar-right-wrapper">
+        <div class="user-info">
+            <p class="nav-item user">
+                <%= username %>
+            </p>
+            <p class="nav-item userId">
+                ID: <%= userId %>
+            </p>
+        </div>
+
+        <div class="dropstart profile-dropdown" id="profile-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp" class="user-discord-pfp"">
+        <button class=" fa-solid fa-angle-down" id="profile-dropdown-chevron"></button>
+            <ul class="dropdown-menu" id="dropdown-menu">
+                <li onclick="location.href='/privacy'"><i class="fa fa-masks-theater"></i>Privacy Policy</li>
+                <hr class="content-box-separator">
+                <li onclick="location.href='/auth/logout'"><i class="fa fa-power-off fa-2x"></i>Logout</li>
+            </ul>
+        </div>
     </div>
 </div>
