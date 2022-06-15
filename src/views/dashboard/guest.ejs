@@ -18,14 +18,19 @@
     <div class="stat-content-box">
         <div class="content-box-div">
             <div class="stat-content-box-content">
-                <i class="fa-solid fa-circle online"> Online</i>
-                <p class="member-count"><%= onlineMembers %></p>
+                <i class="fa-solid fa-circle online"></i><p class="stat-title-online">Online</p>
+                <p class="member-count">
+                    <%= onlineMembers %>
+                </p>
             </div>
             <div class="stat-content-box-content">
-                <i class="fa-solid fa-circle offline"> Offline</i>
-                <p class="member-count"><%= totalMembers %></p>
+                <i class="fa-solid fa-circle offline"></i><p class="stat-title-offline">Offline</p>
+                <p class="member-count">
+                    <%= totalMembers %>
+                </p>
             </div>
         </div>
+
         <div class="server-stats">
             <div class="sub-stats">
                 <p class="count-title">Text Channels:</p>
