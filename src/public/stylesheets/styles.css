@@ -873,6 +873,10 @@ hr {
     font-size: 12px;
 }
 
+.cc-information-modal li {
+    list-style: none;
+}
+
 .cc-information-modal .modal-body h1 {
     color: #f2f4fb;
     font-size: 18px;
