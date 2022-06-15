@@ -39,37 +39,28 @@
                 </div>
 
                 <% results.slice(0, 5).forEach(entry=> { %>
-
-                <div class="table-wrapper">
-                    <div class="table-user-wrapper">
-                        <p class="table-user">
-                            <%= entry.username || 'null' %>
-                        </p>
-                        <p class="table-userId">ID:<%= entry.userId || 'null' %>
-                        </p>
-                    </div>
-                    <div class="table-data-wrapper">
-                        <p class="table-data">
-                            <%= entry.message || 'null' %>
-                        </p>
-                        <p><a href="<%= entry.attachment %>" target="_blank"><img class="table-img"
-                                    src="<%= entry.attachment %>"></a></p>
-                    </div>
-                    <div class="table-author-wrapper">
-                        <p class="table-author">
-                            #<%= entry.channel || 'null' %>
-                        </p>
-                        <p class="table-timestamp">
-                            <%= converTimestampToSimpleFormat(entry.timestamp) || 'null' %>
-                        </p>
-                        <p class="table-warning-id">
+                <div class="embed-wrapper embed-deletes">
+                    <div class="embed-title">
+                        <p class="embed-type">
                             <%= entry.type || 'null' %>
                         </p>
+
+                        <p class="embed-username">
+                            <%= entry.username || 'null' %>
+                        </p>
+                    </div>
+
+                    <div class="embed-content">
+                        <p class="embed-reason">
+                            <%= entry.message || 'null' %>
+                        </p>
+                    </div>
+
+                    <div class="embed-footer">
+                        #<%= entry.channel || 'null' %> -
+                        <%= converTimestampToSimpleFormat(entry.timestamp) || 'null' %>
                     </div>
                 </div>
-
-                <hr class="content-box-separator">
-
                 <% }) %>
 
             </div>

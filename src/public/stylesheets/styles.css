@@ -577,7 +577,7 @@ hr {
 }
 
 .pagination-math {
-    margin-bottom: 4px;
+    margin-bottom: 24px;
 }
 
 .mb-3-staff {
@@ -779,6 +779,7 @@ hr {
     font-size: 14px;
     color: #5fa2db;
     width: 8ch;
+    margin-right: -40px !important;
 }
 
 .leaderboard .level:not(:last-child) {
@@ -1173,9 +1174,28 @@ hr {
     background: #16181e;
     margin-bottom: 25px;
     border-radius: 4px;
-    border-left: 3px solid rgb(255, 128, 128);
     padding: 10px;
     padding-left: 20px;
+}
+
+.embed-warnings {
+    border-left: 3px solid rgb(255, 176, 85);
+}
+
+.embed-mutes {
+    border-left: 3px solid rgb(255, 227, 104);
+}
+
+.embed-bans {
+    border-left: 3px solid rgb(255, 128, 128);
+}
+
+.embed-deletes {
+    border-left: 3px solid rgb(255, 196, 128);
+}
+
+.embed-commands {
+    border-left: 3px solid rgb(128, 189, 255);
 }
 
 .embed-title {
@@ -1197,7 +1217,9 @@ hr {
     border-radius: 4px;
     border: 1px solid #0e0f12;
     width: fit-content;
-    max-width: 70%;
+    min-width: 70%;
+    max-width: 100%;
+    word-break: break-word;
 }
 
 .embed-footer {
@@ -1311,7 +1333,7 @@ hr {
     }
 
     .embed-content {
-        max-width: 100%;
+        min-width: 100%;
     }
 
     .leaderboard-table tr {
@@ -1324,6 +1346,7 @@ hr {
 
     .level:not(:last-child) {
         margin: 0;
+        margin-right: 0px !important;
     }
 
     .leaderboard .nick {

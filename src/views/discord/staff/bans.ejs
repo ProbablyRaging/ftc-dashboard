@@ -39,36 +39,28 @@
                 </div>
 
                 <% results.slice(0, 5).forEach(entry=> { %>
+                <div class="embed-wrapper embed-bans">
+                    <div class="embed-title">
+                        <p class="embed-type">
+                            <%= entry.type || 'null' %>
+                        </p>
 
-                <div class="table-wrapper">
-                    <div class="table-user-wrapper">
-                        <p class="table-user">
+                        <p class="embed-username">
                             <%= entry.username || 'null' %>
                         </p>
-                        <p class="table-userId">ID:<%= entry.userId || 'null' %>
-                        </p>
                     </div>
-                    <div class="table-data-wrapper">
-                        <p class="table-data">
+
+                    <div class="embed-content">
+                        <p class="embed-reason">
                             <%= entry.reason || 'null' %>
                         </p>
                     </div>
 
-                    <div class="table-author-wrapper">
-                        <p class="table-author">
-                            <%= entry.authorTag || 'null' %>
-                        </p>
-                        <p class="table-timestamp">
-                            <%= converTimestampToSimpleFormat(entry.timestamp) || 'null' %>
-                        </p>
-                        <p class="table-warning-id">
-                            <%= entry.type || 'null' %>
-                        </p>
+                    <div class="embed-footer">
+                        <%= entry.authorTag || 'null' %> -
+                        <%= converTimestampToSimpleFormat(entry.timestamp) || 'null' %>
                     </div>
                 </div>
-
-                <hr class="content-box-separator">
-
                 <% }) %>
 
             </div>
