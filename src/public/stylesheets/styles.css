@@ -739,7 +739,7 @@ hr {
     animation: spinner .6s linear infinite;
 }
 
-*/ .leaderboard {
+.leaderboard {
     width: 100%;
 }
 
@@ -1252,6 +1252,8 @@ hr {
 .embed-footer {
     font-size: 12px;
 }
+
+
 
 /* Mobile Compat */
 @media only screen and (max-width: 768px) {
