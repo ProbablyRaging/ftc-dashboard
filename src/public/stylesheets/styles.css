@@ -910,6 +910,20 @@ hr {
     font-size: 12px;
 }
 
+.cc-information-modal .unliked {
+    color: #fff;
+    border: none;
+    background: none;
+    transition: background .15s ease-in-out, color .15s ease-in-out;
+}
+
+.cc-information-modal .liked {
+    color: #70ffbafe;
+    border: none;
+    background: none;
+    transition: background .15s ease-in-out, color .15s ease-in-out;
+}
+
 .sign-in-modal .modal-header {
     background: var(--main-bg-color);
     border: 0;
@@ -1072,7 +1086,7 @@ hr {
     background: none;
     font-size: 14px;
     margin: 0px;
-    cursor: pointer;
+    cursor: default;
     transition: background .15s ease-in-out, color .15s ease-in-out;
 }
 
@@ -1083,12 +1097,8 @@ hr {
     background: none;
     font-size: 14px;
     margin: 0px;
-    cursor: pointer;
+    cursor: default;
     transition: background .15s ease-in-out, color .15s ease-in-out;
-}
-
-.video-like .unliked:hover {
-    color: #b2ffdafe;
 }
 
 .video-volume .unmute {

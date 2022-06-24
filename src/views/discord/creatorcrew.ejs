@@ -90,6 +90,10 @@
                                 <br><br>
                                 <h1>Tips</h1>
                                 <ul>
+                                    <li>
+                                        - Use the same Google account that you logged in with when liking videos in your
+                                        queue
+                                    </li>
                                     <li>- To play more videos simultaneously, go to any <a
                                             href="https://www.youtube.com/">YouTube</a>
                                         video, set the
@@ -108,10 +112,19 @@
                                     </li>
                                 </ul>
                                 <br>
+                                <h1>Like Status Indicators</h1>
+                                <ul>
+                                    <li>
+                                        <i class="fa-solid fa-thumbs-up unliked"></i> - video has not been liked
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-thumbs-up liked"></i> - video has been liked
+                                    </li>
+                                </ul>
+                                <br>
                                 <h1>Video Status Indicators</h1>
                                 <ul>
-                                    <li><i class="fa-solid fa-circle status-unwatched"></i>
-                                        - video is ready
+                                    <li><i class="fa-solid fa-circle status-unwatched"></i> - video is ready
                                         to
                                         be watched</li>
                                     <li><i class="fa-solid fa-circle status-watching"></i> -
@@ -221,9 +234,7 @@
                                         title="Mute/Unmute"></button>
                                 </p>
                                 <p class="video-like"><button class="fa-solid fa-thumbs-up unliked"
-                                        id="<%= video.id %>-like-button" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" title="Like"
-                                        onclick="likeButton('<%= video.id %>')"></button>
+                                        id="<%= video.id %>-like-button"></button>
                                 </p>
                             </div>
                             <% if (userId===video.author) { %>
