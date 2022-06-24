@@ -7,7 +7,7 @@ const { isAuthortized } = require('../../strategies/auth_check');
 // Applications root
 router.get('/', isAuthortized, async (req, res) => {
     mongo.then(async mongo => {
-        const results = await staffApplicationSchema.find().limit(9);
+        const results = await staffApplicationSchema.find().limit(9).sort({ '_id': -1 });
 
         res.render('applications', {
             useStaffNavbar: req.user.isStaff,
