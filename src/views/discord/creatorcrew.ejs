@@ -215,9 +215,11 @@
                                 <strong>Status:</strong> <i class="fa-solid fa-circle status-unwatched"
                                     id="<%= video.id %>-watch-status"> 00:00 / 00:00</i>
                             </p>
-                            <p class="video-added">
-                                added <%-
-                                                                    convertTimestampToRelativeTime(video.timestamp) %>
+                            <p class="video-added" id="testing">
+                                <% if (convertTimestampToRelativeTime(video.timestamp) === ' >3 days ago') { %>
+                                    <script> document.getElementsByClassName('video-added')[0].style.color = '#fe4848fe'; </script> 
+                                <% } %>
+                                added <%- convertTimestampToRelativeTime(video.timestamp) %>
                             </p>
                         </div>
                         <div class="player-controls-wrapper">
