@@ -127,10 +127,11 @@ body {
     margin: 0px auto;
     scroll-behavior: smooth;
     background-color: rgb(8, 8, 8);
-    background-image: url(https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fb0bf6422b5280c114495d_curves.svg);
+    background-image: url(/images/background.svg);
     background-size: 120%;
     background-repeat: no-repeat;
     background-position: 100% 115%;
+    background-attachment: fixed;
     color: rgb(183, 183, 185);
     font-family: proxima-nova, sans-serif;
     font-weight: 400;
@@ -147,8 +148,8 @@ body {
     align-items: center;
     min-width: 100%;
     padding: 20px;
-    padding-left: 200px;
-    padding-right: 200px;
+    padding-left: 320px;
+    padding-right: 320px;
 }
 
 .nav-items {
@@ -315,13 +316,11 @@ body {
 .main-content-inner {
     min-height: 100%;
     margin: 0px auto;
-    background: #272934;
     height: 724px;
     display: flex;
     flex-direction: column;
     -webkit-box-pack: center;
     justify-content: center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.388);
 }
 
 .content-wrapper {
@@ -488,7 +487,7 @@ body {
 .footer {
     flex-shrink: 0;
     height: 100px;
-    background-color: rgb(31 33 41);
+    background-color: rgb(18, 17, 23);
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -561,7 +560,7 @@ body {
 }
 
 .about-page {
-    background: rgba(0, 0, 0, 0.10);
+    background: rgb(18, 17, 23);
     padding: 25px;
     border-radius: 8px;
     min-height: 500px;
@@ -596,16 +595,14 @@ body {
 .privacy-content-inner {
     min-height: 100%;
     margin: 0px auto;
-    background: #272934;
     display: flex;
     flex-direction: column;
     -webkit-box-pack: center;
     justify-content: center;
-    box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 39%);
 }
 
 .privacy-page {
-    background: rgba(0, 0, 0, 0.10);
+    background: rgb(18, 17, 23);
     padding: 25px;
     border-radius: 8px;
     min-height: 500px;
