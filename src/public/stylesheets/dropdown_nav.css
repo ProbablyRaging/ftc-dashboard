@@ -1,10 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
-:root {
-    --main-bg-color: rgb(31, 33, 41);
-    --main-border-color: rgb(49, 52, 66);
-}
-
 .dropdown-nav {
     display: none;
     background: var(--main-bg-color);

@@ -1,5 +1,5 @@
 .topbar-bg-dark {
-    background-color: #1F2129 !important;
+    background-color: var(--main-bg-color) !important;
     /* background-image: linear-gradient(to bottom, #252730, #1F2129); */
 }
 

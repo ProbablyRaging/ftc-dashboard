@@ -103,7 +103,7 @@ ul,
 var {
     box-sizing: border-box;
     border: 0px;
-    font-family: inherit;
+    font-family: Raleway,sans-serif;
     font-size: 100%;
     font-style: inherit;
     font-weight: inherit;
@@ -126,8 +126,12 @@ body {
     line-height: 23px;
     margin: 0px auto;
     scroll-behavior: smooth;
-    background-color: rgb(31 33 41);
-    color: rgb(155, 157, 159);
+    background-color: rgb(8, 8, 8);
+    background-image: url(https://i.imgur.com/0wINRse.png);
+    background-size: 120%;
+    background-repeat: no-repeat;
+    background-position: 100% 115%;
+    color: rgb(183, 183, 185);
     font-family: proxima-nova, sans-serif;
     font-weight: 400;
 }
@@ -162,8 +166,6 @@ body {
     align-items: center;
     min-height: calc(100vh - 140px);
     min-width: 100%;
-    background: rgb(31, 33, 41);
-    box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 39%);
 }
 
 .page-end-wrapper {
@@ -172,6 +174,7 @@ body {
     align-items: center;
     height: 100px;
     min-width: 100%;
+    background-color: rgb(18, 17, 23);
 }
 
 .topbar {
@@ -242,6 +245,8 @@ body {
 }
 
 .login-button {
+    text-transform: uppercase;
+    font-family: Raleway,sans-serif;
     white-space: nowrap;
     user-select: none;
     line-height: 1;
@@ -272,7 +277,8 @@ body {
 }
 
 .nav-items .link {
-    font-family: proxima-nova, sans-serif;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
     min-height: 38px;
     font-size: 14px;
     line-height: 22px;
@@ -405,7 +411,8 @@ body {
 }
 
 .body-buttons .btn-signin {
-    font-family: proxima-nova, sans-serif;
+    text-transform: uppercase;
+    font-family: Raleway,sans-serif;
     min-height: 38px;
     font-size: 14px;
     line-height: 22px;
@@ -438,7 +445,8 @@ body {
 }
 
 .body-buttons .btn-join {
-    font-family: proxima-nova, sans-serif;
+    text-transform: uppercase;
+    font-family: Raleway,sans-serif;
     min-height: 38px;
     font-size: 14px;
     line-height: 22px;
@@ -455,7 +463,7 @@ body {
     transition: background-color 0.15s ease-out 0s, color, opacity, border;
     outline: none;
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(50 50 50);
     border-width: initial;
     border-style: none;
     border-color: initial;
@@ -811,6 +819,10 @@ iframe {
 
 /* Mobile Compat */
 @media only screen and (max-width: 1050px) {
+    body {
+        background-size: auto;
+    }
+    
     .iframe-container {
         display: none;
     }
@@ -858,7 +870,7 @@ iframe {
     .body-buttons .btn-join {
         padding: 0;
         font-size: 14px;
-        width: 140px;
+        width: 160px;
     }
 
     .page-end-wrapper {

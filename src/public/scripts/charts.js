@@ -32,7 +32,7 @@ const myJoinsChart = new Chart(joinsChart, {
             const ctx = chart.canvas.getContext('2d');
             ctx.save();
             ctx.globalCompositeOperation = 'destination-over';
-            ctx.fillStyle = 'rgb(23, 24, 30)';
+            ctx.fillStyle = 'rgb(18, 17, 23)';
             ctx.fillRect(0, 0, chart.width, chart.height);
             ctx.restore();
         }
@@ -80,7 +80,7 @@ const myMessagesChart = new Chart(messagesChart, {
             const ctx = chart.canvas.getContext('2d');
             ctx.save();
             ctx.globalCompositeOperation = 'destination-over';
-            ctx.fillStyle = 'rgb(23, 24, 30)';
+            ctx.fillStyle = 'rgb(18, 17, 23)';
             ctx.fillRect(0, 0, chart.width, chart.height);
             ctx.restore();
         }

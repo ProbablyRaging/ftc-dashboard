@@ -1,8 +1,8 @@
 :root {
-    --main-bg-color: rgb(31, 33, 41);
+    --main-bg-color: rgb(18, 17, 23);
     --main-bg-dark: rgb(23, 24, 30);
-    --main-accent-color: rgb(39, 41, 52);
-    --main-border-color: rgb(49, 52, 66);
+    --main-accent-color: rgb(25 26 33);
+    --main-border-color: rgb(38 40 50);
 }
 
 ::-webkit-scrollbar-track {
@@ -301,7 +301,7 @@ hr {
 .stat-content-box {
     overflow: hidden;
     align-self: stretch;
-    background-color: rgb(23, 24, 30);
+    background-color: var(--main-bg-color);
     border-radius: 4px;
     padding: 6px;
     padding-left: 18px;
@@ -378,7 +378,7 @@ hr {
 }
 
 .content-box-button {
-    background-color: rgb(49, 52, 66);
+    background-color: rgb(30 31 39);
     display: flex;
     border-radius: 4px;
     box-shadow: rgb(0 0 0 / 8%) 0px 4px 4px;
