@@ -103,7 +103,7 @@ ul,
 var {
     box-sizing: border-box;
     border: 0px;
-    font-family: Raleway,sans-serif;
+    font-family: Raleway, sans-serif;
     font-size: 100%;
     font-style: inherit;
     font-weight: inherit;
@@ -247,7 +247,7 @@ body {
 
 .login-button {
     text-transform: uppercase;
-    font-family: Raleway,sans-serif;
+    font-family: Raleway, sans-serif;
     white-space: nowrap;
     user-select: none;
     line-height: 1;
@@ -411,7 +411,7 @@ body {
 
 .body-buttons .btn-signin {
     text-transform: uppercase;
-    font-family: Raleway,sans-serif;
+    font-family: Raleway, sans-serif;
     min-height: 38px;
     font-size: 14px;
     line-height: 22px;
@@ -445,7 +445,7 @@ body {
 
 .body-buttons .btn-join {
     text-transform: uppercase;
-    font-family: Raleway,sans-serif;
+    font-family: Raleway, sans-serif;
     min-height: 38px;
     font-size: 14px;
     line-height: 22px;
@@ -778,7 +778,7 @@ iframe {
     line-height: 34px;
     padding: 0 10px;
     cursor: pointer;
-    background: linear-gradient(#1f1f28,#191920);
+    background: linear-gradient(#1f1f28, #191920);
 }
 
 #accordian h3:hover span {
@@ -817,9 +817,10 @@ iframe {
 /* Mobile Compat */
 @media only screen and (max-width: 1050px) {
     body {
-        background-size: auto;
+        background-size: 300%;
+        background-position: 100% 90%;
     }
-    
+
     .iframe-container {
         display: none;
     }
