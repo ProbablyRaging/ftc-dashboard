@@ -765,6 +765,23 @@ body {
     width: 570px;
 }
 
+.review-wrapper {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    min-width: 100%;
+    background-color: #121117;
+    margin: 0 auto;
+    max-width: 1240px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
 iframe {
     border-radius: 8px;
 }
@@ -850,6 +867,10 @@ iframe {
     }
 
     .notification-div {
+        display: none;
+    }
+
+    .review-wrapper {
         display: none;
     }
 }
