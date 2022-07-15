@@ -482,7 +482,7 @@ body {
 }
 
 .body-buttons .btn-join:hover {
-    background: rgba(255, 255, 255, 0.133);
+    background: rgb(60 60 60);
 }
 
 .footer {
