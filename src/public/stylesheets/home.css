@@ -1,3 +1,5 @@
+@import url('https://uploads-ssl.webflow.com/62d28a2f7fcc9c08f68401ab/css/blank-2495b0.webflow.96ec9dca2.css');
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -122,7 +124,7 @@ body {
     padding: 0px;
     font-family: proxima-nova, sans-serif, Helvetica, arial, sans-serif;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgb(208, 208, 208);
     line-height: 23px;
     margin: 0px auto;
     scroll-behavior: smooth;
@@ -132,7 +134,6 @@ body {
     background-repeat: no-repeat;
     background-position: 100% 115%;
     /* background-attachment: fixed; */
-    color: rgb(183, 183, 185);
     font-family: proxima-nova, sans-serif;
     font-weight: 400;
 }
@@ -142,7 +143,46 @@ body {
     height: 100%;
 }
 
-.topbar-wrapper {
+.bg-dark {
+    background-color: unset !important;
+}
+
+.container-fluid {
+    margin: 15px 280px;
+    justify-content: space-between;
+}
+
+.navbar-nav {
+    gap: 20px;
+}
+
+.navbar-collapse {
+    flex-grow: inherit;
+}
+
+.nav-link, .nav-link.active {
+    color: rgb(242, 244, 251) !important;
+}
+
+.nav-link:hover {
+    color: rgb(187, 203, 254) !important;
+}
+
+.nav-brand {
+    color: rgb(242, 244, 251);
+    user-select: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.nav-button {
+    color: #f2f4fb;
+    font-size: 24px;
+}
+
+/* .topbar-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -154,7 +194,7 @@ body {
 
 .nav-items {
     display: flex;
-}
+} */
 
 .flex-box {
     display: flex;
@@ -227,17 +267,14 @@ body {
     border-radius: 50%;
 }
 
-#nav-text-one {
-    font-family: 'Mulish', sans-serif;
-    float: left;
-    color: rgba(0, 213, 255, 0.996);
-}
-
-#nav-text-two {
-    font-family: 'Mulish', sans-serif;
+.nav-text {
+    font-size: 26px;
     float: right;
-    color: rgb(255, 255, 255);
+    color: #fff;
     margin-right: 10px;
+    transform: scale(1, 1.3);
+    text-transform: uppercase;
+    letter-spacing: 4px;
 }
 
 .topbar-nav {
@@ -247,6 +284,7 @@ body {
 }
 
 .login-button {
+    margin-top: 2px;
     text-transform: uppercase;
     font-family: Raleway, sans-serif;
     white-space: nowrap;
@@ -282,7 +320,7 @@ body {
     font-family: 'Raleway', sans-serif;
     text-transform: uppercase;
     min-height: 38px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 22px;
     padding-inline-end: 16px;
     padding-inline-start: 16px;
@@ -297,7 +335,7 @@ body {
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
-    color: rgb(155, 157, 159);
+    color: rgb(208, 208, 208);
     border-radius: 8px;
     transition: background-color 0.15s ease-out 0s, color, opacity, border;
     outline: none;
@@ -348,10 +386,9 @@ body {
     padding: 0 0 34px;
     font-size: 20px;
     font-weight: 600;
-    color: rgb(255, 255, 255);
     font-style: normal;
     font-weight: bold;
-    font-size: 56px;
+    font-size: 48px;
     line-height: 64px;
     /* width: 460px; */
     max-width: 100%;
@@ -878,6 +915,11 @@ a {
     margin-left: auto;
     padding-top: 100px;
     padding-bottom: 100px;
+    width: 100%;
+    background-image: url('https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fda4f627613044726a702c_histogram.svg');
+    background-size: 120%;
+    background-repeat: no-repeat;
+    background-position: 100% 70%;
 }
 
 .mock-wrapper-light {
@@ -1035,6 +1077,10 @@ iframe {
         background-position: 100% 90%;
     }
 
+    .container-fluid {
+        margin: 15px 5px;
+    }
+
     .body-wrapper {
         min-height: calc(100vh - 140px);
         margin-top: 0;
@@ -1068,6 +1114,16 @@ iframe {
     }
 }
 
+@media only screen and (max-width: 991px) {
+    .navbar {
+        background: #121117 !important;
+    }
+
+    .navbar-collapse {
+        padding-top: 10px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .topbar-wrapper {
         display: flex;
@@ -1085,13 +1141,14 @@ iframe {
         font-size: 42px;
     }
 
-    .login-button {
+    /* .login-button {
         display: none;
-    }
+    } */
 
     .body-wrapper {
         padding-left: 20px;
         padding-right: 20px;
+        padding-top: 40px;
     }
 
     .body-buttons {
