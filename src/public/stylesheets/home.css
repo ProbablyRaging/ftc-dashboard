@@ -122,7 +122,6 @@ body {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    font-family: proxima-nova, sans-serif, Helvetica, arial, sans-serif;
     font-size: 14px;
     color: rgb(208, 208, 208);
     line-height: 23px;
@@ -134,7 +133,6 @@ body {
     background-repeat: no-repeat;
     background-position: 100% 115%;
     /* background-attachment: fixed; */
-    font-family: proxima-nova, sans-serif;
     font-weight: 400;
 }
 
@@ -1115,6 +1113,10 @@ iframe {
 }
 
 @media only screen and (max-width: 991px) {
+    body {
+        background-image: none
+    }
+    
     .navbar {
         background: #121117 !important;
     }
@@ -1138,7 +1140,7 @@ iframe {
 
     .content-head {
         padding: unset;
-        font-size: 42px;
+        font-size: 38px;
     }
 
     /* .login-button {
