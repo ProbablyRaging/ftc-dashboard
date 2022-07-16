@@ -1071,8 +1071,8 @@ iframe {
 /* Mobile Compat */
 @media only screen and (max-width: 1050px) {
     body {
+        background-image: url('/images/background_alt.svg');
         background-size: 300%;
-        background-position: 100% 90%;
     }
 
     .container-fluid {
@@ -1112,11 +1112,7 @@ iframe {
     }
 }
 
-@media only screen and (max-width: 991px) {
-    body {
-        background-image: url('/images/background_alt.svg');
-    }
-    
+@media only screen and (max-width: 991px) {    
     .navbar {
         background: #121117 !important;
     }
