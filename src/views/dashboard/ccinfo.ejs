@@ -7,9 +7,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimal-ui">
     <meta name="theme-color" content="#1F2129">
-    <meta name="description" content="CHDashboard is a dashboard for interfacing with the CreatorHub Discord server and CreatorBot, the official bot of CreatorHub">
+    <meta name="description"
+        content="CHDashboard is a dashboard for interfacing with the CreatorHub Discord server and CreatorBot, the official bot of CreatorHub">
     <meta property="og:title" content="CreatorHub Dashboard">
-    <meta property="og:description" content="CHDashboard is a dashboard for interfacing with the CreatorHub Discord server and CreatorBot, the official bot of CreatorHub">
+    <meta property="og:description"
+        content="CHDashboard is a dashboard for interfacing with the CreatorHub Discord server and CreatorBot, the official bot of CreatorHub">
     <meta property="og:image" content="/images/og_image.png">
     <meta name="keywords"
         content="creatorhub, creatorbot, dashboard, discord, discord bot, content creator, community, youtube, twitch">
@@ -29,8 +31,8 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&family=Oswald:wght@200;400&family=Raleway:wght@300&display=swap"
         rel="stylesheet">
     <!-- Bootstrap CSS -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <!-- Popper JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
@@ -52,29 +54,34 @@
 
 <body>
     <div class="page-mount" id="page-mount container-fluid">
-        <div class="topbar">
-            <div class="topbar-flex">
-                <a href="/">
-                    <div class="logo-wrapper">
-                        <div class="nav-logo-div">
-                            <img src="images/chd-logo.webp" class="nav-logo" id="nav-logo">
-                            <p id="nav-text-one">CH</p>
-                            <p id="nav-text-two">Dashboard</p>
-                        </div>
-                    </div>
-                </a>
-                <div class="topbar-nav">
-                    <div class="nav-items">
-                        <a href="/" class="link">Home</a>
-                        <a href="/about" class="link">About</a>
-                        <a href="/privacy" class="link">Privacy Policy</a>
-                    </div>
-                    <button class="login-button" onclick="window.location='/auth'" name="login">
-                        Sign in via Discord
-                    </button>
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+                <div class="nav-brand">
+                    <p class="nav-text">CreatorHub</p>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="nav-button fa-solid fa-bars"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="login-button" onclick="window.location='/auth'">
+                                Sign in to Dashboard
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </nav>
 
         <script>
             $(function () {
