@@ -11,6 +11,7 @@ const favicon = require('serve-favicon');
 const discordStrategy = require('./strategies/discord_strategy');
 const { isAuthortized } = require('./strategies/auth_check');
 const mongo = require('./database/mongodb');
+const fetch = require('node-fetch');
 const path = require('path');
 
 // Database
@@ -105,11 +106,20 @@ app.use('/creatorcrew', creatorcrewRoute);
 // Error Middleware
 app.use('/forbidden', forbiddenRoute);
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     if (req.user) {
         res.redirect('/dashboard');
     } else {
-        res.render('home');
+        const resolve = await fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}?with_counts=true`, { headers: { "Authorization": `${process.env.API_TOKEN}` } });
+        const data = await resolve.json();
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        res.render('home', {
+            totalMembers: numberWithCommas(data.approximate_member_count)
+        });
     }
 });
 
