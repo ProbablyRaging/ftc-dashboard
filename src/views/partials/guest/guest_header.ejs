@@ -59,6 +59,15 @@
 <!-- Start Body -->
 
 <body>
+    <script>
+        const body = document.body;
+        const currentTheme = localStorage.getItem('currentTheme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        }
+    </script>
+    
     <div id="page-mount container-fluid">
         <div class="page-div container-fluid">
             <%- include('./guest_navbar') -%>

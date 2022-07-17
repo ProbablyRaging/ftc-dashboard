@@ -1,12 +1,6 @@
 // Theme
 const switchState = document.getElementById('theme-switch');
 const switchTitle = document.getAnimations('theme-switch-title');
-const currentTheme = localStorage.getItem('currentTheme');
-const body = document.body;
-
-if (currentTheme) {
-    body.classList.add(currentTheme);
-}
 
 // If theme is currently dark mode
 if (currentTheme === 'dark') {

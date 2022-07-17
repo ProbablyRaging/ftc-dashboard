@@ -50,7 +50,6 @@
     <!-- ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="/stylesheets/navbar.css">
@@ -62,6 +61,15 @@
 <!-- Start Body -->
 
 <body>
+    <script>
+        const body = document.body;
+        const currentTheme = localStorage.getItem('currentTheme');
+
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        }
+    </script>
+
     <div class="page-mount" id="page-mount container-fluid">
         <div class="page-div container-fluid">
             <% if (admincp) { %>
