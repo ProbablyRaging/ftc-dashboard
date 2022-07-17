@@ -475,3 +475,26 @@ function deleteCCVideo(id) {
         }
     });
 }
+
+// Table search for AdminCP
+function ccqueueSearch() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("ccqueue-search");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("ccqueue-table");
+    tr = table.getElementsByTagName("tr")
+    th = table.getElementsByTagName("th");
+
+    for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none";
+        for (var j = 0; j < th.length; j++) {
+            td = tr[i].getElementsByTagName("td")[j];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                }
+            }
+        }
+    }
+}

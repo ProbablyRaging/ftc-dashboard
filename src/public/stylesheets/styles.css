@@ -1457,12 +1457,15 @@ hr {
 
 .ccqueue-table thead {
     color: var(--text) !important;
-    background: var(--accent);
+    font-weight: var(--w-5);
+    background: var(--bg-o);
     border: var(--border-l);
     transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .ccqueue-table tbody {
+    color: var(--text-alt);
+    background: var(--accent);
     border-bottom: var(--border-l);
     border-right: var(--border-l);
     border-left: var(--border-l);
@@ -1472,6 +1475,30 @@ hr {
 .ccqueue-table td {
     border-right: var(--border-l);;
     transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
+}
+
+.ccqueue-table tr:hover {
+    background: var(--bg-o);
+}
+
+.table-delete {
+    display: flex;
+    justify-content: center;
+}
+
+.table-delete button {
+    color: var(--white0);
+    background: #fe4848fe;
+    margin: 2px;
+    height: 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background .15s ease-in-out, color .15s ease-in-out;
+}
+
+.table-delete:hover button {
+    background: #ff3d3dfe;
 }
 
 
