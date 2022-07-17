@@ -1,6 +1,7 @@
 .topbar-bg-dark {
-    background-color: var(--main-bg-color) !important;
-    /* background-image: linear-gradient(to bottom, #252730, #1F2129); */
+    background: var(--accent) !important;
+    border-bottom: var(--border-l);
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .mb-4 {
@@ -13,21 +14,23 @@
 }
 
 .topbar-search {
-    color: rgb(155, 157, 159) !important;
-    background-color: rgb(23, 24, 30);
-    border: none;
+    color: var(--text) !important;
+    background: var(--bg);
+    border: var(--border-l);
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .topbar-search:focus {
-    background-color: rgb(23, 24, 30);
+    background: var(--bg);
     border: none !important;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .menu-icon {
     display: none;
     font-size: 22px;
     padding-left: 5px;
-    color: #999;
+    color: var(--text);
     background: none;
     border: none;
     margin: 0px;
@@ -36,6 +39,7 @@
     margin-top: 6px;
     min-width: 33px;
     transition: transform 0.15s ease-out 0s;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .nav-logo-topbar {
@@ -62,8 +66,9 @@
 #nav-text-two-topbar {
     font-family: 'Mulish', sans-serif;
     float: right;
-    color: rgb(255, 255, 255);
+    color: var(--text);
     margin-right: 10px;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .topbar-right-wrapper {
@@ -75,10 +80,11 @@
 }
 
 .nav-item.user {
-    color: rgb(242, 244, 251);
+    color: var(--text);
     margin-right: 15px;
     margin-top: 5px;
     margin-bottom: -5px;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .nav-item.userId {
@@ -106,7 +112,7 @@
 }
 
 #profile-dropdown-chevron {
-    color: #999;
+    color: var(--text);
     background: none;
     border: none;
     font-size: 14px;
@@ -116,19 +122,22 @@
     cursor: pointer;
     margin-top: 6px;
     transition: transform 0.15s ease-out 0s;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .dropdown-menu {
     padding-left: 10px;
-    --bs-dropdown-color: rgb(155, 157, 159);
-    background: rgb(23, 24, 30);
+    color: var(--text);
+    background: var(--accent);
     right: 5% !important;
     margin-right: 10px !important;
     margin-top: 65px !important;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .dropdown-menu>li:hover {
-    color: #fff !important;
+    color: var(--blue2) !important;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .profile-dropdown .fa {
@@ -138,4 +147,38 @@
 
 .profile-dropdown .fa-power-off {
     color: rgb(210, 45, 45);
+}
+
+.form-check-input {
+    width: 40px !important;
+    height: 20px !important;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--switch);
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
+}
+
+.theme-switch {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 0 15px;
+    gap: 18px;
+}
+
+@media only screen and (max-width: 768px) {
+    .theme-switch {
+        display: none;
+    }
+
+    .form-check-input {
+        width: 50px !important;
+        height: 25px !important;
+    }
 }

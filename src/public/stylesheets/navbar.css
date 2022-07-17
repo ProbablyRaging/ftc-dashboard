@@ -2,8 +2,8 @@
 
 .main-menu {
     display: block;
-    background: var(--main-bg-color);
-    border-right: 1px solid var(--main-border-color);
+    background: var(--accent);
+    border-right: var(--border-l);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -13,6 +13,7 @@
     z-index: 1000;
     overflow-y: auto;
     overflow-x: hidden;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border-right 250ms ease-in-out;
 }
 
 .main-menu::-webkit-scrollbar {
@@ -58,7 +59,7 @@
 #nav-text-two {
     font-family: 'Mulish', sans-serif;
     float: right;
-    color: rgb(255, 255, 255);
+    color: var(--text);
     margin-right: 10px;
 }
 
@@ -79,7 +80,8 @@
 
 .main-menu .list-title {
     font-size: 12px !important;
-    color: #fff !important;
+    font-weight: var(--weight);
+    color: var(--text) !important;
     width: 80%;
     margin-bottom: 5px;
     margin-top: 10px;
@@ -92,7 +94,7 @@
 #collapse-three,
 #collapse-four,
 #collapse-five {
-    color: #999;
+    color: var(--text-alt);
     background: none;
     border: none;
     font-size: 14px;
@@ -105,7 +107,7 @@
 }
 
 .list-title-div:hover .fa-angle-up {
-    color: rgb(255, 255, 255) !important;
+    color: var(--hover) !important;
 }
 
 .main-menu>ul {
@@ -123,7 +125,7 @@
     display: table;
     border-collapse: collapse;
     border-spacing: 0;
-    color: #999;
+    color: var(--text-alt);
     font-family: 'Mulish', sans-serif;
     font-size: 14px;
     text-decoration: none;
@@ -198,7 +200,7 @@ nav.main-menu li.active>a,
 .dropdown-menu>.active>a:focus,
 .no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
 .dashboard-page nav.dashboard-menu ul li.active a {
-    color: rgb(255, 255, 255) !important;
+    color: var(--text) !important;
     background-color: #0000001a;
     border-radius: 4px;
 }
@@ -224,7 +226,7 @@ nav.main-menu li.active>a,
     font-size: 18px;
     line-height: 22px;
     cursor: pointer;
-    color: rgb(155, 157, 159);
+    color: var(--text);
     background: transparent;
     border-style: none;
     padding: 0px;

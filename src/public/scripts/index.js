@@ -1,3 +1,44 @@
+// Theme
+const switchState = document.getElementById('theme-switch');
+const switchTitle = document.getAnimations('theme-switch-title');
+const currentTheme = localStorage.getItem('currentTheme');
+const body = document.body;
+
+if (currentTheme) {
+    body.classList.add(currentTheme);
+}
+
+// If theme is currently dark mode
+if (currentTheme === 'dark') {
+    // Change theme button state
+    $('#theme-switch').addClass('dark').removeClass('light')
+    $('.form-check-input').prop('checked', true);
+    $('.theme-switch-title').text('Lights Off')
+} else {
+    // Change theme button state
+    $('#theme-switch').addClass('light').removeClass('dark')
+    $('.form-check-input').prop('checked', false);
+    $('.theme-switch-title').text('Lights On')
+}
+
+function myFunction() {
+    if (switchState.classList.contains('light')) {
+       // Change theme to dark
+        body.classList.replace('light', 'dark');
+        $('#theme-switch').addClass('dark').removeClass('light')
+        $('.theme-switch-title').text('Lights Off')
+        localStorage.setItem('currentTheme', 'dark')
+        createCharts()
+    } else {
+        // Change theme to light
+        body.classList.replace('dark', 'light');
+        $('#theme-switch').addClass('light').removeClass('dark')
+        $('.theme-switch-title').text('Lights On')
+        localStorage.setItem('currentTheme', 'light')
+        createCharts()
+    }
+}
+
 // Loading spinner
 if (top.location.pathname.split('/')[1] === 'logs' || top.location.pathname.split('/')[1] === 'leaderboards') {
     $(window).on('load', function () {
