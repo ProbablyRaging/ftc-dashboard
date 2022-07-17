@@ -24,7 +24,8 @@ router.get('/', async (req, res) => {
     // console.log(dateArr)
 
     res.render('test', {
-        useStaffNavbar: req.user.isStaff,
+            admincp: false,
+            useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,
         userId: req.user.userId,
         avatar: req.user.avatar,

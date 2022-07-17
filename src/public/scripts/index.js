@@ -21,7 +21,7 @@ if (currentTheme === 'dark') {
     $('.theme-switch-title').text('Lights On')
 }
 
-function myFunction() {
+function toggleTheme() {
     if (switchState.classList.contains('light')) {
        // Change theme to dark
         body.classList.replace('light', 'dark');
@@ -452,6 +452,24 @@ function deleteWarning(warnId) {
     }, (data) => {
         if (data.status === 'ok') {
             $(`.${warnId}-embed-wrapper`).hide(200)
+            const toast = new bootstrap.Toast(removedSuccessToast);
+            toast.show();
+        }
+    });
+}
+
+// Delete warnings
+function deleteCCVideo(id) {
+    // Send a POST to remove the warning from the database
+    $.post({
+        url: `/admincp/remove`,
+        type: 'POST',
+        headers: { "Content-Type": "application/json" },
+        dataType: 'json',
+        data: JSON.stringify({ "id": `${id}` })
+    }, (data) => {
+        if (data.status === 'ok') {
+            $(`#${id}`).hide(200)
             const toast = new bootstrap.Toast(removedSuccessToast);
             toast.show();
         }

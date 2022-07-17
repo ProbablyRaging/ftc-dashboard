@@ -41,6 +41,7 @@ const googleRoute = require('./routes/auth/google');
 const dashboardRoute = require('./routes/dashboard/dashboard');
 const ccinfoRoute = require('./routes/dashboard/ccinfo');
 const privacyRoute = require('./routes/dashboard/privacy');
+const adminCPRoute = require('./routes/dashboard/admincp');
 
 const testRoute = require('./routes/dashboard/test');
 
@@ -91,6 +92,8 @@ app.use('/google', googleRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/ccinfo', ccinfoRoute);
 app.use('/privacy', privacyRoute);
+app.use('/admincp', adminCPRoute);
+
 app.use('/test', testRoute);
 
 // Discord Middleware

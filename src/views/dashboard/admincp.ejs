@@ -1,0 +1,116 @@
+<%- include('../partials/header') -%>
+<%- include('../partials/topbar') -%>
+<%- include('../partials/container') -%>
+
+<style>
+    .demo {
+        border: 1px solid #C0C0C0;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    .demo th {
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+        background: #F0F0F0;
+    }
+
+    .demo td {
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+    }
+</style>
+
+<input class="ccqueue-search" type="text" id="ccqueue-search" onkeyup="ccqueueSearch()" placeholder="Filter by User ID">
+
+<table class="ccqueue-table" id="ccqueue-table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Video ID</th>
+            <th>Video Author</th>
+            <th>Timestamp</th>
+            <th>Notified (Day 3)</th>
+            <th>Notified (Day 5)</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <% for (const data of results) { %>
+    <tbody>
+        <tr id="<%= data._id %>">
+            <td><%= data.userId %> </td>
+            <td><%= data.videoId %> </td>
+            <td><%= data.videoAuthor %> </td>
+            <td><%= converTimestampToSimpleFormat(parseInt(data.timestamp)) %> </td>
+            <td><%= data.notified3 %> </td>
+            <td><%= data.notified5 %> </td>
+            <td>
+                <div class="embed-delete">
+                    <div class="embed-delete-button">
+                        <button class="<%= data._id %>-delete-button" onclick="deleteCCVideo('<%= data._id %>')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-x-square-fill embed-delete-svg" viewBox="0 0 16 16"
+                                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="custom-tooltip"
+                                title="Delete entry">
+                                <path
+                                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    <% } %>
+</table>
+
+<script>
+    function ccqueueSearch() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("ccqueue-search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("ccqueue-table");
+        tr = table.getElementsByTagName("tr");
+
+        console.log(tr.length)
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<!-- Removed Success Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="removedSuccessToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-light bg-primary">
+            Entry deleted
+        </div>
+    </div>
+</div>
+
+
+<!-- Timestamp conversion -->
+<% function converTimestampToSimpleFormat(timestamp) { %>
+<% const t=new Date(timestamp); %>
+<% const date=('0' + t.getDate()).slice(-2); %>
+<% const month=('0' + (t.getMonth() + 1)).slice(-2); %>
+<% const year=t.getFullYear(); %>
+<% const hours=('0' + t.getHours()).slice(-2); %>
+<% const minutes=('0' + t.getMinutes()).slice(-2); %>
+<% const seconds=('0' + t.getSeconds()).slice(-2); %>
+<% const time=`${date}/${month}/${year}, ${hours}:${minutes}:${seconds}`; %>
+<% return time; %>
+<% } %>
+
+<%- include('../partials/footer') -%>

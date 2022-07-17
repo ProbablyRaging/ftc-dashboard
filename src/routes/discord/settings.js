@@ -14,6 +14,7 @@ router.get('/rules', isAuthortized, async (req, res) => {
         const results = await ruleSchema.find();
 
         res.render('rules', {
+            admincp: false,
             useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,

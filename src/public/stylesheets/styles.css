@@ -1433,6 +1433,46 @@ hr {
     font-size: 12px;
 }
 
+.cc-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.cc-buttons .admincp-btn {
+    color: var(--white0);
+}
+
+.ccqueue-search {
+    width: 300px;
+    margin-bottom: 20px;
+    color: var(--text) !important;
+    background: var(--accent);
+    border: var(--border-l);
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
+}
+
+.ccqueue-table {
+    width: 70vw;
+}
+
+.ccqueue-table thead {
+    color: var(--text) !important;
+    background: var(--accent);
+    border: var(--border-l);
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
+}
+
+.ccqueue-table tbody {
+    border-bottom: var(--border-l);
+    border-right: var(--border-l);
+    border-left: var(--border-l);
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
+}
+
+.ccqueue-table td {
+    border-right: var(--border-l);;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
+}
 
 
 /* Mobile Compat */

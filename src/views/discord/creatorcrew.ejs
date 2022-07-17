@@ -66,11 +66,23 @@
                 </div>
             </div>
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-secondary btn-sm modal-btn" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-                Information
-            </button>
+            <div class="cc-buttons">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-secondary btn-sm modal-btn" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Information
+                </button>
+
+                <% if (useStaffNavbar) { %>
+                <!-- Button trigger modal -->
+                <form action="/admincp">
+                    <button type="submit" class="btn btn-primary btn-sm admincp-btn" name="ref" value="<%= userId %>">
+                        AdminCP
+                    </button>
+                </form>
+                <% } %>
+            </div>
+
 
             <!-- Modal -->
             <div class="cc-information-modal">
@@ -217,7 +229,7 @@
                             </p>
                             <p class="video-added" id="testing">
                                 <% if (convertTimestampToRelativeTime(video.timestamp) === ' >3 days ago') { %>
-                                    <script> document.getElementsByClassName('video-added')[0].style.color = '#fe4848fe'; </script> 
+                                <script> document.getElementsByClassName('video-added')[0].style.color = '#fe4848fe'; </script>
                                 <% } %>
                                 added <%- convertTimestampToRelativeTime(video.timestamp) %>
                             </p>

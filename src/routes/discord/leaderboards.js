@@ -18,7 +18,8 @@ router.get('/ranks', async (req, res) => {
             const results = await rankSchema.find({ 'rank': { $gte: 1, $lt: 101 } }).sort({ 'rank': 1 });
 
             res.render('ranks', {
-                useStaffNavbar: req.user.isStaff,
+            admincp: false,
+            useStaffNavbar: req.user.isStaff,
                 username: `${req.user.username}#${req.user.discriminator}`,
                 userId: req.user.userId,
                 avatar: req.user.avatar,
@@ -48,7 +49,8 @@ router.get('/messages', async (req, res) => {
             });
 
             res.render('messages', {
-                useStaffNavbar: req.user.isStaff,
+            admincp: false,
+            useStaffNavbar: req.user.isStaff,
                 username: `${req.user.username}#${req.user.discriminator}`,
                 userId: req.user.userId,
                 avatar: req.user.avatar,
@@ -78,7 +80,8 @@ router.get('/lastletter', async (req, res) => {
             });
 
             res.render('lastletter', {
-                useStaffNavbar: req.user.isStaff,
+            admincp: false,
+            useStaffNavbar: req.user.isStaff,
                 username: `${req.user.username}#${req.user.discriminator}`,
                 userId: req.user.userId,
                 avatar: req.user.avatar,
@@ -108,7 +111,8 @@ router.get('/counting', async (req, res) => {
             });
 
             res.render('counting', {
-                useStaffNavbar: req.user.isStaff,
+            admincp: false,
+            useStaffNavbar: req.user.isStaff,
                 username: `${req.user.username}#${req.user.discriminator}`,
                 userId: req.user.userId,
                 avatar: req.user.avatar,
