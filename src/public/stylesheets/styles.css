@@ -737,7 +737,7 @@ hr {
 
 .app-wrapper {
     display: flex;
-    background: var(--accent);
+    background: var(--bg);
     border: var(--border-l);
     border-radius: 8px;
     height: fit-content;
