@@ -1444,11 +1444,14 @@ hr {
 
 .ccqueue-search {
     width: 300px;
+    height: 30px;
+    padding: 5px;
     margin-bottom: 20px;
-    color: var(--text) !important;
+    color: var(--text)!important;
     background: var(--accent);
     border: var(--border-l);
-    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
+    border-radius: 6px;
+    transition: background 250ms ease-in-out,color 250ms ease-in-out,border 250ms ease-in-out;
 }
 
 .ccqueue-table {
