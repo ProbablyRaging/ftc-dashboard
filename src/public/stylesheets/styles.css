@@ -20,23 +20,31 @@
     --black-o-d: rgba(0, 0, 0, 0.508);
     --black: rgb(0, 0, 0);
 
-    --white0: rgb(255, 255, 255); /* light main */
-    --white1: rgb(247 247 247); /* light accent */
-    --white2: rgb(242, 244, 250); /* dark text */
+    --white0: rgb(255, 255, 255);
+    /* light main */
+    --white1: rgb(247 247 247);
+    /* light accent */
+    --white2: rgb(242, 244, 250);
+    /* dark text */
     --white3: rgb(241 241 241);
     --white4: rgb(227, 227, 227);
 
     --gray: rgb(248, 248, 248);
     --gray0: rgb(219, 225, 232);
     --gray1: rgb(178, 190, 205);
-    --gray2: rgb(153, 153, 153); /* dark text 1 */
-    --gray3: rgb(108, 117, 125); /* dark text 2 */
+    --gray2: rgb(153, 153, 153);
+    /* dark text 1 */
+    --gray3: rgb(108, 117, 125);
+    /* dark text 2 */
     --gray4: rgb(69, 78, 86);
     --gray5: rgb(42, 46, 53);
-    --gray6: rgb(25 26 33); /* dark main */
-    --gray7: rgb(18, 17, 23); /* dark accent */
-    --gray8: rgb(16, 15, 22); 
-    --gray9: rgb(15, 14, 17); /* dark border */
+    --gray6: rgb(25 26 33);
+    /* dark main */
+    --gray7: rgb(18, 17, 23);
+    /* dark accent */
+    --gray8: rgb(16, 15, 22);
+    --gray9: rgb(15, 14, 17);
+    /* dark border */
 
     --w-4: 400;
     --w-5: 500;
@@ -44,7 +52,7 @@
     --w-7: 700;
     --w-8: 800;
 
-    --bs-s: 0 1px 2px hsla(0,0%,0%,0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05), 0 2px 8px hsla(0, 0%, 0%, 0.05);
+    --bs-s: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05), 0 2px 8px hsla(0, 0%, 0%, 0.05);
     --bs-m: rgb(0 0 0 / 8%) 0 4px 4px;
 
     --border0: rgb(229, 233, 236);
@@ -68,7 +76,7 @@
     --weight: var(--w-6);
     --weight-alt: var(--w-5);
 
-    --bs : var(--bs-s);
+    --bs: var(--bs-s);
 
     --border-l: 1px solid var(--border0);
     --border-m: 1px solid var(--border1);
@@ -112,7 +120,7 @@
     --btn-unlike: var(--gray);
 
     --switch: rgb(22 23 30);
-    
+
     --unset: unset;
 }
 
@@ -1444,14 +1452,14 @@ hr {
 
 .ccqueue-search {
     width: 300px;
-    height: 30px;
+    height: 42px;
     padding: 5px;
     margin-bottom: 20px;
-    color: var(--text)!important;
+    color: var(--text) !important;
     background: var(--accent);
     border: var(--border-l);
     border-radius: 6px;
-    transition: background 250ms ease-in-out,color 250ms ease-in-out,border 250ms ease-in-out;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .ccqueue-table {
@@ -1461,8 +1469,6 @@ hr {
 .ccqueue-table thead {
     color: var(--text) !important;
     font-weight: var(--w-5);
-    background: var(--bg-o);
-    border: var(--border-l);
     transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
@@ -1476,12 +1482,25 @@ hr {
 }
 
 .ccqueue-table td {
-    border-right: var(--border-l);;
+    padding: 6px;
+    border-right: var(--border-l);
+    ;
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
+}
+
+.ccqueue-table th {
+    background: var(--bg-o);
+    padding: 6px;
+    border: var(--border-l);
     transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .ccqueue-table tr:hover {
     background: var(--bg-o);
+}
+
+.ccqueue-table thead>tr>th:last-child {
+    display: none;
 }
 
 .table-delete {
@@ -1626,7 +1645,7 @@ hr {
 
     .level:not(:last-child) {
         margin: 0;
-        margin-right: -20px!important;
+        margin-right: -20px !important;
     }
 
     .leaderboard .nick {
