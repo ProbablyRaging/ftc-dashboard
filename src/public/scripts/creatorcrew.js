@@ -9,20 +9,22 @@ const notifiedUser = new Map();
 
 // For Creator Crew - check if user has an access token and is currently signed in
 if (top.location.pathname.split('/')[1] === 'creatorcrew') {
-    if (userHasToken === 'true') {
+    if (userHasToken === 'true' || isOwner === 'true') {
         const myDate = new Date();
         const nowDate = myDate.setSeconds(myDate.getSeconds() + 1);
         // Check if access token is expired and present a sign in modal if it is
-        if (userExpires <= nowDate) {
-            $('.cc-videos').hide();
-            $('.pagination-wrapper').hide();
-            $('body').addClass('modal-open show').css({ 'overflow': 'hidden', 'padding-right': '0px' }).attr({ 'data-bs-overflow': 'hidden', 'data-bs-padding-right': '0px' });
-            $('body').append('<div class="modal-backdrop fade"></div>');
-            $('.modal-backdrop').fadeIn(300).addClass('show');
-            $("#logInModal").fadeIn(800).addClass('show').css({ 'display': 'block' }).attr({ 'aria-modal': 'true', 'role': 'dialog' });
-            isUserGoogleAuthed = false;
-        } else {
-            isUserGoogleAuthed = true;
+        if (isOwner != 'true') {
+            if (userExpires <= nowDate) {
+                $('.cc-videos').hide();
+                $('.pagination-wrapper').hide();
+                $('body').addClass('modal-open show').css({ 'overflow': 'hidden', 'padding-right': '0px' }).attr({ 'data-bs-overflow': 'hidden', 'data-bs-padding-right': '0px' });
+                $('body').append('<div class="modal-backdrop fade"></div>');
+                $('.modal-backdrop').fadeIn(300).addClass('show');
+                $("#logInModal").fadeIn(800).addClass('show').css({ 'display': 'block' }).attr({ 'aria-modal': 'true', 'role': 'dialog' });
+                isUserGoogleAuthed = false;
+            } else {
+                isUserGoogleAuthed = true;
+            }
         }
     } else {
         // If user doesn't have an access token, present them with a sign in modal

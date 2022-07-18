@@ -6,7 +6,11 @@ const googleUser = require('../../schema/misc/google_user');
 
 // Creator crew GET
 router.get('/', async (req, res) => {
-    if (req.user?.roles.includes('841580486517063681')) {
+    if (req.user?.roles.includes(process.env.AUTH_ROLE_ID) || req.user?.roles.includes(process.env.OWNER_ID)) {
+        if (req.user?.userId === process.env.OWNER_ID) {
+            isOwner = true;
+        }
+
         // Result math for pagination
         const total = (await ccVideoQueue.find({ userId: req.user.userId })).length;
 
@@ -46,12 +50,13 @@ router.get('/', async (req, res) => {
             const videoCount = videoArr.length;
 
             res.render('creatorcrew', {
-            admincp: false,
-            useStaffNavbar: req.user.isStaff,
+                admincp: false,
+                useStaffNavbar: req.user.isStaff,
                 username: `${req.user.username}#${req.user.discriminator}`,
                 userId: req.user.userId,
                 avatar: req.user.avatar,
                 userExpires: userData.expires,
+                isOwner,
                 convertTimestampToRelativeTime,
                 videoArr, userHasToken, videoCount, skip, limit, page, total
             });
