@@ -9,6 +9,8 @@ router.get('/', async (req, res) => {
     if (req.user?.roles.includes(process.env.AUTH_ROLE_ID) || req.user?.roles.includes(process.env.OWNER_ID)) {
         if (req.user?.userId === process.env.OWNER_ID) {
             isOwner = true;
+        } else {
+            isOwner = false;
         }
 
         // Result math for pagination
