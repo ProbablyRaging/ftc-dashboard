@@ -6,7 +6,7 @@ const googleUser = require('../../schema/misc/google_user');
 
 // Creator crew GET
 router.get('/', async (req, res) => {
-    if (req.user?.roles.includes(process.env.CC_ROLE) || req.user?.roles.includes(process.env.OWNER_ID)) {
+    if (req.user?.roles.includes(process.env.CC_ROLE) || req.user?.userid === process.env.OWNER_ID) {
         if (req.user?.userId === process.env.OWNER_ID) {
             isOwner = true;
         } else {
