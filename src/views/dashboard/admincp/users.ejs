@@ -14,74 +14,8 @@
         });
     });
 </script>
-<style>
-    .acp-user-search {
-        width: 300px;
-        height: 42px;
-        padding: 5px;
-        margin-bottom: 20px;
-        color: var(--text) !important;
-        background: var(--accent);
-        border: var(--border-l);
-        border-radius: 6px;
-        transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
-    }
 
-    .acp-user-table {
-        width: 70vw;
-        margin-bottom: 10px;
-    }
-
-    .acp-user-table thead {
-        color: var(--text) !important;
-        font-weight: var(--w-5);
-        transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
-    }
-
-    .acp-user-table .t-user {
-        font-weight: var(--w-5);
-    }
-
-    .acp-user-table tbody {
-        color: var(--text-alt);
-        background: var(--accent);
-        border-bottom: var(--border-l);
-        border-right: var(--border-l);
-        border-left: var(--border-l);
-        transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
-    }
-
-    .acp-user-table td {
-        padding: 6px;
-        transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
-    }
-
-    .acp-user-table th {
-        background: var(--bg-o);
-        padding: 6px;
-        border: var(--border-l);
-        transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
-    }
-
-    .acp-user-table tr:hover {
-        background: var(--bg-o);
-    }
-
-    .acp-user-table thead>tr>th:last-child {
-        display: none;
-    }
-
-    .ul-roles {
-        margin-top: -22px;
-    }
-
-    .li-roles {
-        list-style: none;
-        text-indent: 50px;
-    }
-</style>
-
-<input class="acp-user-search" type="text" id="acp-user-search" onkeyup="userSearch()" placeholder="Filter by value">
+<input class="acp-user-search" type="text" id="acp-user-search" onkeyup="userSearch()" placeholder="Filter by username">
 
 <div class="tgrid" id="tgrid">
     <% for (const data of results) { %>
