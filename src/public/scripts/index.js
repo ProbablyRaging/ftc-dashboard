@@ -492,3 +492,19 @@ function ccqueueSearch() {
         }
     }
 }
+
+// User search for AdminCP
+function userSearch() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("acp-user-search");
+    filter = input.value.toLowerCase();
+    tables = document.getElementsByClassName("acp-user-table");
+    div = document.getElementById('tgrid')
+    for (i = 0; i < tables.length; i++) {
+        table = div.getElementsByTagName('table')[i];
+        table.style.display = "none";
+        if (table.id.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+            table.style.display = "";
+        }
+    }
+}

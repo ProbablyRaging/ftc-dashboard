@@ -3,9 +3,11 @@ const router = require('express').Router();
 const { isAuthortized } = require('../../strategies/auth_check');
 const fetch = require('node-fetch');
 const chartData = require('../../schema/logs/chart_data');
+const { dataLog } = require('../../functions/data_log');
 
 // Staff dashboard root
 router.get('/', isAuthortized, async (req, res) => {
+    dataLog(req)
     const results = await chartData.find().sort({ '_id': -1 }).limit(7);
 
     let dateArr = [];

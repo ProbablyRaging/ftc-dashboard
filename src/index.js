@@ -70,6 +70,7 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', [
     path.join(__dirname, '/views/dashboard'),
+    path.join(__dirname, '/views/dashboard/admincp'),
     path.join(__dirname, '/views/discord'),
     path.join(__dirname, '/views/discord/staff')
 ]);

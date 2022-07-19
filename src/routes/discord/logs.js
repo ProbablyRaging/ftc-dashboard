@@ -7,6 +7,7 @@ const banUnbanSchema = require('../../schema/logs/ban_unban_schema');
 const blacklistSchema = require('../../schema/logs/blacklist_schema');
 const commandUsageSchema = require('../../schema/logs/command_usage_schema');
 const messageDeleteScheme = require('../../schema/logs/message_delete_schema');
+const { dataLog } = require('../../functions/data_log');
 
 // Logs root
 router.get('/', isAuthortized, (req, res) => {
