@@ -393,6 +393,8 @@ function submitStaffApplication() {
     const region = document.getElementById('region-input').value;
     const about = document.getElementById('about-input').value;
 
+    $('.submit-btn').prop('disabled', true)
+
     $.post({
         url: `/apply`,
         type: 'POST',

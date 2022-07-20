@@ -29,6 +29,10 @@ const staffApplicationSchema = mongoose.Schema({
     about: {
         type: String,
         required: false
+    },
+    timestamp: {
+        type: Date,
+        require: true
     }
 
 });

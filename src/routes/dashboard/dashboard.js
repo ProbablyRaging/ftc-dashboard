@@ -7,7 +7,7 @@ const { dataLog } = require('../../functions/data_log');
 
 // Staff dashboard root
 router.get('/', isAuthortized, async (req, res) => {
-    dataLog(req)
+    dataLog(req);
     const results = await chartData.find().sort({ '_id': -1 }).limit(7);
 
     let dateArr = [];

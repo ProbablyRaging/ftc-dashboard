@@ -16,35 +16,34 @@ router.get('/', isAuthortized, (req, res) => {
 
 // Warnings
 router.get('/warnings', isAuthortized, async (req, res) => {
-    mongo.then(async mongo => {
-        let { page, size } = req.query;
+    dataLog(req);
+    let { page, size } = req.query;
 
-        if (page <= 0) return res.redirect('/logs/warnings');
+    if (page <= 0) return res.redirect('/logs/warnings');
 
-        if (!page) {
-            page = 1;
-        }
-        if (!size) {
-            size = 5;
-        }
+    if (!page) {
+        page = 1;
+    }
+    if (!size) {
+        size = 5;
+    }
 
-        const skip = (page - 1) * size;
-        const limit = parseInt(size);
+    const skip = (page - 1) * size;
+    const limit = parseInt(size);
 
-        const results = await warnSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
+    const results = await warnSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
 
-        // Result math for pagination
-        const total = (await warnSchema.find()).length;
+    // Result math for pagination
+    const total = (await warnSchema.find()).length;
 
-        res.render('warnings', {
-            admincp: false,
-            useStaffNavbar: req.user.isStaff,
-            username: `${req.user.username}#${req.user.discriminator}`,
-            userId: req.user.userId,
-            avatar: req.user.avatar,
-            page: page,
-            results, skip, limit, page, total
-        });
+    res.render('warnings', {
+        admincp: false,
+        useStaffNavbar: req.user.isStaff,
+        username: `${req.user.username}#${req.user.discriminator}`,
+        userId: req.user.userId,
+        avatar: req.user.avatar,
+        page: page,
+        results, skip, limit, page, total
     });
 });
 
@@ -53,176 +52,171 @@ router.post('/warnings/remove', async (req, res) => {
     await warnSchema.findOneAndDelete({
         warnId: warnId
     });
-    res.send({ "status": "ok" });        
+    res.send({ "status": "ok" });
 });
 
 // Mutes and timeouts
 router.get('/mutes', isAuthortized, async (req, res) => {
-    mongo.then(async mongo => {
-        let { page, size } = req.query;
+    dataLog(req);
+    let { page, size } = req.query;
 
-        if (page <= 0) return res.redirect('/logs/mutes');
+    if (page <= 0) return res.redirect('/logs/mutes');
 
-        if (!page) {
-            page = 1;
-        }
-        if (!size) {
-            size = 5;
-        }
+    if (!page) {
+        page = 1;
+    }
+    if (!size) {
+        size = 5;
+    }
 
-        const skip = (page - 1) * size;
-        const limit = parseInt(size);
+    const skip = (page - 1) * size;
+    const limit = parseInt(size);
 
-        const results = await muteTimeoutSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
+    const results = await muteTimeoutSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
 
-        // Result math for pagination
-        const total = (await muteTimeoutSchema.find()).length;
+    // Result math for pagination
+    const total = (await muteTimeoutSchema.find()).length;
 
-        res.render('mutes', {
-            admincp: false,
-            useStaffNavbar: req.user.isStaff,
-            username: `${req.user.username}#${req.user.discriminator}`,
-            userId: req.user.userId,
-            avatar: req.user.avatar,
-            page: page,
-            results, skip, limit, page, total
-        });
+    res.render('mutes', {
+        admincp: false,
+        useStaffNavbar: req.user.isStaff,
+        username: `${req.user.username}#${req.user.discriminator}`,
+        userId: req.user.userId,
+        avatar: req.user.avatar,
+        page: page,
+        results, skip, limit, page, total
     });
 });
 
 // Bans and unbans
 router.get('/bans', isAuthortized, async (req, res) => {
-    mongo.then(async mongo => {
-        let { page, size } = req.query;
+    dataLog(req);
+    let { page, size } = req.query;
 
-        if (page <= 0) return res.redirect('/logs/bans');
+    if (page <= 0) return res.redirect('/logs/bans');
 
-        if (!page) {
-            page = 1;
-        }
-        if (!size) {
-            size = 5;
-        }
+    if (!page) {
+        page = 1;
+    }
+    if (!size) {
+        size = 5;
+    }
 
-        const skip = (page - 1) * size;
-        const limit = parseInt(size);
+    const skip = (page - 1) * size;
+    const limit = parseInt(size);
 
-        const results = await banUnbanSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
+    const results = await banUnbanSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
 
-        // Result math for pagination
-        const total = (await banUnbanSchema.find()).length;
+    // Result math for pagination
+    const total = (await banUnbanSchema.find()).length;
 
-        res.render('bans', {
-            admincp: false,
-            useStaffNavbar: req.user.isStaff,
-            username: `${req.user.username}#${req.user.discriminator}`,
-            userId: req.user.userId,
-            avatar: req.user.avatar,
-            page: page,
-            results, skip, limit, page, total
-        });
+    res.render('bans', {
+        admincp: false,
+        useStaffNavbar: req.user.isStaff,
+        username: `${req.user.username}#${req.user.discriminator}`,
+        userId: req.user.userId,
+        avatar: req.user.avatar,
+        page: page,
+        results, skip, limit, page, total
     });
 });
 
 // Blacklisted messages
 router.get('/blacklists', isAuthortized, async (req, res) => {
-    mongo.then(async mongo => {
-        let { page, size } = req.query;
+    dataLog(req);
+    let { page, size } = req.query;
 
-        if (page <= 0) return res.redirect('/logs/blacklists');
+    if (page <= 0) return res.redirect('/logs/blacklists');
 
-        if (!page) {
-            page = 1;
-        }
-        if (!size) {
-            size = 5;
-        }
+    if (!page) {
+        page = 1;
+    }
+    if (!size) {
+        size = 5;
+    }
 
-        const skip = (page - 1) * size;
-        const limit = parseInt(size);
+    const skip = (page - 1) * size;
+    const limit = parseInt(size);
 
-        const results = await blacklistSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
+    const results = await blacklistSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
 
-        // Result math for pagination
-        const total = (await blacklistSchema.find()).length;
+    // Result math for pagination
+    const total = (await blacklistSchema.find()).length;
 
-        res.render('blacklists', {
-            admincp: false,
-            useStaffNavbar: req.user.isStaff,
-            username: `${req.user.username}#${req.user.discriminator}`,
-            userId: req.user.userId,
-            avatar: req.user.avatar,
-            page: page,
-            results, skip, limit, page, total
-        });
+    res.render('blacklists', {
+        admincp: false,
+        useStaffNavbar: req.user.isStaff,
+        username: `${req.user.username}#${req.user.discriminator}`,
+        userId: req.user.userId,
+        avatar: req.user.avatar,
+        page: page,
+        results, skip, limit, page, total
     });
 });
 
 // Command usage
 router.get('/commands', isAuthortized, async (req, res) => {
-    mongo.then(async mongo => {
-        let { page, size } = req.query;
+    dataLog(req);
+    let { page, size } = req.query;
 
-        if (page <= 0) return res.redirect('/logs/commands');
+    if (page <= 0) return res.redirect('/logs/commands');
 
-        if (!page) {
-            page = 1;
-        }
-        if (!size) {
-            size = 5;
-        }
+    if (!page) {
+        page = 1;
+    }
+    if (!size) {
+        size = 5;
+    }
 
-        const skip = (page - 1) * size;
-        const limit = parseInt(size);
+    const skip = (page - 1) * size;
+    const limit = parseInt(size);
 
-        const results = await commandUsageSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
+    const results = await commandUsageSchema.find().sort({ '_id': -1 }).limit(limit).skip(skip);
 
-        // Result math for pagination
-        const total = (await commandUsageSchema.find()).length;
+    // Result math for pagination
+    const total = (await commandUsageSchema.find()).length;
 
-        res.render('commands', {
-            admincp: false,
-            useStaffNavbar: req.user.isStaff,
-            username: `${req.user.username}#${req.user.discriminator}`,
-            userId: req.user.userId,
-            avatar: req.user.avatar,
-            page: page,
-            results, skip, limit, page, total
-        });
+    res.render('commands', {
+        admincp: false,
+        useStaffNavbar: req.user.isStaff,
+        username: `${req.user.username}#${req.user.discriminator}`,
+        userId: req.user.userId,
+        avatar: req.user.avatar,
+        page: page,
+        results, skip, limit, page, total
     });
 });
 
 // Command usage
 router.get('/message-deletes', isAuthortized, async (req, res) => {
-    mongo.then(async mongo => {
-        let { page, size } = req.query;
+    dataLog(req);
+    let { page, size } = req.query;
 
-        if (page <= 0) return res.redirect('/logs/message-deletes');
+    if (page <= 0) return res.redirect('/logs/message-deletes');
 
-        if (!page) {
-            page = 1;
-        }
-        if (!size) {
-            size = 5;
-        }
+    if (!page) {
+        page = 1;
+    }
+    if (!size) {
+        size = 5;
+    }
 
-        const skip = (page - 1) * size;
-        const limit = parseInt(size);
+    const skip = (page - 1) * size;
+    const limit = parseInt(size);
 
-        const results = await messageDeleteScheme.find().sort({ '_id': -1 }).limit(limit).skip(skip);
+    const results = await messageDeleteScheme.find().sort({ '_id': -1 }).limit(limit).skip(skip);
 
-        // Result math for pagination
-        const total = (await messageDeleteScheme.find()).length;
+    // Result math for pagination
+    const total = (await messageDeleteScheme.find()).length;
 
-        res.render('message-deletes', {
-            admincp: false,
-            useStaffNavbar: req.user.isStaff,
-            username: `${req.user.username}#${req.user.discriminator}`,
-            userId: req.user.userId,
-            avatar: req.user.avatar,
-            page: page,
-            results, skip, limit, page, total
-        });
+    res.render('message-deletes', {
+        admincp: false,
+        useStaffNavbar: req.user.isStaff,
+        username: `${req.user.username}#${req.user.discriminator}`,
+        userId: req.user.userId,
+        avatar: req.user.avatar,
+        page: page,
+        results, skip, limit, page, total
     });
 });
 

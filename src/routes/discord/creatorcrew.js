@@ -3,10 +3,12 @@ const { convertTimestampToRelativeTime } = require('../../views/functions/index'
 const fetch = require('node-fetch');
 const ccVideoQueue = require('../../schema/creator_crew/video_queue');
 const googleUser = require('../../schema/misc/google_user');
+const { dataLog } = require('../../functions/data_log');
 
 // Creator crew GET
 router.get('/', async (req, res) => {
     if (req.user?.roles.includes(process.env.CC_ROLE) || req.user?.userId === process.env.OWNER_ID) {
+        dataLog(req);
         if (req.user?.userId === process.env.OWNER_ID) {
             isOwner = true;
         } else {

@@ -3,6 +3,7 @@ const router = require('express').Router();
 const mongo = require('../../database/mongodb');
 const staffApplicationSchema = require('../../schema/logs/staff_applications_schema');
 const fetch = require('node-fetch');
+const { dataLog } = require('../../functions/data_log');
 
 // TODO: Check if user is in the server
 //       If user isn't staff, redirect them to apply
@@ -10,6 +11,7 @@ const fetch = require('node-fetch');
 
 // Apply root GET
 router.get('/', async (req, res) => {
+    dataLog(req);
     if (req.user) {
         res.render('apply', {
             admincp: false,
@@ -43,16 +45,15 @@ There is a new staff application, [click here](<https://www.creatorhub.info/appl
         });
 
         // Log application to database
-        mongo.then(async mongo => {
-            await staffApplicationSchema.create({
-                userId: req.user.userId,
-                username: req.user.username,
-                discriminator: req.user.discriminator,
-                avatar: req.user.avatar,
-                age: req.body.age,
-                region: req.body.region,
-                about: req.body.about
-            });
+        await staffApplicationSchema.create({
+            userId: req.user.userId,
+            username: req.user.username,
+            discriminator: req.user.discriminator,
+            avatar: req.user.avatar,
+            age: req.body.age,
+            region: req.body.region,
+            about: req.body.about,
+            timestamp: new Date().valueOf()
         });
         res.send({ "status": "ok" });
     } else {

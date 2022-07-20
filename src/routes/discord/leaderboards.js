@@ -5,26 +5,27 @@ const mongo = require('../../database/mongodb');
 const rankSchema = require('../../schema/leaderboards/rank_schema');
 const lastletterSchema = require('../../schema/leaderboards/lastletter_schema');
 const countingSchema = require('../../schema/leaderboards/counting_schema');
+const { dataLog } = require('../../functions/data_log');
 
 // Leaderboards root
 router.get('/', async (req, res) => {
+    dataLog(req);
     res.redirect('/');
 });
 
 // Ranks
 router.get('/ranks', async (req, res) => {
+    dataLog(req);
     if (req.user) {
-        mongo.then(async mongo => {
-            const results = await rankSchema.find({ 'rank': { $gte: 1, $lt: 101 } }).sort({ 'rank': 1 });
+        const results = await rankSchema.find({ 'rank': { $gte: 1, $lt: 101 } }).sort({ 'rank': 1 });
 
-            res.render('ranks', {
+        res.render('ranks', {
             admincp: false,
             useStaffNavbar: req.user.isStaff,
-                username: `${req.user.username}#${req.user.discriminator}`,
-                userId: req.user.userId,
-                avatar: req.user.avatar,
-                results
-            });
+            username: `${req.user.username}#${req.user.discriminator}`,
+            userId: req.user.userId,
+            avatar: req.user.avatar,
+            results
         });
     } else {
         res.redirect('/');
@@ -33,29 +34,28 @@ router.get('/ranks', async (req, res) => {
 
 // Messages
 router.get('/messages', async (req, res) => {
+    dataLog(req);
     if (req.user) {
-        mongo.then(async mongo => {
-            const results = await rankSchema.find({ 'rank': { $gte: 1, $lt: 101 } });
+        const results = await rankSchema.find({ 'rank': { $gte: 1, $lt: 101 } });
 
-            dataArr = [];
-            for (const data of results) {
-                const { id, username, msgCount, rank, level, avatar, xp } = data;
+        dataArr = [];
+        for (const data of results) {
+            const { id, username, msgCount, rank, level, avatar, xp } = data;
 
-                dataArr.push({ id, username, msgCount, rank, level, avatar, xp });
-            }
+            dataArr.push({ id, username, msgCount, rank, level, avatar, xp });
+        }
 
-            dataArr.sort(function (a, b) {
-                return b.msgCount - a.msgCount;
-            });
+        dataArr.sort(function (a, b) {
+            return b.msgCount - a.msgCount;
+        });
 
-            res.render('messages', {
+        res.render('messages', {
             admincp: false,
             useStaffNavbar: req.user.isStaff,
-                username: `${req.user.username}#${req.user.discriminator}`,
-                userId: req.user.userId,
-                avatar: req.user.avatar,
-                dataArr
-            });
+            username: `${req.user.username}#${req.user.discriminator}`,
+            userId: req.user.userId,
+            avatar: req.user.avatar,
+            dataArr
         });
     } else {
         res.redirect('/');
@@ -64,29 +64,28 @@ router.get('/messages', async (req, res) => {
 
 // Last letter
 router.get('/lastletter', async (req, res) => {
+    dataLog(req);
     if (req.user) {
-        mongo.then(async mongo => {
-            const results = await lastletterSchema.find();
+        const results = await lastletterSchema.find();
 
-            dataArr = [];
-            for (const data of results) {
-                const { userId, username, avatar, correctCount } = data;
+        dataArr = [];
+        for (const data of results) {
+            const { userId, username, avatar, correctCount } = data;
 
-                dataArr.push({ userId, username, avatar, correctCount });
-            }
+            dataArr.push({ userId, username, avatar, correctCount });
+        }
 
-            dataArr.sort(function (a, b) {
-                return b.correctCount - a.correctCount;
-            });
+        dataArr.sort(function (a, b) {
+            return b.correctCount - a.correctCount;
+        });
 
-            res.render('lastletter', {
+        res.render('lastletter', {
             admincp: false,
             useStaffNavbar: req.user.isStaff,
-                username: `${req.user.username}#${req.user.discriminator}`,
-                userId: req.user.userId,
-                avatar: req.user.avatar,
-                dataArr
-            });
+            username: `${req.user.username}#${req.user.discriminator}`,
+            userId: req.user.userId,
+            avatar: req.user.avatar,
+            dataArr
         });
     } else {
         res.redirect('/');
@@ -95,29 +94,28 @@ router.get('/lastletter', async (req, res) => {
 
 // Coutning
 router.get('/counting', async (req, res) => {
+    dataLog(req);
     if (req.user) {
-        mongo.then(async mongo => {
-            const results = await countingSchema.find();
+        const results = await countingSchema.find();
 
-            dataArr = [];
-            for (const data of results) {
-                const { userId, username, avatar, counts } = data;
+        dataArr = [];
+        for (const data of results) {
+            const { userId, username, avatar, counts } = data;
 
-                dataArr.push({ userId, username, avatar, counts });
-            }
+            dataArr.push({ userId, username, avatar, counts });
+        }
 
-            dataArr.sort(function (a, b) {
-                return b.counts - a.counts;
-            });
+        dataArr.sort(function (a, b) {
+            return b.counts - a.counts;
+        });
 
-            res.render('counting', {
+        res.render('counting', {
             admincp: false,
             useStaffNavbar: req.user.isStaff,
-                username: `${req.user.username}#${req.user.discriminator}`,
-                userId: req.user.userId,
-                avatar: req.user.avatar,
-                dataArr
-            });
+            username: `${req.user.username}#${req.user.discriminator}`,
+            userId: req.user.userId,
+            avatar: req.user.avatar,
+            dataArr
         });
     } else {
         res.redirect('/');

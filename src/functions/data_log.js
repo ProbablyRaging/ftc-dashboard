@@ -1,7 +1,7 @@
 const dashboardUsers = require('../schema/misc/discord_user');
 
 async function dataLog(req) {
-    if (req.user) {
+    if (req?.user) {
         const results = await dashboardUsers.find({ userId: req.user.userId });
 
         if (results.length > 0) {
@@ -18,14 +18,6 @@ async function dataLog(req) {
                     upsert: true
                 })
             }
-        }
-
-        for (const data of results) {
-            const { dataLog } = data;
-            // console.log(dataLog[dataLog?.length - 1]?.timestamp)
-            // dataLog.forEach(entry => {
-            //     console.log(entry.timestamp)
-            // })
         }
     }
 }

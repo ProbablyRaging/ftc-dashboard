@@ -583,6 +583,7 @@ hr {
     background: var(--bg);
     border-radius: 8px;
     padding: 8px 16px;
+    padding-left: 24px;
     border: 1px solid transparent;
     transition: border 0.2s;
     outline: none;
@@ -611,6 +612,7 @@ hr {
     padding: 24px;
     padding-top: 10px !important;
     resize: none;
+    box-shadow: var(--bs-s);
     transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
@@ -621,26 +623,31 @@ hr {
 }
 
 .content-box-textbox-sm {
-    color: rgb(173, 173, 173);
+    color: var(--text);
     font-family: 'Montserrat', sans-serif !important;
     position: relative;
     width: 100%;
     max-width: 483px;
     height: 50px;
+    padding-left: 24px;
     border-radius: 8px;
-    border: 1px solid transparent;
     transition: border 0.2s;
-    background: rgb(23, 24, 30);
     resize: none;
+    background: var(--bg);
+    border: var(--border-l);
+    box-shadow: var(--bs-s);
+    transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
 .content-box-textbox-sm:focus {
     border: 1px solid #5fa2db !important;
-    background: rgb(23, 24, 30);
+    background: var(--accent);
 }
 
 .content-box-textbox-sm:disabled {
-    background: rgb(28, 29, 35);
+    background: var(--bg);
+    border: var(--border-l);
+    box-shadow: var(--bs-s);
 }
 
 .submit-btn {
@@ -779,6 +786,10 @@ hr {
 .app-user .app-section {
     font-size: 12px;
     margin-left: 10px;
+}
+
+.app-user .app-timestamp {
+    font-size: 10px;
 }
 
 .table-wrapper {
