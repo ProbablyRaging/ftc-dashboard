@@ -21,47 +21,55 @@
         <div>
             <div class="content-box-content-row">
 
-                <!-- Form -->
-                <div class="mb-3-staff">
-                    <input name="username" id="username-input" role="textbox"
-                        class="bg-grey-700 rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox-sm"
-                        data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
-                        style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
-                        spellcheck="false" value="<%= username %>" disabled required>
+                <div class="app-form">
+                    <!-- Form -->
+                    <div class="mb-3-staff">
+                        <input name="username" id="username-input" role="textbox"
+                            class="bg-grey-700 rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox-sm"
+                            data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
+                            style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
+                            spellcheck="false" value="<%= username %>" disabled required>
+                    </div>
+
+                    <select name="age" class="form-select content-box-select" id="age-selector" required>
+                        <option class="select-option" value="" selected disabled>Age
+                        </option>
+                        <option class="select-option" value="13-17">13-17
+                        </option>
+                        <option class="select-option" value="18-29">18-29
+                        </option>
+                        <option class="select-option" value="30+">30+
+                        </option>
+                    </select>
+
+                    <div class="mb-3-staff">
+                        <input name="region" id="region-input" role="textbox"
+                            class="bg-grey-700 rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox-sm"
+                            data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
+                            style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
+                            spellcheck="false" placeholder="Region: (E.g. Australia)" required>
+                    </div>
+
+                    <div class="mb-3-staff">
+                        <textarea name="about" id="about-input" role="textbox"
+                            class="bg-grey-700 !min-h-[112px] rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox"
+                            data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
+                            style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
+                            spellcheck="false"
+                            placeholder="Tell us something about yourself, why you want to be staff, if you have any previous experience, etc.."
+                            required></textarea>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary submit-btn"
+                            onclick="submitStaffApplication()">Save</button>
+                    </div>
                 </div>
 
-                <select name="age" class="form-select content-box-select" id="age-selector" required>
-                    <option class="select-option" value="" selected disabled>Age
-                    </option>
-                    <option class="select-option" value="13-17">13-17
-                    </option>
-                    <option class="select-option" value="18-29">18-29
-                    </option>
-                    <option class="select-option" value="30+">30+
-                    </option>
-                </select>
-
-                <div class="mb-3-staff">
-                    <input name="region" id="region-input" role="textbox"
-                        class="bg-grey-700 rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox-sm"
-                        data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
-                        style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
-                        spellcheck="false" placeholder="Region: (E.g. Australia)" required>
-                </div>
-
-                <div class="mb-3-staff">
-                    <textarea name="about" id="about-input" role="textbox"
-                        class="bg-grey-700 !min-h-[112px] rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox"
-                        data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
-                        style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
-                        spellcheck="false"
-                        placeholder="Tell us something about yourself, why you want to be staff, if you have any previous experience, etc.."
-                        required></textarea>
-                </div>
-
-                <div>
-                    <button type="submit" class="btn btn-primary submit-btn"
-                        onclick="submitStaffApplication()">Save</button>
+                <div class="app-success">
+                    <p class="success-header"><i class="fa-solid fa-circle-check success-check"></i> Application Received!</p>
+                    <br>
+                    <p class="success-body">Applications are accepted and denied privately and we don't provide notification of an application being denied. If your application is successful however, a staff member will contact you on Discord to discuss further</p>
                 </div>
 
                 <!-- Toast Error -->

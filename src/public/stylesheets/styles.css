@@ -580,6 +580,7 @@ hr {
     align-items: center;
     user-select: none;
     margin: 0px;
+    margin-bottom: 14px;
     background: var(--bg);
     border-radius: 8px;
     padding: 8px 16px;
@@ -741,6 +742,23 @@ hr {
 
 .mb-3-staff {
     max-width: 500px;
+    margin-bottom: 14px;
+}
+
+.app-success {
+    display: none;
+}
+
+.success-check {
+    color: #7fdaa6;
+}
+
+.success-header {
+    font-size: 24px;
+}
+
+.success-body {
+    width: 70%;
 }
 
 .app-content-box {

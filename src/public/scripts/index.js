@@ -411,6 +411,12 @@ function submitStaffApplication() {
             // Show success toast
             const toast = new bootstrap.Toast(successToast);
             toast.show();
+
+            // Hide the form and show the success div
+            $('.app-form').hide(100);
+            $('.app-success').show(100);
+
+            // Reset form values
             document.getElementById('age-selector').value = '';
             document.getElementById('region-input').value = '';
             document.getElementById('about-input').value = '';
