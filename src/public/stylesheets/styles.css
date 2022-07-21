@@ -1546,6 +1546,17 @@ hr {
     transition: background 250ms ease-in-out, color 250ms ease-in-out, border 250ms ease-in-out;
 }
 
+.acp-user-table .user-expand {
+    font-size: 18px;
+    color: #60b479;
+    margin-right: 10px;
+}
+
+.acp-user-table .user-title {
+    display: flex;
+    align-items: center;
+}
+
 .acp-user-table {
     width: 100%;
     overflow-wrap: anywhere;

@@ -4,13 +4,17 @@
 
 <script>
     $(function () {
+        $("td[colspan=3]").hide();
         $("td[colspan=3]").find("p").hide();
         $("td[colspan=3]").find("li").hide();
         $("table").click(function (event) {
             event.stopPropagation();
             var $target = $(event.target);
+            $target.closest("tr").next().find("td[colspan=3]").slideToggle(150);
             $target.closest("tr").next().find("p").slideToggle(150);
             $target.closest("tr").next().find("li").slideToggle(150);
+            $target.closest("tr").find("i").toggleClass("fa-plus");
+            $target.closest("tr").find("i").toggleClass("fa-minus");
         });
     });
 </script>
@@ -24,7 +28,10 @@
         <tbody>
             <tr>
                 <td>
-                    <p class="t-user"><%= data.username %> </p>
+                    <div class="user-title">
+                        <i class="fa-solid fa-plus user-expand"></i>
+                        <p class="t-user"><%= data.username %> </p>
+                    </div>
                 </td>
             </tr>
             <tr>
