@@ -185,11 +185,11 @@ function createCharts() {
     const bansChart = document.getElementById('bansChart');
     myBansChart = new Chart(bansChart, {
         data: {
-            labels: dateArr.split(',').slice(0, 14).reverse(),
+            labels: dateArr.split(',').slice(0, 7).reverse(),
             datasets: [{
                 type: 'line',
                 label: 'Members Banned',
-                data: bansArr.split(',').slice(0, 14).reverse(),
+                data: bansArr.split(',').slice(0, 7).reverse(),
                 borderColor: [
                     'rgb(255 154 154)',
                 ],
@@ -197,7 +197,7 @@ function createCharts() {
             }, {
                 type: 'line',
                 label: 'Members Timed Out',
-                data: timeoutsArr.split(',').slice(0, 14).reverse(),
+                data: timeoutsArr.split(',').slice(0, 7).reverse(),
                 borderColor: [
                     'rgb(183 139 255)',
                 ],
@@ -205,7 +205,7 @@ function createCharts() {
             }, {
                 type: 'line',
                 label: 'Members Warned',
-                data: warningsArr.split(',').slice(0, 14).reverse(),
+                data: warningsArr.split(',').slice(0, 7).reverse(),
                 borderColor: [
                     'rgb(132 199 255)',
                 ],
@@ -241,7 +241,7 @@ function createCharts() {
                     }
                 },
                 y: {
-                    stacked: true,
+                    stacked: false,
                     grid: {
                         display: true,
                         drawBorder: false

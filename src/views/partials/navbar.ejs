@@ -19,7 +19,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="creatorcrew" class="nav-link" aria-current="page">
+            <a href="/creatorcrew" class="nav-link" aria-current="page">
                 <i class="fa-regular fa-chess-king nav-icon"></i>
                 Creator Crew Queue
             </a>
@@ -106,14 +106,10 @@
         <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
             <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp" alt="" width="32" height="32"
-                class="rounded-circle me-2">
+                class="rounded-circle me-2 dropdown-user">
             <%= username.slice(0, 20) %>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <% if (isStaff) { %>
-            <li><a class="dropdown-item" href="/admincp">AdminCP</a></li>
-            <% } %>
-
             <div class="theme-switch">
                 <p class="theme-switch-title" id="theme-switch-title">Light On</p>
                 <div class="form-check form-switch">
@@ -121,10 +117,18 @@
                         onchange="toggleTheme()">
                 </div>
             </div>
+            <div class="color-switch">
+                <i class="bi bi-caret-left color-switches color-previous" onclick="colorPrev()"></i>
+                <p class="current-color">Loading..</p>
+                <i class="bi bi-caret-right color-switches color-next" onclick="colorNext()"></i>
+            </div>
+            <hr class="dropdown-divider">
+            <% if (isStaff) { %>
+            <li><a class="dropdown-item" href="/admincp">AdminCP</a></li>
+            <% } %>
             <li>
-                <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="/auth/logout">Sign out</a></li>
+            <li><a class="dropdown-item" href="/auth/logout"><i class="bi bi-power logout-icon"></i> Logout</a></li>
         </ul>
     </div>
 </div>

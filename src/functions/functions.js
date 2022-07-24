@@ -40,7 +40,7 @@ function perDiff(b, a) {
     if (a - b > 0) {
         return '<i class="fa-solid fa-caret-down metric-down"></i> -' + (100 * Math.abs((a - b) / a)).toString().slice(0, 4) + `% (-${a - b})`;
     } else {
-        return '<i class="fa-solid fa-caret-up metric-up"></i> -' + (100 * Math.abs((a - b) / a)).toString().slice(0, 4) + `% (${a - b})`;
+        return '<i class="fa-solid fa-caret-up metric-up"></i> ' + (100 * Math.abs((a - b) / a)).toString().slice(0, 4) + `% (${b - a})`;
     }
 }
 

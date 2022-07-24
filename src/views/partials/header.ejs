@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Start Header -->
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimal-ui">
@@ -47,18 +44,25 @@
     <link rel="stylesheet" href="/stylesheets/root.css">
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="/stylesheets/navbar.css">
-    <link rel="stylesheet" href="/stylesheets/dropdown_nav.css">
     <link rel="stylesheet" href="/stylesheets/topbar.css">
 </head>
-<!-- End Header -->
 
-<!-- Start Body -->
 <body>
     <script>
         const body = document.body;
         const currentTheme = localStorage.getItem('currentTheme');
+        const customColor = localStorage.getItem('customColor');
+        const currentIndex = localStorage.getItem('currentIndex');
+        if (!currentIndex) localStorage.setItem('currentIndex', 0);
         if (currentTheme) {
             body.classList.add(currentTheme);
+            // Add custom color
+            if (!customColor) localStorage.setItem('customColor', 'blue'); 
+            if (currentTheme === 'dark') {
+                body.classList.add(customColor);
+            } else {
+                body.classList.add(`${customColor}-nav`);
+            }
         } else {
             localStorage.setItem('currentTheme', 'light');
             body.classList.add('light');
@@ -72,3 +76,6 @@
         <div class="page-div container-fluid">
             <div class="spinner-div spinner">
                 <div class="page-content content-body !overflow-hidden hidden">
+                    <div class="page-formation">
+                        <div class="inner-content-container">
+                            <div class="inner-content">

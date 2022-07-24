@@ -96,7 +96,7 @@
 
 .dark {
     --bg: var(--gray4);
-    --bg-alt: var(--gray9);
+    --bg-alt: var(--gray5);
     
     --nav-bg: var(--gray5);
     --nav-text: var(--white3);
@@ -121,8 +121,8 @@
     --border-m: 1px solid var(--border2);
     --border-d: 1px solid var(--border3);
 
-    --table-x: var(--gray6);
-    --table-o: var(--gray8);
+    --table-x: var(--gray4);
+    --table-o: var(--gray5);
 
     --btn-like: var(--green1);
     --btn-unlike: var(--gray);
@@ -132,40 +132,50 @@
     --unset: unset;
 }
 
-.dark-blue {
-    --bg: var(--d-blue0);
-    --bg-alt: var(--gray9);
-    
-    --nav-bg: var(--d-blue5);
-    --nav-text: var(--white3);
+.orange {
+    --nav-hov: rgb(255, 149, 42);
+}
+
+.orange-nav {
+    --nav-bg: rgb(255, 149, 42);
+}
+
+.red {
+    --nav-hov: rgb(255, 74, 74);
+}
+
+.red-nav {
+    --nav-bg: rgb(255, 74, 74);
+}
+
+.purple {
+    --nav-hov: rgb(155, 83, 255);
+}
+
+.purple-nav {
+    --nav-bg: rgb(155, 83, 255);
+}
+
+.pink {
+    --nav-hov: rgb(224, 108, 208);
+}
+
+.pink-nav {
+    --nav-bg: rgb(224, 108, 208);
+}
+
+.green {
+    --nav-hov: rgb(54 183 105);
+}
+
+.green-nav {
+    --nav-bg: rgb(54 183 105);
+}
+
+.blue {
     --nav-hov: var(--blue4);
-    --nav-foc: var(--blue3);
+}
 
-    --bg-o: var(--black-o-m);
-    --accent: var(--gray5);
-    --text: var(--white1);
-    --text-alt: var(--gray2);
-    --text-off: var(--gray3);
-
-    --hover: var(--gray3);
-    --hover-btn: var(--gray5);
-
-    --weight: var(--w-4);
-    --weight-alt: var(--w-4);
-
-    --bs: var(--bs-m);
-
-    --border-l: 1px solid var(--border4);
-    --border-m: 1px solid var(--border2);
-    --border-d: 1px solid var(--border3);
-
-    --table-x: var(--gray6);
-    --table-o: var(--gray8);
-
-    --btn-like: var(--green1);
-    --btn-unlike: var(--gray);
-
-    --switch: rgb(22 23 30);
-
-    --unset: unset;
+.blue-nav {
+    --nav-bg: var(--blue4);
 }

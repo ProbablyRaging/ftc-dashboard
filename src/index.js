@@ -45,7 +45,6 @@ const adminCPRoute = require('./routes/dashboard/admincp');
 
 // Discord Routes
 const logsRoute = require('./routes/discord/logs');
-const settingsRoute = require('./routes/discord/settings');
 const applicationsRoute = require('./routes/discord/applications');
 const applyRoute = require('./routes/discord/apply');
 const leaderboardsRoute = require('./routes/discord/leaderboards');
@@ -95,7 +94,6 @@ app.use('/admincp', adminCPRoute);
 
 // Discord Middleware
 app.use('/logs', logsRoute);
-app.use('/settings', settingsRoute);
 app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
 app.use('/leaderboards', leaderboardsRoute);

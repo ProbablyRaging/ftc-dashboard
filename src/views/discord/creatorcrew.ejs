@@ -1,5 +1,4 @@
 <%- include('../partials/header') -%>
-<%- include('../partials/container') -%>
 
 <script>
     const isOwner = '<%= isOwner %>'
@@ -73,7 +72,6 @@
                     Information
                 </button>
             </div>
-
 
             <!-- Modal -->
             <div class="cc-information-modal">
@@ -163,28 +161,32 @@
 
         <div>
             <div class="pagination-wrapper">
-                <% if (videoCount===undefined) { %>
+                <% if (videoCount===undefined || videoCount===0) { %>
                 <p class="queue-status">There are currently no videos in your queue,
                     check back later
                 </p>
                 <% } else { %>
                 <% const currentCount=(total <=0) ? 0 : skip + 1 %>
-                <% const totalMath=(limit * page> total) ? total : limit * page
-                                                            %>
+                <% const totalMath=(limit * page> total) ? total : limit * page %>
                 <p class="queue-status">Showing
                     <code><%= currentCount %></code> to
                     <code><%= totalMath %></code> of
-                    <code><%= total %></code> videos in
-                    your
-                    queue
+                    <code><%= total %></code> videos in your queue
                 </p>
                 <% } %>
 
                 <!-- Pagination -->
                 <div class="pagination">
+                    <% if (videoCount===undefined || videoCount < 10) { %>
+                    <button type="button" title="previous" class="pagination-button" onclick="navigateDownPagination()"
+                        disabled>
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <% } else { %>
                     <button type="button" title="previous" class="pagination-button" onclick="navigateDownPagination()">
                         <i class="fa fa-arrow-left"></i>
                     </button>
+                    <% } %>
                     <p class="page-count">
                         <%= page %>
                     </p>
