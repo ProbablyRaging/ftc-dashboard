@@ -131,11 +131,6 @@
     padding: 10px 15px;
 }
 
-.logout-icon {
-    font-size: 20px;
-    color: var(--nav-hov);
-}
-
 .dropdown-toggle::after {
     font-size: 18px;
     margin-left: auto;
