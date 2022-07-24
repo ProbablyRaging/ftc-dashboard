@@ -1,83 +1,80 @@
 <%- include('../partials/header') -%>
-    <%- include('../partials/topbar') -%>
-        <%- include('../partials/container') -%>
+<%- include('../partials/container') -%>
 
-            <div class="content-page-title">
-                <p>Rule Command</p>
+<div class="content-page-title">
+    <p>Rule Command</p>
+</div>
+<p class="content-page-description">Change the rules everywhere they are used on the server</p>
+
+<!-- Content Box -->
+<div class="content-box">
+    <div class="content-box-div">
+
+        <!-- Content Box Inner -->
+        <header class="content-box-title-class">
+            <div class="content-box-title-flex">
+                <h5 class="content-box-title-decor">
+                    <div class="content-box-title">Rule Command</div>
+
+                </h5>
             </div>
-            <p class="content-page-description">Change the rules everywhere they are used on the server</p>
+        </header>
 
-            <!-- Content Box -->
-            <div class="content-box">
-                <div class="content-box-div">
+        <hr class="content-box-separator">
 
-                    <!-- Content Box Inner -->
-                    <header class="content-box-title-class">
-                        <div class="content-box-title-flex">
-                            <h5 class="content-box-title-decor">
-                                <div class="content-box-title">Rule Command</div>
+        <div>
+            <div class="content-box-content-row">
 
-                            </h5>
-                        </div>
-                    </header>
+                <!-- Select box -->
+                <form class="submit-form content-box-content-row" id="rule-form" action="/settings/rules" method="post">
+                    <select name="rule" class="form-select content-box-select" id="rule-selector"
+                        onchange="updateRuleInDatabase()">
+                        <option class="select-option" selected disabled>Choose a rule to edit</option>
+                        <option class="select-option" value="1">Rule 1 - <%= results[0].value %>
+                        </option>
+                        <option class="select-option" value="2">Rule 2 - <%= results[1].value %>
+                        </option>
+                        <option class="select-option" value="3">Rule 3 - <%= results[2].value %>
+                        </option>
+                        <option class="select-option" value="4">Rule 4 - <%= results[3].value %>
+                        </option>
+                        <option class="select-option" value="5">Rule 5 - <%= results[4].value %>
+                        </option>
+                        <option class="select-option" value="6">Rule 6 - <%= results[5].value %>
+                        </option>
+                        <option class="select-option" value="7">Rule 7 - <%= results[6].value %>
+                        </option>
+                    </select>
 
-                    <hr class="content-box-separator">
+                    <!-- Textarea box -->
+                    <textarea name="input" id="rule-input" role="textbox"
+                        class="bg-grey-700 !min-h-[112px] rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default  undefined content-box-textbox"
+                        data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
+                        style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
+                        spellcheck="false" placeholder="Enter some text" required></textarea>
 
+                    <!-- Submit button -->
                     <div>
-                        <div class="content-box-content-row">
+                        <button type="submit" class="btn btn-primary submit-btn" id="liveToastBtn">Save</button>
+                    </div>
+                </form>
 
-                            <!-- Select box -->
-                            <form class="submit-form content-box-content-row" id="rule-form" action="/settings/rules"
-                                method="post">
-                                <select name="rule" class="form-select content-box-select" id="rule-selector"
-                                    onchange="updateRuleInDatabase()">
-                                    <option class="select-option" selected disabled>Choose a rule to edit</option>
-                                    <option class="select-option" value="1">Rule 1 - <%= results[0].value %>
-                                    </option>
-                                    <option class="select-option" value="2">Rule 2 - <%= results[1].value %>
-                                    </option>
-                                    <option class="select-option" value="3">Rule 3 - <%= results[2].value %>
-                                    </option>
-                                    <option class="select-option" value="4">Rule 4 - <%= results[3].value %>
-                                    </option>
-                                    <option class="select-option" value="5">Rule 5 - <%= results[4].value %>
-                                    </option>
-                                    <option class="select-option" value="6">Rule 6 - <%= results[5].value %>
-                                    </option>
-                                    <option class="select-option" value="7">Rule 7 - <%= results[6].value %>
-                                    </option>
-                                </select>
-
-                                <!-- Textarea box -->
-                                <textarea name="input" id="rule-input" role="textbox"
-                                    class="bg-grey-700 !min-h-[112px] rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default  undefined content-box-textbox"
-                                    data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
-                                    style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
-                                    spellcheck="false" placeholder="Enter some text" required></textarea>
-
-                                <!-- Submit button -->
-                                <div>
-                                    <button type="submit" class="btn btn-primary submit-btn"
-                                        id="liveToastBtn">Save</button>
-                                </div>
-                            </form>
-
-                            <!-- Toast -->
-                            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                    <div class="toast-body text-light bg-primary">
-                                        Changes saved
-                                    </div>
-                                </div>
-                            </div>
-
+                <!-- Toast -->
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-body text-light bg-primary">
+                            Changes saved
                         </div>
-
                     </div>
                 </div>
-                <!--  -->
 
             </div>
-            <!--  -->
 
-            <%- include('../partials/footer') -%>
+        </div>
+    </div>
+    <!--  -->
+
+</div>
+<!--  -->
+
+<%- include('../partials/footer') -%>

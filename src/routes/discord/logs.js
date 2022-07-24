@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const mongo = require('../../database/mongodb');
-const { isAuthortized } = require('../../strategies/auth_check');
+const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 const warnSchema = require('../../schema/logs/warn_schema');
 const muteTimeoutSchema = require('../../schema/logs/mute_timeout_schema');
 const banUnbanSchema = require('../../schema/logs/ban_unban_schema');
@@ -37,6 +37,7 @@ router.get('/warnings', isAuthortized, async (req, res) => {
     const total = (await warnSchema.find()).length;
 
     res.render('warnings', {
+        isStaff: isStaff(req),
         admincp: false,
         useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,
@@ -78,6 +79,7 @@ router.get('/mutes', isAuthortized, async (req, res) => {
     const total = (await muteTimeoutSchema.find()).length;
 
     res.render('mutes', {
+        isStaff: isStaff(req),
         admincp: false,
         useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,
@@ -111,6 +113,7 @@ router.get('/bans', isAuthortized, async (req, res) => {
     const total = (await banUnbanSchema.find()).length;
 
     res.render('bans', {
+        isStaff: isStaff(req),
         admincp: false,
         useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,
@@ -144,6 +147,7 @@ router.get('/blacklists', isAuthortized, async (req, res) => {
     const total = (await blacklistSchema.find()).length;
 
     res.render('blacklists', {
+        isStaff: isStaff(req),
         admincp: false,
         useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,
@@ -177,6 +181,7 @@ router.get('/commands', isAuthortized, async (req, res) => {
     const total = (await commandUsageSchema.find()).length;
 
     res.render('commands', {
+        isStaff: isStaff(req),
         admincp: false,
         useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,
@@ -210,6 +215,7 @@ router.get('/message-deletes', isAuthortized, async (req, res) => {
     const total = (await messageDeleteScheme.find()).length;
 
     res.render('message-deletes', {
+        isStaff: isStaff(req),
         admincp: false,
         useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,

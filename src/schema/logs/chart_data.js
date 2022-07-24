@@ -21,6 +21,18 @@ const chartData = mongoose.Schema({
     messages: {
         type: String,
         required: false
+    },
+    timeouts: {
+        type: String,
+        required: false
+    },
+    warnings: {
+        type: String,
+        required: false
+    },
+    newcommunicators: {
+        type: String,
+        required: false
     }
 
 });

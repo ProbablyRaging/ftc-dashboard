@@ -2,15 +2,17 @@ require('dotenv').config();
 const router = require('express').Router();
 const mongo = require('../../database/mongodb');
 const staffApplicationSchema = require('../../schema/logs/staff_applications_schema');
-const { isAuthortized } = require('../../strategies/auth_check');
+const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 const { dataLog } = require('../../functions/data_log');
 
 // Applications root
-router.get('/', isAuthortized, async (req, res) => {
+router.get('/', async (req, res) => {
+    if (!req?.user?.isStaff) return res.redirect('/apply')
     dataLog(req);
     const results = await staffApplicationSchema.find().limit(9).sort({ '_id': -1 });
 
     res.render('applications', {
+        isStaff: isStaff(req),
         admincp: false,
         useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,

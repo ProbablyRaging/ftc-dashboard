@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const { convertTimestampToRelativeTime } = require('../../views/functions/index');
+const { convertTimestampToRelativeTime } = require('../../functions/functions');
 const fetch = require('node-fetch');
 const ccVideoQueue = require('../../schema/creator_crew/video_queue');
 const googleUser = require('../../schema/misc/google_user');
 const { dataLog } = require('../../functions/data_log');
+const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 
 // Creator crew GET
 router.get('/', async (req, res) => {
@@ -54,6 +55,7 @@ router.get('/', async (req, res) => {
             const videoCount = videoArr.length;
 
             res.render('creatorcrew', {
+                isStaff: isStaff(req),
                 admincp: false,
                 useStaffNavbar: req.user.isStaff,
                 username: `${req.user.username}#${req.user.discriminator}`,

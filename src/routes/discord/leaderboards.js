@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { isAuthortized } = require('../../strategies/auth_check');
 const fetch = require('node-fetch');
 const mongo = require('../../database/mongodb');
 const rankSchema = require('../../schema/leaderboards/rank_schema');
 const lastletterSchema = require('../../schema/leaderboards/lastletter_schema');
 const countingSchema = require('../../schema/leaderboards/counting_schema');
 const { dataLog } = require('../../functions/data_log');
+const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 
 // Leaderboards root
 router.get('/', async (req, res) => {
@@ -20,6 +20,7 @@ router.get('/ranks', async (req, res) => {
         const results = await rankSchema.find({ 'rank': { $gte: 1, $lt: 101 } }).sort({ 'rank': 1 });
 
         res.render('ranks', {
+            isStaff: isStaff(req),
             admincp: false,
             useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
@@ -50,6 +51,7 @@ router.get('/messages', async (req, res) => {
         });
 
         res.render('messages', {
+            isStaff: isStaff(req),
             admincp: false,
             useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
@@ -80,6 +82,7 @@ router.get('/lastletter', async (req, res) => {
         });
 
         res.render('lastletter', {
+            isStaff: isStaff(req),
             admincp: false,
             useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,
@@ -110,6 +113,7 @@ router.get('/counting', async (req, res) => {
         });
 
         res.render('counting', {
+            isStaff: isStaff(req),
             admincp: false,
             useStaffNavbar: req.user.isStaff,
             username: `${req.user.username}#${req.user.discriminator}`,

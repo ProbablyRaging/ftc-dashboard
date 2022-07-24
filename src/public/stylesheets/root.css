@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --blue: rgb(216, 235, 255);
+    --blue0: rgb(201, 227, 255);
+    --blue1: rgb(175, 214, 255);
+    --blue2: rgb(163, 197, 255);
+    --blue3: rgb(149, 192, 255);
+    --blue4: rgb(13, 110, 253);
+
+    --d-blue0: rgb(15 23 32);
+    --d-blue5: rgb(10 17 24);
+
+    --green: rgb(236, 255, 243);
+    --green0: rgb(173, 255, 203);
+    --green1: rgb(133, 255, 178);
+    --green2: rgb(78, 214, 128);
+    --green3: rgb(49, 179, 97);
+
+    --black-o-l: rgba(0, 0, 0, 0.07);
+    --black-o-m: rgba(0 0 0 / 13%);
+    --black-o-d: rgba(0, 0, 0, 0.508);
+    --black: rgb(0, 0, 0);
+
+    --white0: rgb(255, 255, 255);
+    --white1: rgb(247 247 247);
+    --white2: rgb(242, 244, 250);
+    --white3: rgb(241 241 241);
+    --white4: rgb(227, 227, 227);
+
+    --gray: rgb(248, 248, 248);
+    --gray0: rgb(219, 225, 232);
+    --gray1: rgb(178, 190, 205);
+    --gray2: rgb(124 128 141);
+    --gray3: rgb(108, 117, 125);
+    --gray4: rgb(41 46 51);
+    --gray5: rgb(33, 37, 41);
+    --gray6: rgb(25 26 33);
+    --gray7: rgb(18, 17, 23);
+    --gray8: rgb(16, 15, 22);
+    --gray9: rgb(15, 14, 17);
+
+    --w-4: 400;
+    --w-5: 500;
+    --w-6: 600;
+    --w-7: 700;
+    --w-8: 800;
+
+    --bs-s: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05), 0 2px 8px hsla(0, 0%, 0%, 0.05);
+    --bs-m: rgb(0 0 0 / 8%) 0 4px 4px;
+
+    --border0: rgb(229, 233, 236);
+    --border1: rgb(153, 153, 153);
+    --border2: rgb(42, 46, 53);
+    --border3: rgb(32, 36, 41);
+    --border4: rgb(27, 32, 36);
+}
+
+.light {
+    --bg: var(--white0);
+    --bg-alt: var(--white3);
+
+    --nav-bg: var(--blue4);
+    --nav-text: var(--white3);
+    --nav-hov: var(--black-o-m);
+    --nav-foc: var(--blue3);
+
+    --bg-o: var(--black-o-l);
+    --accent: var(--white1);
+    --text: var(--black);
+    --text-alt: var(--gray5);
+    --text-off: var(--gray2);
+
+    --hover: var(--gray2);
+    --hover-btn: var(--blue0);
+
+    --weight: var(--w-6);
+    --weight-alt: var(--w-5);
+
+    --bs: var(--bs-m);
+
+    --border-l: 1px solid var(--border0);
+    --border-m: 1px solid var(--border1);
+    --border-d: 1px solid var(--border2);
+
+    --table-x: var(--white0);
+    --table-o: var(--gray0);
+
+    --btn-like: var(--green3);
+    --btn-unlike: var(--gray1);
+
+    --switch: rgb(236, 236, 236);
+
+    --unset: unset;
+}
+
+.dark {
+    --bg: var(--gray4);
+    --bg-alt: var(--gray9);
+    
+    --nav-bg: var(--gray5);
+    --nav-text: var(--white3);
+    --nav-hov: var(--blue4);
+    --nav-foc: var(--blue3);
+
+    --bg-o: var(--black-o-m);
+    --accent: var(--gray5);
+    --text: var(--white1);
+    --text-alt: var(--gray2);
+    --text-off: var(--gray3);
+
+    --hover: var(--gray3);
+    --hover-btn: var(--gray5);
+
+    --weight: var(--w-4);
+    --weight-alt: var(--w-4);
+
+    --bs: var(--bs-m);
+
+    --border-l: 1px solid var(--border4);
+    --border-m: 1px solid var(--border2);
+    --border-d: 1px solid var(--border3);
+
+    --table-x: var(--gray6);
+    --table-o: var(--gray8);
+
+    --btn-like: var(--green1);
+    --btn-unlike: var(--gray);
+
+    --switch: rgb(22 23 30);
+
+    --unset: unset;
+}
+
+.dark-blue {
+    --bg: var(--d-blue0);
+    --bg-alt: var(--gray9);
+    
+    --nav-bg: var(--d-blue5);
+    --nav-text: var(--white3);
+    --nav-hov: var(--blue4);
+    --nav-foc: var(--blue3);
+
+    --bg-o: var(--black-o-m);
+    --accent: var(--gray5);
+    --text: var(--white1);
+    --text-alt: var(--gray2);
+    --text-off: var(--gray3);
+
+    --hover: var(--gray3);
+    --hover-btn: var(--gray5);
+
+    --weight: var(--w-4);
+    --weight-alt: var(--w-4);
+
+    --bs: var(--bs-m);
+
+    --border-l: 1px solid var(--border4);
+    --border-m: 1px solid var(--border2);
+    --border-d: 1px solid var(--border3);
+
+    --table-x: var(--gray6);
+    --table-o: var(--gray8);
+
+    --btn-like: var(--green1);
+    --btn-unlike: var(--gray);
+
+    --switch: rgb(22 23 30);
+
+    --unset: unset;
+}

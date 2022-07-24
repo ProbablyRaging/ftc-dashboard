@@ -6,18 +6,18 @@ const switchTitle = document.getAnimations('theme-switch-title');
 if (currentTheme === 'dark') {
     // Change theme button state
     $('#theme-switch').addClass('dark').removeClass('light')
-    $('.form-check-input').prop('checked', true);
+    $('.form-check-input').prop('checked', false);
     $('.theme-switch-title').text('Lights Off')
 } else {
     // Change theme button state
     $('#theme-switch').addClass('light').removeClass('dark')
-    $('.form-check-input').prop('checked', false);
+    $('.form-check-input').prop('checked', true);
     $('.theme-switch-title').text('Lights On')
 }
 
 function toggleTheme() {
     if (switchState.classList.contains('light')) {
-       // Change theme to dark
+        // Change theme to dark
         body.classList.replace('light', 'dark');
         $('#theme-switch').addClass('dark').removeClass('light')
         $('.theme-switch-title').text('Lights Off')
@@ -45,6 +45,22 @@ if (top.location.pathname.split('/')[1] === 'logs' || top.location.pathname.spli
     $('.spinner-div').removeClass('spinner');
     $('.content-body').removeClass('hidden');
 }
+
+// Navbar active pill
+$(function ($) {
+    let url = window.location.href;
+    $('li a').each(function () {
+        if (this.href === url) {
+            $(this).closest('a').addClass('active');
+        }
+    });
+});
+
+// Topbar menu button
+$('.navbar-toggler.collapsed').click(function(){
+    $('.nav-menu-icon').toggleClass('fa-bars');
+    $('.nav-menu-icon').toggleClass('fa-bars-staggered');
+});
 
 // Navbar main show/hide
 const navBar = document.getElementById("main-menu-visible");

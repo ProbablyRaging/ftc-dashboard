@@ -1,179 +1,130 @@
-<div class="main-menu" id="main-menu-visible">
-    <div class="nav-logo-div">
-        <button class="fa-solid fa-arrow-right-to-bracket nav-toggle-button" id="navbar-hide" name="..."></button>
-        <img src="../images/chd-logo.webp" class="nav-logo" id="nav-logo" alt="logo">
-        <p id="nav-text-one">CH</p>
-        <p id="nav-text-two">Dashboard</p>
-    </div>
-
-    <ul>
-        <li class="nav-list">
-            <a href="/dashboard">
-                <i class="fa fa-home fa-2x"></i>
-                <span class="nav-text" id="nav-text">
-                    Dashboard
-                </span>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark nav-bar" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none navbrand">
+        <span class="fs-4 nav-text">Creat</span><img src="/images/ch_logo.svg" alt="" class="brand-logo rgb"><span
+            class="fs-4 nav-text">rHub</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="/dashboard" class="nav-link" aria-current="page">
+                <i class="bi bi-house nav-icon"></i>
+                Dashboard
             </a>
         </li>
-
-        <!-- Group -->
-        <div class="list-title-div" id="group-one-visible">
-            <div class="list-title">Command Management</div>
-            <button class="fa-solid fa-angle-up" id="collapse-one" name="collapse"></button>
-        </div>
-
-
-        <div class="group-one">
-            <li class="nav-list">
-                <a href="/settings/rules">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                    <span class="nav-text" id="nav-text">
-                        Rules
-                    </span>
-                </a>
-            </li>
-        </div>
-
-        <!-- Group -->
-        <div class="list-title-div" id="group-two-visible">
-            <div class="list-title">Staff Applications</div>
-            <button class="fa-solid fa-angle-up" id="collapse-two" name="collapse"></button>
-        </div>
-
-
-        <div class="group-two">
-            <li class="nav-list">
-                <a href="/applications">
-                    <i class="fa-solid fa-table-list"></i>
-                    <span class="nav-text" id="nav-text">
-                        Applications
-                    </span>
-                </a>
-            </li>
-        </div>
-
-        <!-- Group -->
-        <div class="list-title-div" id="group-three-visible">
-            <div class="list-title">Creator Crew</div>
-            <button class="fa-solid fa-angle-up" id="collapse-three" name="collapse"></button>
-        </div>
-
-
-        <div class="group-three">
-            <li class="nav-list">
-                <a href="/creatorcrew">
-                    <i class="fa-solid fa-crown"></i>
-                    <span class="nav-text" id="nav-text">
-                        Creator Crew Queue
-                    </span>
-                </a>
-            </li>
-        </div>
-
-        <!-- Group -->
-        <div class="list-title-div" id="group-four-visible">
-            <div class="list-title">Server Logs</div>
-            <button class="fa-solid fa-angle-up" id="collapse-four" name="collapse"></button>
-        </div>
-
-
-        <div class="group-four">
-            <li class="nav-list">
-                <a href="/logs/warnings">
-                    <i class="fa fa-exclamation-triangle"></i>
-                    <span class="nav-text" id="nav-text">
-                        Warnings
-                    </span>
-                </a>
-
-            </li>
-            <li class="nav-list">
-                <a href="/logs/mutes">
-                    <i class="fa fa-volume-xmark"></i>
-                    <span class="nav-text" id="nav-text">
-                        Mutes/Timeouts
-                    </span>
-                </a>
-
-            </li>
-            <li class="nav-list">
-                <a href="/logs/bans">
-                    <i class="fa-solid fa-ban"></i>
-                    <span class="nav-text" id="nav-text">
-                        Bans/Unbans
-                    </span>
-                </a>
-
-            </li>
-            <li class="nav-list">
-                <a href="/logs/message-deletes">
-                    <i class="fa-solid fa-trash-can"></i>
-                    <span class="nav-text" id="nav-text">
-                        Message Deletes
-                    </span>
-                </a>
-            </li>
-            <li class="nav-list">
-                <a href="/logs/blacklists">
-                    <i class="fa-solid fa-crosshairs"></i>
-                    <span class="nav-text" id="nav-text">
-                        Blacklisted Messages
-                    </span>
-                </a>
-            </li>
-            <li class="nav-list">
-                <a href="/logs/commands">
-                    <i class="fa-solid fa-terminal"></i>
-                    <span class="nav-text" id="nav-text">
-                        Command Usage
-                    </span>
-                </a>
-            </li>
-        </div>
-
-        <!-- Group -->
-        <div class="list-title-div" id="group-five-visible">
-            <div class="list-title">Leaderboards</div>
-            <button class="fa-solid fa-angle-up" id="collapse-five" name="collapse"></button>
-        </div>
-
-
-        <div class="group-five">
-            <li class="nav-list">
-                <a href="/leaderboards/ranks">
-                    <i class="fa fa-ranking-star"></i>
-                    <span class="nav-text" id="nav-text">
-                        Ranks
-                    </span>
-                </a>
-
-            </li>
-            <li class="nav-list">
-                <a href="/leaderboards/messages">
-                    <i class="fa fa-comments"></i>
-                    <span class="nav-text" id="nav-text">
-                        Messages
-                    </span>
-                </a>
-
-            </li>
-            <li class="nav-list">
-                <a href="/leaderboards/lastletter">
-                    <i class="fa-solid fa-arrow-down-a-z"></i>
-                    <span class="nav-text" id="nav-text">
-                        Last Letter Game
-                    </span>
-                </a>
-
-            </li>
-            <li class="nav-list">
-                <a href="/leaderboards/counting">
-                    <i class="fa-solid fa-arrow-down-1-9"></i>
-                    <span class="nav-text" id="nav-text">
-                        Counting Game
-                    </span>
-                </a>
-            </li>
-        </div>
+        <% if (!admincp) { %>
+        <li class="nav-item">
+            <a href="/applications" class="nav-link" aria-current="page">
+                <i class="bi bi-menu-button nav-icon"></i>
+                Staff Applications
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="creatorcrew" class="nav-link" aria-current="page">
+                <i class="fa-regular fa-chess-king nav-icon"></i>
+                Creator Crew Queue
+            </a>
+        </li>
+        <% if (isStaff) { %>
+        <li class="nav-item">
+            <a href="/logs/warnings" class="nav-link" aria-current="page">
+                <i class="bi bi-exclamation-triangle nav-icon"></i>
+                Warnings
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/logs/mutes" class="nav-link" aria-current="page">
+                <i class="bi bi-mic-mute nav-icon"></i>
+                Mutes & Timeouts
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/logs/bans" class="nav-link" aria-current="page">
+                <i class="bi bi-x-circle nav-icon"></i>
+                Bans & Unbans
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/logs/message-deletes" class="nav-link" aria-current="page">
+                <i class="bi bi-trash nav-icon"></i>
+                Deleted Messages
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/logs/blacklists" class="nav-link" aria-current="page">
+                <i class="bi bi-funnel nav-icon"></i>
+                Blacklisted Messages
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/logs/commands" class="nav-link" aria-current="page">
+                <i class="bi bi-terminal nav-icon"></i>
+                Command Usage
+            </a>
+        </li>
+        <% } %>
+        <li class="nav-item">
+            <a href="/leaderboards/ranks" class="nav-link" aria-current="page">
+                <i class="bi bi-trophy nav-icon"></i>
+                Rank Leaderboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/leaderboards/messages" class="nav-link" aria-current="page">
+                <i class="bi bi-chat-dots nav-icon"></i>
+                Message Leaderboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/leaderboards/lastletter" class="nav-link" aria-current="page">
+                <i class="bi bi-dpad nav-icon"></i>
+                Last Letter Leaderboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/leaderboards/counting" class="nav-link" aria-current="page">
+                <i class="bi bi-controller nav-icon"></i>
+                Counting Leaderboard
+            </a>
+        </li>
+        <% } else { %>
+        <li class="nav-item">
+            <a href="/admincp/users" class="nav-link" aria-current="page">
+                <i class="bi bi-people nav-icon"></i>
+                Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/admincp/queues" class="nav-link" aria-current="page">
+                <i class="bi bi-view-list nav-icon"></i>
+                Queues
+            </a>
+        </li>
+        <% } %>
     </ul>
+    <hr>
+    <div class="dropdown">
+        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp" alt="" width="32" height="32"
+                class="rounded-circle me-2">
+            <%= username.slice(0, 20) %>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <% if (isStaff) { %>
+            <li><a class="dropdown-item" href="/admincp">AdminCP</a></li>
+            <% } %>
+
+            <div class="theme-switch">
+                <p class="theme-switch-title" id="theme-switch-title">Light On</p>
+                <div class="form-check form-switch">
+                    <input class="form-check-input light" type="checkbox" role="switch" id="theme-switch"
+                        onchange="toggleTheme()">
+                </div>
+            </div>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/auth/logout">Sign out</a></li>
+        </ul>
+    </div>
 </div>

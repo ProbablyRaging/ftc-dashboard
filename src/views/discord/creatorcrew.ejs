@@ -1,5 +1,4 @@
 <%- include('../partials/header') -%>
-<%- include('../partials/topbar') -%>
 <%- include('../partials/container') -%>
 
 <script>
@@ -73,15 +72,6 @@
                     data-bs-target="#exampleModal">
                     Information
                 </button>
-
-                <% if (useStaffNavbar) { %>
-                <!-- Button trigger modal -->
-                <form action="/admincp">
-                    <button type="submit" class="btn btn-primary btn-sm admincp-btn" name="ref" value="<%= userId %>">
-                        AdminCP
-                    </button>
-                </form>
-                <% } %>
             </div>
 
 
@@ -229,9 +219,6 @@
                                     id="<%= video.id %>-watch-status"> 00:00 / 00:00</i>
                             </p>
                             <p class="video-added" id="testing">
-                                <% if (convertTimestampToRelativeTime(video.timestamp) === ' >3 days ago') { %>
-                                <script> document.getElementsByClassName('video-added')[0].style.color = '#fe4848fe'; </script>
-                                <% } %>
                                 added <%- convertTimestampToRelativeTime(video.timestamp) %>
                             </p>
                         </div>

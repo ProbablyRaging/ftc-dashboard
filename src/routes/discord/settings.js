@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { isAuthortized } = require('../../strategies/auth_check');
+const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 const mongo = require('../../database/mongodb');
 const ruleSchema = require('../../schema/misc/rule_schema');
 const { dataLog } = require('../../functions/data_log');
@@ -15,6 +15,7 @@ router.get('/rules', isAuthortized, async (req, res) => {
     const results = await ruleSchema.find();
 
     res.render('rules', {
+        isStaff: isStaff(req),
         admincp: false,
         useStaffNavbar: req.user.isStaff,
         username: `${req.user.username}#${req.user.discriminator}`,
