@@ -205,6 +205,14 @@ code {
     margin-bottom: 16px;
 }
 
+.con-box {
+    background: var(--accent);
+    border: var(--border-l);
+    border-radius: 4px;
+    padding: 24px;
+    box-shadow: var(--bs-s);
+}
+
 .content-box {
     overflow: hidden;
     align-self: stretch;
