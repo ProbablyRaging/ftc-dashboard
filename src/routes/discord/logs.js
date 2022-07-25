@@ -11,7 +11,14 @@ const { dataLog } = require('../../functions/data_log');
 
 // Logs root
 router.get('/', isAuthortized, (req, res) => {
-    res.redirect('/dashboard');
+    res.render('logs', {
+        isStaff: isStaff(req),
+        admincp: false,
+        useStaffNavbar: req.user.isStaff,
+        username: `${req.user.username}#${req.user.discriminator}`,
+        userId: req.user.userId,
+        avatar: req.user.avatar
+    });
 });
 
 // Warnings

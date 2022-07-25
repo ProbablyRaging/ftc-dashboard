@@ -50,6 +50,8 @@ const applyRoute = require('./routes/discord/apply');
 const leaderboardsRoute = require('./routes/discord/leaderboards');
 const creatorcrewRoute = require('./routes/discord/creatorcrew');
 
+const testRoute = require('./routes/dashboard/test');
+
 // Error Routes
 const forbiddenRoute = require('./routes/dashboard/forbidden');
 
@@ -98,6 +100,8 @@ app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
 app.use('/leaderboards', leaderboardsRoute);
 app.use('/creatorcrew', creatorcrewRoute);
+
+app.use('/test', testRoute);
 
 // Error Middleware
 app.use('/forbidden', forbiddenRoute);

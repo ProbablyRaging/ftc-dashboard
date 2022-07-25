@@ -1,0 +1,90 @@
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<script>
+    function runFunc1() {
+        const results = ['1', '2', '3', '4']
+
+        $(".demo td").remove()
+
+        for (const data of results) {
+            $('.demo tr:last').after(`<tr><td>${data}</td></tr>`);
+        }
+    }
+
+    function runFunc2() {
+        const results = ['a', 'b', 'c', 'd']
+
+        $(".demo td").remove()
+        
+        for (const data of results) {
+            $('.demo tr:last').after(`<tr><td>${data}</td></tr>`);
+        }
+    }
+</script>
+
+
+
+
+
+<button onclick="runFunc1()">
+    one
+</button>
+<button onclick="runFunc2()">
+    two
+</button>
+
+
+
+
+
+<table class="demo">
+    <caption>Table 1</caption>
+    <thead>
+        <tr>
+            <th>Header 1</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                sdf
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .demo {
+        border: 1px solid #C0C0C0;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    .demo th {
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+        background: #F0F0F0;
+    }
+
+    .demo td {
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+    }
+</style>

@@ -1,0 +1,205 @@
+<%- include('../partials/header') -%>
+
+<script>
+    function logsFetch(logToFetch) {
+        console.log('test')
+        $.post({
+            url: `/api/log-fetch`,
+            type: 'POST',
+            headers: { "Content-Type": "application/json" },
+            dataType: 'json',
+            data: JSON.stringify({ "logToFetch": `${logToFetch}` })
+        }, (data) => {
+            $(".logs-table td").remove();
+
+            const results = data;
+            console.log(results)
+
+            for (const entries of results) {
+                $('.logs-table tr:last').after(`<tr><td>${entries.authorTag}</td>
+                    <td>${entries.userId}</td>
+                    <td>${new Date(entries.timestamp).toLocaleDateString("en-US", { hour: '2-digit', minute: '2-digit' })}</td>
+                    <td>${entries.reason}</td></tr>`);
+
+            }
+        });
+    }
+</script>
+
+
+<div class="logs-button-wrapper">
+    <button class="logs-button warnings-fetch" onclick="logsFetch('warnSchema')">Warnings</button>
+    <button class="logs-button mutes-fetch" onclick="logsFetch('muteSchema')">Mutes & Timeouts</button>
+    <button class="logs-button bans-fetch" onclick="logsFetch('banSchema')">Bans & Unbans</button>
+    <button class="logs-button deletes-fetch" onclick="logsFetch('deleteSchema')">Deleted Messages</button>
+    <button class="logs-button blacklists-fetch" onclick="logsFetch('blacklistSchema')">Blacklisted Messages</button>
+    <button class="logs-button commands-fetch" onclick="logsFetch('commandSchema')">Command Usage</button>
+</div>
+
+
+<input class="logs-search" type="text" id="logs-search" onkeyup="ccqueueSearch()" placeholder="Filter by value">
+
+<table class="logs-table" id="logs-table">
+    <thead>
+        <tr>
+            <th class="executor">Executor</th>
+            <th class="userid">User ID</th>
+            <th class="date">Date</th>
+            <th class="info">Info</th>
+        </tr>
+    </thead>
+    <% // for (const data of results) { %>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+    <% // } %>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .logs-button-wrapper {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 24px;
+    }
+
+    .logs-button {
+        color: var(--text);
+        font-weight: 600;
+        width: 170px;
+        height: 45px;
+        border: none;
+        background: var(--bg-alt);
+        border-radius: 6px;
+        box-sizing: var(--bs);
+        border: var(--border-l);
+        box-shadow: var(--bs-s);
+    }
+
+    .logs-button:hover {
+        background-color: var(--nav-hov);
+    }
+
+    .logs-search {
+        width: 300px;
+        height: 42px;
+        padding: 5px;
+        margin-bottom: 20px;
+        color: var(--text) !important;
+        background: var(--accent);
+        border: var(--border-l);
+        border-radius: 6px;
+        box-shadow: var(--bs-s);
+    }
+
+    .logs-table {
+        font-size: 12px;
+        width: 100%;
+        box-shadow: var(--bs-s);
+    }
+
+    .logs-table thead {
+        color: var(--text) !important;
+        font-weight: var(--w-5);
+    }
+
+    .logs-table tbody {
+        color: var(--text-alt);
+        background: var(--accent);
+        border-bottom: var(--border-l);
+        border-right: var(--border-l);
+        border-left: var(--border-l);
+    }
+
+    .logs-table td {
+        padding: 6px;
+        height: 30px;
+        border-right: var(--border-l);
+    }
+
+    .logs-table th {
+        background: var(--bg-o);
+        padding: 6px;
+        border: var(--border-l);
+    }
+
+    .logs-table tr:hover {
+        background: var(--bg-o);
+    }
+
+    .logs-table td:nth-child(3) {
+        min-width: 140px;
+    }
+</style>
+
+<%- include('../partials/footer') -%>
