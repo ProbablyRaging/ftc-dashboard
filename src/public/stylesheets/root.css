@@ -86,6 +86,8 @@
     --table-x: var(--white0);
     --table-o: var(--gray0);
 
+    --btn: var(--nav-bg);
+    --btn-hov: rgb(132 64 225);
     --btn-like: var(--green3);
     --btn-unlike: var(--gray1);
 
@@ -97,7 +99,7 @@
 .dark {
     --bg: var(--gray4);
     --bg-alt: var(--gray5);
-    
+
     --nav-bg: var(--gray5);
     --nav-text: var(--white3);
     --nav-hov: var(--blue4);
@@ -124,6 +126,8 @@
     --table-x: var(--gray4);
     --table-o: var(--gray5);
 
+    --btn: var(--nav-bg);
+    --btn-hov: var(--nav-hov);
     --btn-like: var(--green1);
     --btn-unlike: var(--gray);
 

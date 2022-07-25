@@ -71,7 +71,18 @@ router.post('/video-status', async (req, res) => {
 // POST to fetch logs for logs tables
 router.post('/log-fetch', async (req, res) => {
     if (req?.user && req?.body?.logToFetch) {
-        
+        let { page, size } = req.body;
+
+        if (!page) {
+            page = 1;
+        }
+        if (!size) {
+            size = 10;
+        }
+
+        const skip = (page - 1) * size;
+        if (skip < 0) return;
+
         if (req?.body?.logToFetch === 'warnSchema') schema = warnSchema;
         if (req?.body?.logToFetch === 'muteSchema') schema = muteSchema;
         if (req?.body?.logToFetch === 'banSchema') schema = banSchema;
@@ -80,7 +91,7 @@ router.post('/log-fetch', async (req, res) => {
         if (req?.body?.logToFetch === 'commandSchema') schema = commandSchema;
 
         // Fetch the requested log
-        const results = await schema.find().sort({ '_id': -1 }).limit(10);
+        const results = await schema.find().sort({ '_id': -1 }).limit(parseInt(size)).skip(skip);
 
         res.send(results)
     } else {

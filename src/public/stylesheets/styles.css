@@ -109,7 +109,6 @@ body {
 strong {
     color: var(--text-alt);
     font-weight: 600;
-
 }
 
 code {
@@ -118,7 +117,13 @@ code {
     padding: 4px;
     border: var(--border-l);
     border-radius: 4px;
+}
 
+channel {
+    color: #fff;
+    background: rgba(112, 124, 248, 0.6);
+    padding: 3px;
+    border-radius: 2px;
 }
 
 .container-fluid {
@@ -645,7 +650,6 @@ hr {
     font-size: 12px;
     font-weight: 10;
     box-shadow: var(--bs-s);
-
 }
 
 .pagination-button:hover:enabled {
