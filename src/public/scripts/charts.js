@@ -178,8 +178,8 @@ function createCharts() {
 
     // Moderting
     let daysTotal = [];
-    for (let i = 0; i < 7; i++) {
-        daysTotal.push(parseInt(bansArr.split(',').slice(0, 7).reverse()[i]) + parseInt(timeoutsArr.split(',').slice(0, 7).reverse()[i]) + parseInt(warningsArr.split(',').slice(0, 7).reverse()[i]))
+    for (let i = 0; i < 14; i++) {
+        daysTotal.push(parseInt(bansArr.split(',').slice(0, 14).reverse()[i]) + parseInt(timeoutsArr.split(',').slice(0, 14).reverse()[i]) + parseInt(warningsArr.split(',').slice(0, 14).reverse()[i]))
     }
 
     const bansChart = document.getElementById('bansChart');

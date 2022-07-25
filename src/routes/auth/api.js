@@ -1,12 +1,6 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
 const googleUser = require('../../schema/misc/google_user');
-const warnSchema = require('../../schema/logs/warn_schema');
-const banSchema = require('../../schema/logs/ban_unban_schema');
-const blacklistSchema = require('../../schema/logs/blacklist_schema');
-const commandSchema = require('../../schema/logs/command_usage_schema');
-const deleteSchema = require('../../schema/logs/message_delete_schema');
-const muteSchema = require('../../schema/logs/mute_timeout_schema');
 
 router.post('/', async (req, res) => {
     res.sendStatus(405);

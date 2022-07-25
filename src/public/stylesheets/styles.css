@@ -1558,6 +1558,7 @@ hr {
     background: var(--bg-o);
     padding: 6px;
     border: var(--border-l);
+
 }
 
 .acp-user-table tr:hover {
@@ -1576,8 +1577,6 @@ hr {
     list-style: none;
     text-indent: 50px;
 }
-
-
 
 /* Mobile Compat */
 @media only screen and (max-width: 1200px) {
