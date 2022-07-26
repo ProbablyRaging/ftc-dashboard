@@ -7,7 +7,6 @@ const banUnbanSchema = require('../../schema/logs/ban_unban_schema');
 const blacklistSchema = require('../../schema/logs/blacklist_schema');
 const commandUsageSchema = require('../../schema/logs/command_usage_schema');
 const messageDeleteScheme = require('../../schema/logs/message_delete_schema');
-const { dataLog } = require('../../functions/data_log');
 
 // Logs root
 router.get('/', isAuthortized, (req, res) => {
@@ -16,7 +15,6 @@ router.get('/', isAuthortized, (req, res) => {
 
 // Warnings
 router.get('/warnings', isAuthortized, async (req, res) => {
-    dataLog(req);
     let { page, size } = req.query;
 
     if (page <= 0) return res.redirect('/logs/warnings');
@@ -58,7 +56,6 @@ router.post('/warnings/remove', async (req, res) => {
 
 // Mutes and timeouts
 router.get('/mutes', isAuthortized, async (req, res) => {
-    dataLog(req);
     let { page, size } = req.query;
 
     if (page <= 0) return res.redirect('/logs/mutes');
@@ -92,7 +89,6 @@ router.get('/mutes', isAuthortized, async (req, res) => {
 
 // Bans and unbans
 router.get('/bans', isAuthortized, async (req, res) => {
-    dataLog(req);
     let { page, size } = req.query;
 
     if (page <= 0) return res.redirect('/logs/bans');
@@ -126,7 +122,6 @@ router.get('/bans', isAuthortized, async (req, res) => {
 
 // Blacklisted messages
 router.get('/blacklists', isAuthortized, async (req, res) => {
-    dataLog(req);
     let { page, size } = req.query;
 
     if (page <= 0) return res.redirect('/logs/blacklists');
@@ -160,7 +155,6 @@ router.get('/blacklists', isAuthortized, async (req, res) => {
 
 // Command usage
 router.get('/commands', isAuthortized, async (req, res) => {
-    dataLog(req);
     let { page, size } = req.query;
 
     if (page <= 0) return res.redirect('/logs/commands');
@@ -194,7 +188,6 @@ router.get('/commands', isAuthortized, async (req, res) => {
 
 // Command usage
 router.get('/message-deletes', isAuthortized, async (req, res) => {
-    dataLog(req);
     let { page, size } = req.query;
 
     if (page <= 0) return res.redirect('/logs/message-deletes');

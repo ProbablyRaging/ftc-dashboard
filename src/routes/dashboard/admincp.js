@@ -4,11 +4,9 @@ const { convertTimestampToRelativeTime } = require('../../functions/functions');
 const ccVideoQueue = require('../../schema/creator_crew/video_queue');
 const dashboardUsers = require('../../schema/misc/discord_user');
 const { isAuthortized, isStaff } = require('../../strategies/auth_check');
-const { dataLog } = require('../../functions/data_log');
 
 // AdminCP root
 router.get('/', isAuthortized, async (req, res) => {
-    dataLog(req);
     const results = await ccVideoQueue.find();
 
     res.render('admincp', {

@@ -4,7 +4,6 @@ const mongo = require('../../database/mongodb');
 const staffApplicationSchema = require('../../schema/logs/staff_applications_schema');
 const fetch = require('node-fetch');
 const { isAuthortized, isStaff } = require('../../strategies/auth_check');
-const { dataLog } = require('../../functions/data_log');
 
 // TODO: Check if user is in the server
 //       If user isn't staff, redirect them to apply
@@ -12,7 +11,6 @@ const { dataLog } = require('../../functions/data_log');
 
 // Apply root GET
 router.get('/', async (req, res) => {
-    dataLog(req);
     if (req.user) {
         res.render('apply', {
             isStaff: isStaff(req),

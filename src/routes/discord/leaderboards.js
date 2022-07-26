@@ -4,18 +4,15 @@ const mongo = require('../../database/mongodb');
 const rankSchema = require('../../schema/leaderboards/rank_schema');
 const lastletterSchema = require('../../schema/leaderboards/lastletter_schema');
 const countingSchema = require('../../schema/leaderboards/counting_schema');
-const { dataLog } = require('../../functions/data_log');
 const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 
 // Leaderboards root
 router.get('/', async (req, res) => {
-    dataLog(req);
     res.redirect('/');
 });
 
 // Ranks
 router.get('/ranks', async (req, res) => {
-    dataLog(req);
     if (req.user) {
         const results = await rankSchema.find({ 'rank': { $gte: 1, $lt: 101 } }).sort({ 'rank': 1 });
 
@@ -35,7 +32,6 @@ router.get('/ranks', async (req, res) => {
 
 // Messages
 router.get('/messages', async (req, res) => {
-    dataLog(req);
     if (req.user) {
         const results = await rankSchema.find({ 'rank': { $gte: 1, $lt: 101 } });
 
@@ -66,7 +62,6 @@ router.get('/messages', async (req, res) => {
 
 // Last letter
 router.get('/lastletter', async (req, res) => {
-    dataLog(req);
     if (req.user) {
         const results = await lastletterSchema.find();
 
@@ -97,7 +92,6 @@ router.get('/lastletter', async (req, res) => {
 
 // Coutning
 router.get('/counting', async (req, res) => {
-    dataLog(req);
     if (req.user) {
         const results = await countingSchema.find();
 

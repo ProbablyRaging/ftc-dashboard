@@ -4,12 +4,10 @@ const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 const fetch = require('node-fetch');
 const chartData = require('../../schema/logs/chart_data');
 const { perDiff } = require('../../functions/functions');
-const { dataLog } = require('../../functions/data_log');
 
 // Staff dashboard root
 router.get('/', async (req, res) => {
     if (!req?.user) return res.redirect('/');
-    dataLog(req);
     const results = await chartData.find().sort({ '_id': -1 });
 
     let dateArr = [];
