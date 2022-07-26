@@ -14,57 +14,27 @@
                         Dashboard
                     </a>
                 </li>
-                <% if (!admincp) { %>
+                <% if (isStaff) { %>
                 <li class="nav-item">
                     <a href="/applications" class="nav-link" aria-current="page">
                         <i class="bi bi-menu-button nav-icon"></i>
                         Staff Applications
                     </a>
                 </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a href="/apply" class="nav-link" aria-current="page">
+                        <i class="bi bi-menu-button nav-icon"></i>
+                        Staff Applications
+                    </a>
+                </li>
+                <% } %>
                 <li class="nav-item">
                     <a href="/creatorcrew" class="nav-link" aria-current="page">
                         <i class="fa-regular fa-chess-king nav-icon"></i>
                         Creator Crew Queue
                     </a>
                 </li>
-                <% if (isStaff) { %>
-                <li class="nav-item">
-                    <a href="/logs/warnings" class="nav-link" aria-current="page">
-                        <i class="bi bi-exclamation-triangle nav-icon"></i>
-                        Warnings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/logs/mutes" class="nav-link" aria-current="page">
-                        <i class="bi bi-mic-mute nav-icon"></i>
-                        Mutes & Timeouts
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/logs/bans" class="nav-link" aria-current="page">
-                        <i class="bi bi-x-circle nav-icon"></i>
-                        Bans & Unbans
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/logs/message-deletes" class="nav-link" aria-current="page">
-                        <i class="bi bi-trash nav-icon"></i>
-                        Deleted Messages
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/logs/blacklists" class="nav-link" aria-current="page">
-                        <i class="bi bi-funnel nav-icon"></i>
-                        Blacklisted Messages
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/logs/commands" class="nav-link" aria-current="page">
-                        <i class="bi bi-terminal nav-icon"></i>
-                        Command Usage
-                    </a>
-                </li>
-                <% } %>
                 <li class="nav-item">
                     <a href="/leaderboards/ranks" class="nav-link" aria-current="page">
                         <i class="bi bi-trophy nav-icon"></i>
@@ -89,20 +59,6 @@
                         Counting Leaderboard
                     </a>
                 </li>
-                <% } else { %>
-                <li class="nav-item">
-                    <a href="/admincp/users" class="nav-link" aria-current="page">
-                        <i class="bi bi-people nav-icon"></i>
-                        Users
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admincp/queues" class="nav-link" aria-current="page">
-                        <i class="bi bi-view-list nav-icon"></i>
-                        Queues
-                    </a>
-                </li>
-                <% } %>
             </ul>
             <hr>
             <div class="dropdown">
