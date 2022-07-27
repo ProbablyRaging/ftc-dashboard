@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
             // Send webhook
             const body = {
                 content: `<@&${process.env.AUTH_ROLE_ID}>
-There is a new staff application, [click here](<https://www.creatorhub.info/applications>) to view it` };
+There is a new staff application, [click here](<https://www.forthecontent.xyz/applications>) to view it` };
             await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
                 // Delete webhook
                 await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}`, { method: 'DELETE', headers: headers });
