@@ -35,11 +35,12 @@ router.get('/', async (req, res) => {
         const userData = await googleUser.findOne({ discordId: req.user.userId });
         const results = await ccVideoQueue.find({ userId: req.user.userId }).sort({ '_id': 1 }).limit(limit).skip(skip);
 
-        // If user doesn't have a googleUser entry, resirect them to sign in
-        if (!userData) {
+        // If user doesn't have a googleUser entry, redirect them to sign in
+        if (!userData && req.user?.userId !== process.env.OWNER_ID) {
+            console.log('test')
             res.redirect('/google');
         } else {
-            if (userData.accessToken) {
+            if (userData?.accessToken && req.user?.userId !== process.env.OWNER_ID) {
                 userHasToken = true;
             } else {
                 userHasToken = false;
@@ -59,7 +60,7 @@ router.get('/', async (req, res) => {
                 username: `${req.user.username}#${req.user.discriminator}`,
                 userId: req.user.userId,
                 avatar: req.user.avatar,
-                userExpires: userData.expires,
+                userExpires: userData?.expires,
                 isOwner,
                 convertTimestampToRelativeTime,
                 videoArr, userHasToken, videoCount, skip, limit, page, total
