@@ -7,16 +7,16 @@
 }
 
 .navbrand {
-    margin: 0 7px;
+    /* margin: 0 7px; */
 }
 
 .brand-logo {
-    width: 32px;
-    margin-right: 6px;
+    width: 28px;
+    margin-right: 4px;
 }
 
 .nav-text {
-    font-size: 26px !important;
+    font-size: 22px !important;
     float: right;
     color: #fff;
     transform: scale(1, 1.3);
