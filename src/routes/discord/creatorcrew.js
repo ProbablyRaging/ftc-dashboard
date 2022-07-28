@@ -86,7 +86,7 @@ router.post('/remove', async (req, res) => {
 router.post('/notify', async (req, res) => {
     // Create webhook
     const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
-    const body = { name: `CreatorBot`, avatar: process.env.BOT_IMG_URI };
+    const body = { name: `4DC`, avatar: process.env.BOT_IMG_URI };
     let webhook;
     await fetch(`https://discord.com/api/v9/channels/924271299004600350/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
         webhook = await response.json();

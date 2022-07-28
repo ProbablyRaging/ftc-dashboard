@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
     if (req.body && req.body.username && req.body.age && req.body.region && req.body.about) {
         // Create webhook
         const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
-        const body = { name: `CreatorBot`, avatar: process.env.BOT_IMG_URI };
+        const body = { name: `4DC`, avatar: process.env.BOT_IMG_URI };
         let webhook;
         await fetch(`https://discord.com/api/v9/channels/${process.env.STAFF_CHANNEL}/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
             webhook = await response.json();
