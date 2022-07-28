@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
 
+@font-face {
+    font-family: 'ftc-font';
+    src: url('../fonts/ftc.ttf');
+}
+
 :root {
     --blue: rgb(216, 235, 255);
     --blue0: rgb(201, 227, 255);

@@ -1,5 +1,10 @@
 @import url('https://uploads-ssl.webflow.com/62d28a2f7fcc9c08f68401ab/css/blank-2495b0.webflow.96ec9dca2.css');
 
+@font-face {
+    font-family: 'ftc-font';
+    src: url('../fonts/ftc.ttf');
+}
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -158,7 +163,8 @@ body {
     flex-grow: inherit;
 }
 
-.nav-link, .nav-link.active {
+.nav-link,
+.nav-link.active {
     color: rgb(242, 244, 251) !important;
 }
 
@@ -267,12 +273,17 @@ body {
 
 .nav-text {
     font-size: 26px;
+    font-family: 'ftc-font', sans-serif;
     float: right;
     color: #fff;
     margin-right: 10px;
     transform: scale(1, 1.3);
     text-transform: uppercase;
     letter-spacing: 4px;
+}
+
+.nav-text-color {
+    color: red;
 }
 
 .topbar-nav {
@@ -1112,7 +1123,7 @@ iframe {
     }
 }
 
-@media only screen and (max-width: 991px) {    
+@media only screen and (max-width: 991px) {
     .navbar {
         background: #121117 !important;
     }
