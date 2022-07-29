@@ -277,8 +277,6 @@ function expandContractButton(videoId) {
     const expandVideoDiv = document.getElementById('expanded-video');
     const childrenInDivCount = expandVideoDiv.getElementsByTagName('*').length;
 
-    console.log(childrenInDivCount)
-
     if (!expandVideo.classList.contains('expanded')) {
         if (childrenInDivCount === 0) {
             $(`#${videoId}-video-wrapper`).prependTo($(".expanded-video"))

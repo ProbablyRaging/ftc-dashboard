@@ -665,7 +665,7 @@ hr {
 }
 
 .pagination button:disabled {
-    color: #423f3f;
+    color: var(--btn-disabled);
 }
 
 .pagination button:hover:disabled {

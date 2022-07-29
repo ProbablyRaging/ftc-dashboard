@@ -177,7 +177,7 @@
 
                 <!-- Pagination -->
                 <div class="pagination">
-                    <% if (videoCount===undefined || videoCount < 10) { %>
+                    <% if (videoCount===undefined || page < 2) { %>
                     <button type="button" title="previous" class="pagination-button" onclick="navigateDownPagination()"
                         disabled>
                         <i class="fa fa-arrow-left"></i>

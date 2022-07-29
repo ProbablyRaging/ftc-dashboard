@@ -32,6 +32,7 @@
     --white2: rgb(242, 244, 250);
     --white3: rgb(241 241 241);
     --white4: rgb(227, 227, 227);
+    --white9: rgb(95 95 95);
 
     --gray: rgb(248, 248, 248);
     --gray0: rgb(219, 225, 232);
@@ -92,6 +93,7 @@
     --table-o: var(--gray0);
 
     --btn: var(--nav-bg);
+    --btn-disabled: var(--gray0);
     --btn-hov: rgb(132 64 225);
     --btn-like: var(--green3);
     --btn-unlike: var(--gray1);
@@ -132,6 +134,7 @@
     --table-o: var(--gray5);
 
     --btn: var(--nav-bg);
+    --btn-disabled: var(--white9);
     --btn-hov: var(--nav-hov);
     --btn-like: var(--green1);
     --btn-unlike: var(--gray);

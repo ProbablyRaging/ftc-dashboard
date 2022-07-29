@@ -120,7 +120,6 @@ function colorNext() {
         // Increment the index
         if (currentIndex >= colors.length - 1) currentIndex = -1;
         currentIndex++;
-        console.log(currentIndex)
 
         // Remove other color choices
         body.classList.remove(currentColor);
