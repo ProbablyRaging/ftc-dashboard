@@ -66,7 +66,8 @@ router.get('/', async (req, res) => {
             });
         }
     } else {
-        res.redirect('/');
+        req.session.error = 'You are not a Creator Crew member';
+        res.redirect('/error');
     }
 });
 

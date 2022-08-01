@@ -84,8 +84,8 @@
                             <use xlink:href="#tornillo" y="60"></use>
                         </g>
                     </svg>
-                    <h1>Are you a ForTheContent server member?</h1>
-                    <h2>Join <a href="https://discord.gg/forthecontent">ForTheContent!</a></h2>
+                    <h1><%= error || 'You are not a ForTheContent member' %> </h1>
+                    <p class="sub-error">Support at <a href="https://discord.gg/forthecontent">ForTheContent</a></p>
                 </div>
 
                 <%- include('../partials/footer') -%>

@@ -50,7 +50,7 @@ const leaderboardsRoute = require('./routes/discord/leaderboards');
 const creatorcrewRoute = require('./routes/discord/creatorcrew');
 
 // Error Routes
-const forbiddenRoute = require('./routes/dashboard/forbidden');
+const errorRoute = require('./routes/dashboard/error');
 
 app.use(session({
     secret: 'some secret',
@@ -98,7 +98,7 @@ app.use('/leaderboards', leaderboardsRoute);
 app.use('/creatorcrew', creatorcrewRoute);
 
 // Error Middleware
-app.use('/forbidden', forbiddenRoute);
+app.use('/error', errorRoute);
 
 app.get('/', async (req, res) => {
     if (req.user) {
@@ -115,6 +115,13 @@ app.get('/', async (req, res) => {
             totalMembers: numberWithCommas(data.approximate_member_count)
         });
     }
+});
+
+// middleware to catch non-existing routes
+app.use( function(req, res, next) {
+    req.session.error = 'This page does not exist';
+    res.redirect('/error');
+
 });
 
 app.listen(port, () => {
