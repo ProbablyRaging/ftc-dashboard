@@ -840,12 +840,11 @@ hr {
     margin-bottom: 4px;
     color: var(--text-off);
     font-weight: var(--weight-alt);
-
 }
 
 .chart-canvas {
     border-radius: 4px;
-    max-height: 90%;
+    max-height: 92%;
     border: var(--border-l);
     box-shadow: var(--bs);
 }
