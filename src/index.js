@@ -100,6 +100,27 @@ app.use('/creatorcrew', creatorcrewRoute);
 // Error Middleware
 app.use('/error', errorRoute);
 
+app.get ('/*', function (req, res, next){
+    var protocol = 'http' + (req.connection.encrypted ? 's' : '') + '://'
+      , host = req.headers.host
+      , href
+      ;
+
+    // no www. present, nothing to do here
+    if (!/^www\./i.test(host)) {
+      next();
+      return;
+    }
+
+    // remove www.
+    host = host.replace(/^www\./i, '');
+    href = protocol + host + req.url;
+    res.statusCode = 301;
+    res.setHeader('Location', href);
+    res.write('Redirecting to ' + host + req.url + '');
+    res.end();
+});
+
 app.get('/', async (req, res) => {
     if (req.user) {
         res.redirect('/dashboard');
