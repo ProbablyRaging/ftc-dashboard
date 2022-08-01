@@ -869,6 +869,21 @@ hr {
     animation: spinner .6s linear infinite;
 }
 
+.game-record {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.game-trophy {
+    width: 44px;
+    margin-right: 14px;
+}
+
+.game-record-text {
+    font-size: 22px;
+}
+
 .leaderboard {
     width: 100%;
 }

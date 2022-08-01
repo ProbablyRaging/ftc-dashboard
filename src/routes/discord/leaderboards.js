@@ -3,7 +3,9 @@ const fetch = require('node-fetch');
 const mongo = require('../../database/mongodb');
 const rankSchema = require('../../schema/leaderboards/rank_schema');
 const lastletterSchema = require('../../schema/leaderboards/lastletter_schema');
+const llRecordSchema = require('../../schema/leaderboards/letter_record_schema');
 const countingSchema = require('../../schema/leaderboards/counting_schema');
+const countingCurrentSchema = require('../../schema/leaderboards/counting_current_schema');
 const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 
 // Leaderboards root
@@ -64,12 +66,20 @@ router.get('/messages', async (req, res) => {
 router.get('/lastletter', async (req, res) => {
     if (req.user) {
         const results = await lastletterSchema.find();
+        const results2 = await llRecordSchema.find();
 
         dataArr = [];
         for (const data of results) {
             const { userId, username, avatar, correctCount } = data;
 
             dataArr.push({ userId, username, avatar, correctCount });
+        }
+
+        let record;
+        for (const data2 of results2) {
+            const { letterRecord } = data2;
+
+            record = letterRecord;
         }
 
         dataArr.sort(function (a, b) {
@@ -83,7 +93,7 @@ router.get('/lastletter', async (req, res) => {
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
-            dataArr
+            dataArr, record
         });
     } else {
         res.redirect('/');
@@ -94,12 +104,20 @@ router.get('/lastletter', async (req, res) => {
 router.get('/counting', async (req, res) => {
     if (req.user) {
         const results = await countingSchema.find();
+        const results2 = await countingCurrentSchema.find();
 
         dataArr = [];
         for (const data of results) {
             const { userId, username, avatar, counts } = data;
 
             dataArr.push({ userId, username, avatar, counts });
+        }
+
+        let record;
+        for (const data2 of results2) {
+            const { currentRecord } = data2;
+
+            record = currentRecord;
         }
 
         dataArr.sort(function (a, b) {
@@ -113,7 +131,7 @@ router.get('/counting', async (req, res) => {
             username: `${req.user.username}#${req.user.discriminator}`,
             userId: req.user.userId,
             avatar: req.user.avatar,
-            dataArr
+            dataArr, record
         });
     } else {
         res.redirect('/');
