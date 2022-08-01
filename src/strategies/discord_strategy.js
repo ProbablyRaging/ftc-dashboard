@@ -29,7 +29,7 @@ passport.use(new discordStrategy({
         const discordUserData = await resolve.json();
 
         // If user is a staff member
-        if (discordUserData?.role && discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
+        if (discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
             // If they already have a database entry
             if (user) {
                 await discordUser.findOneAndUpdate({
