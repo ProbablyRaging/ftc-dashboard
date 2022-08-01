@@ -8,7 +8,7 @@ const { perDiff } = require('../../functions/functions');
 // Staff dashboard root
 router.get('/', async (req, res) => {
     if (!req?.user) return res.redirect('/');
-    const results = await chartData.find().sort({ '_id': -1 });
+    const results = await chartData.find().sort({ '_id': -1 }).limit(14);
 
     let dateArr = [];
     let joinsArr = [];
