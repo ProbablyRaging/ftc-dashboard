@@ -28,20 +28,6 @@ router.get('/', async (req, res) => {
         timeoutsArr.push(timeouts);
         warningsArr.push(warnings);
         newcommunicatorsArr.push(newcommunicators);
-
-        // if (newcommunicators) {
-        //     function rand(min, max) { // min and max included 
-        //         return Math.floor(Math.random() * (max - min + 1) + min)
-        //     }
-
-        //     await chartData.findOneAndUpdate({
-        //         date: date
-        //     }, {
-        //         newcommunicators: rand(10, 30)
-        //     }, {
-        //         upsert: true
-        //     })
-        // }
     }
 
     // Fetch member and channel counts from Discord's API

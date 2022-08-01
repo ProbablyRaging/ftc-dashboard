@@ -28,10 +28,8 @@ passport.use(new discordStrategy({
         const resolve = await fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}/members/${profile.id}`, { method: 'GET', headers: headers });
         const discordUserData = await resolve.json();
 
-        // TODO: Check if we resolved a GET request. If not they are likely not in the server and this might cause errors
-
         // If user is a staff member
-        if (discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
+        if (discordUserData?.role && discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
             // If they already have a database entry
             if (user) {
                 await discordUser.findOneAndUpdate({
@@ -75,7 +73,7 @@ passport.use(new discordStrategy({
                     accessToken: accessToken,
                     refreshToken: refreshToken,
                     guilds: profile.guilds,
-                    roles: discordUserData.roles,
+                    roles: discordUserData?.roles,
                     isStaff: false
                 });
 
@@ -89,7 +87,7 @@ passport.use(new discordStrategy({
                     accessToken: accessToken,
                     refreshToken: refreshToken,
                     guilds: profile.guilds,
-                    roles: discordUserData.roles,
+                    roles: discordUserData?.roles,
                     isStaff: false
                 });
 
