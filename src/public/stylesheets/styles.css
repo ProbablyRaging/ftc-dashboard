@@ -587,10 +587,7 @@ hr {
 .submit-btn {
     min-width: 120px;
     max-height: 35px;
-    /* width: 10%; */
-    /* text-transform: unset !important;
-    overflow: hidden; */
-    /* padding: 20px; */
+    margin-top: 44px;
 }
 
 .submit-btn:focus,
