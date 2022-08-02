@@ -20,7 +20,9 @@
             <div class="content-box-content-row">
 
                 <div class="app-form">
-                    <!-- Form -->
+                    <p class="content-page-title">Basic Information</p>
+
+                    <p class="app-question-title username-title">Your Discord Username <i>(pre-filled)</i></p>
                     <div class="mb-3-staff">
                         <input name="username" id="username-input" role="textbox"
                             class="bg-grey-700 rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox-sm"
@@ -29,6 +31,7 @@
                             spellcheck="false" value="<%= username %>" disabled required>
                     </div>
 
+                    <p class="app-question-title age-title">How old are you?</p>
                     <select name="age" class="content-box-select" id="age-selector" required>
                         <option class="select-option" value="" selected disabled>Age
                         </option>
@@ -40,22 +43,406 @@
                         </option>
                     </select>
 
+                    <p class="app-question-title region-title">What region are you from?</p>
                     <div class="mb-3-staff">
                         <input name="region" id="region-input" role="textbox"
                             class="bg-grey-700 rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox-sm"
                             data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
                             style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
-                            spellcheck="false" placeholder="Region: (E.g. Australia)" required>
+                            spellcheck="false" placeholder="E.g. Australia" required>
                     </div>
 
+                    <div class="box-spacer"></div>
+                    <p class="content-page-title">General Questions</p>
+
+                    <p class="app-question-title length-title">How long have you been a member of ForTheContent?</p>
+                    <select name="length" class="content-box-select" id="length-selector" required>
+                        <option class="select-option" value="" selected disabled>Choose an answer
+                        </option>
+                        <option class="select-option" value="less than 1 week">Less than 1 week
+                        </option>
+                        <option class="select-option" value="1-4 weeks">1-4 weeks
+                        </option>
+                        <option class="select-option" value="1 month+">1 month+
+                        </option>
+                    </select>
+
+                    <p class="app-question-title about-title">Tell us a little more about yourself and why you are applying for staff</p>
                     <div class="mb-3-staff">
                         <textarea name="about" id="about-input" role="textbox"
                             class="bg-grey-700 !min-h-[112px] rounded-lg py-4 pl-4 pr-10 text-base leading-loose focus:ring-opacity-30 focus:border-blue-default focus:ring-[4px] focus:ring-blue-default undefined content-box-textbox"
                             data-slate-editor="true" data-slate-node="value" contenteditable="true" zindex="-1"
                             style="position: relative; outline: none; white-space: pre-wrap; overflow-wrap: break-word;"
-                            spellcheck="false"
-                            placeholder="Tell us something about yourself, why you want to be staff, if you have any previous experience, etc.."
-                            required></textarea>
+                            spellcheck="false" required></textarea>
+                    </div>
+
+                    <p class="app-question-title q1-title">Do you have previous experience moderating a Discord server?</p>
+                    <div class="app-form-checkbox">
+                        <input name="q1" class="app-form-checkbox-input" type="radio" value="Yes" id="checkOption1">
+                        <label class="app-form-checkbox-label" for="checkOption1">
+                            Yes
+                        </label>
+                        <input name="q1"" class="app-form-checkbox-input" type="radio" value="No" id="checkOption2">
+                        <label class="app-form-checkbox-label" for="checkOption2">
+                            No
+                        </label>
+                    </div>
+
+                    <p class="app-question-title q2-title">Would you say you're reasonable and fair when it comes to decision making?</p>
+                    <div class="app-form-checkbox">
+                        <input name="q2" class="app-form-checkbox-input" type="radio" value="Yes" id="checkOption3">
+                        <label class="app-form-checkbox-label" for="checkOption3">
+                            Yes
+                        </label>
+                        <input name="q2" class="app-form-checkbox-input" type="radio" value="No" id="checkOption4">
+                        <label class="app-form-checkbox-label" for="checkOption4">
+                            No
+                        </label>
+                    </div>
+
+                    <p class="app-question-title q3-title">Are you fimiliar with the ForTheContent server rules and Discord's ToS and Community Guidelines?</p>
+                    <div class="app-form-checkbox">
+                        <input name="q3" class="app-form-checkbox-input" type="radio" value="Yes" id="checkOption5">
+                        <label class="app-form-checkbox-label" for="checkOption5">
+                            Yes
+                        </label>
+                        <input name="q3" class="app-form-checkbox-input" type="radio" value="No" id="checkOption6">
+                        <label class="app-form-checkbox-label" for="checkOption6">
+                            No
+                        </label>
+                    </div>
+
+                    <div class="box-spacer"></div>
+                    <p class="content-page-title">Scenario Questions</p>
+
+                    <p class="app-question-title q4-title">You've just opened Discord and are on the ForTheContent server, what do you do next?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q4" class="app-form-checkbox-input" type="radio" value="Start watching YouTube videos" id="checkOption7">
+                                <label class="app-form-mc-checkbox-input" for="checkOption7">
+                                    Start watching YouTube videos
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q4" class="app-form-checkbox-input" type="radio" value="Start chatting with other members" id="checkOption8">
+                                <label class="app-form-mc-checkbox-input" for="checkOption8">
+                                    Start chatting with other members
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q4" class="app-form-checkbox-input" type="radio" value="Check my other servers" id="checkOption9">
+                                <label class="app-form-mc-checkbox-input" for="checkOption9">
+                                    Check my other servers
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q4" class="app-form-checkbox-input" type="radio" value="Do a quick check of the ForTheContent channels to make sure nothing breaks the rules" id="checkOption10">
+                                <label class="app-form-mc-checkbox-input" for="checkOption10">
+                                    Do a quick check of the ForTheContent channels to make sure nothing breaks the rules
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q5-title">If a user just posted self promotion content in a channel that doesn't allow it, what would you do?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q5" class="app-form-checkbox-input" type="radio" value="Nothing" id="checkOption11">
+                                <label class="app-form-mc-checkbox-input" for="checkOption11">
+                                    Nothing
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q5" class="app-form-checkbox-input" type="radio" value="Delete their message and direct them to read the server rules" id="checkOption12">
+                                <label class="app-form-mc-checkbox-input" for="checkOption12">
+                                    Delete their message and direct them to read the server rules
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q5" class="app-form-checkbox-input" type="radio" value="Tell another staff member" id="checkOption13">
+                                <label class="app-form-mc-checkbox-input" for="checkOption13">
+                                    Tell another staff member
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q5" class="app-form-checkbox-input" type="radio" value="Ban them. Self promotion outside of the content share section is strictly not allowed " id="checkOption14">
+                                <label class="app-form-mc-checkbox-input" for="checkOption14">
+                                    Ban them. Self promotion outside of the content share section is strictly not allowed 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q6-title">If a user is spamming, what would you do?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q6" class="app-form-checkbox-input" type="radio" value="Nothing" id="checkOption15">
+                                <label class="app-form-mc-checkbox-input" for="checkOption15">
+                                    Nothing
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q6" class="app-form-checkbox-input" type="radio" value="Ask them to stop" id="checkOption16">
+                                <label class="app-form-mc-checkbox-input" for="checkOption16">
+                                    Ask them to stop
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q6" class="app-form-checkbox-input" type="radio" value="Time them out for a reasonable amount of time and give them a warning" id="checkOption17">
+                                <label class="app-form-mc-checkbox-input" for="checkOption17">
+                                    Time them out for a reasonable amount of time and give them a warning
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q6" class="app-form-checkbox-input" type="radio" value="Ban them" id="checkOption18">
+                                <label class="app-form-mc-checkbox-input" for="checkOption18">
+                                    Ban them
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q7-title">A user just posted indecent/nude content, what do you do?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q7" class="app-form-checkbox-input" type="radio" value="Nothing" id="checkOption19">
+                                <label class="app-form-mc-checkbox-input" for="checkOption19">
+                                    Nothing
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q7" class="app-form-checkbox-input" type="radio" value="Save it for my own personal research" id="checkOption20">
+                                <label class="app-form-mc-checkbox-input" for="checkOption20">
+                                    Save it for my own personal research
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q7" class="app-form-checkbox-input" type="radio" value="Delete their message and direct them to read the server rules" id="checkOption21">
+                                <label class="app-form-mc-checkbox-input" for="checkOption21">
+                                    Delete their message and direct them to read the server rules
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q7" class="app-form-checkbox-input" type="radio" value="Ban them. ForTheContent is a family server and indecent/nude content is not allowed on community servers" id="checkOption22">
+                                <label class="app-form-mc-checkbox-input" for="checkOption22">
+                                    Ban them. ForTheContent is a family server and indecent/nude content is not allowed on community servers
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q8-title">Someone disagrees with your opinion on a random subject, how do you treat them?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q8" class="app-form-checkbox-input" type="radio" value="Like a human being. Everyone has and is entitles to their own opinions" id="checkOption23">
+                                <label class="app-form-mc-checkbox-input" for="checkOption23">
+                                    Like a human being. Everyone has and is entitles to their own opinions
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q8" class="app-form-checkbox-input" type="radio" value="Ridicule them for the opinions" id="checkOption24">
+                                <label class="app-form-mc-checkbox-input" for="checkOption24">
+                                    Ridicule them for the opinions
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q8" class="app-form-checkbox-input" type="radio" value="Delete their messages" id="checkOption25">
+                                <label class="app-form-mc-checkbox-input" for="checkOption25">
+                                    Delete their messages
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q8" class="app-form-checkbox-input" type="radio" value="Ban them. I have the power in this siutation" id="checkOption26">
+                                <label class="app-form-mc-checkbox-input" for="checkOption26">
+                                    Ban them. I have the power in this siutation
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q9-title">A user joins that claims they are 12 years old, what do you do?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q9" class="app-form-checkbox-input" type="radio" value="Nothing, profile pictures are out of my control" id="checkOption27">
+                                <label class="app-form-mc-checkbox-input" for="checkOption27">
+                                    Nothing, age doesn't matter
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q9" class="app-form-checkbox-input" type="radio" value="Send them a private message and politely ask that they change their profile picture to something for suited to a family friendly server" id="checkOption28">
+                                <label class="app-form-mc-checkbox-input" for="checkOption28">
+                                    Ban them. I hate kids
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q9" class="app-form-checkbox-input" type="radio" value="Time them out for 1 week" id="checkOption29">
+                                <label class="app-form-mc-checkbox-input" for="checkOption29">
+                                    Treat them like I would every other member of the server
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q9" class="app-form-checkbox-input" type="radio" value="Ban them" id="checkOption30">
+                                <label class="app-form-mc-checkbox-input" for="checkOption30">
+                                    Ban them. As per Discord's ToS, the minumum age requirement is 13+ and allowing them to stay would put the server at risk of being terminated
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q10-title">You've had to repeatedly ask the same user to stop breaking a rule, how should you proceed?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q10" class="app-form-checkbox-input" type="radio" value="Leave it be, it's clear they don't care about the rules" id="checkOption31">
+                                <label class="app-form-mc-checkbox-input" for="checkOption31">
+                                    Leave it be, it's clear they don't care about the rules
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q10" class="app-form-checkbox-input" type="radio" value="Publicly shame them for their actions" id="checkOption32">
+                                <label class="app-form-mc-checkbox-input" for="checkOption32">
+                                    Publicly shame them for their actions
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q10" class="app-form-checkbox-input" type="radio" value="Time them out for a reasonable amount of time. If they continue after that, ban them" id="checkOption33">
+                                <label class="app-form-mc-checkbox-input" for="checkOption33">
+                                    Time them out for a reasonable amount of time. If they continue after that, ban them
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q10" class="app-form-checkbox-input" type="radio" value="Ban them straight away, I don't like repeating myself" id="checkOption34">
+                                <label class="app-form-mc-checkbox-input" for="checkOption34">
+                                    Ban them straight away, I don't like repeating myself
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q11-title">A new user has joined the server and isn't sure how Discord or ForTheContent work, what should you do?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q11" class="app-form-checkbox-input" type="radio" value="Welcome them to the server and direct them to some of the helpful channels we have to get them started" id="checkOption35">
+                                <label class="app-form-mc-checkbox-input" for="checkOption35">
+                                    Welcome them to the server and direct them to some of the helpful channels we have to get them started
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q11" class="app-form-checkbox-input" type="radio" value="Have a one-on-one discussion with them to help them learn the ropes" id="checkOption36">
+                                <label class="app-form-mc-checkbox-input" for="checkOption36">
+                                    Have a one-on-one discussion with them to help them learn the ropes
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q11" class="app-form-checkbox-input" type="radio" value="Be patient with them. Discord can be a learning curve and we have members of all ages and skill levels in the server" id="checkOption37">
+                                <label class="app-form-mc-checkbox-input" for="checkOption37">
+                                    Be patient with them. Discord can be a learning curve and we have members of all ages and skill levels in the server
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q11" class="app-form-checkbox-input" type="radio" value="All of the above" id="checkOption38">
+                                <label class="app-form-mc-checkbox-input" for="checkOption38">
+                                    All of the above
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q12-title">A new question has been asked in the #help-and-advice channel, but you're unsure how to help, what should you do?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q12" class="app-form-checkbox-input" type="radio" value="Give it your best try, even if the information is wrong, at least you tried" id="checkOption39">
+                                <label class="app-form-mc-checkbox-input" for="checkOption39">
+                                    Give it your best try, even if the information is wrong, at least you tried
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q12" class="app-form-checkbox-input" type="radio" value="Allow someone else with more knowledge of the subject to help instead" id="checkOption40">
+                                <label class="app-form-mc-checkbox-input" for="checkOption40">
+                                    Allow someone else with more knowledge of the subject to help instead
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q12" class="app-form-checkbox-input" type="radio" value="Delete their message and pretend it never happened" id="checkOption41">
+                                <label class="app-form-mc-checkbox-input" for="checkOption41">
+                                    Delete their message and pretend it never happened
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q12" class="app-form-checkbox-input" type="radio" value="All of the above" id="checkOption42">
+                                <label class="app-form-mc-checkbox-input" for="checkOption42">
+                                    All of the above
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="app-question-title q13-title">You think someone might be breaking the rules, but you're unsure, what do you do next?</p>
+                    <div class="app-form-checkbox">
+                        <div class="multiple-choice">
+                            <div class="mc-option">
+                                <input name="q13" class="app-form-checkbox-input" type="radio" value="Reference the server rules and Discord Community Guidelines. If you're still unsure, contact another staff member to get their opinion before taking action" id="checkOption43">
+                                <label class="app-form-mc-checkbox-input" for="checkOption43">
+                                    Reference the server rules and Discord Community Guidelines. If you're still unsure, contact another staff member to get their opinion before taking action
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q13" class="app-form-checkbox-input" type="radio" value="Ban them. It's better to be safe than sorry" id="checkOption44">
+                                <label class="app-form-mc-checkbox-input" for="checkOption44">
+                                    Ban them. It's better to be safe than sorry
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q13" class="app-form-checkbox-input" type="radio" value="Ignore the situation and let another staff member deal with it" id="checkOption45">
+                                <label class="app-form-mc-checkbox-input" for="checkOption45">
+                                    Ignore the situation and let another staff member deal with it
+                                </label>
+                            </div>
+
+                            <div class="mc-option">
+                                <input name="q13" class="app-form-checkbox-input" type="radio" value="Tell them they are breaking the rules and need to stop" id="checkOption46">
+                                <label class="app-form-mc-checkbox-input" for="checkOption46">
+                                    Tell them they are breaking the rules and need to stop
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
                     <div>
@@ -65,9 +452,12 @@
                 </div>
 
                 <div class="app-success">
-                    <p class="success-header"><i class="fa-solid fa-circle-check success-check"></i> Application Received!</p>
+                    <p class="success-header"><i class="fa-solid fa-circle-check success-check"></i> Application
+                        Received!</p>
                     <br>
-                    <p class="success-body">Applications are accepted and denied privately and we don't provide notification of an application being denied. If your application is successful however, a staff member will contact you on Discord to discuss further</p>
+                    <p class="success-body">Applications are accepted and denied privately and we don't provide
+                        notification of an application being denied. If your application is successful however, a staff
+                        member will contact you on Discord to discuss further</p>
                 </div>
 
                 <!-- Toast Error -->

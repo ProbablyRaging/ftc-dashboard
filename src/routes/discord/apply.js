@@ -27,24 +27,26 @@ router.get('/', async (req, res) => {
 
 // Apply root POST
 router.post('/', async (req, res) => {
+    console.log(req.body)
+
     if (req.body && req.body.username && req.body.age && req.body.region && req.body.about) {
         // Create webhook
         const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
         const body = { name: `4DC`, avatar: process.env.BOT_IMG_URI };
         let webhook;
-        await fetch(`https://discord.com/api/v9/channels/${process.env.STAFF_CHANNEL}/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
-            webhook = await response.json();
-            // Send webhook
-            const body = {
-                content: `<@&${process.env.AUTH_ROLE_ID}>
-There is a new staff application, [click here](<https://www.forthecontent.xyz/applications>) to view it` };
-            await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
-                // Delete webhook
-                await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}`, { method: 'DELETE', headers: headers });
-            });
-        });
+//         await fetch(`https://discord.com/api/v9/channels/${process.env.STAFF_CHANNEL}/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+//             webhook = await response.json();
+//             // Send webhook
+//             const body = {
+//                 content: `<@&${process.env.AUTH_ROLE_ID}>
+// There is a new staff application, [click here](<https://www.forthecontent.xyz/applications>) to view it` };
+//             await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+//                 // Delete webhook
+//                 await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}`, { method: 'DELETE', headers: headers });
+//             });
+//         });
 
-        // Log application to database
+//         // Log application to database
         await staffApplicationSchema.create({
             userId: req.user.userId,
             username: req.user.username,
@@ -53,6 +55,20 @@ There is a new staff application, [click here](<https://www.forthecontent.xyz/ap
             age: req.body.age,
             region: req.body.region,
             about: req.body.about,
+            duration: req.body.duration,
+            q1: req.body.q1,
+            q2: req.body.q2,
+            q3: req.body.q3,
+            q4: req.body.q4,
+            q5: req.body.q5,
+            q6: req.body.q6,
+            q7: req.body.q7,
+            q8: req.body.q8,
+            q9: req.body.q9,
+            q10: req.body.q10,
+            q11: req.body.q11,
+            q12: req.body.q12,
+            q13: req.body.q13,
             timestamp: new Date().valueOf()
         });
         res.send({ "status": "ok" });

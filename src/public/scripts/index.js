@@ -199,6 +199,275 @@ function submitStaffApplication() {
     const age = document.getElementById('age-selector').value;
     const region = document.getElementById('region-input').value;
     const about = document.getElementById('about-input').value;
+    const duration = document.getElementById('length-selector').value;
+
+    if (!age) {
+        $('.age-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".age-title").offset().top
+        }, 150);
+        return;
+    }
+
+    if (!region) {
+        $('.region-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".region-title").offset().top
+        }, 150);
+        return;
+    }
+
+    if (!about) {
+        $('.about-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".about-title").offset().top
+        }, 150);
+        return;
+    }
+
+    if (!duration) {
+        $('.length-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".length-title").offset().top
+        }, 150);
+        return;
+    }
+
+    // Maker sure a checkbox is selected from each category
+    const q1 = $("input[name=q1]:checked").length;
+    if (!q1) {
+        $('.q1-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q1-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption1').checked) {
+            q1Val = document.getElementById('checkOption1').value;
+        } else if (document.getElementById('checkOption2').checked) {
+            q1Val = document.getElementById('checkOption2').value;
+        }
+    }
+
+    const q2 = $("input[name=q2]:checked").length;
+    if (!q2) {
+        $('.q2-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q2-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption3').checked) {
+            q2Val = document.getElementById('checkOption3').value;
+        } else if (document.getElementById('checkOption4').checked) {
+            q2Val = document.getElementById('checkOption4').value;
+        }
+    }
+
+    const q3 = $("input[name=q3]:checked").length;
+    if (!q3) {
+        $('.q3-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q3-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption5').checked) {
+            q3Val = document.getElementById('checkOption5').value;
+        } else if (document.getElementById('checkOption6').checked) {
+            q3Val = document.getElementById('checkOption6').value;
+        }
+    }
+
+    const q4 = $("input[name=q4]:checked").length;
+    if (!q4) {
+        $('.q4-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q4-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption7').checked) {
+            q4Val = document.getElementById('checkOption7').value;
+        } else if (document.getElementById('checkOption8').checked) {
+            q4Val = document.getElementById('checkOption8').value;
+        } else if (document.getElementById('checkOption9').checked) {
+            q4Val = document.getElementById('checkOption9').value;
+        } else if (document.getElementById('checkOption10').checked) {
+            q4Val = document.getElementById('checkOption10').value;
+        }
+    }
+
+    const q5 = $("input[name=q5]:checked").length;
+    if (!q5) {
+        $('.q5-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q5-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption11').checked) {
+            q5Val = document.getElementById('checkOption11').value;
+        } else if (document.getElementById('checkOption12').checked) {
+            q5Val = document.getElementById('checkOption12').value;
+        } else if (document.getElementById('checkOption13').checked) {
+            q5Val = document.getElementById('checkOption13').value;
+        } else if (document.getElementById('checkOption14').checked) {
+            q5Val = document.getElementById('checkOption14').value;
+        }
+    }
+
+    const q6 = $("input[name=q6]:checked").length;
+    if (!q6) {
+        $('.q6-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q6-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption15').checked) {
+            q6Val = document.getElementById('checkOption15').value;
+        } else if (document.getElementById('checkOption16').checked) {
+            q6Val = document.getElementById('checkOption16').value;
+        } else if (document.getElementById('checkOption17').checked) {
+            q6Val = document.getElementById('checkOption17').value;
+        } else if (document.getElementById('checkOption18').checked) {
+            q6Val = document.getElementById('checkOption18').value;
+        }
+    }
+
+    const q7 = $("input[name=q7]:checked").length;
+    if (!q7) {
+        $('.q7-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q7-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption19').checked) {
+            q7Val = document.getElementById('checkOption19').value;
+        } else if (document.getElementById('checkOption20').checked) {
+            q7Val = document.getElementById('checkOption20').value;
+        } else if (document.getElementById('checkOption21').checked) {
+            q7Val = document.getElementById('checkOption21').value;
+        } else if (document.getElementById('checkOption22').checked) {
+            q7Val = document.getElementById('checkOption22').value;
+        }
+    }
+
+    const q8 = $("input[name=q8]:checked").length;
+    if (!q8) {
+        $('.q8-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q8-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption23').checked) {
+            q8Val = document.getElementById('checkOption23').value;
+        } else if (document.getElementById('checkOption24').checked) {
+            q8Val = document.getElementById('checkOption24').value;
+        } else if (document.getElementById('checkOption25').checked) {
+            q8Val = document.getElementById('checkOption25').value;
+        } else if (document.getElementById('checkOption26').checked) {
+            q8Val = document.getElementById('checkOption26').value;
+        }
+    }
+
+    const q9 = $("input[name=q9]:checked").length;
+    if (!q9) {
+        $('.q9-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q9-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption27').checked) {
+            q9Val = document.getElementById('checkOption27').value;
+        } else if (document.getElementById('checkOption28').checked) {
+            q9Val = document.getElementById('checkOption28').value;
+        } else if (document.getElementById('checkOption29').checked) {
+            q9Val = document.getElementById('checkOption29').value;
+        } else if (document.getElementById('checkOption30').checked) {
+            q9Val = document.getElementById('checkOption30').value;
+        }
+    }
+
+    const q10 = $("input[name=q10]:checked").length;
+    if (!q10) {
+        $('.q10-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q10-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption31').checked) {
+            q10Val = document.getElementById('checkOption31').value;
+        } else if (document.getElementById('checkOption32').checked) {
+            q10Val = document.getElementById('checkOption32').value;
+        } else if (document.getElementById('checkOption33').checked) {
+            q10Val = document.getElementById('checkOption33').value;
+        } else if (document.getElementById('checkOption34').checked) {
+            q10Val = document.getElementById('checkOption34').value;
+        }
+    }
+
+    const q11 = $("input[name=q11]:checked").length;
+    if (!q11) {
+        $('.q11-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q11-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption35').checked) {
+            q11Val = document.getElementById('checkOption35').value;
+        } else if (document.getElementById('checkOption36').checked) {
+            q11Val = document.getElementById('checkOption36').value;
+        } else if (document.getElementById('checkOption37').checked) {
+            q11Val = document.getElementById('checkOption37').value;
+        } else if (document.getElementById('checkOption38').checked) {
+            q11Val = document.getElementById('checkOption38').value;
+        }
+    }
+
+    const q12 = $("input[name=q12]:checked").length;
+    if (!q12) {
+        $('.q12-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q12-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption39').checked) {
+            q12Val = document.getElementById('checkOption39').value;
+        } else if (document.getElementById('checkOption40').checked) {
+            q12Val = document.getElementById('checkOption40').value;
+        } else if (document.getElementById('checkOption41').checked) {
+            q12Val = document.getElementById('checkOption41').value;
+        } else if (document.getElementById('checkOption42').checked) {
+            q12Val = document.getElementById('checkOption42').value;
+        }
+    }
+
+    const q13 = $("input[name=q13]:checked").length;
+    if (!q13) {
+        $('.q13-title').css('color', '#fe6060');
+        $('html, body').animate({
+            scrollTop: $(".q13-title").offset().top
+        }, 150);
+        return;
+    } else {
+        if (document.getElementById('checkOption43').checked) {
+            q13Val = document.getElementById('checkOption43').value;
+        } else if (document.getElementById('checkOption44').checked) {
+            q13Val = document.getElementById('checkOption44').value;
+        } else if (document.getElementById('checkOption45').checked) {
+            q13Val = document.getElementById('checkOption45').value;
+        } else if (document.getElementById('checkOption46').checked) {
+            q13Val = document.getElementById('checkOption46').value;
+        }
+    }
 
     $('.submit-btn').prop('disabled', true)
 
@@ -212,6 +481,20 @@ function submitStaffApplication() {
             "age": `${age}`,
             "region": `${region}`,
             "about": `${about}`,
+            "duration": `${duration}`,
+            "q1": `${q1Val}`,
+            "q2": `${q2Val}`,
+            "q3": `${q3Val}`,
+            "q4": `${q4Val}`,
+            "q5": `${q5Val}`,
+            "q6": `${q6Val}`,
+            "q7": `${q7Val}`,
+            "q8": `${q8Val}`,
+            "q9": `${q9Val}`,
+            "q10": `${q10Val}`,
+            "q11": `${q11Val}`,
+            "q12": `${q12Val}`,
+            "q13": `${q13Val}`,
         })
     }, (data) => {
         if (data.status === 'ok') {
@@ -222,11 +505,6 @@ function submitStaffApplication() {
             // Hide the form and show the success div
             $('.app-form').hide(100);
             $('.app-success').show(100);
-
-            // Reset form values
-            document.getElementById('age-selector').value = '';
-            document.getElementById('region-input').value = '';
-            document.getElementById('about-input').value = '';
         } else if (data.status === 'fail') {
             // Show error toast
             const toast = new bootstrap.Toast(errorToast);

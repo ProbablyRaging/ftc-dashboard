@@ -22,37 +22,114 @@
                 <% for (const data of results) { %>
                 <% const { userId, username, avatar, discriminator }=data %>
                 <div class="app-wrapper">
-                    <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp?size=512"
-                        class="app-img" alt="...">
-
                     <div class="app-user">
+                        <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp?size=512"
+                            class="app-img" alt="...">
                         <p class="app-username">
                             <%= username %>#<%= discriminator %>
                         </p>
+                    </div>
 
-                        <p class="app-age app-section">
-                            <strong>Age:</strong>
-                            <%= data.age %>
+                    <p class="app-age app-section">
+                    <p class="app-question">Age:</strong>
+                    <p class="app-answer"><%= data.age %></p>
+                    <p class="app-region app-section">
+                    <p class="app-question">Region:</strong>
+                    <p class="app-answer"><%= data.region %></p>
+                    <div class="app-about app-section">
+                        <p class="app-question">How long have you been a member of ForTheContent?:</p>
+                        <p class="app-answer"><%= data.duration %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">Tell us a little more about yourself and why you are applying for
+                            staff:
                         </p>
-                        <p class="app-region app-section">
-                            <strong>Region:</strong>
-                            <%= data.region %>
+                        <p class="app-answer"><%= data.about %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">Do you have previous experience moderating a Discord server?:</p>
+                        <p class="app-answer"><%= data.q1 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">Would you say you're reasonable and fair when it comes to decision
+                            making?:
                         </p>
-                        <p class="app-about app-section">
-                            <strong>About:</strong>
-                            <%= data.about %>
-                        </p>
-                        <br>
-                        <p class="app-timestamp app-section">
-                            <i><%= new Date(data._id.getTimestamp()).toUTCString() %></i>
-                        </p>
+                        <p class="app-answer"><%= data.q2 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">Are you fimiliar with the ForTheContent server rules and Discord's
+                            ToS
+                            and
+                            Community Guidelines?:</p>
+                        <p class="app-answer"><%= data.q3 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">You've just opened Discord and are on the ForTheContent server, what
+                            do
+                            you
+                            do next?:</p>
+                        <p class="app-answer"><%= data.q4 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">If a user just posted self promotion content in a channel that
+                            doesn't
+                            allow
+                            it, what would you do?:</p>
+                        <p class="app-answer"><%= data.q5 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">If a user is spamming, what would you do?:</p>
+                        <p class="app-answer"><%= data.q6 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">A user just posted indecent/nude content, what do you do?:</p>
+                        <p class="app-answer"><%= data.q7 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">Someone disagrees with your opinion on a random subject, how do you
+                            treat
+                            them?:</p>
+                        <p class="app-answer"><%= data.q8 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">A user joins that claims they are 12 years old, what do you do?:</p>
+                        <p class="app-answer"><%= data.q9 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">You've had to repeatedly ask the same user to stop breaking a rule,
+                            how
+                            should you proceed?:</p>
+                        <p class="app-answer"><%= data.q10 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">A new user has joined the server and isn't sure how Discord or
+                            ForTheContent
+                            work, what should you do?:</p>
+                        <p class="app-answer"><%= data.q11 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">A new question has been asked in the #help-and-advice channel, but
+                            you're
+                            unsure how to help, what should you do?:</p>
+                        <p class="app-answer"><%= data.q12 %></p>
+                    </div>
+                    <div class="app-about app-section">
+                        <p class="app-question">You think someone might be breaking the rules, but you're unsure,
+                            what
+                            do
+                            you do next?:</p>
+                        <p class="app-answer"><%= data.q13 %></p>
+                    </div>
+                    <div class="app-timestamp app-section">
+                        <i><%= new Date(data._id.getTimestamp()).toUTCString() %></i>
                     </div>
                 </div>
-                <% } %>
             </div>
-
+            <% } %>
         </div>
-    </div>
-    <!--  -->
 
-    <%- include('../partials/footer') -%>
+    </div>
+</div>
+<!--  -->
+
+<%- include('../partials/footer') -%>
