@@ -740,6 +740,13 @@ hr {
     display: flex;
     font-size: 18px;
     margin-bottom: 20px;
+    align-items: center;
+}
+
+.app-user-expand {
+    font-size: 18px;
+    color: #60b479;
+    margin-right: 10px;
 }
 
 .app-img {
@@ -754,6 +761,10 @@ hr {
     margin-bottom: 8px;
     font-weight: 600;
     text-transform: uppercase;
+}
+
+.app-body {
+    display: none;
 }
 
 .app-user .app-section {
