@@ -1821,6 +1821,10 @@ hr {
     .metric-box {
         width: 100%;
     }
+
+    .app-username {
+        font-size: 12px;
+    }
 }
 
 @keyframes gradient {
