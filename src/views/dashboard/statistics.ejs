@@ -1,0 +1,143 @@
+<%- include('../partials/header') -%>
+
+<script>
+    const dateArr = '<%- dateArr %>';
+    const joinsArr = '<%- joinsArr %>';
+    const leavesArr = '<%- leavesArr %>';
+    const messagesArr = '<%- messagesArr %>';
+    const bansArr = '<%- bansArr %>';
+    const timeoutsArr = '<%- timeoutsArr %>';
+    const warningsArr = '<%- warningsArr %>';
+    const newcommunicatorsArr = '<%- newcommunicatorsArr %>';
+</script>
+
+<div class="content-page-title">
+    <p class="content-page-header">Welcome back, <%= username %>
+    </p>
+
+    <div class="stat-content-box">
+        <div class="content-box-div">
+            <p class="metric-title">ForTheContent Server <i>(live)</i></p>
+            <div class="stat-content-box-content">
+                <i class="fa-solid fa-circle online"></i>
+                <p class="stat-title-online">Online</p>
+                <p class="member-count">
+                    <%= onlineMembers %>
+                </p>
+            </div>
+            <div class="stat-content-box-content">
+                <i class="fa-solid fa-circle offline"></i>
+                <p class="stat-title-offline">Offline</p>
+                <p class="member-count">
+                    <%= totalMembers %>
+                </p>
+            </div>
+        </div>
+
+        <div class="server-stats">
+            <div class="sub-stats">
+                <p class="count-title">Text Channels:</p>
+                <p class="stat-counts">
+                    <%= text_channel_count %>
+                </p>
+            </div>
+            <div class="sub-stats">
+                <p class="count-title">Voice Channels:</p>
+                <p class="stat-counts">
+                    <%= voice_channel_count %>
+                </p>
+            </div>
+            <div class="sub-stats">
+                <p class="count-title">Categories:</p>
+                <p class="stat-counts">
+                    <%= category_count %>
+                </p>
+            </div>
+            <div class="sub-stats">
+                <p class="count-title">Roles:</p>
+                <p class="stat-counts">
+                    <%= role_count %>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% const joinsCurrentWeek = (parseInt(joinsArr[0]) + parseInt(joinsArr[1]) + parseInt(joinsArr[2]) + parseInt(joinsArr[3]) + parseInt(joinsArr[4]) + parseInt(joinsArr[5]) + parseInt(joinsArr[6])) - (parseInt(leavesArr[0]) + parseInt(leavesArr[1]) + parseInt(leavesArr[2]) + parseInt(leavesArr[3]) + parseInt(leavesArr[4]) + parseInt(leavesArr[5]) + parseInt(leavesArr[6])) %>
+
+<% const joinsPreviousWeek = (parseInt(joinsArr[7]) + parseInt(joinsArr[8]) + parseInt(joinsArr[9]) + parseInt(joinsArr[10]) + parseInt(joinsArr[11]) + parseInt(joinsArr[12]) + parseInt(joinsArr[13])) - (parseInt(leavesArr[7]) + parseInt(leavesArr[8]) + parseInt(leavesArr[9]) + parseInt(leavesArr[10]) + parseInt(leavesArr[11]) + parseInt(leavesArr[12]) + parseInt(leavesArr[13])) %>
+
+<% const newCommsWeekly = (parseInt(newcommunicatorsArr[0]) + parseInt(newcommunicatorsArr[1]) + parseInt(newcommunicatorsArr[2]) + parseInt(newcommunicatorsArr[3]) + parseInt(newcommunicatorsArr[4]) + parseInt(newcommunicatorsArr[5]) + parseInt(newcommunicatorsArr[6])) %>
+
+<% const previousCommsWeekly = (parseInt(newcommunicatorsArr[7]) + parseInt(newcommunicatorsArr[8]) + parseInt(newcommunicatorsArr[9]) + parseInt(newcommunicatorsArr[10]) + parseInt(newcommunicatorsArr[11]) + parseInt(newcommunicatorsArr[12]) + parseInt(newcommunicatorsArr[13])) %>
+
+<% const currentTotalMessages = (parseInt(messagesArr[0]) + parseInt(messagesArr[1]) + parseInt(messagesArr[2]) + parseInt(messagesArr[3]) + parseInt(messagesArr[4]) + parseInt(messagesArr[5]) + parseInt(messagesArr[6])) %>
+
+<% const previousTotalMessages = (parseInt(messagesArr[7]) + parseInt(messagesArr[8]) + parseInt(messagesArr[9]) + parseInt(messagesArr[10]) + parseInt(messagesArr[11]) + parseInt(messagesArr[12]) + parseInt(messagesArr[13])) %>
+
+<div class="key-metrics">
+    <p class="chart-header">Key Metrics</p>
+    <div class="metric-wrapper">
+        <div class="metric-box">
+            <div class="metric-title-wrapper">
+                <p class="metric-title">New Members </p>
+                <i class="fa-solid fa-circle-info metric-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip" title="The running total of new members for this week"></i>
+            </div>
+            <p class=" metric-count"><%= joinsCurrentWeek %></p>
+            <p class="metric-change">
+                <%- perDiff(joinsCurrentWeek, joinsPreviousWeek) %> compared to last week
+            </p>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title-wrapper">
+                <p class="metric-title">New Communicators </p>
+                <i class="fa-solid fa-circle-info metric-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    title="The running total of unique chatters (who sent at least 1 message) for this week"></i>
+            </div>
+            <p class=" metric-count"><%= newCommsWeekly %></p>
+            <p class="metric-change">
+                <%- perDiff(newCommsWeekly, previousCommsWeekly) %> compared to last week
+            </p>
+        </div>
+        <div class="metric-box">
+            <div class="metric-title-wrapper">
+                <p class="metric-title">Total Messages </p>
+                <i class="fa-solid fa-circle-info metric-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip" title="The running total of messages sent today"></i>
+            </div>
+            <p class=" metric-count"><%= messagesArr[0] %></p>
+            <p class="metric-change">
+                <%- perDiff(parseInt(messagesArr[0]), parseInt(messagesArr[1])) %> compared to yesterday
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="chart-wrapper">
+    <p class="chart-header">How many new members are joining?</p>
+    <div class="joins-chart chart-item">
+        <p class="chart-title">Member Joins/Leaves</p>
+        <canvas class="chart-canvas" id="joinsChart"></canvas>
+    </div>
+</div>
+
+<div class="chart-wrapper">
+    <p class="chart-header">How many messages are being sent?</p>
+    <div class="messages-chart chart-item">
+        <p class="chart-title">Messages Sent</p>
+        <canvas class="chart-canvas" id="messagesChart"></canvas>
+    </div>
+</div>
+
+<div class="chart-wrapper">
+    <p class="chart-header">How many members were moderated?</p>
+    <div class="bans-chart chart-item">
+        <p class="chart-title">Moderting Actions</p>
+        <canvas class="chart-canvas" id="bansChart"></canvas>
+    </div>
+</div>
+
+<script src="/scripts/charts.js"></script>
+<%- include('../partials/footer') -%>

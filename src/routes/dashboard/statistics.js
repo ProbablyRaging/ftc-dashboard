@@ -2,11 +2,34 @@ require('dotenv').config();
 const router = require('express').Router();
 const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 const fetch = require('node-fetch');
+const chartData = require('../../schema/logs/chart_data');
 const { perDiff } = require('../../functions/functions');
 
 // Staff dashboard root
 router.get('/', async (req, res) => {
     if (!req?.user) return res.redirect('/');
+    const results = await chartData.find().sort({ '_id': -1 }).limit(14);
+
+    let dateArr = [];
+    let joinsArr = [];
+    let leavesArr = [];
+    let messagesArr = [];
+    let bansArr = [];
+    let timeoutsArr = [];
+    let warningsArr = [];
+    let newcommunicatorsArr = [];
+    for (const data of results) {
+        const { date, joins, leaves, messages, bans, timeouts, warnings, newcommunicators } = data;
+        dateArr.push(date);
+        joinsArr.push(joins);
+        leavesArr.push(leaves);
+        messagesArr.push(messages);
+        bansArr.push(bans);
+        timeoutsArr.push(timeouts);
+        warningsArr.push(warnings);
+        newcommunicatorsArr.push(newcommunicators);
+    }
+
     // Fetch member and channel counts from Discord's API
     Promise.all([
         fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}?with_counts=true`, { headers: { "Authorization": `${process.env.API_TOKEN}` } }).then(resp => resp.json()),
@@ -33,7 +56,7 @@ router.get('/', async (req, res) => {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        res.render('dashboard', {
+        res.render('statistics', {
             isStaff: isStaff(req),
             admincp: false,
             useStaffNavbar: req.user.isStaff,
@@ -46,7 +69,8 @@ router.get('/', async (req, res) => {
             perDiff,
             text_channel_count,
             voice_channel_count,
-            category_count
+            category_count,
+            dateArr, joinsArr, leavesArr, messagesArr, bansArr, timeoutsArr, warningsArr, newcommunicatorsArr
         });
     });
 });

@@ -43,6 +43,7 @@ const ccinfoRoute = require('./routes/dashboard/ccinfo');
 const staffGuidelinesRoute = require('./routes/dashboard/staff_guidelines');
 const privacyRoute = require('./routes/dashboard/privacy');
 const adminCPRoute = require('./routes/dashboard/admincp');
+const statisticsRoute = require('./routes/dashboard/statistics');
 
 // Discord Routes
 const applicationsRoute = require('./routes/discord/applications');
@@ -92,6 +93,7 @@ app.use('/ccinfo', ccinfoRoute);
 app.use('/staff_guidelines', staffGuidelinesRoute);
 app.use('/privacy', privacyRoute);
 app.use('/admincp', adminCPRoute);
+app.use('/statistics', statisticsRoute);
 
 // Discord Middleware
 app.use('/applications', applicationsRoute);
