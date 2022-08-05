@@ -146,6 +146,18 @@ body {
     height: 100%;
 }
 
+code {
+    background-color: #00000048;
+    padding: 4px;
+    border-radius: 4px;
+    font-family: arial, sans-serif;
+    color: #bdafff;
+}
+
+li:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+
 .bg-dark {
     background-color: unset !important;
 }
@@ -759,6 +771,25 @@ a {
     background: #6874f3;
     padding: 3px;
     border-radius: 2px;
+    margin: 0 4px;
+}
+
+.ccinfo-page staffrole {
+    color: #fff;
+    background: #1ba1e8;
+    padding: 3px;
+    border-radius: 2px;
+    margin: 0 4px;
+    font-weight: 600;
+}
+
+.ccinfo-page modrole {
+    color: #fff;
+    background: #a03c6e;
+    padding: 3px;
+    border-radius: 2px;
+    margin: 0 4px;
+    font-weight: 600;
 }
 
 .ccinfo-page .content-box-separator {
@@ -782,6 +813,7 @@ a {
     color: #fff;
     font-size: 18px;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .ccinfo-page strong {

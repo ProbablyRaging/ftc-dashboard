@@ -40,6 +40,7 @@ const googleRoute = require('./routes/auth/google');
 // Dashboard Routes
 const dashboardRoute = require('./routes/dashboard/dashboard');
 const ccinfoRoute = require('./routes/dashboard/ccinfo');
+const staffGuidelinesRoute = require('./routes/dashboard/staff_guidelines');
 const privacyRoute = require('./routes/dashboard/privacy');
 const adminCPRoute = require('./routes/dashboard/admincp');
 
@@ -88,6 +89,7 @@ app.use('/google', googleRoute);
 // Dashboard Middleware
 app.use('/dashboard', dashboardRoute);
 app.use('/ccinfo', ccinfoRoute);
+app.use('/staff_guidelines', staffGuidelinesRoute);
 app.use('/privacy', privacyRoute);
 app.use('/admincp', adminCPRoute);
 

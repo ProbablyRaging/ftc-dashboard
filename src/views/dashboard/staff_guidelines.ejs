@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Start Header -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimal-ui">
+    <meta name="theme-color" content="#1F2129">
+    <meta name="description" content="ForTheContent is a dashboard for interfacing with the ForTheContent Discord server and 4DC, the official bot of ForTheContent">
+    <meta property="og:title" content="ForTheContent Dashboard">
+    <meta property="og:description" content="ForTheContent is a dashboard for interfacing with the ForTheContent Discord server and 4DC, the official bot of ForTheContent">
+    <meta property="og:image" content="/images/og_image.png">
+    <meta name="keywords" content="forthecontent, creatorhub, 4dc, dashboard, discord, discord bot, content creator, community, youtube, twitch">
+    <meta name="author" content="ProbablyRaging">
+
+    <title>ForTheContent Dashboard</title>
+
+    <link rel="apple-touc{h-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" />
+    <!-- MBD -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css" rel="stylesheet" /> -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&family=Oswald:wght@200;400&family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+<!-- End Header -->
+
+<!-- Start Body -->
+
+<body>
+    <div class="page-mount" id="page-mount container-fluid">
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+                <div class="nav-brand">
+                    <a href="/">
+                        <p class="nav-text">ForTheContent</p>
+                    </a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="nav-button fa-solid fa-bars"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="login-button" onclick="window.location='/auth'">
+                                Sign in to Dashboard
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <script>
+            $(function () {
+                $('#accordian h3').click(function () {
+                    $(this).parent().parent().find('ul').slideUp(150);
+                    if (!$(this).next().is(":visible")) {
+                        $(this).next().slideDown(150);
+                    }
+
+                });
+            });
+        </script>
+
+        <div class="privacy-content">
+            <div class="ccinfo-content-inner">
+                <div class="content-wrapper">
+                    <div class="flex-container">
+                        <div class="main-conainer">
+                            <div class="ccinfo-page">
+                                <h1 class="content-head">
+                                    Staff Guidelines
+                                </h1>
+
+                                <hr class="content-box-separator">
+
+                                <div class="content-description">
+                                    <h2>Thank you for applying!</h2>
+
+                                    First of all, thank you for taking to time to apply and for offering to help
+                                    moderate the community, it means a lot and we genuinely appreciate it!
+                                    <br><br>
+                                    The following guide is going to explain some important things that you will need to
+                                    know before you jump in and start moderating. It will also run you through a few of
+                                    the more common things that we moderate on a day to day basis, some of the
+                                    commands you will be using to do so, as well as give you some insight in to the type
+                                    of stuff you might encounter. If there is something you don't understand in this guide,
+                                    let the person who sent you this link know and they will help explain it further
+
+                                    <br><br>
+
+                                    We are understand that you will be taking on responsibilities that you were probably
+                                    not aware of until reading this guide, so if at any time you feel like this isn't
+                                    something you wish to proceed with, let the person who sent you this link know. It's
+                                    not too late to back out, we won't judge you
+
+                                    <br><br>
+
+                                    There are two different staff roles in the server, the <staffrole>@FORTHECONTENT
+                                        STAFF</staffrole> role and the <modrole>@FORTHECONTENT MOD</modrole> role.
+                                    Usually we refer to all members in both of these roles as staff members, but to
+                                    hopefully lessen the confusion when reading this guide, we will be highlighting
+                                    any references to members of a specific role in the color associated with the role they are in.
+                                    When reffering to all staff members from either role, they will be referred to as 'staff' or 'staff members' neutrally
+
+                                    <br><br>
+
+                                    While moderating, not every scenario is going to be cut and dry and there may be some situations that
+                                    aren't covered below. A big part of moderating the server is working with the other
+                                    staff members to decide the best course of action to take in those uncommon
+                                    situations. If you're unsure about anything, reach out to a <staffrole>staff member</staffrole> and they should be able to help you out
+
+                                    <br><br>
+
+                                    Initially, you will start out in the mod role with the oppurtunity to be moved to
+                                    the staff role after no specific amount of time, and only
+                                    if it's something you're interested in doing. But for now, the mod role
+                                    will give you access to permissions such as managing messages and
+                                    managing members, as well as permission to some of 4DC's (our server bot) commands,
+                                    all of which you will learn more about below
+
+                                    <br><br>
+
+                                    <h2>Enabling two-factor authentication (2FA) and developer mode</h2>
+                                    <strong>Two-Factor Authentication</strong><br>
+                                    To gain access to Discord's built-in moderating features you will need to make sure
+                                    you have 2FA enabled on your account. You can enable 2FA by going to your user
+                                    settings > my account > and setting up 2FA from there. Unfortunately, if you're
+                                    unable to enable 2FA on your account, you won't be able to proceed with your application
+
+                                    <br><br>
+
+                                    <strong>Developer Mode</strong><br>
+                                    To use some of 4DC's commands, you will need to enable developer mode on Discord.
+                                    This will allow you to access things like user IDs, message ID's. You can
+                                    enable developer mode by going to your user settings > advanced > and switching on
+                                    developer mode from there
+
+                                    <br><br>
+
+                                    More information about <a href="https://support.discord.com/hc/en-us/articles/219576828-Setting-up-Two-Factor-Authentication" target="_blank">setting up 2FA here</a><br>
+                                    More information about <a href="https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-" target="_blank">developer mode here</a>
+
+                                    <br><br>
+
+                                    <h2>Staff channels and the private staff chat</h2>
+                                    After you have been officially added to the mod role, you will
+                                    notice some extra channels in the server list that weren't there before. These
+                                    channels can be useful when moderating and the uses are explained below
+
+                                    <div id="accordian">
+                                        <ul class="accordian">
+                                            <li>
+                                                <h3>Staff Group Chat <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        You will be added to a private staff group chat where you can
+                                                        easily reach out to other staff members for help or assistance.
+                                                        This chat might also be used for smaller updates that aren't
+                                                        really important enough to go in the <channel>#staff-update
+                                                        </channel> channel. Please don't use this group chat for general
+                                                        conversation, and don't share these conversations with anyone
+                                                        outside of the group
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+
+                                            <li>
+                                                <h3>#staff-updates <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        Used for important updates or changes to rules, commands,
+                                                        permissions and anything else that affects all staff members
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>#auto-mod <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        A log of messages that have been automatically filtered by
+                                                        AutoMod. Things like blacklisted words and phrases, sub4sub type
+                                                        messages, and harmful links. You can check this channel
+                                                        occasionally to see if any further action needs to be taken
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>#message-logs <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        A log of deleted and edited message. You can use this channel in
+                                                        situations where a user might have posted something that broke a
+                                                        rule, and then later deleted it themselves. Situations like
+                                                        these may require action to be taken. This channel also
+                                                        logs messages that are automatically deleted by 4DC and usually
+                                                        don't require any further action to be taken
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>#mod-logs <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        This is a public channel that you've likely already seen. It is
+                                                        for logs such as warnings, timeouts, bans, etc.. It can be used
+                                                        by staff to check if or when an action has been taken against a
+                                                        user. You should check this frequently to make sure you don't
+                                                        accidentally take action against a user for a situation that was
+                                                        already actioned upon by another staff member
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <br>
+
+                                    <h2>Common situations we moderate on a daily basis, and the actions you can take
+                                    </h2>
+                                    The actions listed under each situation are generally in order of how you should
+                                    handle repeat offenses, but taking multiple actions at once can often be correct as
+                                    well
+                                    <div id="accordian">
+                                        <ul class="accordian">
+                                            <li>
+                                                <h3>Spam <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Example:</strong><br>
+                                                        Things like sending repetative messages, messages in quick
+                                                        succession, or purposeless messages in an attempt to gain XP
+                                                        <br><br>
+                                                        <strong>Actions:</strong><br>
+                                                        • delete message<br>
+                                                        • rule reminder<br>
+                                                        • timeout<br>
+                                                        • warning<br>
+                                                        • ban
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>Indecent and Offensive Content <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Example:</strong><br>
+                                                        This refers to Rule 1 of FTC which is deemed to be a more strict
+                                                        rule. In most cases, content that breaks this rule usually
+                                                        results in an instant ban
+                                                        <br><br>
+                                                        <strong>Actions:</strong><br>
+                                                        • delete message<br>
+                                                        • ban
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>Discord Server Invites <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Example:</strong><br>
+                                                        Messages promoting other Discord servers. Invite links are
+                                                        automatically handled by 4DC and don't usually require further
+                                                        action
+                                                        <br><br>
+                                                        <strong>Actions:</strong><br>
+                                                        • delete message<br>
+                                                        • rule reminder<br>
+                                                        • warning<br>
+                                                        • ban
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>General Promotion <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Example:</strong><br>
+                                                        Messaages outside of the content share section promoting things
+                                                        such as YouTube, Twitch, Instagram, etc..
+                                                        <br><br>
+                                                        <strong>Actions:</strong><br>
+                                                        • delete message<br>
+                                                        • rule reminder<br>
+                                                        • timeout<br>
+                                                        • warning
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>Paid Promotion <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Example:</strong><br>
+                                                        Messaages anywhere on the server promoting things such as paid
+                                                        products and services
+                                                        <br><br>
+                                                        <strong>Actions:</strong><br>
+                                                        • delete message<br>
+                                                        • rule reminder<br>
+                                                        • timeout<br>
+                                                        • warning<br>
+                                                        • ban
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>Off-topic Memes and Media etc.. <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Example:</strong><br>
+                                                        We try to keep certain types of content in their designated
+                                                        channels to avoid cluttering the <channel>#general</channel>
+                                                        channel. In some cases we don't moderate these messages, for
+                                                        example, if an image, meme or other piece of content follows the
+                                                        flow of the current conversation
+                                                        <br><br>
+                                                        <strong>Actions:</strong><br>
+                                                        • move message<br>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <br>
+
+                                    <h2>Discord and bot slash commands</h2>
+                                    If you would like to learn any of these commands in a test environment, please let
+                                    one of the <staffrole>staff members</staffrole> know
+                                    <div id="accordian">
+                                        <ul class="accordian">
+                                            <li>
+                                                <h3>Information Command <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Description:</strong><br>
+                                                        A command which will directly mention a specific user with some
+                                                        useful information, such as how to link their socials to their
+                                                        Discord profile or how the XP/rank system works
+                                                        <br><br>
+                                                        <strong>Usage:</strong><br>
+                                                        <code>/info [topic] [username]</code>
+
+                                                        <br><br>
+
+                                                        Where <code>topic</code> is the information you are
+                                                        referencing<br>
+                                                        Where <code>username</code> is the user you are directing the
+                                                        information at
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>Rule Command <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Description:</strong><br>
+                                                        A command which will directly mention a specific user with a
+                                                        specific rule. The rule number correlates to the order in which
+                                                        they appear in the <channel>#rules</channel> channel
+                                                        <br><br>
+                                                        <strong>Usage:</strong><br>
+                                                        <code>/rule [number] [username]</code>
+
+                                                        <br><br>
+
+                                                        Where <code>number</code> is the number of the rule you are
+                                                        referencing<br>
+                                                        Where <code>username</code> is the user you are directing the
+                                                        rule
+                                                        at
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>Move Command <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Description:</strong><br>
+                                                        A command for moving one or more message from one channel to
+                                                        another. You can move up to five messages at a time by adding
+                                                        multiple message IDs via the command options
+                                                        <br><br>
+                                                        <strong>Usage:</strong><br>
+                                                        <code>/move [channel] [message]</code>
+
+                                                        <br><br>
+
+                                                        Where <code>channel</code> is the channel for which you want to
+                                                        move the message(s) to<br>
+                                                        Where <code>message</code> is the ID of the message you want to move
+
+                                                        <br><br>
+
+                                                        <i>You can get a message's ID by right-clicking the message and
+                                                            clicking 'Copy ID'</i>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>Timeout Command <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Description:</strong><br>
+                                                        A command for timing a user out for a specifc duration of time
+                                                        <br><br>
+                                                        <strong>Usage:</strong><br>
+                                                        <code>/timeout [user] [duration] (reason)</code>
+
+                                                        <br><br>
+
+                                                        Where <code>user</code> is the user you want to timeout<br>
+                                                        Where <code>duration</code> is the duration of time the user will be timed out for<br>
+                                                        Where <code>reason</code> is the reason for the timeout
+
+                                                        <br><br>
+
+                                                        <i>You can also time a user out by right-clicking on the user
+                                                            and clicking 'Timeout'</i>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <h3>Warning Command <span>
+                                                        <tooltip>(click to expand)</tooltip>
+                                                    </span></h3>
+                                                <ul>
+                                                    <li>
+                                                        <strong>Description:</strong><br>
+                                                        A command for adding, listing or removing user warnings. Users
+                                                        will receive a DM (when possible) from the bot with the reason
+                                                        they were warned. Each individual warning carries one strike.
+                                                        When a user reaches three strikes in total they will be
+                                                        automatically banned from the server
+                                                        <br><br>
+                                                        <strong>Usage:</strong><br>
+                                                        <code>/warn add [type] [username] [reason]</code><br>
+                                                        <code>/warn list [username]</code><br>
+                                                        <code>/warn remove [warningId]</code>
+
+                                                        <br><br>
+
+                                                        Where <code>type</code> is the the type of warning you want to
+                                                        add<br>
+                                                        Where <code>username</code> is the user you want to apply the
+                                                        warning to<br>
+                                                        Where <code>reason</code> is the reason for the warning<br>
+                                                        Where <code>warningId</code> is the unique warning ID assigned
+                                                        to a warning
+
+                                                        <br><br>
+
+                                                        <i>Warning IDs can be found by listing the warnings for a
+                                                            specific user</i>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <br>
+
+                                    <h2>Deleting messages, timeouts and bans</h2>
+                                    All of these actions can be made by right-clicking a user or message, or by
+                                    hovering over a message while holding the SHIFT key to bring up the quick
+                                    action menu
+                                    <br><br>
+                                    I'm sure it goes without saying, but please do not abuse these actions. Try to be
+                                    reasonable and fair when taking any sort of action against a user. Start at the
+                                    least permanent type of action first <i>(message delete, verbal warning, rule command)</i>
+                                    and only use more permanent actions <i>(warning, timeout, ban)</i> when necessary, or when taking follow-up actions
+                                    <br><br>
+                                    When using the warning, timeout and ban actions, please make
+                                    sure you include a descriptive reason for doing so. Referencing a specific rule is
+                                    generally a good idea as well. This will help other staff understand why certain
+                                    actions were taken and if more serious actions needs to be taken later on
+
+                                    <br><br>
+
+                                    <h2>Constructive feedback</h2>
+                                    Once in a while, a <staffrole>staff member</staffrole> may message you privately to
+                                    let you know if a situation you were moderating could have been handled differently,
+                                    or if you might have missed something that should have been moderated. It will be a
+                                    little bit of a learning curve at first with the varying amounts of messages and
+                                    content being posted daily, as well as the different ways we handle individual
+                                    situations, so feedback like this is purely to make sure we're all on the same page
+                                    as each other and not because you did anything wrong per se
+
+                                    <br><br>
+
+                                    <h2>Your activeness and attitude as a staff member</h2>
+                                    While we don't expect staff to spend more time online then they usually would, we do
+                                    expect that they will maintain a certain level of activeness during the time that they are
+                                    in a staff role, so that all staff share in the effort of moderating equally. A few examples
+                                    of this would be;
+                                    <br><br>
+                                    <ul>
+                                        <li>
+                                            • If a new users joins the server and says hello in chat, welcome them in,
+                                            maybe direct them to grab some profile flair from <channel>#self-roles</channel>, and
+                                            also be willing to answer any questions they might have regarding the server and
+                                            how it works
+                                        </li>
+                                        <li>
+                                            • Expect the fact that a lot of new members may not have read the rules
+                                            right away and that they may post something that isn't allowed, give them
+                                            the benefit of the doubt, and politely direct them to read the rules before
+                                            taking action
+                                        </li>
+                                        <li>
+                                            • If you have a spare minute, take a quick look through all the channels
+                                            to see if anything needs to be moderated or if any questions need to be
+                                            answered
+                                        </li>
+                                        <li>
+                                            • Answering questions or review requests in the <channel>#help-and-advice
+                                            </channel> and <channel>#gfx-video-review</channel> channels. Please keep in
+                                            mind that if you are unsure of how to answer a question, or provide helpful
+                                            feedback, it is best to let someone else who might have more experience
+                                            answer those threads, as the last thing we want to do is provide someone
+                                            with
+                                            incorrect information or poorly thoughtout feedback
+                                        </li>
+                                    </ul>
+
+                                    <br>
+
+                                    <h2>Stepping down or being removed from a staff position</h2>
+                                    In rare circumstances where we feel like you are not a great fit for the team, you will
+                                    be contacted privately and informed that you are being removed from the staff role.
+                                    Please don't take this personally. We just want to make sure all staff are on
+                                    the same page and that we can all work well with each other, and sometimes people just
+                                    aren't the right fit
+                                    <br><br>
+                                    If at any point you feel like stepping down as staff, you're more than welcome to
+                                    reach out to a <staffrole>staff member</staffrole> and let them know
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/footer') -%>
