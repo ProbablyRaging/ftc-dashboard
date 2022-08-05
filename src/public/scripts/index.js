@@ -597,8 +597,8 @@ $(function () {
         // event.stopPropagation();
         var $target = $(event.target);
         $target.closest(".app-wrapper").find('.app-body').slideToggle(150)
-        $target.closest(".app-wrapper").find("i").toggleClass("fa-plus");
-        $target.closest(".app-wrapper").find("i").toggleClass("fa-minus");
+        $target.closest(".app-wrapper").find(".app-user-expand").toggleClass("fa-plus");
+        $target.closest(".app-wrapper").find(".app-user-expand").toggleClass("fa-minus");
     });
 });
 

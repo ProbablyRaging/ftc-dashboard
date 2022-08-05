@@ -730,10 +730,11 @@ hr {
     height: fit-content;
     box-shadow: var(--bs-s);
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .app-wrapper:hover {
-    background: var(--bg);
+    background: var(--bg-alt);
 }
 
 .app-user {
