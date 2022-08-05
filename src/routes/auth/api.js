@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
 const googleUser = require('../../schema/misc/google_user');
+const staffApplicationSchema = require('../../schema/logs/staff_applications_schema');
 
 router.post('/', async (req, res) => {
     res.sendStatus(405);
@@ -88,6 +89,131 @@ router.post('/log-fetch', async (req, res) => {
         const results = await schema.find().sort({ '_id': -1 }).limit(parseInt(size)).skip(skip);
 
         res.send(results)
+    } else {
+        res.sendStatus(401);
+    }
+});
+
+// POST for adding and removing votes from staff applications
+router.post('/app-vote', async (req, res) => {
+    if (req?.user && req?.body.appId) {
+        // Fetch the requested log
+        const results = await staffApplicationSchema.find({ _id: req.body.appId });
+
+        let addYes;
+        let addNo;
+
+        if (!results) {
+            res.sendStatus(401);
+        } else {
+            for (const data of results) {
+                const { hasVotedYes, hasVotedNo } = data;
+                let voteYesArr = hasVotedYes;
+                let voteNoArr = hasVotedNo;
+
+                if (req.body.vote === 'yes') {
+                    // Check if user has already voted yes or not, if they have, we treat this as if they want to remove their vote
+                    if (!voteYesArr.includes(req.user.username)) {
+                        // Add the user to the yes array
+                        voteYesArr.push(req.user.username);
+                        // Update the database
+                        await staffApplicationSchema.updateOne({
+                            _id: req.body.appId
+                        }, {
+                            hasVotedYes: voteYesArr
+                        }, {
+                            upsert: true
+                        }).catch(err => console.error('Error applying yes vote', err));
+                        // Update final vote
+                        addYes = true;
+                    } else {
+                        // Remove the user from the yes array
+                        const index = voteYesArr.indexOf(req.user.username);
+                        if (index > -1) {
+                            voteYesArr.splice(index, 1);
+                        }
+                        // Update the database
+                        await staffApplicationSchema.updateOne({
+                            _id: req.body.appId
+                        }, {
+                            hasVotedYes: voteYesArr
+                        }, {
+                            upsert: true
+                        }).catch(err => console.error('Error applying yes vote', err));
+                        // Update final vote
+                        addYes = false;
+                    }
+                    // If user has already voted no, remove their no vote
+                    if (voteNoArr.includes(req.user.username)) {
+                        // Remove the user from the yes array
+                        const index = voteNoArr.indexOf(req.user.username);
+                        if (index > -1) {
+                            voteNoArr.splice(index, 1);
+                        }
+                        // Update the database
+                        await staffApplicationSchema.updateOne({
+                            _id: req.body.appId
+                        }, {
+                            hasVotedNo: voteNoArr
+                        }, {
+                            upsert: true
+                        }).catch(err => console.error('Error applying no vote', err));
+                        // Update final vote
+                        addNo = false;
+                    }
+                } else if (req.body.vote === 'no') {
+                    if (!voteNoArr.includes(req.user.username)) {
+                        // Add the user to the no array
+                        voteNoArr.push(req.user.username);
+                        // Update the database
+                        await staffApplicationSchema.updateOne({
+                            _id: req.body.appId
+                        }, {
+                            hasVotedNo: voteNoArr
+                        }, {
+                            upsert: true
+                        }).catch(err => console.error('Error applying no vote', err));
+                        // Update final vote
+                        addNo = true;
+                    } else {
+                        // Remove the user from the no array
+                        const index = voteNoArr.indexOf(req.user.username);
+                        if (index > -1) {
+                            voteNoArr.splice(index, 1);
+                        }
+                        // Update the database
+                        await staffApplicationSchema.updateOne({
+                            _id: req.body.appId
+                        }, {
+                            hasVotedNo: voteNoArr
+                        }, {
+                            upsert: true
+                        }).catch(err => console.error('Error applying no vote', err));
+                        // Update final vote
+                        addNo = false;
+                    }
+                    // If user has already voted yes, remove their yes vote
+                    if (voteYesArr.includes(req.user.username)) {
+                        // Remove the user from the yes array
+                        const index = voteYesArr.indexOf(req.user.username);
+                        if (index > -1) {
+                            voteYesArr.splice(index, 1);
+                        }
+                        // Update the database
+                        await staffApplicationSchema.updateOne({
+                            _id: req.body.appId
+                        }, {
+                            hasVotedYes: voteYesArr
+                        }, {
+                            upsert: true
+                        }).catch(err => console.error('Error applying no vote', err));
+                        // Update final vote
+                        addYes = false;
+                    }
+                }
+            }
+            res.send({ "status": "ok", addYes, addNo });
+        }
     } else {
         res.sendStatus(401);
     }

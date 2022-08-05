@@ -20,7 +20,7 @@
             <div class="app-content-box">
 
                 <% for (const data of results) { %>
-                <% const { userId, username, avatar, discriminator }=data %>
+                <% const { userId, username, avatar, discriminator }= data %>
                 <div class="app-wrapper">
                     <div class="app-user">
                         <i class="fa-solid fa-plus app-user-expand"></i>
@@ -125,6 +125,22 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="app-votes">
+                    <div class="votes-wrapper">
+                        <button class="vote-yes" onclick="staffAppVote('<%= data._id %>', 'yes')" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                            title="<%= data.hasVotedYes.slice(',').join(', ') %>">
+                            <i class="bi bi-check-circle"></i> <p class="app-vote-yes-count-<%= data._id %>"><%= data.hasVotedYes.length %></p>
+                        </button>
+                        <button class="vote-no" onclick="staffAppVote('<%= data._id %>', 'no')" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                            title="<%= data.hasVotedNo.slice(',').join(', ') %>">
+                            <i class="bi bi-x-circle"></i> <p class="app-vote-no-count-<%= data._id %>"><%= data.hasVotedNo.length %></p>
+                        </button>
+                    </div>
+                </div>
+
                 <% } %>
             </div>
         </div>

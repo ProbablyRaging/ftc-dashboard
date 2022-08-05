@@ -89,6 +89,14 @@ const staffApplicationSchema = mongoose.Schema({
     q13: {
         type: String,
         require: true
+    },
+    hasVotedYes: {
+        type: Array,
+        required: false
+    },
+    hasVotedNo: {
+        type: Array,
+        required: false
     }
 
 });

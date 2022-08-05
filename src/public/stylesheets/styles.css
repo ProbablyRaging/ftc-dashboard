@@ -788,6 +788,36 @@ hr {
     font-size: 10px;
 }
 
+.votes-wrapper {
+    display: flex;
+    gap: 14px;
+    margin-top: -45px;
+    margin-left: 14px;
+    position: absolute;
+}
+
+.app-votes .vote-yes {
+    display: flex;
+    gap: 4px;
+    border: var(--border-d);
+    border-radius: 4px;
+    color: var(--nav-text);
+    background: #76c08c;
+}
+
+.app-votes .vote-no {
+    display: flex;
+    gap: 4px;
+    border: var(--border-d);
+    border-radius: 4px;
+    color: var(--nav-text);
+    background: #b46060;
+}
+
+.tooltip {
+    font-size: 10px;
+}
+
 .table-wrapper {
     background: rgb(28, 29, 36);
     border-radius: 8px;

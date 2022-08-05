@@ -594,7 +594,6 @@ function userSearch() {
 // Collapsible application
 $(function () {
     $(".app-wrapper").click(function (event) {
-        console.log('test')
         // event.stopPropagation();
         var $target = $(event.target);
         $target.closest(".app-wrapper").find('.app-body').slideToggle(150)
@@ -602,3 +601,34 @@ $(function () {
         $target.closest(".app-wrapper").find("i").toggleClass("fa-minus");
     });
 });
+
+// Application voting system
+async function staffAppVote(appId, vote) {
+    // Send a POST to remove the video from the user's video list
+    $.post({
+        url: `/api/app-vote`,
+        type: 'POST',
+        headers: { "Content-Type": "application/json" },
+        dataType: 'json',
+        data: JSON.stringify({ "appId": `${appId}`, "vote": `${vote}` })
+    }, (data) => {
+        if (data.status === 'ok') {
+            // Adjust vote counts based on response
+            if (data.addYes === true) {
+                const currentBtnCount = parseInt($(`.app-vote-yes-count-${appId}`).text());
+                $(`.app-vote-yes-count-${appId}`).text(`${currentBtnCount + 1}`);
+            } else if (data.addYes === false) {
+                const currentBtnCount = parseInt($(`.app-vote-yes-count-${appId}`).text());
+                $(`.app-vote-yes-count-${appId}`).text(`${currentBtnCount - 1}`);
+            }
+            // Adjust vote counts based on response
+            if (data.addNo === true) {
+                const currentBtnCount = parseInt($(`.app-vote-no-count-${appId}`).text());
+                $(`.app-vote-no-count-${appId}`).text(`${currentBtnCount + 1}`);
+            } else if (data.addNo === false) {
+                const currentBtnCount = parseInt($(`.app-vote-no-count-${appId}`).text());
+                $(`.app-vote-no-count-${appId}`).text(`${currentBtnCount - 1}`);
+            }
+        }
+    });
+}
