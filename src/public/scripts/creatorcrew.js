@@ -90,7 +90,7 @@ function onPlayerReady(event) {
                     }
                 }
             });
-        }, 1000);
+        }, 2000);
     }
     const videoId = event.target.i.id;
     const videoTitle = event.target.getVideoData().title.slice(0, 40) + '...';
