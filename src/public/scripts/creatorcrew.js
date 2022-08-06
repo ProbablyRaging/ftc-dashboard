@@ -39,6 +39,9 @@ if (top.location.pathname.split('/')[1] === 'creatorcrew') {
 function onPlayerReady(event) {
     if (isUserGoogleAuthed) {
         const videoId = event.target.i.id;
+        const watchStatus = document.getElementById(`${videoId}-watch-status`);
+        const playerBorder = document.getElementById(`${videoId}`);
+        const setVideoTimer = document.getElementById(`${videoId}-watch-status`);
         // Send a POST to check if user has previously liked the video
         $.post({
             url: `/api/video-status`,
@@ -56,6 +59,38 @@ function onPlayerReady(event) {
                 videoLiked.set(videoId);
             }
         });
+        // Send a POST to check if the video is logged as already completed in the user's queue
+        setTimeout(() => {
+            $.post({
+                url: `/creatorcrew/status`,
+                type: 'POST',
+                headers: { "Content-Type": "application/json" },
+                dataType: 'json',
+                data: JSON.stringify({ "videoId": `${videoId}` })
+            }, (data) => {
+                // If the video was previously liked, set the buttons class to 'liked'
+                if (data.status === true) {
+                    if (videoLiked.has(videoId)) {
+                        watchStatus.style.color = "#70ffbafe";
+                        playerBorder.style.borderColor = "#70ffbafe";
+                        // Send a POST to remove the video from the user's video list
+                        $.post({
+                            url: `/creatorcrew/remove`,
+                            type: 'POST',
+                            headers: { "Content-Type": "application/json" },
+                            dataType: 'json',
+                            data: JSON.stringify({ "videoId": `${videoId}` })
+                        });
+                        // Remove the video from our log and mark it as completed
+                        completedVideos.set(videoId);
+                    } else {
+                        watchStatus.style.color = "#87cbffcc";
+                        playerBorder.style.borderColor = "#87cbffcc";
+                        videosPendingLike.set(videoId);
+                    }
+                }
+            });
+        }, 1000);
     }
     const videoId = event.target.i.id;
     const videoTitle = event.target.getVideoData().title.slice(0, 40) + '...';
@@ -181,9 +216,17 @@ function checkVideoStatus(event, videoId) {
     const watchStatus = document.getElementById(`${videoId}-watch-status`);
     const playerBorder = document.getElementById(`${videoId}`);
     // If video is completed but not liked, and no skips were detected
-    if (!detectedSkips.has(videoId) && !videoLiked.has(videoId) && (currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration)) {
+    if (!videosPendingLike.has(videoId) && !detectedSkips.has(videoId) && !videoLiked.has(videoId) && (currentWatchTime >= 600 || currentWatchTime + 4 >= totalDuration)) {
         watchStatus.style.color = "#87cbffcc";
         playerBorder.style.borderColor = "#87cbffcc";
+        // Log this video's watch time as completed in the users queue
+        $.post({
+            url: `/creatorcrew/update`,
+            type: 'POST',
+            headers: { "Content-Type": "application/json" },
+            dataType: 'json',
+            data: JSON.stringify({ "videoId": `${videoId}` })
+        });
         videosPendingLike.set(videoId);
     }
     // If the minimum watch time is complete, the video has been liked and no skips were detected

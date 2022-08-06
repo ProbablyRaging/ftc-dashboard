@@ -71,7 +71,40 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST route for removing video ids from a user's queue
+// POST route for check if a video in a user's queue is logged as completed
+router.post('/status', async (req, res) => {
+    const reqUserId = req.user?.userId;
+    const videoId = req.body?.videoId;
+    const results = await ccVideoQueue.find({ 
+        userId: reqUserId,
+        videoId: videoId
+     });
+     for (const data of results) {
+        const { isCompleted } = data;
+        if (isCompleted === true) {
+            res.send({ "status": true });
+        } else {
+            res.send({ "status": false });
+        }
+     }
+});
+
+// POST route for logging completed but unremoved videos
+router.post('/update', async (req, res) => {
+    const reqUserId = req.user?.userId;
+    const videoId = req.body?.videoId;
+    await ccVideoQueue.updateOne({
+        userId: reqUserId,
+        videoId: videoId
+    },{
+        isCompleted: true
+    },{
+        upsert: true
+    });
+    res.send({ "status": "ok" });
+});
+
+// POST route for removing videos from a user's queue
 router.post('/remove', async (req, res) => {
     const reqUserId = req.user?.userId;
     const videoId = req.body?.videoId;

@@ -24,6 +24,10 @@ const ccVideoQueue = mongoose.Schema({
     notified5: {
         type: Boolean,
         required: false
+    },
+    isCompleted: {
+        type: Boolean,
+        required: false
     }
 });
 

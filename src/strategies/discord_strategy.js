@@ -28,6 +28,11 @@ passport.use(new discordStrategy({
         const resolve = await fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}/members/${profile.id}`, { method: 'GET', headers: headers });
         const discordUserData = await resolve.json();
 
+        // If user is not a server member
+        if (discordUserData.code === 10007) {
+            done(null, null)
+        }
+
         // If user is a staff member
         if (discordUserData?.roles.length > 0 && discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
             // If they already have a database entry
