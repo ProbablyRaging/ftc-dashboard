@@ -3,53 +3,6 @@
 <div class="content-page-title">
     <p class="content-page-header">Welcome back, <%= username %>
     </p>
-
-    <div class="stat-content-box">
-        <div class="content-box-div">
-            <p class="metric-title">ForTheContent Server <i>(live)</i></p>
-            <div class="stat-content-box-content">
-                <i class="fa-solid fa-circle online"></i>
-                <p class="stat-title-online">Online</p>
-                <p class="member-count">
-                    <%= onlineMembers %>
-                </p>
-            </div>
-            <div class="stat-content-box-content">
-                <i class="fa-solid fa-circle offline"></i>
-                <p class="stat-title-offline">Offline</p>
-                <p class="member-count">
-                    <%= totalMembers %>
-                </p>
-            </div>
-        </div>
-
-        <div class="server-stats">
-            <div class="sub-stats">
-                <p class="count-title">Text Channels:</p>
-                <p class="stat-counts">
-                    <%= text_channel_count %>
-                </p>
-            </div>
-            <div class="sub-stats">
-                <p class="count-title">Voice Channels:</p>
-                <p class="stat-counts">
-                    <%= voice_channel_count %>
-                </p>
-            </div>
-            <div class="sub-stats">
-                <p class="count-title">Categories:</p>
-                <p class="stat-counts">
-                    <%= category_count %>
-                </p>
-            </div>
-            <div class="sub-stats">
-                <p class="count-title">Roles:</p>
-                <p class="stat-counts">
-                    <%= role_count %>
-                </p>
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -80,35 +33,15 @@
                     <h5 class="button-title">Applications</h5>
                     <div class="button-description">View new and old staff applications</div>
                 </div>
-            </div>
-        </div>
-        <!--  -->
-    </div>
-</div>
-<!--  -->
 
-<!-- Content Box -->
-<div class="content-box">
-    <div class="content-box-div">
-
-        <!-- Content Box Inner -->
-        <header class="content-box-title-class" id="box-three">
-            <div class="content-box-title-flex">
-                <h5 class="content-box-title-decor">
-                    <div class="content-box-title">Creator Crew</div>
-                </h5>
-            </div>
-            <button class="fa-solid fa-angle-up" id="dash-collapse-three" name="collapse"></button>
-        </header>
-
-        <hr class="content-box-separator" id="separator-three">
-
-        <div>
-            <div class="content-box-content" id="content-three">
-                <!-- Dashboard Button -->
                 <div class="content-box-button" onclick="location.href = '/creatorcrew';">
                     <h5 class="button-title">Creator Crew Queue</h5>
                     <div class="button-description">Watch and like your Creator Crew queue videos</div>
+                </div>
+
+                <div class="content-box-button" onclick="location.href = '/Statistics';">
+                    <h5 class="button-title">Server Statistics</h5>
+                    <div class="button-description">Statistics about joins, messages, moderating actions, etc..</div>
                 </div>
             </div>
         </div>
