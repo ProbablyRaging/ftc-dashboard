@@ -254,11 +254,6 @@ h5 {
 
 }
 
-.button-description {
-    color: var(--text-alt);
-
-}
-
 .key-metrics {
     margin-bottom: 48px;
 }
@@ -448,7 +443,8 @@ hr {
 }
 
 .content-box-button {
-    background: var(--bg);
+    background: var(--nav-bg);
+    color: var(--nav-text);
     display: flex;
     border: var(--border-l);
     box-shadow: var(--bs-m);
@@ -463,8 +459,8 @@ hr {
 }
 
 .content-box-button:hover {
-    background: var(--bg-o);
-    box-shadow: rgb(0 0 0 / 20%) 0px 14px 14px;
+    filter: brightness(0.8);
+    box-shadow: rgb(0 0 0 / 20%) 2px 4px 4px;
 
 }
 
@@ -486,7 +482,6 @@ hr {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    color: var(--text);
     font-size: 16px;
     line-height: 24px;
     font-weight: var(--weight-alt);
