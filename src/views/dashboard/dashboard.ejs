@@ -13,10 +13,17 @@
 <div>
     <div class="content-box-content" id="content-two">
         <!-- Dashboard Button -->
+        <% if (isStaff) { %>
         <div class="content-box-button" onclick="location.href = '/applications';">
             <h5 class="button-title">Applications</h5>
-            <div class="button-description">View new and old staff applications</div>
+            <div class="button-description">View current staff applications</div>
         </div>
+        <% } else { %>
+        <div class="content-box-button" onclick="location.href = '/applications';">
+            <h5 class="button-title">Applications</h5>
+            <div class="button-description">Apply for a server staff position</div>
+        </div>
+        <% } %>
 
         <div class="content-box-button" onclick="location.href = '/creatorcrew';">
             <h5 class="button-title">Creator Crew Queue</h5>
