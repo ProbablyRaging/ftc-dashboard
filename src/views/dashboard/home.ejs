@@ -40,7 +40,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- WOW Animation -->
     <script src="https://www.delac.io/WOW/dist/wow.min.js"></script>
-    <script>new WOW().init();</script>
+    <script>
+        wow = new WOW({ mobile: false })
+        wow.init();
+    </script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/stylesheets/home.css">
