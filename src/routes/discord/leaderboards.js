@@ -77,9 +77,9 @@ router.get('/lastletter', async (req, res) => {
 
         let record;
         for (const data2 of results2) {
-            const { letterRecord } = data2;
+            const { currentRecord } = data2;
 
-            record = letterRecord;
+            record = currentRecord;
         }
 
         dataArr.sort(function (a, b) {
