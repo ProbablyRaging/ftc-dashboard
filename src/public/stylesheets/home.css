@@ -158,6 +158,10 @@ li:not(:last-of-type) {
     margin-bottom: 10px;
 }
 
+.wow {
+    visibility: hidden;
+}
+
 .bg-dark {
     background-color: unset !important;
 }
