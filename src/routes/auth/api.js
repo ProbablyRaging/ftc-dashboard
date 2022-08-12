@@ -188,4 +188,26 @@ router.post('/app-vote', async (req, res) => {
     }
 });
 
+// POST route for notifying staff if a user skips/seeks a video
+router.post('/join-notify', async (req, res) => {
+    // Create webhook
+    const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
+    const body = { name: `4DC`, avatar: process.env.BOT_IMG_URI };
+    let webhook;
+    await fetch(`https://discord.com/api/v9/channels/924271299004600350/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+        webhook = await response.json();
+        // Send webhook
+        const body = {
+            content: `<@438434841617367080>
+A user joined the server via the landing page`
+        };
+        await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+            // Delete webhook
+            await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}`, { method: 'DELETE', headers: headers });
+        });
+    });
+
+    res.sendStatus(204);
+});
+
 module.exports = router;

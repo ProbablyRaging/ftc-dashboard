@@ -1053,6 +1053,12 @@ a {
     padding-bottom: 100px;
 }
 
+.scroll-down {
+    font-size: 64px;
+    position: absolute;
+    margin-top: -1100px;
+}
+
 iframe {
     border-radius: 8px;
 }

@@ -23,9 +23,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- Animate CSS -->
     <link rel="stylesheet" href="https://www.delac.io/WOW/css/libs/animate.css" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- WOW Animation -->
     <script src="https://www.delac.io/WOW/dist/wow.min.js"></script>
     <script>
@@ -114,15 +118,23 @@
                     </ul>
 
                     <div class="body-buttons">
-                        <button class="btn-signin" onclick="window.location='/auth'">
-                            Sign in to Dashboard
-                        </button>
-                        <button class="btn-join" onclick="location.href='https://www.discord.gg/forthecontent'">
+                        <button class="btn-signin wow pulse" data-wow-iteration="100">
                             Join ForTheContent
                         </button>
                     </div>
                 </div>
             </div>
+
+            <script>
+                $(".btn-signin").click(function () {
+                    $.post({
+                        url: `/api/join-notify`,
+                        type: 'POST',
+                        headers: { "Content-Type": "application/json" },
+                        dataType: 'json'
+                    });
+                });
+            </script>
 
             <div class="iframe-container wow fadeInRight">
                 <iframe class="discord-iframe" src="https://discord.com/widget?id=820889004055855144&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
@@ -130,6 +142,7 @@
         </div>
 
         <div id="features" class="mock-wrapper-light">
+            <i class="bi bi-arrow-down scroll-down wow fadeInDown" data-wow-delay="1s"></i>
             <p class="mock-header wow fadeInUp">Connect With Other Creators</p>
             <p class="mock-description wow fadeInLeft">Meet and chat with other content creators, in all niches, from all around the
                 world</p>
