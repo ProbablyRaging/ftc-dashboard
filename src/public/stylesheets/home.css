@@ -1937,6 +1937,31 @@ iframe {
     background: #e5eefa
 }
 
+.chev__down {
+    text-align: center;
+    margin-top: -200px !important;
+    left: 47%;
+    position: absolute;
+    font-size: 34px;
+    height: 60px;
+    min-width: 60px;
+    cursor: pointer;
+}
+
+.chev-down {
+    color: var(--text);
+}
+
+.chev__down:hover .chev-down {
+    color: var(--text-accent);
+}
+
+@media screen and (max-width: 720px) {
+    .chev__down {
+        margin-top: -180px !important;
+    }
+}
+
 .footer {
     border-top: 1px solid #6c77893F;
     background-color: #1a1e23;
