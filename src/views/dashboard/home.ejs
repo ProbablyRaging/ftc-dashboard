@@ -202,6 +202,7 @@
                         <div class="iframe-container wow fadeInRight" data-wow-duration="0.7s">
                             <iframe class="discord-iframe" src="https://discord.com/widget?id=820889004055855144&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -256,7 +257,7 @@
             <div class="wp-block-vbi-two-column-layout row content__area row--center row--reverse">
                 <div class="wp-block-vbi-column-layout col col--md-6 content__area">
                     <div class="wp-block-vbi-heading-block heading-block__container content__area heading-block wow fadeInUp" data-wow-duration="0.7s"">
-                        <h2 id=" customize-your-content-get-noticed-more">More exposure with Creator Crew</h2>
+                        <h2 id=" customize-your-content-get-noticed-more">More Exposure With Creator Crew</h2>
                         <p>
                             Creator Crew is a give and receive <strong>support system</strong> for YouTube content creators. It will allow you to gain more <strong>views, likes</strong>, and <strong>watch time</strong> on your videos, while also giving back the same type of support to your fellow content creators
                             <br><br>
@@ -309,7 +310,7 @@
         <div class="testimony-wrapper">
             <div class="banner-wrapper">
                 <div class="banner-body"><img src="https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fc2aa8fe060a1d21bd02df_wreath-left.svg" loading="lazy" width="75" height="135" alt="" class="banner-wreath banner-wreath---left" alt="discord server for content creators"><img src="https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fc2aa87fdc8d07ec731fa6_wreath-right.svg" loading="lazy" width="75" height="135" alt="" class="banner-wreath banner-wreath---right" alt="discord server for content creators">
-                    <p class="banner-title">Voted "Best Discord Server For Content Creators" - Everyone</p>
+                    <p class="banner-title">"the best discord server for content creators"</p>
                     <p class="banner-subtitle"><i class="total-member-count"> <%= totalMembers %></i> members and
                         growing</p>
                 </div>
@@ -319,11 +320,19 @@
 
     <!-- Mobile Nav Toggle -->
     <script>
+        $(document).scroll(function () {
+            if (document.documentElement.scrollTop > 10) {
+                $('.nav').css("background-color", '#1a1e23');
+            } else {
+                $('.nav').css("background-color", 'transparent');
+            }
+        });
+
         $('.burger').click(function () {
             $('html').toggleClass('mobile-nav--is-open');
             $('.nav__menu').slideToggle(150);
             $('.nav__menu').toggleClass('nav__menu--hide').css({ display: "flex" });
-        })
+        });
     </script>
 </body>
 
