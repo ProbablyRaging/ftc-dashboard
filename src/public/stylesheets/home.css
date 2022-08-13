@@ -1372,6 +1372,9 @@ iframe {
 }
 
 @media screen and (max-width: 960px) {
+    .col {
+        margin-bottom: 0;
+    }
 
     .footer .cev_pro_append,
     .footer .col {
