@@ -1940,15 +1940,23 @@ iframe {
     background: #e5eefa
 }
 
-.chev__down {
-    width: 90%;
-    text-align: center;
-    margin-top: -200px !important;
+.anchor__wrapper {
+    bottom: 70px;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    left: 0;
     position: absolute;
+    width: 100%;
+}
+
+.chev__down {
     font-size: 34px;
-    height: 60px;
-    min-width: 60px;
-    cursor: pointer;
+    display: block;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    width: 40px;
 }
 
 .chev-down {
@@ -1960,8 +1968,14 @@ iframe {
 }
 
 @media screen and (max-width: 720px) {
-    .chev__down {
-        margin-top: -180px !important;
+    .anchor__wrapper {
+        bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .anchor__wrapper {
+        bottom: 30px;
     }
 }
 
