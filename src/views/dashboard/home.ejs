@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Start Header -->
+<!-- Header -->
 
 <head>
     <meta charset="utf-8">
@@ -33,149 +33,280 @@
     <!-- WOW Animation -->
     <script src="https://www.delac.io/WOW/dist/wow.min.js"></script>
     <script>
-        wow = new WOW({ mobile: false })
+        wow = new WOW({ mobile: true })
         wow.init();
     </script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
-<!-- End Header -->
-<!-- Start Body -->
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container-fluid">
-            <div class="nav-brand">
-                <a href="/">
-                    <p class="nav-text">ForTheContent</p>
-                </a>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="nav-button fa-solid fa-bars"></span>
-            </button>
+<!-- Body -->
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/privacy">Privacy</a>
-                    </li>
-                    <li class="nav-item">
-                        <button class="login-button" onclick="window.location='/auth'">
-                            Sign in to Dashboard
-                        </button>
-                    </li>
-                </ul>
+<body class="home">
+    <!-- Navbar -->
+    <nav class="nav">
+        <div class="nav__wrapper container container--full ">
+            <ul class="nav__ul">
+                <li class="nav__li nav__logo">
+                    <div class="nav__brand__wrapper">
+                        <a class="nav__brand__a" href="/">
+                            <img class="nav__brand" src="/images/brand_logo.png"> <span class="nav__text">ForTheContent</span>
+                        </a>
+                    </div>
+
+                </li>
+                <li class="menu-item menu-item-type-post_type nav__li nav__li--desktop-only"><a href="/" class="nav__li__a">
+                        <div><span>Home</span></div>
+                    </a></li>
+                <li class="menu-item menu-item-type-post_type nav__li nav__li--desktop-only"><a href="#features" class="nav__li__a">
+                        <div><span>Features</span></div>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="menu-item nav__li nav__li--desktop-only">
+                            <a class="nav__li__a">
+                                <img src="/images/8021791.png">
+                                <div>
+                                    <span>Help & Advice</span>
+                                    <p>Peer-to-peer support from other content creators</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu-item nav__li nav__li--desktop-only">
+                            <a class="nav__li__a">
+                                <img src="/images/2919740.png">
+                                <div>
+                                    <span>Reviews & Feedback</span>
+                                    <p>Up your game with insightful feedback about your content</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu-item nav__li nav__li--desktop-only">
+                            <a class="nav__li__a">
+                                <img src="/images/6811255.png">
+                                <div>
+                                    <span>Useful Resources</span>
+                                    <p>A plethora of resources to help you reach a larger audience</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="menu-item nav__li nav__li--desktop-only">
+                            <a class="nav__li__a">
+                                <img src="/images/3314642.png">
+                                <div><span>Friendly Community</span>
+                                    <p>Unwind and chat with amazing people from all over</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item nav__li nav__li--desktop-only">
+                    <a target="_blank" rel="noopener" href="/privacy" class="nav__li__a">
+                        <div>
+                            <span>Privacy</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav__ul sematic-only">
+                <li class="nav__li nav__li--desktop-only">
+                    <a class="button button--primary button--dense" href="/auth" title="Login">Login To Dashboard</a>
+                </li>
+                <li class="nav__li nav__li--mobile-only nav__li__a">
+                    <button class="nav__mobile nav__button" aria-label="Menu Button Toggle">
+                        <div class="burger">
+                            <div class="burger__canvas">
+                                <div class="burger__canvas__open burger__canvas__open--1"></div>
+                                <div class="burger__canvas__open burger__canvas__open--2"></div>
+                                <div class="burger__canvas__open burger__canvas__open--3"></div>
+                                <div class="burger__canvas__close burger__canvas__close--1"></div>
+                                <div class="burger__canvas__close burger__canvas__close--2"></div>
+                            </div>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="nav__menu nav__menu--hide">
+            <ul class="nav__menu__top">
+                <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                    <a href="/" class="nav__li__a">
+                        <div>
+                            <span>Home</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                    <a href="/privacy" class="nav__li__a">
+                        <div>
+                            <span>Privacy</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav__menu__bottom">
+                <a class="button button--primary button--dense" href="/auth" title="Login">Login To Dashboard</a>
             </div>
         </div>
     </nav>
 
-    <div class="flex-box">
-        <div class="body-wrapper">
-            <div class="main-conainer wow fadeInLeft">
-                <h1 class="content-head">
-                    Maximize Your Potential
-                </h1>
-                <div class="content-description">
-                    ForTheContent is a Discord server for content creators, game developers, musicians, and gamers
-                    alike
-                    <br><br>
-                    We are a peer-to-peer help and advice server that aims to connect like-minded people from all around
-                    the world, together in a friendly and welcoming environment
+    <!-- Main div -->
+    <div class="main-div">
+        <main class="page__content page--transition-fade" data-swup="0">
+            <div class="section__bg-color section__bg-cover  dark section hero__promo">
+                <div class="hero__promo__background-layer">
+                    <img class="hero__promo__background-layer__image" src="/images/div_bottom.png" alt="foreground grey sloping curve">
                 </div>
-                <div class="content-body">
-                    <ul class="body-list">
-                        <li class="body-list-item">
-                            <div class="list-div">
-                                <img class="list-img" src="https://cdn-icons-png.flaticon.com/512/8021/8021791.png" alt="discord server for content creators">
+                <div class="hero__container container container--responsive-padding container--very-wide">
+                    <div class="hero__promo__wrapper">
+                        <div class="hero__promo__text-col content__area wow fadeInLeft" data-wow-duration="0.7s">
+                            <h1 class="hero__promo__heading js--text-rotation">A Discord server for <span class="sub__text">content creators</span></h1>
+                            <div class="component__hero__info hero__info hero__promo__info content__area">
+                                <p>ForTheContent aims to connect content creators from all around the world, together in a friendly and welcoming Discord server</p>
                             </div>
-                            <span>Help & Advice</span>
-                        </li>
-                        <li class="body-list-item">
-                            <div class="list-div">
-                                <img class="list-img" src="https://cdn-icons-png.flaticon.com/512/2919/2919740.png" alt="discord server for content creators">
-                            </div>
-                            <span>Video & GFX Reviews</span>
-                        </li>
-                        <li class="body-list-item">
-                            <div class="list-div">
-                                <img class="list-img" src="https://cdn-icons-png.flaticon.com/512/3314/3314642.png" alt="discord server for content creators">
-                            </div>
-                            <span>Looking For Groups</span>
-                        </li>
-                        <li class="body-list-item">
-                            <div class="list-div">
-                                <img class="list-img" src="https://cdn-icons-png.flaticon.com/512/743/743007.png" alt="discord server for content creators">
-                            </div>
-                            <span>Online Marketplace</span>
-                        </li>
-                    </ul>
 
-                    <div class="body-buttons">
-                        <button class="btn-signin wow pulse" data-wow-iteration="100" onclick="location.href='https://www.discord.gg/forthecontent'">
-                            Join ForTheContent
-                        </button>
+                            <ul class="body-list">
+                                <li class="body-list-item">
+                                    <div class="list-div">
+                                        <img class="list-img" src="/images/8021791.png" alt="discord server for content creators">
+                                    </div>
+                                    <span>Help & Advice</span>
+                                </li>
+                                <li class="body-list-item">
+                                    <div class="list-div">
+                                        <img class="list-img" src="/images/2919740.png" alt="discord server for content creators">
+                                    </div>
+                                    <span>Reviews & Feedback</span>
+                                </li>
+                                <li class="body-list-item">
+                                    <div class="list-div">
+                                        <img class="list-img" src="/images/6811255.png" alt="discord server for content creators">
+                                    </div>
+                                    <span>Useful Resources</span>
+                                </li>
+                                <li class="body-list-item">
+                                    <div class="list-div">
+                                        <img class="list-img" src="/images/3314642.png" alt="discord server for content creators">
+                                    </div>
+                                    <span>Friendly Community</span>
+                                </li>
+                            </ul>
+
+                            <div class="buttons-group">
+                                <div class="buttons-group__wrapper">
+                                    <a class="button button--primary button__col" href="https://discord.gg/forthecontent" target="_blank" rel="noopener">Join The Discord Server</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="iframe-container wow fadeInRight" data-wow-duration="0.7s">
+                            <iframe class="discord-iframe" src="https://discord.com/widget?id=820889004055855144&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Page body -->
+    <div class="wp-block-vbi-section softer-white section__bg-color section" id="features">
+        <div class="container content__area container--very-wide container--responsive-padding">
+
+            <div class="wp-block-vbi-two-column-layout row content__area row--center row--reverse">
+                <div class="wp-block-vbi-column-layout col col--md-6 content__area">
+                    <div class="wp-block-vbi-heading-block heading-block__container content__area heading-block wow fadeInUp" data-wow-duration="0.7s"">
+                        <h2 id=" customize-your-content-get-noticed-more">Connect With Other Creators</h2>
+
+                        <p>Meet and chat with <strong>other content creators</strong>, in all niches, from <strong>all around the world</strong>. <strong>Collaborating</strong> with other content creators who are within your niche is a great way to <strong>gain exposure</strong> and reach a <strong>new audience</strong> who otherwise would have not known about your content</p>
+                    </div>
+                </div>
+                <!-- Image -->
+                <div class="wp-block-vbi-column-layout col col--md-6 content__area">
+                    <div class="wp-block-vbi-animation-block animation-block" data-plugin="lottie-animation">
+                        <div class="lottie__wrapper js--lottie-animation lottie--responsive" style="width:auto">
+                            <div class="lottie lottie--full">
+                                <img class="mock-image wow fadeInUp" data-wow-duration="0.7s" src="/images/discord_mock1.svg" alt="discord server for content creators">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <script>
-                $(".btn-signin").click(function () {
-                    $.post({
-                        url: `/api/join-notify`,
-                        type: 'POST',
-                        headers: { "Content-Type": "application/json" },
-                        dataType: 'json'
-                    });
-                });
-            </script>
+            <div class="body__separator"></div>
 
-            <div class="iframe-container wow fadeInRight">
-                <iframe class="discord-iframe" src="https://discord.com/widget?id=820889004055855144&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            <div class="wp-block-vbi-two-column-layout row content__area row--center">
+                <div class="wp-block-vbi-column-layout col col--md-6 content__area wow fadeInUp" data-wow-duration="0.7s">
+                    <h2 id="h-unlock-powerful-tools-earn-more-engagement">Share Your Content</h2>
+
+                    <p>Growing an audience is never easy, most content creators stuggle to achieve <strong>steady growth</strong> early on, and that is nothing to be worried about. We can help you work through those challenging hurdles of figuring out how to <strong>understand your platforms algorithm</strong>, when the best time to upload your content is, which keywords will <strong>improve your contents SEO</strong>. Not matter matter what the hurdle is, we can work out a solution for you</p>
+                </div>
+                <!-- Image -->
+                <div class="wp-block-vbi-column-layout col col--md-6 content__area">
+                    <div class="wp-block-vbi-animation-block animation-block" data-plugin="lottie-animation">
+                        <div class="lottie__wrapper js--lottie-animation lottie--responsive" style="width:auto">
+                            <div class="lottie lottie--full">
+                                <img class="mock-image wow fadeInUp" data-wow-duration="0.7s" src="/images/discord_mock2.svg" alt="discord server for content creators">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="body__separator"></div>
+
+            <div class="wp-block-vbi-two-column-layout row content__area row--center row--reverse">
+                <div class="wp-block-vbi-column-layout col col--md-6 content__area">
+                    <div class="wp-block-vbi-heading-block heading-block__container content__area heading-block wow fadeInUp" data-wow-duration="0.7s"">
+                        <h2 id=" customize-your-content-get-noticed-more">More exposure with Creator Crew</h2>
+                        <p>
+                            Creator Crew is a give and receive <strong>support system</strong> for YouTube content creators. It will allow you to gain more <strong>views, likes</strong>, and <strong>watch time</strong> on your videos, while also giving back the same type of support to your fellow content creators
+                            <br><br>
+                            Certain video interactions and analytics such as likes and watch time are proven to be <strong>helpful</strong> when it comes to having your <strong>videos shown to others</strong>, in places like the home page and recommended list
+                            <br><br>
+                            In short, you will post a link to your video, other people will watch and like your video and you will do the same for them in return
+                            <br><br>
+                            <a href="/ccinfo">Learn more</a>
+                        </p>
+                    </div>
+                </div>
+                <!-- Image -->
+                <div class="wp-block-vbi-column-layout col col--md-6 content__area">
+                    <div class="wp-block-vbi-animation-block animation-block" data-plugin="lottie-animation">
+                        <div class="lottie__wrapper js--lottie-animation lottie--responsive" style="width:auto">
+                            <div class="lottie lottie--full">
+                                <img class="mock-image wow fadeInUp" data-wow-duration="0.7s" src="/images/phone_mock.svg" alt="discord server for content creators">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer footer--alt dark wow fadeInUp" data-wow-duration="0.7s">
+        <div class="footer__alt__top-section">
+            <div class="footer__alt__wave">
+                <svg viewBox="0 0 1920 128" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer__alt__wave__image ">
+                    <path d="M0 45.9613C966 -128.599 1066.5 302.23 1920 42.2473V0L6.86646e-05 0L0 45.9613Z" fill="#F7F8FA"></path>
+                </svg>
+            </div>
+            <div class="container container--large">
+                <div class="footer__row flex--justify-space-between flex--align-center row--reverse">
+                    <div class="col col--md-6 footer__alt__top-section__image">
+                        <img class="footer-wumpus" src="/images/749054660769218631.png" alt="discord wumpus footer apng">
+                    </div>
+                    <div class="col col--lg-5 col--md-6 content__area">
+                        <h2>Ready to maximize your potential?</h2>
+                        <p>Join our community of <i class="total-member-count"><%= totalMembers %></i> members and find out how ForTheContent can work for you</p>
+                        <p>
+                            <a href="https://discord.gg/forthecontent" target="_blank" class="button button--primary button--with-arrow">Join The Discord Server</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div id="features" class="mock-wrapper-light">
-            <i class="bi bi-arrow-down scroll-down wow fadeInDown" data-wow-delay="1s"></i>
-            <p class="mock-header wow fadeInUp">Connect With Other Creators</p>
-            <p class="mock-description wow fadeInLeft">Meet and chat with other content creators, in all niches, from all around the
-                world</p>
-            <img class="mock-image wow fadeInRight" src="/images/mock_one.png" alt="discord server for content creators">
-        </div>
-
-        <div class="mock-wrapper-dark">
-            <p class="mock-header wow fadeInUp">Share Your Content</p>
-            <p class="mock-description wow fadeInRight">Share your content, creation or project for everyone to see. This is a great
-                way to get more eyes on whatever it is that you are passionately working on</p>
-            <img class="mock-image wow fadeInLeft" src="/images/mock_two.png" alt="discord server for content creators">
-        </div>
-
-        <div class="mock-wrapper-alt">
-            <div class="mock-info">
-                <p class="mock-header-alt wow fadeInUp">More exposure with Creator Crew</p>
-                <p class="mock-description-alt wow fadeInLeft">Creator Crew is a give and receive support system for YouTube content
-                    creators. It will allow you to gain more views, likes, and watch time on your videos, while also
-                    giving back the same type of support to your fellow content creators
-                    <br><br>
-                    Certain video interactions and analytics such as likes and watch time are proven to be helpful when
-                    it comes to having your videos shown to others, in places like the home page and recommended list
-                    <br><br>
-                    In short, you will post a link to your video, other people will watch and like your video and you
-                    will do the same for them in return
-                    <br><br>
-                    <a href="/ccinfo">Learn more</a>
-                </p>
-            </div>
-            <img class="mock-image-alt wow fadeInRight" src="/images/cc_noti.png" alt="discord server for content creators">
-        </div>
-
-        <div class="testimony-wrapper wow fadeInUp">
+        <div class="testimony-wrapper">
             <div class="banner-wrapper">
                 <div class="banner-body"><img src="https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fc2aa8fe060a1d21bd02df_wreath-left.svg" loading="lazy" width="75" height="135" alt="" class="banner-wreath banner-wreath---left" alt="discord server for content creators"><img src="https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fc2aa87fdc8d07ec731fa6_wreath-right.svg" loading="lazy" width="75" height="135" alt="" class="banner-wreath banner-wreath---right" alt="discord server for content creators">
                     <p class="banner-title">Voted "Best Discord Server For Content Creators" - Everyone</p>
@@ -183,58 +314,17 @@
                         growing</p>
                 </div>
             </div>
-
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="review-image" src="/images/review-one.png" alt="discord server for content creators">
-                        <img class="review-image" src="/images/review-three.png" alt="discord server for content creators">
-                        <img class="review-image" src="/images/review-two.png" alt="discord server for content creators">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="review-image" src="/images/review-four.png" alt="discord server for content creators">
-                        <img class="review-image" src="/images/review-five.png" alt="discord server for content creators">
-                        <img class="review-image" src="/images/review-six.png" alt="discord server for content creators">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="review-image" src="/images/review-seven.png" alt="discord server for content creators">
-                        <img class="review-image" src="/images/review-eight.png" alt="discord server for content creators">
-                        <img class="review-image" src="/images/review-nine.png" alt="discord server for content creators">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
         </div>
+    </footer>
 
-        <div class="page-end-wrapper">
-            <div class="footer-wrapper">
-                <h3 class="footer-text">
-                    We also provide help and support for platforms and software such as
-                </h3>
-                <ul class="footer-list">
-                    <li class="footer-list-item"><img src="/images/1384060.webp" alt="discord server for content creators">
-                    </li>
-                    <li class="footer-list-item"><img src="/images/5968819.webp" alt="discord server for content creators">
-                    </li>
-                    <li class="footer-list-item"><img src="/images/3046121.webp" alt="discord server for content creators">
-                    </li>
-                    <li class="footer-list-item"><img src="/images/2yTtQc8.webp" alt="discord server for content creators"></li>
-                    <li class="footer-list-item"><img src="/images/HnKJepU.png" alt="discord server for content creators"></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <!-- Mobile Nav Toggle -->
+    <script>
+        $('.burger').click(function () {
+            $('html').toggleClass('mobile-nav--is-open');
+            $('.nav__menu').slideToggle(150);
+            $('.nav__menu').toggleClass('nav__menu--hide').css({ display: "flex" });
+        })
+    </script>
+</body>
 
-    <%- include('../partials/footer') -%>
+</html>
