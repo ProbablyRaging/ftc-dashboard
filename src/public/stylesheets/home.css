@@ -1998,7 +1998,7 @@ iframe {
 
 @media screen and (max-width: 960px) {
     .footer__row {
-        margin: 1rem 2rem;
+        margin: 1rem 1rem;
         flex-direction: column !important;
     }
 }
