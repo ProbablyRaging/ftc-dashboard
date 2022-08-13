@@ -802,7 +802,7 @@ iframe {
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
-    border-radius: .5rem;
+    border-radius: .3rem;
     border: 1px solid transparent;
     transition: background-color .15s ease-in-out, transform .15s ease-in-out, border-color .15s ease-in-out
 }
@@ -840,7 +840,7 @@ iframe {
 .button.primary,
 .button--primary,
 #affwp-graphs-filter .button {
-    color: #1a1e23;
+    color: var(--text);
     background-color: var(--text-accent);
     border-color: var(--text-accent);
     color: var(--text)
@@ -849,6 +849,7 @@ iframe {
 .button.primary:hover,
 .button--primary:hover,
 #affwp-graphs-filter .button:hover {
+    color: var(--text) !important;
     background-color: #4f5cec;
     border-color: #4f5cec
 }
@@ -865,15 +866,16 @@ iframe {
 
 .button.secondary,
 .button--secondary {
-    color: var(--text);
-    background-color: #6c7789;
-    border-color: #6c7789
+    color: rgb(19, 18, 18);
+    background-color: #61e58f;
+    border-color: #61e58f
 }
 
 .button.secondary:hover,
 .button--secondary:hover {
-    background-color: #2e343c;
-    border-color: #2e343c
+    color: rgb(19, 18, 18);
+    background-color: #57d884;
+    border-color: #57d884
 }
 
 .button.secondary:active,
@@ -2046,7 +2048,7 @@ iframe {
 }
 
 .nav {
-    position: relative;
+    position: sticky;
     top: 0;
     width: 100%;
     height: 4rem;
