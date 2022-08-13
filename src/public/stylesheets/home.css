@@ -855,6 +855,15 @@ iframe {
     height: 50px;
 }
 
+@media screen and (max-width: 960px) {
+    .wp-block-vbi-two-column-layout {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+
 .button.primary,
 .button--primary,
 #affwp-graphs-filter .button {
@@ -1177,6 +1186,15 @@ iframe {
     width: 100%
 }
 
+@media screen and (max-width: 960px) {
+    .container--large {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+
 @media(min-width: 960px) {
     .container {
         width: 1296px;
@@ -1193,7 +1211,7 @@ iframe {
     }
 
     .container--large {
-        width: 1696px
+        width: 1696px;
     }
 
     .container--full {
