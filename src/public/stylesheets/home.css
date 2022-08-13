@@ -2046,12 +2046,11 @@ iframe {
 }
 
 .nav {
-    position: sticky;
+    position: absolute;
     top: 0;
     width: 100%;
     height: 4rem;
     background-color: #1a1e23 !important;
-    border-bottom: 1px solid #6c77893F;
     z-index: 1026;
 }
 
