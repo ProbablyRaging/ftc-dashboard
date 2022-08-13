@@ -16,6 +16,7 @@
 }
 
 .nav__text {
+    color: var(--text);
     transform: scale(1,1.3);
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -792,6 +793,10 @@ iframe {
     transition: background-color .3s ease-in-out
 }
 
+.section__header {
+    color: var(--text-accent);
+}
+
 .button {
     line-height: 1.25rem;
     display: inline-block;
@@ -833,6 +838,10 @@ iframe {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.nav__brand__a a {
+    columns: var(--text);
 }
 
 .nav__brand {
