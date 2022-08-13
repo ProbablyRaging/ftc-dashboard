@@ -1938,9 +1938,9 @@ iframe {
 }
 
 .chev__down {
+    width: 90%;
     text-align: center;
     margin-top: -200px !important;
-    left: 47%;
     position: absolute;
     font-size: 34px;
     height: 60px;
