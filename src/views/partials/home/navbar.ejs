@@ -18,6 +18,11 @@
     }
 
     $(document).ready(function () {
+        if (top.location.pathname !== '/') {
+            console.log(document.documentElement.scrollTop);
+            if (document.documentElement.scrollTop <= 200) window.scrollTo(0, 0);
+        }
+
         if (document.documentElement.scrollTop < 10) {
             $('.nav').attr('style', 'background-color: transparent !important');
         }
@@ -172,8 +177,9 @@
         $('.loader').animate({
             marginTop: 0,
             opacity: 1,
-        })
+        });
     </script>
+
     <% } else { %>
     <div class="loader">
         <% } %>
