@@ -1,5 +1,6 @@
+</div>
 <% if (home) { %>
-<footer class="footer footer--alt wow fadeInUp" data-wow-duration="0.7s">
+<footer class="footer footer--alt">
     <div class="footer__alt__top-section">
         <div class="footer__alt__wave">
             <svg viewBox="0 0 1920 128" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer__alt__wave__image ">
@@ -53,14 +54,6 @@
         $('html').toggleClass('mobile-nav--is-open');
         $('.nav__menu').toggleClass('nav__menu--hide').css({ display: "flex" });
     });
-    
-    $(document).scroll(function () {
-        if (document.documentElement.scrollTop > 10) {
-            $('.nav').css("background-color", '#1a1e23');
-        } else {
-            $('.nav').css("background-color", 'transparent');
-        }
-    });
 </script>
 
 <% } else { %>
@@ -81,25 +74,5 @@
     </div>
 </footer>
 
-<script>
-    $('.burger').click(function () {
-        $('.nav__menu').slideToggle(150);
-        $('html').toggleClass('mobile-nav--is-open');
-        $('.nav__menu').toggleClass('nav__menu--hide').css({ display: "flex" });
-    });
-
-    if (top.location.pathname.split('/')[1] === 'ccinfo' || top.location.pathname.split('/')[1] === 'privacy' || top.location.pathname.split('/')[1] === 'staff_guidelines') {
-        $('.nav').css("background-color", '#1a1e23');
-    }
-
-    $(function () {
-        $('#accordian h3').click(function () {
-            $(this).parent().parent().find('ul').slideUp(150);
-            if (!$(this).next().is(":visible")) {
-                $(this).next().slideDown(150);
-            }
-
-        });
-    });
-</script>
+<script src="/scripts/home.js"></script>
 <% } %>

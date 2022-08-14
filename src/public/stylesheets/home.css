@@ -1135,9 +1135,20 @@ iframe {
     padding-bottom: 6rem
 }
 
+.child__page .section {
+    padding-top: 3rem;
+}
+
 .section__bg-cover {
     background-color: var(--bg);
     background-image: url(/images/bg_lines.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat
+}
+
+.section__bg-cover__sm {
+    background-color: var(--bg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat
@@ -1178,6 +1189,26 @@ iframe {
     width: 1248px;
     margin-left: auto;
     margin-right: auto
+}
+
+.container__sm {
+    padding-left: 24px;
+    padding-right: 24px;
+    max-width: 100%;
+    width: 1248px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+@media screen and (max-width: 960px) {
+    .container__sm {
+        padding-left: 140px;
+        padding-right: 24px;
+        max-width: 100%;
+        width: 1248px;
+        margin-left: 0;
+        margin-right: auto;
+    }
 }
 
 .container--fluid {
@@ -2010,6 +2041,14 @@ iframe {
     background-size: cover
 }
 
+.child__page .footer--alt {
+    background-image: none;
+}
+
+.child__description {
+    font-size: 16px;
+}
+
 .footer__alt__wave {
     position: absolute;
     top: 0;
@@ -2149,6 +2188,7 @@ iframe {
 }
 
 .nav {
+    background-color: var(--bg) !important;
     position: sticky;
     top: 0;
     width: 100%;
@@ -2465,6 +2505,10 @@ iframe {
 .mobile-nav--is-open .nav__menu {
     left: 0;
     opacity: 1
+}
+
+.menu-item span {
+    cursor: pointer;
 }
 
 .menu-item .sub-menu {
@@ -3012,12 +3056,21 @@ li {
     .hero__promo {
         padding-top: 60px !important;
     }
+
+    .child__page .hero__promo {
+        padding-top: 30px !important;
+    }
 }
 
 @media screen and (min-width: 1000px) {
     .hero__promo {
         padding-top: 176px;
         padding-bottom: 192px
+    }
+
+    .child__page .hero__promo {
+        padding-top: 100px;
+        padding-bottom: 80px;
     }
 }
 
@@ -3062,6 +3115,11 @@ li {
         align-items: center;
         text-align: center;
         width: 100%;
+    }
+
+    .child__page .hero__promo__text-col {
+        align-items: flex-start;
+        text-align: start;
     }
 }
 
@@ -3250,6 +3308,12 @@ li {
 .child__page .content__area {
     margin-top: 20px;
     min-width: 80%;
+}
+
+@media screen and (max-width: 1200px) {
+    .child__page .content__area {
+        min-width: 100%;
+    }
 }
 
 .child__page .accordian {

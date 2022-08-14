@@ -1,5 +1,39 @@
+<script>
+    function smoothRedirect(location) {
+        if (top.location.pathname.split('/')[1] === location) return window.scrollTo(0, 0);
+        $('.menu-item').click(function () {
+            $('body').css('background-color', 'var(--bg)');
+            $('.loader').animate({
+                marginTop: 80,
+                opacity: 0,
+            }, 200, function () {
+                window.location.href = `/${location}`
+            });
+        });
+    }
+
+    if (top.location.pathname.split('/')[1] !== '/') {
+        $('.nav').css("background-color", '#1a1e23');
+        $('body').css('background-color', 'var(--bg)');
+    }
+
+    $(document).ready(function () {
+        if (document.documentElement.scrollTop < 10) {
+            $('.nav').attr('style', 'background-color: transparent !important');
+        }
+    });
+
+    $(document).scroll(function () {
+        if (document.documentElement.scrollTop > 10) {
+            $('.nav').css("background-color", '#1a1e23');
+        } else {
+            $('.nav').attr('style', 'background-color: transparent !important');
+        }
+    });
+</script>
+
 <nav class="nav">
-    <div class="nav__wrapper container container--full ">
+    <div class="nav__wrapper container container--full" id="nav">
         <ul class="nav__ul">
             <li class="nav__li nav__logo">
                 <div class="nav__brand__wrapper">
@@ -10,7 +44,7 @@
 
             </li>
             <li class="menu-item nav__li nav__li--desktop-only">
-                <a href="/" class="nav__li__a">
+                <a onclick="smoothRedirect('')" class="nav__li__a">
                     <div><span>Home</span></div>
                 </a>
             </li>
@@ -59,14 +93,14 @@
             </li>
             <% } %>
             <li class="menu-item nav__li nav__li--desktop-only">
-                <a rel="noopener" href="/ccinfo" class="nav__li__a">
+                <a rel="noopener" onclick="smoothRedirect('ccinfo')" class="nav__li__a">
                     <div>
                         <span>Creator Crew</span>
                     </div>
                 </a>
             </li>
             <li class="menu-item nav__li nav__li--desktop-only">
-                <a rel="noopener" href="/privacy" class="nav__li__a">
+                <a rel="noopener" onclick="smoothRedirect('privacy')" class="nav__li__a">
                     <div>
                         <span>Privacy</span>
                     </div>
@@ -130,3 +164,16 @@
         </div>
     </div>
 </nav>
+
+<% if (!home) { %>
+<div class="loader" style="margin-top: 80px; opacity: 0;">
+
+    <script>
+        $('.loader').animate({
+            marginTop: 0,
+            opacity: 1,
+        })
+    </script>
+    <% } else { %>
+    <div class="loader">
+        <% } %>
