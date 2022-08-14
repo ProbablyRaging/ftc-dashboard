@@ -26,6 +26,13 @@
     margin: 0 14px;
 }
 
+ @media screen and (max-width: 360px) {
+    .nav__text {
+        display: none;
+    }
+    
+ }
+
 .nav__li .nav__brand__wrapper a:hover {
     color: var(--text-accent);
 }
@@ -3243,15 +3250,15 @@ li {
     padding-inline-start: 20px;
 }
 
-.child__page .privacy-policy p {
+.child__page .content__body p {
     margin-bottom: 24px;
 }
 
-.child__page .privacy-policy h4 {
+.child__page .content__body h4 {
     margin-bottom: 0;
 }
 
-.child__page .privacy-policy h5 {
+.child__page .content__body h5 {
     font-weight: 700;
     margin-bottom: 0;
     margin-top: 24px;
@@ -3293,8 +3300,8 @@ li {
     margin: 0 4px;
 }
 
-.child__page .privacy-policy {
-    overflow-wrap: anywhere;
+.child__page .content__body {
+    overflow-wrap: break-word;
 }
 
 .child__page .footer__alt__top-section {
