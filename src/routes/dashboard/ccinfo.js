@@ -1,9 +1,11 @@
 require('dotenv').config();
 const router = require('express').Router();
 
-// Privacy Policy root
+// Creator Crew info root
 router.get('/', async (req, res) => {
-    res.render('ccinfo');
+    res.render('ccinfo', {
+        home: false
+    });
 });
 
 module.exports = router;

@@ -114,7 +114,8 @@ app.get('/', async (req, res) => {
         }
 
         res.render('home', {
-            totalMembers: numberWithCommas(data.approximate_member_count)
+            totalMembers: numberWithCommas(data.approximate_member_count),
+            home: true
         });
     }
 });

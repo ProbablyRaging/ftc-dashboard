@@ -1,0 +1,105 @@
+<% if (home) { %>
+<footer class="footer footer--alt wow fadeInUp" data-wow-duration="0.7s">
+    <div class="footer__alt__top-section">
+        <div class="footer__alt__wave">
+            <svg viewBox="0 0 1920 128" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer__alt__wave__image ">
+                <path d="M0 45.9613C966 -128.599 1066.5 302.23 1920 42.2473V0L6.86646e-05 0L0 45.9613Z" fill="#F7F8FA"></path>
+            </svg>
+        </div>
+        <div class="container container--large">
+            <div class="footer__row flex--justify-space-between flex--align-center row--reverse">
+                <div class="col col--md-6 footer__alt__top-section__image">
+                    <img class="footer-wumpus" src="/images/749054660769218631.png" alt="discord wumpus footer apng">
+                </div>
+                <div class="col col--lg-5 col--md-6 content__area">
+                    <h2 class="footer__promo__heading">Ready to create better content?</h2>
+                    <p>There are already <i class="total-member-count"><%= totalMembers %></i> members using ForTheContent and you're missing out</p>
+                    <p>
+                        <button onclick="window.location='https://discord.gg/forthecontent'" target="_blank" class="button button--primary button--with-arrow">
+                            <i class="bi bi-discord button__icon"></i> Join The Discord Server
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimony-wrapper">
+        <div class="banner-wrapper">
+            <div class="banner-body">
+                <img src="https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fc2aa8fe060a1d21bd02df_wreath-left.svg" loading="lazy" width="75" height="135" class="banner-wreath banner-wreath---left" alt="discord server for content creators">
+                <img src="https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fc2aa87fdc8d07ec731fa6_wreath-right.svg" loading="lazy" width="75" height="135" class="banner-wreath banner-wreath---right" alt="discord server for content creators">
+                <p class="banner-title">"the best discord server for content creators"</p>
+                <p class="banner-subtitle"><i>- everyone</i></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer__legal__container footer__legal__container--alt">
+        <div class="container container--large">
+            <div class="footer__legal content__area">
+                <p>© 2022 ForTheContent</p>
+                <p class="footer__separator">I</p> <a href="/privacy">
+                    <p>Privacy Policy</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    $('.burger').click(function () {
+        $('.nav__menu').slideToggle(150);
+        $('html').toggleClass('mobile-nav--is-open');
+        $('.nav__menu').toggleClass('nav__menu--hide').css({ display: "flex" });
+    });
+    
+    $(document).scroll(function () {
+        if (document.documentElement.scrollTop > 10) {
+            $('.nav').css("background-color", '#1a1e23');
+        } else {
+            $('.nav').css("background-color", 'transparent');
+        }
+    });
+</script>
+
+<% } else { %>
+
+<footer class="footer footer--alt dark" data-wow-duration="0.7s">
+    <div class="footer__alt__top-section">
+    </div>
+
+    <div class="footer__legal__container footer__legal__container--alt">
+        <div class="container container--large">
+            <div class="footer__legal content__area">
+                <p>© 2022 ForTheContent</p>
+                <p class="footer__separator">I</p> <a href="/privacy">
+                    <p>Privacy Policy</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    $('.burger').click(function () {
+        $('.nav__menu').slideToggle(150);
+        $('html').toggleClass('mobile-nav--is-open');
+        $('.nav__menu').toggleClass('nav__menu--hide').css({ display: "flex" });
+    });
+
+    if (top.location.pathname.split('/')[1] === 'ccinfo' || top.location.pathname.split('/')[1] === 'privacy' || top.location.pathname.split('/')[1] === 'staff_guidelines') {
+        $('.nav').css("background-color", '#1a1e23');
+    }
+
+    $(function () {
+        $('#accordian h3').click(function () {
+            $(this).parent().parent().find('ul').slideUp(150);
+            if (!$(this).next().is(":visible")) {
+                $(this).next().slideDown(150);
+            }
+
+        });
+    });
+</script>
+<% } %>

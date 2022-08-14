@@ -16,11 +16,9 @@
 
     <title>ForTheContent - A Discord server for content creators</title>
 
-    <link rel="apple-touc{h-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- Bootstrap Icons -->
@@ -35,8 +33,13 @@
     <script>
         wow = new WOW({ mobile: true })
         wow.init();
-    </script>
 
+        function deferredActions() {
+            const submenu = document.getElementById("sub-menu");
+            submenu.style.display = "grid";
+        };
+        window.onload = deferredActions;
+    </script>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
@@ -45,117 +48,14 @@
 
 <body class="home">
     <!-- Navbar -->
-    <nav class="nav">
-        <div class="nav__wrapper container container--full ">
-            <ul class="nav__ul">
-                <li class="nav__li nav__logo">
-                    <div class="nav__brand__wrapper">
-                        <a class="nav__brand__a" href="/">
-                            <img class="nav__brand" src="/images/android-chrome-192x192.png" alt="forthecontent a discord server for content creators"> <span class="nav__text">ForTheContent</span>
-                        </a>
-                    </div>
-
-                </li>
-                <li class="menu-item menu-item-type-post_type nav__li nav__li--desktop-only"><a href="/" class="nav__li__a">
-                        <div><span>Home</span></div>
-                    </a></li>
-                <li class="menu-item menu-item-type-post_type nav__li nav__li--desktop-only"><a href="#features" class="nav__li__a">
-                        <div><span>Features</span></div>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="menu-item nav__li nav__li--desktop-only">
-                            <a class="nav__li__a">
-                                <img src="/images/8021791.png">
-                                <div>
-                                    <span>Help & Advice</span>
-                                    <p>Peer-to-peer support from other content creators</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="menu-item nav__li nav__li--desktop-only">
-                            <a class="nav__li__a">
-                                <img src="/images/2919740.png">
-                                <div>
-                                    <span>Reviews & Feedback</span>
-                                    <p>Up your game with insightful feedback about your content</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="menu-item nav__li nav__li--desktop-only">
-                            <a class="nav__li__a">
-                                <img src="/images/6811255.png">
-                                <div>
-                                    <span>Useful Resources</span>
-                                    <p>A plethora of resources to help you reach a larger audience</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="menu-item nav__li nav__li--desktop-only">
-                            <a class="nav__li__a">
-                                <img src="/images/3314642.png">
-                                <div><span>Friendly Community</span>
-                                    <p>Unwind and chat with amazing people from all over</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-item nav__li nav__li--desktop-only">
-                    <a target="_blank" rel="noopener" href="/privacy" class="nav__li__a">
-                        <div>
-                            <span>Privacy</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav__ul sematic-only">
-                <li class="nav__li nav__li--desktop-only">
-                    <a class="button button--secondary button--dense" href="/auth" title="Login">Login To Dashboard</a>
-                </li>
-                <li class="nav__li nav__li--mobile-only nav__li__a">
-                    <button class="nav__mobile nav__button" aria-label="Menu Button Toggle">
-                        <div class="burger">
-                            <div class="burger__canvas">
-                                <div class="burger__canvas__open burger__canvas__open--1"></div>
-                                <div class="burger__canvas__open burger__canvas__open--2"></div>
-                                <div class="burger__canvas__open burger__canvas__open--3"></div>
-                                <div class="burger__canvas__close burger__canvas__close--1"></div>
-                                <div class="burger__canvas__close burger__canvas__close--2"></div>
-                            </div>
-                        </div>
-                    </button>
-                </li>
-            </ul>
-        </div>
-        <div class="nav__menu nav__menu--hide">
-            <ul class="nav__menu__top">
-                <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
-                    <a href="/" class="nav__li__a">
-                        <div>
-                            <span>Home</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
-                    <a href="/privacy" class="nav__li__a">
-                        <div>
-                            <span>Privacy</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            <div class="nav__menu__bottom">
-                <a class="button button--secondary button--dense" href="/auth" title="Login">Login To Dashboard</a>
-            </div>
-        </div>
-    </nav>
+    <%- include('../partials/home/navbar') -%>
 
     <!-- Main div -->
     <div class="main-div">
         <main class="page__content page--transition-fade" data-swup="0">
-            <div class="section__bg-color section__bg-cover  dark section hero__promo">
+            <div class="section__bg-color section__bg-cover section hero__promo">
                 <div class="hero__promo__background-layer">
-                    <img class="hero__promo__background-layer__image" src="/images/div_bottom.png" alt="foreground grey sloping curve">
+                    <img class="hero__promo__background-layer__image div__bottom" src="/images/div_bottom.png" alt="foreground grey sloping curve">
                 </div>
                 <div class="hero__container container container--responsive-padding container--very-wide">
                     <div class="hero__promo__wrapper">
@@ -194,13 +94,14 @@
 
                             <div class="buttons-group">
                                 <div class="buttons-group__wrapper">
-                                    <a class="button button--primary button__col" href="https://discord.gg/forthecontent" target="_blank" rel="noopener">Join The Discord Server</a>
+                                    <button class="button button--primary button__col" onclick="window.location='https://discord.gg/forthecontent'" target="_blank" rel="noopener">
+                                        <i class="bi bi-discord button__icon"></i> Join The Discord Server</button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="iframe-container wow fadeInRight" data-wow-duration="0.7s">
-                            <iframe class="discord-iframe" src="https://discord.com/widget?id=820889004055855144&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                            <iframe class="discord-iframe" id="discord-iframe" src="https://discord.com/widget?id=820889004055855144&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                         </div>
 
                         <div class="anchor__wrapper">
@@ -210,14 +111,14 @@
                                 </div>
                             </a>
                         </div>
-
                     </div>
                 </div>
             </div>
+        </main>
     </div>
 
     <!-- Page body -->
-    <div class="wp-block-vbi-section softer-white section__bg-color section" id="features">
+    <div class="wp-block-vbi-section softer-white section__bg-color section body__section" id="features">
         <div class="container content__area container--very-wide container--responsive-padding">
 
             <div class="wp-block-vbi-two-column-layout row content__area row--center row--reverse">
@@ -267,11 +168,9 @@
                     <div class="wp-block-vbi-heading-block heading-block__container content__area heading-block wow fadeInUp" data-wow-duration="0.7s"">
                         <h2 class=" section__header">More Exposure With Creator Crew</h2>
                         <p>
-                            Creator Crew is a give and receive <strong>support system</strong> for YouTube content creators. It will allow you to gain more <strong>views, likes</strong>, and <strong>watch time</strong> on your videos, while also giving back the same type of support to your fellow content creators
+                            Creator Crew is a <strong>support system</strong> like no other. It will allow you to gain more <strong>views, likes</strong>, and <strong>watch time</strong> on your videos, while also giving back the same type of support to your fellow content creators
                             <br><br>
                             Certain video interactions and analytics such as likes and watch time are proven to be <strong>helpful</strong> when it comes to having your <strong>videos shown to others</strong>, in places like the home page and recommended list
-                            <br><br>
-                            In short, you will post a link to your video, other people will watch and like your video and you will do the same for them in return
                             <br><br>
                             <a href="/ccinfo">Learn more</a>
                         </p>
@@ -292,66 +191,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer footer--alt dark wow fadeInUp" data-wow-duration="0.7s">
-        <div class="footer__alt__top-section">
-            <div class="footer__alt__wave">
-                <svg viewBox="0 0 1920 128" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer__alt__wave__image ">
-                    <path d="M0 45.9613C966 -128.599 1066.5 302.23 1920 42.2473V0L6.86646e-05 0L0 45.9613Z" fill="#F7F8FA"></path>
-                </svg>
-            </div>
-            <div class="container container--large">
-                <div class="footer__row flex--justify-space-between flex--align-center row--reverse">
-                    <div class="col col--md-6 footer__alt__top-section__image">
-                        <img class="footer-wumpus" src="/images/749054660769218631.png" alt="discord wumpus footer apng">
-                    </div>
-                    <div class="col col--lg-5 col--md-6 content__area">
-                        <h2>Ready to maximize your potential?</h2>
-                        <p>Join our community of <i class="total-member-count"><%= totalMembers %></i> members and find out how ForTheContent can work for you</p>
-                        <p>
-                            <a href="https://discord.gg/forthecontent" target="_blank" class="button button--primary button--with-arrow">Join The Discord Server</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="testimony-wrapper">
-            <div class="banner-wrapper">
-                <div class="banner-body"><img src="https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fc2aa8fe060a1d21bd02df_wreath-left.svg" loading="lazy" width="75" height="135" alt="" class="banner-wreath banner-wreath---left" alt="discord server for content creators"><img src="https://uploads-ssl.webflow.com/61faf45c39183b1a95adaaec/61fc2aa87fdc8d07ec731fa6_wreath-right.svg" loading="lazy" width="75" height="135" alt="" class="banner-wreath banner-wreath---right" alt="discord server for content creators">
-                    <p class="banner-title">"the best discord server for content creators"</p>
-                    <p class="banner-subtitle"><i>- everyone</i></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer__legal__container footer__legal__container--alt">
-            <div class="container container--large">
-                <div class="footer__legal content__area">
-                    <p>© 2022 ForTheContent</p>
-                    <p class="footer__separator">I</p> <a href="/privacy">
-                        <p>Privacy Policy</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Mobile Nav Toggle -->
-    <script>
-        $(document).scroll(function () {
-            if (document.documentElement.scrollTop > 10) {
-                $('.nav').css("background-color", '#1a1e23');
-            } else {
-                $('.nav').css("background-color", 'transparent');
-            }
-        });
-
-        $('.burger').click(function () {
-            $('html').toggleClass('mobile-nav--is-open');
-            $('.nav__menu').slideToggle(150);
-            $('.nav__menu').toggleClass('nav__menu--hide').css({ display: "flex" });
-        });
-    </script>
+    <%- include('../partials/home/footer') -%>
 </body>
 
 </html>

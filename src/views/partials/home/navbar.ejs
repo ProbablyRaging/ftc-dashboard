@@ -1,0 +1,132 @@
+<nav class="nav">
+    <div class="nav__wrapper container container--full ">
+        <ul class="nav__ul">
+            <li class="nav__li nav__logo">
+                <div class="nav__brand__wrapper">
+                    <a class="nav__brand__a" href="/">
+                        <img class="nav__brand" src="/images/android-chrome-192x192.png" alt="forthecontent a discord server for content creators"> <span class="nav__text">ForTheContent</span>
+                    </a>
+                </div>
+
+            </li>
+            <li class="menu-item nav__li nav__li--desktop-only">
+                <a href="/" class="nav__li__a">
+                    <div><span>Home</span></div>
+                </a>
+            </li>
+            <% if (home) { %>
+            <li class="menu-item nav__li nav__li--desktop-only">
+                <a href="/#features" class="nav__li__a">
+                    <div><span>Features</span></div>
+                </a>
+                <ul class="sub-menu" id="sub-menu">
+                    <li class="menu-item nav__li nav__li--desktop-only">
+                        <a class="nav__li__a">
+                            <img src="/images/8021791.png" alt="discord server for content creators">
+                            <div>
+                                <span>Help & Advice</span>
+                                <p>Peer-to-peer support from other content creators</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu-item nav__li nav__li--desktop-only">
+                        <a class="nav__li__a">
+                            <img src="/images/2919740.png" alt="discord server for content creators">
+                            <div>
+                                <span>Reviews & Feedback</span>
+                                <p>Up your game with insightful feedback about your content</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu-item nav__li nav__li--desktop-only">
+                        <a class="nav__li__a">
+                            <img src="/images/6811255.png" alt="discord server for content creators">
+                            <div>
+                                <span>Useful Resources</span>
+                                <p>A plethora of resources to help you reach a larger audience</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu-item nav__li nav__li--desktop-only">
+                        <a class="nav__li__a">
+                            <img src="/images/3314642.png" alt="discord server for content creators">
+                            <div><span>Friendly Community</span>
+                                <p>Unwind and chat with amazing people from all over</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <% } %>
+            <li class="menu-item nav__li nav__li--desktop-only">
+                <a rel="noopener" href="/ccinfo" class="nav__li__a">
+                    <div>
+                        <span>Creator Crew</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu-item nav__li nav__li--desktop-only">
+                <a rel="noopener" href="/privacy" class="nav__li__a">
+                    <div>
+                        <span>Privacy</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav__ul sematic-only">
+            <% if (!home) { %>
+            <li class="nav__li nav__li--desktop-only">
+                <button class="button button--primary button--dense" onclick="window.location='https://discord.gg/forthecontent'">Join The Discord Server</button>
+            </li>
+            <% } %>
+            <li class="nav__li nav__li--desktop-only">
+                <button class="button button--secondary button--dense" onclick="window.location='/auth'">Login To Dashboard</button>
+            </li>
+            <li class="nav__li nav__li--mobile-only nav__li__a">
+                <button class="nav__mobile nav__button" aria-label="Menu Button Toggle">
+                    <div class="burger">
+                        <div class="burger__canvas">
+                            <div class="burger__canvas__open burger__canvas__open--1"></div>
+                            <div class="burger__canvas__open burger__canvas__open--2"></div>
+                            <div class="burger__canvas__open burger__canvas__open--3"></div>
+                            <div class="burger__canvas__close burger__canvas__close--1"></div>
+                            <div class="burger__canvas__close burger__canvas__close--2"></div>
+                        </div>
+                    </div>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="nav__menu nav__menu--hide">
+        <ul class="nav__menu__top">
+            <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                <a href="/" class="nav__li__a">
+                    <div>
+                        <span>Home</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                <a href="/ccinfo" class="nav__li__a">
+                    <div>
+                        <span>Creator Crew</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                <a href="/privacy" class="nav__li__a">
+                    <div>
+                        <span>Privacy</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="nav__menu__bottom">
+            <% if (!home) { %>
+            <button class="button button--primary button--dense" onclick="window.location='https://discord.gg/forthecontent'">Discord Server</button>
+            <div class="nav__menu__separator"></div>
+            <% } %>
+            <button class="button button--secondary button--dense" onclick="window.location='/auth'">Dashboard</button>
+        </div>
+    </div>
+</nav>
