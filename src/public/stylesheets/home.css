@@ -1154,6 +1154,18 @@ iframe {
     background-repeat: no-repeat
 }
 
+@media screen and (max-width: 1000px) {
+    .section__bg-cover {
+        height: 720px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .section__bg-cover {
+        height: 550px;
+    }
+}
+
 .section__bg-cover__sm {
     background-color: var(--bg);
     background-size: cover;
@@ -2242,6 +2254,12 @@ iframe {
     white-space: nowrap
 }
 
+@media screen and (max-width: 1200px) {
+    .nav__li-features {
+        display: none !important;
+    }
+}
+
 .nav__li__a {
     color: var(--text-alt);
     font-weight: 500
@@ -2840,10 +2858,18 @@ li {
 }
 
 .lottie__wrapper {
-    width: 100%;
+    margin-left: 70px;
+    margin-top: -30px;
+    width: 950px;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .lottie__wrapper {
+        display: none;
+    }
 }
 
 .lottie--responsive {
@@ -3100,14 +3126,14 @@ li {
 .hero__promo__wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 300px
+    /* gap: 300px */
 }
 
-@media screen and (max-width: 1400px) {
+/* @media screen and (max-width: 1400px) {
     .hero__promo__wrapper {
         gap: 125px
     }
-}
+} */
 
 .hero__promo__text-col {
     width: 41.6666666667%;
@@ -3160,7 +3186,6 @@ li {
 }
 
 @media screen and (min-width: 1600px) {
-
     .hero__promo__foreground-image,
     .hero__promo__foreground__animation {
         left: calc(50% + 1.5rem);
