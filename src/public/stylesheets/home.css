@@ -14,6 +14,11 @@
     --text-accent: #5865F2;
 }
 
+*::selection {
+    background: var(--text-accent) !important;
+    color: var(--text);
+}
+
 .wow {
     visibility: hidden;
 }
@@ -26,12 +31,12 @@
     margin: 0 14px;
 }
 
- @media screen and (max-width: 360px) {
+@media screen and (max-width: 360px) {
     .nav__text {
         display: none;
     }
-    
- }
+
+}
 
 .nav__li .nav__brand__wrapper a:hover {
     color: var(--text-accent);
@@ -3186,6 +3191,7 @@ li {
 }
 
 @media screen and (min-width: 1600px) {
+
     .hero__promo__foreground-image,
     .hero__promo__foreground__animation {
         left: calc(50% + 1.5rem);
