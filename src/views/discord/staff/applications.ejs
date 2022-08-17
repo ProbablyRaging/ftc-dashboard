@@ -24,7 +24,7 @@
                 <div class="app-wrapper">
                     <div class="app-user">
                         <i class="fa-solid fa-plus app-user-expand"></i>
-                        <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp?size=512" class="app-img" alt="...">
+                        <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp?size=512" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'" class="app-img">
                         <p class="app-username">
                             <%= username %>#<%= discriminator %>
                         </p>

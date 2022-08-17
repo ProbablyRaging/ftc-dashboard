@@ -65,7 +65,7 @@
                 <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp" alt="" width="32"
-                        height="32" class="rounded-circle me-2">
+                        height="32" class="rounded-circle me-2" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
                     <%= username.slice(0, 20) %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
