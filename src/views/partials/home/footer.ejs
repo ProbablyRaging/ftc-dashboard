@@ -11,7 +11,12 @@
             <div class="footer__row flex--justify-space-between flex--align-center row--reverse">
                 <div class="col col--md-6 footer__alt__top-section__image">
                     <div class="footer__lottie">
-                        <lottie-player src="/lotties/wumpus_wave.json" background="transparent" speed="1" loop autoplay></lottie-player>
+                        <% const lotties = ['wumpus_celebrate', 'wumpus_wave', 'wumpus_joy', 'wumpus_smile'] %>
+                        <% function randNum(min, max) { %>
+                        <% return Math.floor(Math.random() * (max - min + 1) + min) %>
+                        <% } %>
+                        <% const ranLottie = lotties[randNum(0, lotties.length - 1)] %>
+                        <lottie-player src="/lotties/<%= ranLottie %>.json" background="transparent" speed="1" loop autoplay></lottie-player>
                     </div>
                 </div>
                 <div class="col col--lg-5 col--md-6 content__area">
