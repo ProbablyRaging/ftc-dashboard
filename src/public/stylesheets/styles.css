@@ -97,7 +97,7 @@ body {
     line-height: inherit;
     margin: 0;
     background: var(--bg) !important;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Red Hat Display', sans-serif;
     font-size: 14px;
     line-height: 23px;
     margin: 0px auto;
@@ -108,7 +108,7 @@ body {
 
 strong {
     color: var(--text-alt);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 code {
@@ -459,7 +459,7 @@ hr {
 }
 
 .content-box-button:hover {
-    filter: brightness(0.8);
+    filter: brightness(0.9);
     box-shadow: rgb(0 0 0 / 20%) 2px 4px 4px;
 
 }
@@ -729,7 +729,7 @@ hr {
 }
 
 .app-wrapper:hover {
-    background: var(--bg-alt);
+    filter: brightness(0.9);
 }
 
 .app-user {
@@ -801,6 +801,10 @@ hr {
     background: #76c08c;
 }
 
+.app-votes .vote-yes:hover {
+    filter: brightness(0.9);
+}
+
 .app-votes .vote-no {
     display: flex;
     gap: 4px;
@@ -808,6 +812,10 @@ hr {
     border-radius: 4px;
     color: var(--nav-text);
     background: #b46060;
+}
+
+.app-votes .vote-no:hover {
+    filter: brightness(0.9);
 }
 
 .tooltip {
