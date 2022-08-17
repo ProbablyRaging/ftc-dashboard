@@ -30,11 +30,11 @@ passport.use(new discordStrategy({
 
         // If user is not a server member
         if (discordUserData.code === 10007) {
-            done(null, null)
+            return done(null, null);
         }
 
         // If user is a staff member
-        if (discordUserData?.roles.length > 0 && discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
+        if (discordUserData?.roles?.length > 0 && discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
             // If they already have a database entry
             if (user) {
                 await discordUser.findOneAndUpdate({
@@ -103,7 +103,6 @@ passport.use(new discordStrategy({
             done(null, null)
         }
     } catch (err) {
-        console.error(err);
         done(err, null);
     }
 }));

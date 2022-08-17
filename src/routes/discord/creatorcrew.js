@@ -66,8 +66,13 @@ router.get('/', async (req, res) => {
             });
         }
     } else {
-        req.session.error = 'You are not a Creator Crew member';
-        res.redirect('/error');
+        if (!req.user) {
+            req.session.error = 'You are not logged in';
+            res.redirect('/error');
+        } else {
+            req.session.error = 'You are not a Creator Crew member';
+            res.redirect('/error');
+        }
     }
 });
 
