@@ -1,7 +1,12 @@
+<script>
+    $(document).on('click', '.no-closer', function (e) {
+        e.stopPropagation();
+    });
+</script>
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark nav-bar" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none navbrand">
         <!-- <span class="fs-4 nav-text">ForTheC</span><img src="/images/ch_logo.svg" alt="" class="brand-logo rgb"><span class="fs-4 nav-text">ntent</span> -->
-        <span class="fs-4 nav-text">ForThe<br>Content</span>
+        <span class="fs-4 nav-text">ForTheContent</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -10,7 +15,7 @@
                 <i class="bi bi-house nav-icon"></i>
                 Dashboard
             </a>
-        </li> 
+        </li>
         <% if (isStaff) { %>
         <li class="nav-item">
             <a href="/applications" class="nav-link" aria-current="page">
@@ -59,18 +64,15 @@
     </ul>
     <hr>
     <div class="dropdown">
-        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp" alt="" width="32" height="32"
-                class="rounded-circle me-2 dropdown-user" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://cdn.discordapp.com/avatars/<%= userId %>/<%= avatar %>.webp" alt="" width="32" height="32" class="rounded-circle me-2 dropdown-user" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
             <%= username.slice(0, 20) %>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
             <div class="theme-switch">
                 <p class="theme-switch-title" id="theme-switch-title">Light On</p>
                 <div class="form-check form-switch">
-                    <input class="form-check-input light" type="checkbox" role="switch" id="theme-switch"
-                        onchange="toggleTheme()">
+                    <input class="form-check-input light" type="checkbox" role="switch" id="theme-switch" onchange="toggleTheme()">
                 </div>
             </div>
             <div class="color-switch">

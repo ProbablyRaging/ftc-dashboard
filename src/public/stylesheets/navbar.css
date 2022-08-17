@@ -11,14 +11,16 @@
     margin-right: 4px;
 }
 
+.mb-md-0 {
+    justify-content: center;
+    margin-right: 0 !important;
+}
+
 .nav-text {
-    font-family: ftc-font, sans-serif;
-    font-size: 22px !important;
-    text-align: center;
-    margin: 15px 43%;
+    font-size: 22px!important;
     font-weight: 600;
+    text-align: center;
     color: #fff;
-    transform: scale(1.1, 1.5);
     text-transform: uppercase;
     letter-spacing: 4px;
 }
