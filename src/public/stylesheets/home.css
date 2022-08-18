@@ -3383,6 +3383,7 @@ li {
 @media screen and (max-width: 1200px) {
     .child__page .content__area {
         min-width: 100%;
+        padding-top: 20px;
     }
 }
 
