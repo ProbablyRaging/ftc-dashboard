@@ -2034,6 +2034,12 @@ iframe {
     width: 100%;
 }
 
+@media screen and (max-width: 960px) {
+    .anchor__wrapper {
+        display: none;
+    }
+}
+
 .chev__down {
     font-size: 34px;
     display: block;
@@ -2889,6 +2895,13 @@ li {
 
 .footer__lottie {
     margin-top: -50px;
+}
+
+@media screen and (max-width: 1440px) {
+    .lottie__wrapper {
+        margin-top: 25px;
+        width: 720px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
