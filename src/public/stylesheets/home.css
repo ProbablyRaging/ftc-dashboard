@@ -3375,6 +3375,7 @@ li {
 }
 
 .child__page .content__area {
+    word-break: break-word;
     margin-top: 20px;
     min-width: 80%;
 }
