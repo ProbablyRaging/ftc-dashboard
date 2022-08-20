@@ -120,11 +120,10 @@ app.get('/', async (req, res) => {
     }
 });
 
-// middleware to catch non-existing routes
+// Middleware to catch non-existing routes
 app.use( function(req, res, next) {
     req.session.error = 'This page does not exist';
     res.redirect('/error');
-
 });
 
 app.listen(port, () => {

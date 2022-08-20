@@ -36,10 +36,6 @@ const userSchema = new mongoose.Schema({
     isStaff: {
         type: Boolean,
         required: true
-    },
-    dataLog: {
-        type: Array,
-        required: false
     }
 });
 
