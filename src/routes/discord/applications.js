@@ -7,7 +7,7 @@ const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 // Applications root
 router.get('/', async (req, res) => {
     if (!req?.user?.isStaff) return res.redirect('/apply');
-    const results = await staffApplicationSchema.find().limit(9).sort({ '_id': -1 });
+    const results = await staffApplicationSchema.find().limit(5).sort({ '_id': -1 });
 
     res.render('applications', {
         isStaff: isStaff(req),

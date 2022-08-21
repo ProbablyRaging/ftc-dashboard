@@ -13,19 +13,20 @@ if (top.location.pathname.split('/')[1] === 'creatorcrew') {
         const myDate = new Date();
         const nowDate = myDate.setSeconds(myDate.getSeconds() + 1);
         // Check if access token is expired and present a sign in modal if it is
-        if (isOwner != 'true') {
-            if (userExpires <= nowDate) {
-                $('.cc-videos').hide();
-                $('.pagination-wrapper').hide();
-                $('body').addClass('modal-open show').css({ 'overflow': 'hidden', 'padding-right': '0px' }).attr({ 'data-bs-overflow': 'hidden', 'data-bs-padding-right': '0px' });
-                $('body').append('<div class="modal-backdrop fade"></div>');
-                $('.modal-backdrop').fadeIn(300).addClass('show');
-                $("#logInModal").fadeIn(800).addClass('show').css({ 'display': 'block' }).attr({ 'aria-modal': 'true', 'role': 'dialog' });
-                isUserGoogleAuthed = false;
-            } else {
-                isUserGoogleAuthed = true;
-            }
+        // if (isOwner != 'true') {
+        if (userExpires <= nowDate) {
+            $('.cc-videos').hide();
+            $('.pagination-wrapper').hide();
+            $('body').addClass('modal-open show').css({ 'overflow': 'hidden', 'padding-right': '0px' }).attr({ 'data-bs-overflow': 'hidden', 'data-bs-padding-right': '0px' });
+            $('body').append('<div class="modal-backdrop fade"></div>');
+            $('.modal-backdrop').fadeIn(300).addClass('show');
+            $("#logInModal").fadeIn(800).addClass('show').css({ 'display': 'block' }).attr({ 'aria-modal': 'true', 'role': 'dialog' });
+            isUserGoogleAuthed = false;
+        } else {
+            isUserGoogleAuthed = true;
+            $('.btn-google-signout').css('display', 'block');
         }
+        // }
     } else {
         // If user doesn't have an access token, present them with a sign in modal
         $('body').addClass('modal-open show').css({ 'overflow': 'hidden', 'padding-right': '0px' }).attr({ 'data-bs-overflow': 'hidden', 'data-bs-padding-right': '0px' });
@@ -363,6 +364,20 @@ function removeVideoFromQueue(videoId) {
             $(`#${videoId}-video-wrapper`).hide(200)
             const toast = new bootstrap.Toast(removedSuccessToast);
             toast.show();
+        }
+    });
+}
+
+function googleSignOut() {
+    // Send a POST to sign out of Google
+    $.post({
+        url: `/google/signout`,
+        type: 'POST',
+        headers: { "Content-Type": "application/json" },
+        dataType: 'json'
+    }, (data) => {
+        if (data.status === 'ok') {
+            location.reload();
         }
     });
 }

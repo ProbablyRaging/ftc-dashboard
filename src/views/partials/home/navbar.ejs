@@ -19,7 +19,6 @@
 
     $(document).ready(function () {
         if (top.location.pathname !== '/') {
-            console.log(document.documentElement.scrollTop);
             if (document.documentElement.scrollTop <= 200) window.scrollTo(0, 0);
         }
 
@@ -118,9 +117,15 @@
                 <button class="button button--primary button--dense" onclick="window.location='https://discord.gg/forthecontent'">Join The Discord Server</button>
             </li>
             <% } %>
+            <% if (user) { %>
+            <li class="nav__li nav__li--desktop-only">
+                <a href="/dashboard" class="nav__li__a to-dashboard"><i class="bi bi-box-arrow-in-right to-dashboard-i"></i> <%= user.username %>#<%= user.discriminator %></a>
+            </li>
+            <% } else { %>
             <li class="nav__li nav__li--desktop-only">
                 <button class="button button--secondary button--dense" onclick="window.location='/auth'">Login To Dashboard</button>
             </li>
+            <% } %>
             <li class="nav__li nav__li--mobile-only nav__li__a">
                 <button class="nav__mobile nav__button" aria-label="Menu Button Toggle">
                     <div class="burger">
@@ -165,7 +170,11 @@
             <button class="button button--primary button--dense" onclick="window.location='https://discord.gg/forthecontent'">Discord Server</button>
             <div class="nav__menu__separator"></div>
             <% } %>
+            <% if (user) { %>
+            <a href="/dashboard" class="nav__li__a to-dashboard"><i class="bi bi-box-arrow-in-right to-dashboard-i"></i> Dashboard</a>
+            <% } else { %>
             <button class="button button--secondary button--dense" onclick="window.location='/auth'">Dashboard</button>
+            <% } %>
         </div>
     </div>
 </nav>

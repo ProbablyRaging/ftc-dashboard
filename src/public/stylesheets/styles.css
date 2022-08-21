@@ -482,7 +482,7 @@ hr {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 24px;
     font-weight: var(--weight-alt);
     margin-bottom: 8px;
@@ -1028,6 +1028,30 @@ hr {
     height: 40px;
     width: 180px;
     margin: 15px;
+    border-radius: 1px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .15s;
+    transition: all .15s;
+    -webkit-appearance: none;
+    color: #000;
+    background: #ffffff;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-radius: 2px;
+}
+
+.btn-google-signout {
+    margin-left: auto;
+    margin-bottom: 14px;
+    height: 40px;
+    width: 180px;
     border-radius: 1px;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
     -moz-box-sizing: border-box;

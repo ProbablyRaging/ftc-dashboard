@@ -3497,3 +3497,14 @@ li {
         padding-top: 0;
     }
 }
+
+.to-dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+.to-dashboard-i {
+    font-size: 20px;
+}

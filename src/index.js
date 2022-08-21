@@ -103,25 +103,22 @@ app.use('/creatorcrew', creatorcrewRoute);
 app.use('/error', errorRoute);
 
 app.get('/', async (req, res) => {
-    if (req.user) {
-        res.redirect('/dashboard');
-    } else {
-        const resolve = await fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}?with_counts=true`, { headers: { "Authorization": `${process.env.API_TOKEN}` } });
-        const data = await resolve.json();
+    const resolve = await fetch(`https://discord.com/api/v9/guilds/${process.env.SERVER_ID}?with_counts=true`, { headers: { "Authorization": `${process.env.API_TOKEN}` } });
+    const data = await resolve.json();
 
-        function numberWithCommas(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
-        res.render('home', {
-            totalMembers: numberWithCommas(data.approximate_member_count),
-            home: true
-        });
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+
+    res.render('home', {
+        home: true,
+        user: req?.user,
+        totalMembers: numberWithCommas(data.approximate_member_count),
+    });
 });
 
 // Middleware to catch non-existing routes
-app.use( function(req, res, next) {
+app.use(function (req, res, next) {
     req.session.error = 'This page does not exist';
     res.redirect('/error');
 });
