@@ -6,7 +6,7 @@
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 10px;
     background: var(--main-accent-color);
 }
 
