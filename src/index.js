@@ -50,6 +50,9 @@ const applyRoute = require('./routes/discord/apply');
 const leaderboardsRoute = require('./routes/discord/leaderboards');
 const creatorcrewRoute = require('./routes/discord/creatorcrew');
 
+// BLog Routes
+const blogRoute = require('./routes/blog/blog');
+
 // Error Routes
 const errorRoute = require('./routes/dashboard/error');
 
@@ -69,7 +72,8 @@ app.set('views', [
     path.join(__dirname, '/views/dashboard'),
     path.join(__dirname, '/views/dashboard/admincp'),
     path.join(__dirname, '/views/discord'),
-    path.join(__dirname, '/views/discord/staff')
+    path.join(__dirname, '/views/discord/staff'),
+    path.join(__dirname, '/views/blog')
 ]);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -98,6 +102,9 @@ app.use('/applications', applicationsRoute);
 app.use('/apply', applyRoute);
 app.use('/leaderboards', leaderboardsRoute);
 app.use('/creatorcrew', creatorcrewRoute);
+
+// Blog Middleware
+app.use('/blog', blogRoute);
 
 // Error Middleware
 app.use('/error', errorRoute);
