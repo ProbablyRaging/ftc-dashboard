@@ -114,7 +114,7 @@ router.post('/publish', isAuthortized, async (req, res) => {
         webhook = await response.json();
         // Send webhook
         const body = {
-            content: `${req.body.url}`
+            content: `[${req.body.title}](${req.body.url})`
         };
         await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}/${webhook.token}`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
             // Delete webhook
