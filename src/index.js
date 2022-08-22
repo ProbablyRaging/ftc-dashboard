@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const minifyCSS = require('express-minify');
 const minifyHTML = require('express-minify-html-2');
+const compression = require('compression')
 const port = process.env.PORT;
 const session = require('express-session');
 const mongoStore = require('connect-mongo');
@@ -31,6 +32,7 @@ app.use(minifyHTML({
         minifyJS: true
     }
 }));
+app.use(compression());
 
 // Auth Routes
 const authRoute = require('./routes/auth/auth');
