@@ -34,6 +34,12 @@ app.use(minifyHTML({
     }
 }));
 
+// Home
+const ccinfoRoute = require('./routes/home/ccinfo');
+const staffGuidelinesRoute = require('./routes/home/staff_guidelines');
+const privacyRoute = require('./routes/home/privacy');
+const resourcesRoute = require('./routes/home/resources');
+
 // Auth Routes
 const authRoute = require('./routes/auth/auth');
 const apiRoute = require('./routes/auth/api');
@@ -41,9 +47,6 @@ const googleRoute = require('./routes/auth/google');
 
 // Dashboard Routes
 const dashboardRoute = require('./routes/dashboard/dashboard');
-const ccinfoRoute = require('./routes/dashboard/ccinfo');
-const staffGuidelinesRoute = require('./routes/dashboard/staff_guidelines');
-const privacyRoute = require('./routes/dashboard/privacy');
 const adminCPRoute = require('./routes/dashboard/admincp');
 
 // Discord Routes
@@ -53,7 +56,7 @@ const leaderboardsRoute = require('./routes/discord/leaderboards');
 const creatorcrewRoute = require('./routes/discord/creatorcrew');
 
 // Error Routes
-const errorRoute = require('./routes/dashboard/error');
+const errorRoute = require('./routes/error');
 
 app.use(session({
     secret: 'some secret',
@@ -68,6 +71,9 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 app.set('views', [
+    path.join(__dirname, '/views'),
+    path.join(__dirname, '/views/home'),
+    path.join(__dirname, '/views/home/resources'),
     path.join(__dirname, '/views/dashboard'),
     path.join(__dirname, '/views/dashboard/admincp'),
     path.join(__dirname, '/views/discord'),
@@ -83,6 +89,12 @@ app.use(passport.session());
 // Favicon
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+// Home Middleware
+app.use('/ccinfo', ccinfoRoute);
+app.use('/staff_guidelines', staffGuidelinesRoute);
+app.use('/privacy', privacyRoute);
+app.use('/resources', resourcesRoute);
+
 // Auth Middleware
 app.use('/auth', authRoute);
 app.use('/api', apiRoute);
@@ -90,9 +102,6 @@ app.use('/google', googleRoute);
 
 // Dashboard Middleware
 app.use('/dashboard', dashboardRoute);
-app.use('/ccinfo', ccinfoRoute);
-app.use('/staff_guidelines', staffGuidelinesRoute);
-app.use('/privacy', privacyRoute);
 app.use('/admincp', adminCPRoute);
 
 // Discord Middleware

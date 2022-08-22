@@ -25,13 +25,19 @@
         if (document.documentElement.scrollTop < 10) {
             $('.nav').attr('style', 'background-color: transparent !important');
         }
+
+        if (top.location.pathname.split('/')[1] === 'resources') {
+            $('.nav').attr('style', 'background-color: var(--bg)');
+        }
     });
 
     $(document).scroll(function () {
-        if (document.documentElement.scrollTop > 10) {
-            $('.nav').css("background-color", '#1a1e23');
-        } else {
-            $('.nav').attr('style', 'background-color: transparent !important');
+        if (top.location.pathname.split('/')[1] !== 'resources') {
+            if (document.documentElement.scrollTop > 10) {
+                $('.nav').css("background-color", '#1a1e23');
+            } else {
+                $('.nav').attr('style', 'background-color: transparent !important');
+            }
         }
     });
 </script>
@@ -104,14 +110,21 @@
                 </a>
             </li>
             <li class="menu-item nav__li nav__li--desktop-only">
-                <a rel="noopener" onclick="smoothRedirect('privacy')" class="nav__li__a">
+                <a rel="noopener" onclick="smoothRedirect('resources')" class="nav__li__a">
                     <div>
-                        <span>Privacy</span>
+                        <span>Resources</span>
                     </div>
                 </a>
             </li>
         </ul>
         <ul class="nav__ul sematic-only">
+            <li class="nav__li nav__li--desktop-only">
+                <a rel="noopener" onclick="smoothRedirect('privacy')" class="nav__li__a">
+                    <div>
+                        <span>Privacy Policy</span>
+                    </div>
+                </a>
+            </li>
             <% if (!home) { %>
             <li class="nav__li nav__li--desktop-only">
                 <button class="button button--primary button--dense" onclick="window.location='https://discord.gg/forthecontent'">Join The Discord Server</button>
@@ -119,11 +132,11 @@
             <% } %>
             <% if (user) { %>
             <li class="nav__li nav__li--desktop-only">
-                <a href="/dashboard" class="nav__li__a to-dashboard"><i class="bi bi-box-arrow-in-right to-dashboard-i"></i> <%= user.username %>#<%= user.discriminator %></a>
+                <button class="button button--secondary button--dense" onclick="window.location='/dashboard'">To Dashboard</button>
             </li>
             <% } else { %>
             <li class="nav__li nav__li--desktop-only">
-                <button class="button button--secondary button--dense" onclick="window.location='/auth'">Login To Dashboard</button>
+                <button class="button button--secondary button--dense" onclick="window.location='/auth'">Sign In</button>
             </li>
             <% } %>
             <li class="nav__li nav__li--mobile-only nav__li__a">
@@ -158,6 +171,13 @@
                 </a>
             </li>
             <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
+                <a href="/resources" class="nav__li__a">
+                    <div>
+                        <span>Resources</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu-item js--close-mobile-nav nav__li nav__li--mobile">
                 <a href="/privacy" class="nav__li__a">
                     <div>
                         <span>Privacy</span>
@@ -171,9 +191,9 @@
             <div class="nav__menu__separator"></div>
             <% } %>
             <% if (user) { %>
-            <a href="/dashboard" class="nav__li__a to-dashboard"><i class="bi bi-box-arrow-in-right to-dashboard-i"></i> Dashboard</a>
+            <button class="button button--secondary button--dense" onclick="window.location='/dashboard'">To Dashboard</button>
             <% } else { %>
-            <button class="button button--secondary button--dense" onclick="window.location='/auth'">Dashboard</button>
+            <button class="button button--secondary button--dense" onclick="window.location='/auth'">Sign In</button>
             <% } %>
         </div>
     </div>

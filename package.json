@@ -20,6 +20,7 @@
         "express-minify-html-2": "^1.0.1",
         "express-session": "^1.17.3",
         "font-awesome": "^4.7.0",
+        "imgur": "^2.2.0",
         "mongoose": "^6.3.4",
         "node-fetch": "^2.6.6",
         "nodemon": "^2.0.16",
@@ -27,6 +28,8 @@
         "passport-discord": "^0.1.4",
         "passport-google-oauth2": "^0.2.0",
         "requirejs": "^2.3.6",
-        "serve-favicon": "^2.5.0"
+        "serve-favicon": "^2.5.0",
+        "slugify": "^1.6.5",
+        "tslib": "^2.4.0"
     }
 }
