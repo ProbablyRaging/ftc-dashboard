@@ -59,12 +59,15 @@
         const resource = '<p><img style="display: block; margin-left: auto; margin-right: auto;" src="" alt="" width="960" height="540"></p>' +
             '<p>&nbsp;</p>'
 
+        const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
         tinymce.init({
             selector: "textarea#new-resource-post",
             plugins: 'preview importcss searchreplace autolink autosave directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap emoticons',
             editimage_cors_hosts: ['picsum.photos'],
             menubar: 'file edit view insert format tools table help',
             toolbar: 'undo redo | bold italic underline strikethrough | fontsize blocks | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | fullscreen preview | image media template link anchor codesample | outdent indent |  numlist bullist | pagebreak | charmap emoticons | ltr rtl',
+            toolbar_sticky: true,
+            toolbar_sticky_offset: isSmallScreen ? 102 : 108,
             autosave_interval: '30s',
             autosave_prefix: '{path}{query}-{id}-',
             autosave_restore_when_empty: false,
@@ -138,6 +141,7 @@
                         function submitPost() {
                             const title = document.getElementById('resource-title').value;
                             const body = tinyMCE.activeEditor.getContent();
+                            const snippet = tinyMCE.activeEditor.getContent({ format: 'text' }).slice(0, 180);
                             // If no title
                             if (body === '') {
                                 const toast = new bootstrap.Toast(titleToast);
@@ -154,7 +158,7 @@
                                 type: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 dataType: 'json',
-                                data: JSON.stringify({ "title": `${title}`, "body": `${body}` })
+                                data: JSON.stringify({ "title": `${title}`, "body": `${body}`, "snippet": `${snippet}` })
                             }, (data) => {
                                 console.log(data);
                                 if (data.status === 'ok') {

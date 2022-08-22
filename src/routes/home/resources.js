@@ -45,6 +45,7 @@ router.post('/post', isAuthortized, async (req, res) => {
     post = await resourceSchema.create({
         title: req.body.title,
         body: req.body.body,
+        snippet: req.body.snippet,
         author: req.user.username,
         userId: req.user.userId,
         avatar: req.user.avatar,
@@ -57,7 +58,11 @@ router.post('/post', isAuthortized, async (req, res) => {
 });
 
 router.post('/edit', isAuthortized, async (req, res) => {
-    if (!req.body.body.includes('<img')) {
+    const body = req.body.body;
+    const regex = /<img.*?src=['"](.*?)['"]/;
+    if (regex.exec(body) !== null) {
+        image = regex.exec(body)[1];
+    } else {
         image = '/images/default_res_banner.png'
     }
     await resourceSchema.findOneAndUpdate({
@@ -66,6 +71,7 @@ router.post('/edit', isAuthortized, async (req, res) => {
         title: req.body.title,
         body: req.body.body,
         image: image,
+        snippet: req.body.snippet,
         slug: slugify(req.body.title, { lower: true, strict: true })
     }, {
         upsert: true
@@ -104,7 +110,7 @@ router.post('/publish', isAuthortized, async (req, res) => {
     const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
     const body = { name: `4DC`, avatar: process.env.BOT_IMG_URI };
     let webhook;
-    await fetch(`https://discord.com/api/v9/channels/924271299004600350/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+    await fetch(`https://discord.com/api/v9/channels/820907130378518539/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
         webhook = await response.json();
         // Send webhook
         const body = {

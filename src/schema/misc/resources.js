@@ -22,6 +22,10 @@ const resourceSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    snippet: {
+        type: String,
+        required: true
+    },
     image: {
         type: String,
         required: true

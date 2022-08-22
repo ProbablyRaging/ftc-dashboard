@@ -95,6 +95,7 @@
                                 </div>
                                 <p class="blog__item__time h5"><%= post.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                                 <h3 class="blog__item__title"><%= post.title %></h3>
+                                <p class="blog__item__excerpt"><%= post.snippet %>..</p>
                             </a>
                         </li>
                         <% }) %>

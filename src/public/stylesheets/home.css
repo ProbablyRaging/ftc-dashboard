@@ -984,15 +984,15 @@ iframe {
 
 .button--quaternary {
     color: var(--text);
-    background-color: #2e343c;
-    border-color: #2e343c
+    background-color: #a2a2a2;
+    border-color: #a2a2a2
 }
 
 .button--quaternary:hover,
 .button--quaternary:active,
 .button--quaternary:focus {
-    background-color: #373e48;
-    border-color: #373e48
+    background-color: #979797;
+    border-color: #979797
 }
 
 .button--default {
@@ -3617,8 +3617,11 @@ li {
 }
 
 .resource-breadcrumb {
-    font-size: 14px;
     margin-top: 70px !important;
+}
+
+.resource-breadcrumb a {
+    color: var(--text-dark);
 }
 
 @media screen and (max-width: 1200px) {
@@ -3730,4 +3733,20 @@ li {
     .post-title {
         margin-top: 32px;
     }
+}
+
+.post-body-wrapper {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+@media screen and (max-width: 960px) {
+    .post-body-wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.post-body-wrapper h2 {
+    font-weight: 500;
 }

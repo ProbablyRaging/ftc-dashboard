@@ -5,7 +5,7 @@
 
 <head>
     <title><%= post.title %></title>
-    <meta name="description" content="This is a test post">
+    <meta name="description" content="<%= post.snippet %>">
     <meta name="author" content="ForTheContent">
 
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="<%= post.title %>">
-    <meta property="og:description" content="This is a test post">
+    <meta property="og:description" content="<%= post.snippet %>">
     <meta property="og:image" content="<%= post.image %>">
 
     <meta property="og:url" content="https://forthecontent.xyz/">
@@ -23,7 +23,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<%= post.title %>">
-    <meta name="twitter:description" content="This is a test post">
+    <meta name="twitter:description" content="<%= post.snippet %>">
     <meta name="twitter:image" content="<%= post.image %>">
     <meta name="twitter:site" content="@forthecontent">
     <meta name="keywords" content="discord server for content creators, content creator discord server, discord server for small content creators">
@@ -80,7 +80,7 @@
 
                     <div class="post-wrapper">
                         <div class="resource-breadcrumb">
-                            <span><a href="/">Home</a> > <a href="/resources">Resources</a> > <%= post.title %></span>
+                            <span><a href="/">Home</a> <i class="bi bi-chevron-right"></i> <a href="/resources">Resources</a> <i class="bi bi-chevron-right"></i> <strong><%= post.title %></strong></span>
                         </div>
 
                         <h1 class="post-title" id="post-title"><%= post.title %></h1>
@@ -98,6 +98,7 @@
                             <% if (isStaff) { %>
                             <button class="button button--tertiary button--dense post-edit" onclick="makeEditable()">Edit</button>
                             <button class="button button--primary button--dense post-save" style="display: none;" onclick="saveEdit('<%= post.id %>')">Save</button>
+                            <button class="button button--quaternary button--dense post-cancel" style="display: none;" onclick="window.location='/resources/<%= post.slug %>'">Cancel</button>
                             <button class="button button--danger button--dense post-delete" onclick="deletePost('<%= post.id %>')"">Delete</button>
                             <button class=" button button--primary button--dense post-publish" onclick="publishToDiscord('<%= post.id %>', '<%= post.published %>')"">Publish To Discord</button>
                             <% } %>
@@ -117,6 +118,7 @@
         function makeEditable() {
             $('.post-edit').css('display', 'none');
             $('.post-save').css('display', 'block');
+            $('.post-cancel').css('display', 'block');
             $('.post-body-wrapper').attr('id', 'editable').css('border', '1px solid #000');
 
             const currentTitle = document.getElementById('post-title').innerHTML;
@@ -126,7 +128,8 @@
                 'class': 'res-input',
                 'value': currentTitle
             });
-            $('.post-title').replaceWith(input)
+            $('.post-title').replaceWith(input);
+            $('.res-input').css('margin-top', '54px');
 
             tinymce.init({
                 selector: "#editable",
@@ -135,6 +138,8 @@
                 editimage_cors_hosts: ['picsum.photos'],
                 menubar: 'file edit view insert format tools table help',
                 toolbar: 'undo redo | bold italic underline strikethrough | fontsize blocks | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | fullscreen preview | image media template link anchor codesample | outdent indent |  numlist bullist | pagebreak | charmap emoticons | ltr rtl',
+                toolbar_sticky: true,
+                toolbar_sticky_offset: 60,
                 autosave_interval: '30s',
                 autosave_prefix: '{path}{query}-{id}-',
                 autosave_restore_when_empty: false,
@@ -157,6 +162,7 @@
         function saveEdit(id) {
             const title = document.getElementById('resource-title').value;
             const body = tinyMCE.activeEditor.getContent();
+            const snippet = tinyMCE.activeEditor.getContent({ format: 'text' }).slice(0, 180);
             const image = $('.post-body-wrapper').find('img').attr('src');
             // If no title
             if (body === '') {
@@ -173,7 +179,7 @@
                 type: 'POST',
                 headers: { "Content-Type": "application/json" },
                 dataType: 'json',
-                data: JSON.stringify({ "id": id, "title": `${title}`, "body": `${body}`, "image": `${image}` })
+                data: JSON.stringify({ "id": id, "title": `${title}`, "body": `${body}`, "image": `${image}`, "snippet": `${snippet}` })
             }, (data) => {
                 if (data.status === 'ok') {
                     $('.post-body-wrapper').removeAttr('id', 'editable').css('border', 'none');
