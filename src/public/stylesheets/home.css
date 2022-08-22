@@ -2869,6 +2869,11 @@ li {
     position: relative
 }
 
+.lottie__center {
+    display: flex;
+    justify-content: center;
+}
+
 .lottie--sm {
     width: 96px;
     height: 96px
@@ -3507,4 +3512,69 @@ li {
 
 .to-dashboard-i {
     font-size: 20px;
+}
+
+@keyframes vertical {
+    0% {
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    33% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.text__rotation {
+    margin-bottom: 90px;
+}
+
+.flip__vertical {
+    text-align: left;
+}
+
+@media screen and (max-width: 1000px) {
+    .flip__vertical {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.flip__vertical span {
+    animation: vertical 8s linear infinite 0s;
+    -ms-animation: vertical 8s linear infinite 0s;
+    -webkit-animation: vertical 8s linear infinite 0s;
+    position: absolute;
+    opacity: 0;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.flip__vertical span:nth-child(2) {
+    -ms-animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+}
+
+.flip__vertical span:nth-child(3) {
+    -ms-animation-delay: 4s;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+}
+
+.flip__vertical span:nth-child(4) {
+    -ms-animation-delay: 6s;
+    -webkit-animation-delay: 6s;
+    animation-delay: 6s;
 }
