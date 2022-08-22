@@ -19,6 +19,7 @@ const path = require('path');
 mongo.then(() => console.log('Connected to database')).catch(err => console.error(err));
 
 // Minify CSS HTML
+app.use(compression());
 app.use(minifyCSS());
 app.use(minifyHTML({
     override: true,
@@ -32,7 +33,6 @@ app.use(minifyHTML({
         minifyJS: true
     }
 }));
-app.use(compression());
 
 // Auth Routes
 const authRoute = require('./routes/auth/auth');
