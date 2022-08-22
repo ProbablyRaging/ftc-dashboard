@@ -100,7 +100,7 @@
                             <button class="button button--primary button--dense post-save" style="display: none;" onclick="saveEdit('<%= post.id %>')">Save</button>
                             <button class="button button--quaternary button--dense post-cancel" style="display: none;" onclick="window.location='/resources/<%= post.slug %>'">Cancel</button>
                             <button class="button button--danger button--dense post-delete" onclick="deletePost('<%= post.id %>')"">Delete</button>
-                            <button class=" button button--primary button--dense post-publish" onclick="publishToDiscord('<%= post.id %>', '<%= post.title %>', '<%= post.published %>')"">Publish To Discord</button>
+                            <button class=" button button--primary button--dense post-publish" onclick="publishToDiscord('<%= post.id %>', '<%= post.title %>', '<%= post.snippet %>', '<%= post.published %>')"">Publish To Discord</button>
                             <% } %>
                         </div>
 
@@ -213,7 +213,7 @@
             }
         }
 
-        function publishToDiscord(id, title, status) {
+        function publishToDiscord(id, title, snippet, status) {
             if (status === 'true') {
                 const toast = new bootstrap.Toast(publishedToast);
                 return toast.show();
@@ -224,7 +224,7 @@
                     type: 'POST',
                     headers: { "Content-Type": "application/json" },
                     dataType: 'json',
-                    data: JSON.stringify({ "url": window.location.href, "id": id, "title": title })
+                    data: JSON.stringify({ "url": window.location.href, "id": id, "title": title, "snippet": snippet })
                 }, (data) => {
                     if (data.status === 'ok') {
                         $('.post-publish').prop('disabled', true);
