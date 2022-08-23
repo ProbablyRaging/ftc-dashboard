@@ -34,6 +34,12 @@ router.get('/:slug', async (req, res) => {
     });
 });
 
+router.post('/fetch', async (req, res) => {
+    const page = req.body.page;
+    const results = await resourceSchema.find().skip(8 * page).limit(8).sort({ '_id': -1 });
+    res.send({ "results": results, "count": results.length });
+});
+
 router.post('/post', isAuthortized, async (req, res) => {
     const body = req.body.body;
     const regex = /<img.*?src=['"](.*?)['"]/;

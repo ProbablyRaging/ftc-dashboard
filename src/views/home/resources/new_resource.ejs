@@ -143,51 +143,6 @@
                         </div>
                     </div>
 
-                    <script>
-                        function submitPost() {
-                            const title = document.getElementById('resource-title').value;
-                            const snippet = document.getElementById('resource-snippet').value;
-                            const body = tinyMCE.activeEditor.getContent();
-                            // If missing required fiels
-                            if (title === '') {
-                                const toast = new bootstrap.Toast(titleToast);
-                                $('.error-type').text('title');
-                                return toast.show();
-                            }
-                            if (snippet === '') {
-                                const toast = new bootstrap.Toast(titleToast);
-                                $('.error-type').text('snippet');
-                                return toast.show();
-                            }
-                            if (snippet.length < 50) {
-                                const toast = new bootstrap.Toast(titleToast);
-                                $('.error-type').text('snippet that is longer than 50 characters');
-                                return toast.show();
-                            }
-                            if (body === '') {
-                                const toast = new bootstrap.Toast(titleToast);
-                                $('.error-type').text('body');
-                                return toast.show();
-                            }
-                            $('.post-submit').prop('disabled', true);
-                            // Post
-                            $.post({
-                                url: `/resources/post`,
-                                type: 'POST',
-                                headers: { "Content-Type": "application/json" },
-                                dataType: 'json',
-                                data: JSON.stringify({ "title": `${title}`, "body": `${body}`, "snippet": `${snippet}` })
-                            }, (data) => {
-                                if (data.status === 'ok') {
-                                    window.location = `/resources/${data.slug}`;
-                                } else if (data.status === 'error') {
-                                    const toast = new bootstrap.Toast(unknownToast);
-                                    toast.show();
-                                    $('.post-submit').prop('disabled', false);
-                                }
-                            });
-                        }
-                    </script>
                 </div>
             </div>
         </div>
@@ -212,4 +167,5 @@
 
     <!-- Footer -->
     <%- include('../partials/home/footer') -%>
+    <script src="/scripts/resources.js"></script>
 </body>

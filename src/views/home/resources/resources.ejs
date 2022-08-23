@@ -101,6 +101,14 @@
                         <% }) %>
                     </div>
 
+                    <div class="res-pagination">
+                        <% if (results.length < 8) { %>
+                            <button class="button btn-load-more" onclick="fetchMore()" disabled>No more results</button>
+                        <% } else { %>
+                            <button class="button btn-load-more" onclick="fetchMore()">Load more</button>
+                        <% } %>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -108,6 +116,7 @@
 
     <!-- Footer -->
     <%- include('../partials/home/footer') -%>
+    <script src="/scripts/resources.js"></script>
     <!-- Share Button -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6302de00a27d877d"></script>
 </body>
