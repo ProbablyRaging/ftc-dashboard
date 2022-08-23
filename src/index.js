@@ -13,6 +13,7 @@ const discordStrategy = require('./strategies/discord_strategy');
 const { isAuthortized } = require('./strategies/auth_check');
 const mongo = require('./database/mongodb');
 const fetch = require('node-fetch');
+const bodyParser = require('body-parser');
 const path = require('path');
 
 // Database
@@ -33,6 +34,8 @@ app.use(minifyHTML({
         minifyJS: true
     }
 }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // Home
 const ccinfoRoute = require('./routes/home/ccinfo');

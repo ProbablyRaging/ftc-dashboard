@@ -55,7 +55,8 @@ router.post('/post', isAuthortized, async (req, res) => {
         author: req.user.username,
         userId: req.user.userId,
         avatar: req.user.avatar,
-        image: image
+        image: image,
+        published: false
     }).catch(err => {
         console.log(err);
         return res.send({ "status": "error" })
