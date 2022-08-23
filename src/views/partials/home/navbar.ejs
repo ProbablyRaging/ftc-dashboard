@@ -1,6 +1,7 @@
 <script>
     function smoothRedirect(location) {
-        if (top.location.pathname.split('/')[1] === location) return window.scrollTo(0, 0);
+        console.log(top.location.pathname.split('/'));
+        if (top.location.pathname.split('/')[1] === location && top.location.pathname.split('/').length < 3) return window.scrollTo(0, 0);
         $('.menu-item').click(function () {
             $('body').css('background-color', 'var(--bg)');
             $('.loader').animate({
@@ -63,43 +64,6 @@
                 <a href="/#features" class="nav__li__a">
                     <div><span>Features</span></div>
                 </a>
-                <ul class="sub-menu" id="sub-menu">
-                    <li class="menu-item nav__li nav__li--desktop-only">
-                        <a class="nav__li__a">
-                            <img src="/images/8021791.png" alt="discord server for content creators">
-                            <div>
-                                <span>Help & Advice</span>
-                                <p>Peer-to-peer support from other content creators</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu-item nav__li nav__li--desktop-only">
-                        <a class="nav__li__a">
-                            <img src="/images/2919740.png" alt="discord server for content creators">
-                            <div>
-                                <span>Reviews & Feedback</span>
-                                <p>Up your game with insightful feedback about your content</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu-item nav__li nav__li--desktop-only">
-                        <a class="nav__li__a">
-                            <img src="/images/6811255.png" alt="discord server for content creators">
-                            <div>
-                                <span>Useful Resources</span>
-                                <p>A plethora of resources to help you reach a larger audience</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu-item nav__li nav__li--desktop-only">
-                        <a class="nav__li__a">
-                            <img src="/images/3314642.png" alt="discord server for content creators">
-                            <div><span>Friendly Community</span>
-                                <p>Unwind and chat with amazing people from all over</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
             </li>
             <% } %>
             <li class="menu-item nav__li nav__li--desktop-only">

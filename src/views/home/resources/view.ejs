@@ -83,7 +83,11 @@
                             <span><a href="/">Home</a> <i class="bi bi-chevron-right"></i> <a href="/resources">Resources</a> <i class="bi bi-chevron-right"></i> <strong><%= post.title %></strong></span>
                         </div>
 
+                        <label id="title-label" for="resource-title" style="display: none;">Title:</label>
                         <h1 class="post-title" id="post-title"><%= post.title %></h1>
+
+                        <label id="snippet-label" for="resource-snippet" style="display: none;">Snippet:</label>
+                        <input class="res-input" id="resource-snippet" name="resource-snippet" type="text" value="<%= post.snippet %>" minlength=50 maxlength=200 style="display: none;" required>
 
                         <div class="post__info">
                             <div class="post__avatar">
@@ -93,19 +97,35 @@
                                 <p class="post-author"><%= post.author %></p>
                                 <p class="post-time"><%= post.timestamp.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
                             </div>
+                            <div class="author-socials">
+                                <% if (post.userId === '438434841617367080') { %>
+                                <a href="https://youtube.com/probablyraging" target="_blank"><i class="bi bi-youtube"></i></a>
+                                <a href="https://twitter.com/ProbablyRaging" target="_blank"><i class="bi bi-twitter"></i></a>
+                                <a href="https://instagram.com/forthecontentdiscord" target="_blank"><i class="bi bi-instagram"></i></a>
+                                <% } %>
+                            </div>
                         </div>
+
                         <div class="post-controls">
-                            <% if (isStaff) { %>
+                            <!-- Controls for authors -->
+                            <% if (isStaff || user.userId === post.userId) { %>
                             <button class="button button--tertiary button--dense post-edit" onclick="makeEditable()">Edit</button>
                             <button class="button button--primary button--dense post-save" style="display: none;" onclick="saveEdit('<%= post.id %>')">Save</button>
                             <button class="button button--quaternary button--dense post-cancel" style="display: none;" onclick="window.location='/resources/<%= post.slug %>'">Cancel</button>
+                            <% } %>
+                            <!-- Controls for staff -->
+                            <% if (isStaff) { %>
                             <button class="button button--danger button--dense post-delete" onclick="deletePost('<%= post.id %>')"">Delete</button>
-                            <button class=" button button--primary button--dense post-publish" onclick="publishToDiscord('<%= post.id %>', '<%= post.title %>', '<%= post.snippet %>', '<%= post.published %>')"">Publish To Discord</button>
+                            <% } %>
+                            <% if (isStaff && post.published === false) { %>
+                            <button class=" button button--primary button--dense post-publish" onclick="publishToDiscord('<%= post.id %>', '<%= post.title %>', '<%= post.snippet %>', '<%= post.published %>')">Publish To Discord</button>
+                            <% } else if (isStaff && post.published === true) { %>
+                            <button class=" button button--primary button--dense post-publish" disabled>Published</button>
                             <% } %>
                         </div>
 
                         <div class=" post-body-wrapper">
-                                <%- post.body %>
+                            <%- post.body %>
                         </div>
                     </div>
 
@@ -129,11 +149,16 @@
                 'value': currentTitle
             });
             $('.post-title').replaceWith(input);
-            $('.res-input').css('margin-top', '54px');
+            $('#title-label').css('margin-top', '54px');
+            $('#resource-snippet').css('display', 'block');
+            $('#title-label').css('display', 'block');
+            $('#snippet-label').css('display', 'block');
+            $('.post__info').css('display', 'none');
+            $('.post-publish').css('display', 'none');
+            $('.post-delete').css('display', 'none');
 
             tinymce.init({
                 selector: "#editable",
-                inline: true,
                 plugins: 'preview importcss searchreplace autolink autosave directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap emoticons',
                 editimage_cors_hosts: ['picsum.photos'],
                 menubar: 'file edit view insert format tools table help',
@@ -154,24 +179,32 @@
                 toolbar_mode: 'sliding',
                 contextmenu: 'link image table'
             });
-
-            const toast = new bootstrap.Toast(successToast);
-            toast.show();
         }
 
         function saveEdit(id) {
             const title = document.getElementById('resource-title').value;
+            const snippet = document.getElementById('resource-snippet').value;
             const body = tinyMCE.activeEditor.getContent();
-            const snippet = tinyMCE.activeEditor.getContent({ format: 'text' }).slice(0, 180);
             const image = $('.post-body-wrapper').find('img').attr('src');
-            // If no title
-            if (body === '') {
-                const toast = new bootstrap.Toast(titleToast);
-                return toast.show();
-            }
-            // If no title
+            // If missing required fiels
             if (title === '') {
                 const toast = new bootstrap.Toast(titleToast);
+                $('.error-type').text('title');
+                return toast.show();
+            }
+            if (snippet === '') {
+                const toast = new bootstrap.Toast(titleToast);
+                $('.error-type').text('snippet');
+                return toast.show();
+            }
+            if (snippet.length < 50) {
+                const toast = new bootstrap.Toast(titleToast);
+                $('.error-type').text('snippet that is longer than 50 characters');
+                return toast.show();
+            }
+            if (body === '') {
+                const toast = new bootstrap.Toast(titleToast);
+                $('.error-type').text('body');
                 return toast.show();
             }
             $.post({
@@ -259,7 +292,7 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="titleToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body text-light bg-danger">
-                Please include a title
+                You must include a <span class="error-type"></span>
             </div>
         </div>
     </div>
@@ -273,14 +306,6 @@
     </div>
 
     <!-- Toast Success -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-body text-light bg-primary">
-                Edit mode
-            </div>
-        </div>
-    </div>
-
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="publishToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body text-light bg-primary">

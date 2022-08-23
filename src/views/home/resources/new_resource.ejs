@@ -129,29 +129,47 @@
                         <input class="res-input" id="resource-title" name="resource-title" required>
                         <br>
 
+                        <label for="resource-snippet">Snippet:</label><br>
+                        <input class="res-input" id="resource-snippet" name="resource-snippet" type="text" minlength=50 maxlength=200 required>
+
                         <label for="new-resource-post">Body:</label><br>
                         <textarea id="new-resource-post">
 
                         </textarea>
 
-                        <button type="submit" class="button button--secondary button--dense" onclick="submitPost()">Submit</button>
+                        <div class="button-wrapper d-flex">
+                            <button type="submit" class="button button--secondary button--dense post-submit" onclick="submitPost()">Submit</button>
+                            <button class="button button--quaternary button--dense" onclick="window.location='/resources'">Cancel</button>
+                        </div>
                     </div>
 
                     <script>
                         function submitPost() {
                             const title = document.getElementById('resource-title').value;
+                            const snippet = document.getElementById('resource-snippet').value;
                             const body = tinyMCE.activeEditor.getContent();
-                            const snippet = tinyMCE.activeEditor.getContent({ format: 'text' }).slice(0, 180);
-                            // If no title
-                            if (body === '') {
-                                const toast = new bootstrap.Toast(titleToast);
-                                return toast.show();
-                            }
-                            // If no title
+                            // If missing required fiels
                             if (title === '') {
                                 const toast = new bootstrap.Toast(titleToast);
+                                $('.error-type').text('title');
                                 return toast.show();
                             }
+                            if (snippet === '') {
+                                const toast = new bootstrap.Toast(titleToast);
+                                $('.error-type').text('snippet');
+                                return toast.show();
+                            }
+                            if (snippet.length < 50) {
+                                const toast = new bootstrap.Toast(titleToast);
+                                $('.error-type').text('snippet that is longer than 50 characters');
+                                return toast.show();
+                            }
+                            if (body === '') {
+                                const toast = new bootstrap.Toast(titleToast);
+                                $('.error-type').text('body');
+                                return toast.show();
+                            }
+                            $('.post-submit').prop('disabled', true);
                             // Post
                             $.post({
                                 url: `/resources/post`,
@@ -160,15 +178,12 @@
                                 dataType: 'json',
                                 data: JSON.stringify({ "title": `${title}`, "body": `${body}`, "snippet": `${snippet}` })
                             }, (data) => {
-                                console.log(data);
                                 if (data.status === 'ok') {
                                     window.location = `/resources/${data.slug}`;
                                 } else if (data.status === 'error') {
                                     const toast = new bootstrap.Toast(unknownToast);
                                     toast.show();
-                                } else {
-                                    const toast = new bootstrap.Toast(errorToast);
-                                    toast.show();
+                                    $('.post-submit').prop('disabled', false);
                                 }
                             });
                         }
@@ -180,14 +195,6 @@
 
     <!-- Toast Error -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-body text-light bg-danger">
-                Please include at least one image
-            </div>
-        </div>
-    </div>
-
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="unknownToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body text-light bg-danger">
                 An unknown error occured. Please save your work and try again
@@ -198,7 +205,7 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="titleToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body text-light bg-danger">
-                Missing title or body
+                You must include a <span class="error-type"></span>
             </div>
         </div>
     </div>
