@@ -108,7 +108,7 @@
 
                         <div class="post-controls">
                             <!-- Controls for authors -->
-                            <% if (isStaff || user.userId === post.userId) { %>
+                            <% if (isStaff || user?.userId === post.userId) { %>
                             <button class="button button--tertiary button--dense post-edit" onclick="makeEditable()">Edit</button>
                             <button class="button button--primary button--dense post-save" style="display: none;" onclick="saveEdit('<%= post.id %>')">Save</button>
                             <button class="button button--quaternary button--dense post-cancel" style="display: none;" onclick="window.location='/resources/<%= post.slug %>'">Cancel</button>
