@@ -4,6 +4,7 @@ const resourceSchema = require('../../schema/misc/resources');
 const { isAuthortized, isStaff } = require('../../strategies/auth_check');
 const slugify = require('slugify');
 const fetch = require('node-fetch');
+const { ImgurClient } = require('imgur');
 
 router.get('/', async (req, res) => {
     const results = await resourceSchema.find().limit(6).sort({ '_id': -1 });
@@ -41,52 +42,149 @@ router.post('/fetch', async (req, res) => {
 });
 
 router.post('/post', isAuthortized, async (req, res) => {
-    const body = req.body.body;
+    let body = req.body.body;
+    // Get out body HTML and find all img src
     const regex = /<img.*?src=['"](.*?)['"]/;
-    if (regex.exec(body) !== null) {
-        image = regex.exec(body)[1];
+    const split = body.split(/<img.*?src=['"]/);
+    // If we find at least one match
+    if (split?.length > 1) {
+        let foundURI = [];
+        split.forEach(int => {
+            // Make sure it's a case64 uri and add to our array
+            if (int.startsWith('data:image/')) {
+                const uri = int.split('"')[0]
+                foundURI.push(uri)
+            }
+        });
+        // If we have at least one uri in our array
+        if (foundURI.length > 0) {
+            let totalComplete = 0;
+            foundURI.forEach(async uri => {
+                // Upload all uris to imgur
+                const imgur = new ImgurClient({ clientId: process.env.IMGUR_ID, clientSecret: process.env.IMGUR_SECRET });
+                const split = uri.split(/data:image\/.*?;base64,/)[1]
+                const imgurRes = await imgur.upload({
+                    image: new Buffer.from(split, 'base64')
+                }).catch(err => console.error(`There was a problem uploading an image to imgur: `, err));
+                // Make sure we get a success response for each upload
+                if (imgurRes.status === 200) {
+                    // Replace all uris in our body HTML with the new imgur link
+                    body = body.replace(uri, imgurRes.data.link);
+                    // Once all uris are converted, we can save to the database
+                    totalComplete++;
+                    if (totalComplete === foundURI.length) saveToDatabase(body);
+                } else {
+                    // Fallback incase we can't upload to imgur, images will be saved to database as base64
+                    saveToDatabase(body);
+                }
+            });
+        } else {
+            // If image sources are found but none contain a uri
+            saveToDatabase(body);
+        }
     } else {
-        image = '/images/default_res_banner.png'
+        // If no images are found
+        saveToDatabase(body);
     }
-    post = await resourceSchema.create({
-        title: req.body.title,
-        body: req.body.body,
-        snippet: req.body.snippet,
-        author: req.user.username,
-        userId: req.user.userId,
-        avatar: req.user.avatar,
-        image: image,
-        published: false
-    }).catch(err => {
-        console.log(err);
-        return res.send({ "status": "error" })
-    });
-    res.send({ "status": "ok", "slug": `${post.slug}` });
+
+    async function saveToDatabase(body) {
+        let error = false;
+        // Use the first image in our body as the post banner, if no exist, use the default banner image
+        if (regex.exec(body) !== null) {
+            image = regex.exec(body)[1];
+        } else {
+            image = '/images/default_res_banner.png'
+        }
+        post = await resourceSchema.create({
+            title: req.body.title,
+            body: body,
+            snippet: req.body.snippet,
+            author: req.user.username,
+            userId: req.user.userId,
+            avatar: req.user.avatar,
+            image: image,
+            published: false
+        }).catch(err => {
+            console.log(err);
+            error = true;
+            return res.send({ "status": "error" })
+        });
+        if (!error) res.send({ "status": "ok", "slug": `${post.slug}` });
+    }
 });
 
 router.post('/edit', isAuthortized, async (req, res) => {
-    const body = req.body.body;
+    let body = req.body.body;
+    // Get out body HTML and find all img src
     const regex = /<img.*?src=['"](.*?)['"]/;
-    if (regex.exec(body) !== null) {
-        image = regex.exec(body)[1];
+    const split = body.split(/<img.*?src=['"]/);
+    // If we find at least one match
+    if (split?.length > 1) {
+        let foundURI = [];
+        split.forEach(int => {
+            // Make sure it's a case64 uri and add to our array
+            if (int.startsWith('data:image/')) {
+                const uri = int.split('"')[0]
+                foundURI.push(uri)
+            }
+        });
+        // If we have at least one uri in our array
+        if (foundURI.length > 0) {
+            let totalComplete = 0;
+            foundURI.forEach(async uri => {
+                // Upload all uris to imgur
+                const imgur = new ImgurClient({ clientId: process.env.IMGUR_ID, clientSecret: process.env.IMGUR_SECRET });
+                const split = uri.split(/data:image\/.*?;base64,/)[1]
+                const imgurRes = await imgur.upload({
+                    image: new Buffer.from(split, 'base64')
+                }).catch(err => console.error(`There was a problem uploading an image to imgur: `, err));
+                // Make sure we get a success response for each upload
+                if (imgurRes.status === 200) {
+                    // Replace all uris in our body HTML with the new imgur link
+                    body = body.replace(uri, imgurRes.data.link);
+                    // Once all uris are converted, we can save to the database
+                    totalComplete++;
+                    if (totalComplete === foundURI.length) editDatabaseEntry(body);
+                } else {
+                    // Fallback incase we can't upload to imgur, images will be saved to database as base64
+                    editDatabaseEntry(body);
+                }
+            });
+        } else {
+            // If image sources are found but none contain a uri
+            editDatabaseEntry(body);
+        }
     } else {
-        image = '/images/default_res_banner.png'
+        // If no images are found
+        editDatabaseEntry(body);
     }
-    await resourceSchema.findOneAndUpdate({
-        _id: req.body.id
-    }, {
-        title: req.body.title,
-        body: req.body.body,
-        image: image,
-        snippet: req.body.snippet,
-        slug: slugify(req.body.title, { lower: true, strict: true })
-    }, {
-        upsert: true
-    }).catch(err => {
-        console.log(err);
-        return res.send({ "status": "error" })
-    });
-    res.send({ "status": "ok", "slug": `${slugify(req.body.title, { lower: true, strict: true })}` });
+
+    async function editDatabaseEntry(body) {
+        let error = false;
+        // Use the first image in our body as the post banner, if no exist, use the default banner image
+        if (regex.exec(body) !== null) {
+            image = regex.exec(body)[1];
+        } else {
+            image = '/images/default_res_banner.png'
+        }
+        await resourceSchema.findOneAndUpdate({
+            _id: req.body.id
+        }, {
+            title: req.body.title,
+            body: body,
+            image: image,
+            snippet: req.body.snippet,
+            edited: Date.now(),
+            slug: slugify(req.body.title, { lower: true, strict: true })
+        }, {
+            upsert: true
+        }).catch(err => {
+            console.log(err);
+            error = true;
+            return res.send({ "status": "error" })
+        });
+        if (!error) res.send({ "status": "ok", "slug": `${slugify(req.body.title, { lower: true, strict: true })}` });
+    }
 });
 
 router.post('/delete', isAuthortized, async (req, res) => {
@@ -129,6 +227,28 @@ ${req.body.snippet}.. [learn more](${req.body.url})`
             await fetch(`https://discord.com/api/v9/webhooks/${webhook.id}`, { method: 'DELETE', headers: headers });
         });
     });
+});
+
+router.post('/comment', async (req, res) => {
+    try {
+        const results = await resourceSchema.find({ _id: req.body.id });
+        for (const data of results) {
+            let comments = data.comments;
+            comments.push({ username: req?.user?.username || 'Unknown', userId: req?.user?.userId || '', avatar: req?.user?.avatar || '', comment: req.body.comment });
+            await resourceSchema.updateOne({
+                _id: req.body.id
+            },{
+                comments: comments
+            },{
+                upsert: true
+            })
+        }
+    } catch (err) {
+        console.log(err);
+        res.send({ "status": "error" });
+    } finally {
+        res.send({ "status": "ok" });
+    }
 });
 
 module.exports = router;

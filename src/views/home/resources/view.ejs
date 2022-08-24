@@ -91,11 +91,15 @@
 
                         <div class="post__info">
                             <div class="post__avatar">
-                                <img src="https://cdn.discordapp.com/avatars/<%= post.userId %>/<%= post.avatar %>.webp" alt="author">
+                                <img src="https://cdn.discordapp.com/avatars/<%= post.userId %>/<%= post.avatar %>.webp" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'" alt="author">
                             </div>
                             <div class="post__author">
                                 <p class="post-author"><%= post.author %></p>
+                                <% if (!post.edited) { %>
                                 <p class="post-time"><%= post.timestamp.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
+                                <% } else { %>
+                                <p class="post-time">Edited <%= post.edited.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
+                                <% } %>
                             </div>
                             <div class="author-socials">
                                 <% if (post.userId === '438434841617367080') { %>
@@ -129,10 +133,94 @@
                         </div>
                     </div>
 
+                    <div class="res-footer-div"></div>
+
+                    <div class="res-comment">
+                        <h3>Comments</h3>
+                        <p class="comment-sub">Leave a comment, or suggest a topic for one of our writers to cover</p>
+                        <textarea class="res-comment-box" id="res-comment-box"></textarea>
+                        <button class="button button--primary button--dense res-comment-btn" onclick="submitComment('<%= post.id %>')">Submit</button>
+                    </div>
+                    <div class="submit-success">
+                        Your comment has been submitted
+                    </div>
+
+                    <div class="comment-section">
+                        <% if (post.comments.length > 0) { %>
+                        <% post.comments.forEach(comment => { %>
+                        <div class="comment__info">
+                            <div class="div-test">
+                                <div class="comment__avatar">
+                                    <img src="https://cdn.discordapp.com/avatars/<%= comment.userId %>/<%= comment.avatar %>.webp" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'" alt="author">
+                                </div>
+                            </div>
+
+                            <div class="comment__author">
+                                <p class="comment-author"><%= comment.username %></p>
+                                <p class="comment-comment"><%= comment.comment %></p>
+                            </div>
+                        </div>
+                        <% }) %>
+                        <% } else { %>
+                        <div style="margin-top: 64px; color: #bebebe">Be the first to comment</div>
+                        <% } %>
+                    </div>
+
+                    <img src="https://i.imgur.com/gDI1TgL.png">sdfsdf</img>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <img src="" class="imagepreview">
+            </div>
+        </div>
+    </div>=
+
+    <script>
+        $(document).ready(function () {
+            $(".post-body-wrapper img").slice(1).get().map(function (i) {
+                $(i).addClass('img-expandable');
+            });
+        })
+
+        $(function () {
+            $('.img-expandable').on('click', function () {
+                $('.imagepreview').attr('src', $(this).attr('src'))
+                $('#imagemodal').modal('show');
+            });
+        });
+
+        async function submitComment(id) {
+            const comment = document.getElementById('res-comment-box').value;
+            if (comment === '') {
+                const toast = new bootstrap.Toast(titleToast);
+                $('.error-type').text('comment');
+                return toast.show();
+            }
+            $('.res-comment-btn').html('Please wait..').prop('disabled', true);
+            $.post({
+                url: `/resources/comment`,
+                type: 'POST',
+                headers: { "Content-Type": "application/json" },
+                dataType: 'json',
+                data: JSON.stringify({ "id": id, "comment": comment })
+            }, (data) => {
+                if (data.status === 'ok') {
+                    $('.res-comment').hide(250);
+                    $('.submit-success').show(250);
+                } else {
+                    const toast = new bootstrap.Toast(errorToast);
+                    toast.show();
+                    $('.res-comment-btn').html('Submit').prop('disabled', false);
+                }
+            });
+        }
+    </script>
 
     <!-- Toast Error -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">

@@ -3737,3 +3737,86 @@ li {
 .btn-load-more:hover:not(:disabled) {
     background-color: #f4f4f4;
 }
+
+.res-footer-div {
+    width: 100%;
+    border-bottom: 1px solid #cdc9c9;
+    margin: 80px 0;
+}
+
+.res-comment {
+    width: 100%;
+}
+
+.submit-success {
+    display: none;
+    width: 50%;
+}
+
+.res-comment-box {
+    height: 75px;
+    width: 100%;
+    border: 1px solid #e3e2e2;
+    border-radius: 8px;
+    margin-top: -14px;
+    padding: 12px;
+    resize: none;
+}
+
+.comment__info {
+    display: flex;
+    margin: 24px 0;
+    border: 1px solid #dfdfdf;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    width: 80%;
+}
+
+.comment__avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: #e9edf2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.comment__author {
+    padding-left: 1rem;
+}
+
+.comment-author {
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.comment-comment {
+    line-height: 1.5;
+    margin: 0;
+}
+
+.comment-sub {
+    margin-bottom: 14px;
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.modal-dialog {
+    min-width: 90%;
+    justify-content: center;
+}
+
+.modal-content {
+    align-items: center;
+    width: fit-content;
+    padding: 10px;
+}
+
+.post-body-wrapper .img-expandable {
+    max-width: 480px;
+    cursor: pointer;
+}

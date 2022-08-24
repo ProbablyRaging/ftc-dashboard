@@ -11,13 +11,13 @@ const passport = require('passport');
 const favicon = require('serve-favicon');
 const discordStrategy = require('./strategies/discord_strategy');
 const { isAuthortized } = require('./strategies/auth_check');
-const mongo = require('./database/mongodb');
+const { dbOne } = require('./database/mongodb');
 const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
 const path = require('path');
 
 // Database
-mongo.then(() => console.log('Connected to database')).catch(err => console.error(err));
+dbOne.then(() => console.log('Connected to database')).catch(err => console.error(err));
 
 // Minify CSS HTML
 app.use(compression());
@@ -34,8 +34,8 @@ app.use(minifyHTML({
         minifyJS: true
     }
 }));
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Home
 const ccinfoRoute = require('./routes/home/ccinfo');

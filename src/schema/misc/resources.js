@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { dbTwo } = require('../../database/mongodb');
 const slugify = require('slugify');
 
 const resourceSchema = mongoose.Schema({
@@ -35,6 +36,10 @@ const resourceSchema = mongoose.Schema({
         default: Date.now,
         required: true
     },
+    edited: {
+        type: Date,
+        required: false
+    },
     slug: {
         type: String,
         required: true,
@@ -43,6 +48,10 @@ const resourceSchema = mongoose.Schema({
     published: {
         type: Boolean,
         required: false,
+    },
+    comments: {
+        type: Array,
+        required: false
     }
 });
 
@@ -53,4 +62,6 @@ resourceSchema.pre('validate', function (next) {
     next();
 });
 
-module.exports = mongoose.model('resources', resourceSchema);
+const resources = dbTwo.model('resources', resourceSchema);
+
+module.exports = resources;

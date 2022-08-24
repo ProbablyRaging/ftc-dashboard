@@ -24,7 +24,7 @@ function submitPost() {
         $('.error-type').text('body');
         return toast.show();
     }
-    $('.post-submit').prop('disabled', true);
+    $('.post-submit').html('Please wait..').prop('disabled', true);
     // Post
     $.post({
         url: `/resources/post`,
@@ -76,6 +76,7 @@ function makeEditable() {
         toolbar_sticky_offset: 60,
         autosave_interval: '30s',
         autosave_prefix: '{path}{query}-{id}-',
+        autosave_ask_before_unload: false,
         autosave_restore_when_empty: false,
         autosave_retention: '2m',
         importcss_append: true,
@@ -116,6 +117,7 @@ function saveEdit(id) {
         $('.error-type').text('body');
         return toast.show();
     }
+    $('.post-save').html('Saving..').prop('disabled', true);
     $.post({
         url: `/resources/edit`,
         type: 'POST',
@@ -129,9 +131,11 @@ function saveEdit(id) {
         } else if (data.status === 'error') {
             const toast = new bootstrap.Toast(unknownToast);
             toast.show();
+            $('.post-save').html('Save').prop('disabled', false);
         } else {
             const toast = new bootstrap.Toast(errorToast);
             toast.show();
+            $('.post-save').html('Save').prop('disabled', false);
         }
     });
 }
