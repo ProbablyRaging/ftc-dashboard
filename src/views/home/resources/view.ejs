@@ -96,16 +96,22 @@
                             <div class="post__author">
                                 <p class="post-author"><%= post.author %></p>
                                 <% if (!post.edited) { %>
-                                <p class="post-time"><%= post.timestamp.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
+                                <p class="post-time"><%= post.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                                 <% } else { %>
-                                <p class="post-time">Edited <%= post.edited.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
+                                <p class="post-time">Updated <%= post.edited.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                                 <% } %>
                             </div>
                             <div class="author-socials">
                                 <% if (post.userId === '438434841617367080') { %>
+                                <!-- ProbablyRaging -->
                                 <a href="https://youtube.com/probablyraging" target="_blank"><i class="bi bi-youtube"></i></a>
                                 <a href="https://twitter.com/ProbablyRaging" target="_blank"><i class="bi bi-twitter"></i></a>
                                 <a href="https://instagram.com/forthecontentdiscord" target="_blank"><i class="bi bi-instagram"></i></a>
+                                <% } %>
+                                <% if (post.userId === '152593345556774912') { %>
+                                <!-- Weesgbr -->
+                                <a href="https://www.youtube.com/WeisgerberCubed" target="_blank"><i class="bi bi-youtube"></i></a>
+                                <a href="https://www.instagram.com/weisgerbercub3d" target="_blank"><i class="bi bi-instagram"></i></a>
                                 <% } %>
                             </div>
                         </div>
@@ -137,7 +143,7 @@
 
                     <div class="res-comment">
                         <h3>Comments</h3>
-                        <p class="comment-sub">Leave a comment, or suggest a topic for one of our writers to cover</p>
+                        <p class="comment-sub">Leave a comment</p>
                         <div class="comment-box">
                             <% if (user) { %>
                             <textarea class="res-comment-box" id="res-comment-box"></textarea>
@@ -166,7 +172,7 @@
                                     <p class="comment-author"><%= comment.username %></p>
                                     <div class="timestamp-wrapper">
                                         <p class="comment-timestamp"><%= new Date(comment.timestamp).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
-                                    <p class="comment-timestamp"><%= new Date(comment.timestamp).toLocaleTimeString() %></p>
+                                        <p class="comment-timestamp"><%= new Date(comment.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute:'2-digit' }) %></p>
                                     </div>
                                 </div>
                                 <p class="comment-comment"><%= comment.comment %></p>

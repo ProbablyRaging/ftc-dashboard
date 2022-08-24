@@ -79,7 +79,7 @@
     <!-- Page body -->
     <div class="wp-block-vbi-section softer-white section__bg-color section body__section">
         <div class="container content__area container--very-wide container--responsive-padding">
-            <% if (isStaff) { %>
+            <% if (isStaff || isEditor) { %>
             <button class="button button--secondary button--dense new-post" onclick="window.location='/resources/new'">New Post</button>
             <% } %>
             <div class="wp-block-vbi-two-column-layout row content__area row--center">
@@ -106,6 +106,51 @@
                         <button class="button btn-load-more" onclick="fetchMore()" disabled>No more results</button>
                         <% } else { %>
                         <button class="button btn-load-more" onclick="fetchMore()">Load more</button>
+                        <% } %>
+                    </div>
+
+                    <div class="res-footer-div"></div>
+
+                    <div class="res-comment">
+                        <h3>Suggestions</h3>
+                        <p class="comment-sub">Leave a suggestion for a topic for one of our writers to cover</p>
+                        <div class="comment-box">
+                            <% if (user) { %>
+                            <textarea class="res-comment-box" id="res-comment-box"></textarea>
+                            <% } else { %>
+                            <textarea class="res-comment-box" id="res-comment-box" disabled>Sign in to leave a suggestion</textarea>
+                            <% } %>
+                            <button class="bi bi-send-fill res-comment-btn" onclick="submitComment()" disabled></button>
+                        </div>
+                    </div>
+                    <div class="submit-success">
+                        Your suggestion has been submitted
+                    </div>
+
+                    <div class="comment-section">
+                        <% if (suggestions.suggestions?.length > 0) { %>
+                        <% suggestions.suggestions.forEach(suggestion => { %>
+                        <div class="comment__info">
+                            <div class="div-test">
+                                <div class="comment__avatar">
+                                    <img src="https://cdn.discordapp.com/avatars/<%= suggestion.userId %>/<%= suggestion.avatar %>.webp" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'" alt="author">
+                                </div>
+                            </div>
+
+                            <div class="comment__author">
+                                <div class="user-time">
+                                    <p class="comment-author"><%= suggestion.username %></p>
+                                    <div class="timestamp-wrapper">
+                                        <p class="comment-timestamp"><%= new Date(suggestion.timestamp).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
+                                    <p class="comment-timestamp"><%= new Date(suggestion.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute:'2-digit' }) %></p>
+                                    </div>
+                                </div>
+                                <p class="comment-comment"><%= suggestion.suggestion %></p>
+                            </div>
+                        </div>
+                        <% }) %>
+                        <% } else { %>
+                        <div style="margin-top: 64px; color: #bebebe">Be the first to make a suggestion</div>
                         <% } %>
                     </div>
 

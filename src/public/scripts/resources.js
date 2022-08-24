@@ -98,7 +98,7 @@ function makeEditable() {
     $('.post-delete').css('display', 'none');
     $('.res-footer-div').css('display', 'none');
     $('.res-comment').css('display', 'none');
-    $('.comment-section').css('display', 'none');    
+    $('.comment-section').css('display', 'none');
 
     tinymce.init({
         selector: "#editable",
@@ -220,29 +220,55 @@ function publishToDiscord(id, title, snippet, status) {
 
 // Handle resource post comments
 async function submitComment(id) {
-    const comment = document.getElementById('res-comment-box').value;
-    if (comment === '') {
-        const toast = new bootstrap.Toast(titleToast);
-        $('.error-type').text('comment');
-        return toast.show();
-    }
-    $('.res-comment-btn').prop('disabled', true);
-    $.post({
-        url: `/resources/comment`,
-        type: 'POST',
-        headers: { "Content-Type": "application/json" },
-        dataType: 'json',
-        data: JSON.stringify({ "id": id, "comment": comment })
-    }, (data) => {
-        if (data.status === 'ok') {
-            $('.res-comment').hide(250);
-            $('.submit-success').show(250);
-        } else {
-            const toast = new bootstrap.Toast(errorToast);
-            toast.show();
-            $('.res-comment-btn').prop('disabled', false);
+    if (id) {
+        const comment = document.getElementById('res-comment-box').value;
+        if (comment === '') {
+            const toast = new bootstrap.Toast(titleToast);
+            $('.error-type').text('comment');
+            return toast.show();
         }
-    });
+        $('.res-comment-btn').prop('disabled', true);
+        $.post({
+            url: `/resources/comment`,
+            type: 'POST',
+            headers: { "Content-Type": "application/json" },
+            dataType: 'json',
+            data: JSON.stringify({ "id": id, "comment": comment })
+        }, (data) => {
+            if (data.status === 'ok') {
+                $('.res-comment').hide(250);
+                $('.submit-success').show(250);
+            } else {
+                const toast = new bootstrap.Toast(errorToast);
+                toast.show();
+                $('.res-comment-btn').prop('disabled', false);
+            }
+        });
+    } else {
+        const suggestion = document.getElementById('res-comment-box').value;
+        if (suggestion === '') {
+            const toast = new bootstrap.Toast(titleToast);
+            $('.error-type').text('suggestion');
+            return toast.show();
+        }
+        $('.res-comment-btn').prop('disabled', true);
+        $.post({
+            url: `/resources/comment`,
+            type: 'POST',
+            headers: { "Content-Type": "application/json" },
+            dataType: 'json',
+            data: JSON.stringify({ "suggestion": suggestion })
+        }, (data) => {
+            if (data.status === 'ok') {
+                $('.res-comment').hide(250);
+                $('.submit-success').show(250);
+            } else {
+                const toast = new bootstrap.Toast(errorToast);
+                toast.show();
+                $('.res-comment-btn').prop('disabled', false);
+            }
+        });
+    }
 }
 
 // Resource pagination

@@ -3746,6 +3746,10 @@ li {
     width: 100%;
 }
 
+.res-comment h3 {
+    margin-top: 0;
+}
+
 .submit-success {
     display: none;
     width: 50%;

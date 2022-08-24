@@ -1,25 +1,30 @@
 require('dotenv').config();
 const router = require('express').Router();
 const resourceSchema = require('../../schema/misc/resources');
-const { isAuthortized, isStaff } = require('../../strategies/auth_check');
+const suggestionSchema = require('../../schema/misc/suggestions');
+const { isAuthortized, isStaff, isWriter, isEditor } = require('../../strategies/auth_check');
 const slugify = require('slugify');
 const fetch = require('node-fetch');
 const { ImgurClient } = require('imgur');
 
 router.get('/', async (req, res) => {
-    const results = await resourceSchema.find().limit(6).sort({ '_id': -1 });
+    const results = await resourceSchema.find().limit(6).sort({ _id: -1 });
+    const results2 = await suggestionSchema.findOne().limit(5).sort({ _id: -1 });
     res.render('resources', {
         home: false,
         isStaff: isStaff(req),
+        isEditor: isEditor(req),
         user: req?.user,
-        results: results
+        results: results,
+        suggestions: results2
     });
 });
 
-router.get('/new', isAuthortized, async (req, res) => {
+router.get('/new', isWriter, async (req, res) => {
     res.render('new_resource', {
         home: false,
         isStaff: isStaff(req),
+        isEditor: isEditor(req),
         user: req?.user
     });
 });
@@ -30,6 +35,7 @@ router.get('/:slug', async (req, res) => {
     res.render('resources/view', {
         home: false,
         isStaff: isStaff(req),
+        isEditor: isEditor(req),
         user: req?.user,
         post: results
     });
@@ -41,7 +47,7 @@ router.post('/fetch', async (req, res) => {
     res.send({ "results": results, "count": results.length });
 });
 
-router.post('/post', isAuthortized, async (req, res) => {
+router.post('/post', isWriter, async (req, res) => {
     let body = req.body.body;
     // Get out body HTML and find all img src
     const regex = /<img.*?src=['"](.*?)['"]/;
@@ -113,7 +119,7 @@ router.post('/post', isAuthortized, async (req, res) => {
     }
 });
 
-router.post('/edit', isAuthortized, async (req, res) => {
+router.post('/edit', isWriter, async (req, res) => {
     let body = req.body.body;
     // Get out body HTML and find all img src
     const regex = /<img.*?src=['"](.*?)['"]/;
@@ -229,24 +235,47 @@ router.post('/publish', isAuthortized, async (req, res) => {
 });
 
 router.post('/comment', async (req, res) => {
-    try {
-        const results = await resourceSchema.find({ _id: req.body.id });
-        for (const data of results) {
-            let comments = data.comments;
-            comments.push({ username: req?.user?.username || 'Unknown', userId: req?.user?.userId || '', avatar: req?.user?.avatar || '', comment: req.body.comment, timestamp: Date.now() });
-            await resourceSchema.updateOne({
-                _id: req.body.id
-            },{
-                comments: comments
-            },{
-                upsert: true
-            })
+    if (req.body.id) {
+        try {
+            const results = await resourceSchema.find({ _id: req.body.id });
+            for (const data of results) {
+                let comments = data.comments;
+                comments.push({ username: req?.user?.username || 'Unknown', userId: req?.user?.userId || '', avatar: req?.user?.avatar || '', comment: req.body.comment, timestamp: Date.now() });
+                await resourceSchema.updateOne({
+                    _id: req.body.id
+                }, {
+                    comments: comments
+                }, {
+                    upsert: true
+                });
+            }
+        } catch (err) {
+            console.log(err);
+            res.send({ "status": "error" });
+        } finally {
+            res.send({ "status": "ok" });
         }
-    } catch (err) {
-        console.log(err);
-        res.send({ "status": "error" });
-    } finally {
-        res.send({ "status": "ok" });
+    } else {
+        try {
+            const results = await suggestionSchema.find();
+            for (const data of results) {
+                let suggestions = data.suggestions;
+                suggestions.push({ username: req?.user?.username || 'Unknown', userId: req?.user?.userId || '', avatar: req?.user?.avatar || '', suggestion: req.body.suggestion, timestamp: Date.now() });
+                console.log(data._id);
+                await suggestionSchema.updateOne({
+                    _id: data._id
+                }, {
+                    suggestions: suggestions
+                }, {
+                    upsert: true
+                });
+            }
+        } catch (err) {
+            console.log(err);
+            res.send({ "status": "error" });
+        } finally {
+            res.send({ "status": "ok" });
+        }
     }
 });
 
