@@ -215,7 +215,7 @@ router.post('/publish', isAuthortized, async (req, res) => {
     const headers = { "Content-Type": "application/json", "Authorization": process.env.API_TOKEN };
     const body = { name: `4DC`, avatar: process.env.BOT_IMG_URI };
     let webhook;
-    await fetch(`https://discord.com/api/v9/channels/820907130378518539/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
+    await fetch(`https://discord.com/api/v9/channels/1012065026451963915/webhooks`, { method: 'POST', body: JSON.stringify(body), headers: headers }).then(async response => {
         webhook = await response.json();
         // Send webhook
         const body = {
