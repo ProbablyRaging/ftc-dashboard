@@ -96,6 +96,9 @@ function makeEditable() {
     $('.post__info').css('display', 'none');
     $('.post-publish').css('display', 'none');
     $('.post-delete').css('display', 'none');
+    $('.res-footer-div').css('display', 'none');
+    $('.res-comment').css('display', 'none');
+    $('.comment-section').css('display', 'none');    
 
     tinymce.init({
         selector: "#editable",
