@@ -1,3 +1,16 @@
+// Add zoom to resource images
+$(document).ready(function () {
+    $(".post-body-wrapper img").slice(1).get().map(function (i) {
+        $(i).addClass('img-expandable');
+    });
+})
+$(function () {
+    $('.img-expandable').on('click', function () {
+        $('.imagepreview').attr('src', $(this).attr('src'))
+        $('#imagemodal').modal('show');
+    });
+});
+
 // New resource post submit
 function submitPost() {
     const title = document.getElementById('resource-title').value;
@@ -182,6 +195,33 @@ function publishToDiscord(id, title, snippet, status) {
             }
         });
     }
+}
+
+// Handle resource post comments
+async function submitComment(id) {
+    const comment = document.getElementById('res-comment-box').value;
+    if (comment === '') {
+        const toast = new bootstrap.Toast(titleToast);
+        $('.error-type').text('comment');
+        return toast.show();
+    }
+    $('.res-comment-btn').html('Please wait..').prop('disabled', true);
+    $.post({
+        url: `/resources/comment`,
+        type: 'POST',
+        headers: { "Content-Type": "application/json" },
+        dataType: 'json',
+        data: JSON.stringify({ "id": id, "comment": comment })
+    }, (data) => {
+        if (data.status === 'ok') {
+            $('.res-comment').hide(250);
+            $('.submit-success').show(250);
+        } else {
+            const toast = new bootstrap.Toast(errorToast);
+            toast.show();
+            $('.res-comment-btn').html('Submit').prop('disabled', false);
+        }
+    });
 }
 
 // Resource pagination
