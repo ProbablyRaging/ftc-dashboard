@@ -3,12 +3,30 @@ $(document).ready(function () {
     $(".post-body-wrapper img").slice(1).get().map(function (i) {
         $(i).addClass('img-expandable');
     });
+    // Enable comment submit button when text is input
+    $('.res-comment-box').keyup(function () {
+        const input = document.getElementById('res-comment-box').value;
+        if (input.length > 0) {
+            $('.res-comment-btn').prop('disabled', false);
+            $('.res-comment-btn').css('color', 'var(--text-accent)');
+        } else {
+            $('.res-comment-btn').prop('disabled', true);
+            $('.res-comment-btn').css('color', '#bebebe');
+        }
+    })
 })
 $(function () {
     $('.img-expandable').on('click', function () {
         $('.imagepreview').attr('src', $(this).attr('src'))
         $('#imagemodal').modal('show');
     });
+});
+// Send comment with enter key
+$('.res-comment-box').keypress(function (e) {
+    if (e.which === 13 && !e.shiftKey) {
+        e.preventDefault();
+        $('.res-comment-btn').click();
+    }
 });
 
 // New resource post submit

@@ -234,7 +234,7 @@ router.post('/comment', async (req, res) => {
         const results = await resourceSchema.find({ _id: req.body.id });
         for (const data of results) {
             let comments = data.comments;
-            comments.push({ username: req?.user?.username || 'Unknown', userId: req?.user?.userId || '', avatar: req?.user?.avatar || '', comment: req.body.comment });
+            comments.push({ username: req?.user?.username || 'Unknown', userId: req?.user?.userId || '', avatar: req?.user?.avatar || '', comment: req.body.comment, timestamp: Date.now() });
             await resourceSchema.updateOne({
                 _id: req.body.id
             },{

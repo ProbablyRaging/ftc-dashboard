@@ -138,8 +138,14 @@
                     <div class="res-comment">
                         <h3>Comments</h3>
                         <p class="comment-sub">Leave a comment, or suggest a topic for one of our writers to cover</p>
-                        <textarea class="res-comment-box" id="res-comment-box"></textarea>
-                        <button class="button button--primary button--dense res-comment-btn" onclick="submitComment('<%= post.id %>')">Submit</button>
+                        <div class="comment-box">
+                            <% if (user) { %>
+                            <textarea class="res-comment-box" id="res-comment-box"></textarea>
+                            <% } else { %>
+                            <textarea class="res-comment-box" id="res-comment-box" disabled>Sign in to leave a comment</textarea>
+                            <% } %>
+                            <button class="bi bi-send-fill res-comment-btn" onclick="submitComment('<%= post.id %>')" disabled></button>
+                        </div>
                     </div>
                     <div class="submit-success">
                         Your comment has been submitted
@@ -156,7 +162,11 @@
                             </div>
 
                             <div class="comment__author">
-                                <p class="comment-author"><%= comment.username %></p>
+                                <div class="user-time">
+                                    <p class="comment-author"><%= comment.username %></p>
+                                    <p class="comment-timestamp"><%= new Date(comment.timestamp).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
+                                    <p class="comment-timestamp"><%= new Date(comment.timestamp).toLocaleTimeString() %></p>
+                                </div>
                                 <p class="comment-comment"><%= comment.comment %></p>
                             </div>
                         </div>

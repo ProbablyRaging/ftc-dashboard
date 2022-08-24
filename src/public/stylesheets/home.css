@@ -1194,6 +1194,8 @@ iframe {
     background-repeat: no-repeat
 }
 
+
+
 @media screen and (max-width: 1000px) {
     .section__bg-cover {
         height: 720px;
@@ -1208,6 +1210,7 @@ iframe {
 
 .section__bg-cover__sm {
     background-color: var(--bg);
+    background-image: url(/images/bg_lines.svg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat
@@ -3799,6 +3802,25 @@ li {
     margin: 0;
 }
 
+.comment-timestamp {
+    margin: 0;
+    margin-left: 8px;
+    font-size: 12px;
+    color: var(--text-alt) !important;
+}
+
+.comment-timestamp:last-child {
+    margin: 0;
+    margin-left: 4px;
+    font-size: 12px;
+    color: var(--text-alt) !important;
+}
+
+.user-time {
+    display: flex;
+    align-items: baseline;
+}
+
 .comment-sub {
     margin-bottom: 14px;
     font-size: 14px;
@@ -3817,6 +3839,23 @@ li {
 }
 
 .post-body-wrapper .img-expandable {
-    max-width: 480px;
+    max-width: 320px;
     cursor: pointer;
+}
+
+.comment-box {
+    position: relative; 
+}
+
+.comment-box button {
+    color: #bebebe;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background: 0 0;
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    transform: rotate(45deg);
 }
