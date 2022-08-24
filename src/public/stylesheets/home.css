@@ -757,21 +757,15 @@ html.is-animating .page--transition-fade {
     width: 30px;
 }
 
-iframe {
+.accordian iframe {
     border-radius: 8px;
     width: 450px;
     height: 500px;
 }
 
-@media screen and (max-width: 1200px) {
-    iframe {
-        width: 400px;
-    }
-}
-
 @media screen and (max-width: 1000px) {
-    iframe {
-        display: none;
+    .accordian iframe {
+        width: 100% !important;
     }
 }
 
@@ -3629,6 +3623,7 @@ li {
     display: flex;
     align-items: center;
     margin-bottom: 12px;
+    flex-wrap: wrap;
 }
 
 .post-controls {
@@ -3767,6 +3762,10 @@ li {
     resize: none;
 }
 
+.timestamp-wrapper {
+    display: flex;
+}
+
 .comment__info {
     display: flex;
     margin: 24px 0;
@@ -3775,6 +3774,12 @@ li {
     border-radius: 8px;
     background: #fff;
     width: 80%;
+}
+
+@media screen and (max-width: 960px) {
+    .comment__info {
+        width: 100%;
+    }
 }
 
 .comment__avatar {
@@ -3817,9 +3822,21 @@ li {
     color: var(--text-alt) !important;
 }
 
+@media screen and (max-width: 720px) {
+    .comment-timestamp {
+        margin-left: 0;
+    }
+}
+
 .user-time {
     display: flex;
     align-items: baseline;
+}
+
+@media screen and (max-width: 720px) {
+    .user-time {
+        flex-direction: column;
+    }
 }
 
 .comment-sub {
@@ -3844,8 +3861,14 @@ li {
     cursor: pointer;
 }
 
+@media screen and (max-width: 540px) {
+    .post-body-wrapper .img-expandable {
+        max-width: 100%;
+    }
+}
+
 .comment-box {
-    position: relative; 
+    position: relative;
 }
 
 .comment-box button {

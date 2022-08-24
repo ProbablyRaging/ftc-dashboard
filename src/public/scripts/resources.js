@@ -226,7 +226,7 @@ async function submitComment(id) {
         $('.error-type').text('comment');
         return toast.show();
     }
-    $('.res-comment-btn').html('Please wait..').prop('disabled', true);
+    $('.res-comment-btn').prop('disabled', true);
     $.post({
         url: `/resources/comment`,
         type: 'POST',
@@ -240,7 +240,7 @@ async function submitComment(id) {
         } else {
             const toast = new bootstrap.Toast(errorToast);
             toast.show();
-            $('.res-comment-btn').html('Submit').prop('disabled', false);
+            $('.res-comment-btn').prop('disabled', false);
         }
     });
 }
