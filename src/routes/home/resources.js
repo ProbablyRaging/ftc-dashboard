@@ -8,6 +8,7 @@ const fetch = require('node-fetch');
 const { ImgurClient } = require('imgur');
 
 router.get('/', async (req, res) => {
+    req.session.returnTo = req.originalUrl;
     const results = await resourceSchema.find().limit(6).sort({ _id: -1 });
     const results2 = await suggestionSchema.findOne().limit(5).sort({ _id: -1 });
     res.render('resources', {
@@ -30,6 +31,7 @@ router.get('/new', isWriter, async (req, res) => {
 });
 
 router.get('/:slug', async (req, res) => {
+    req.session.returnTo = req.originalUrl;
     const results = await resourceSchema.findOne({ slug: req.params.slug });
     if (results === null) return res.redirect('/resources');
     res.render('resources/view', {

@@ -1,8 +1,6 @@
 require('dotenv').config();
 const router = require('express').Router();
-const { isAuthortized, isStaff } = require('../../strategies/auth_check');
-const fetch = require('node-fetch');
-const { perDiff } = require('../../functions/functions');
+const { isStaff } = require('../../strategies/auth_check');
 
 // Staff dashboard root
 router.get('/', async (req, res) => {
