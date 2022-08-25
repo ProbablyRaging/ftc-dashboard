@@ -110,30 +110,32 @@
                             <div class="post__avatar">
                                 <img src="https://cdn.discordapp.com/avatars/<%= post.userId %>/<%= post.avatar %>.webp" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'" alt="author">
                             </div>
-                            <div class="post__author">
-                                <p class="post-author"><%= post.author %></p>
-                                <% if (!post.edited) { %>
-                                <p class="post-time"><%= post.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
-                                <% } else { %>
-                                <p class="post-time">Updated <%= post.edited.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
-                                <% } %>
-                            </div>
-                            <div class="author-socials">
-                                <% if (post.userId === '438434841617367080') { %>
-                                <!-- ProbablyRaging -->
-                                <a href="https://youtube.com/probablyraging" target="_blank"><i class="bi bi-youtube"></i></a>
-                                <a href="https://twitter.com/ProbablyRaging" target="_blank"><i class="bi bi-twitter"></i></a>
-                                <a href="https://instagram.com/forthecontentdiscord" target="_blank"><i class="bi bi-instagram"></i></a>
-                                <% } %>
-                                <% if (post.userId === '152593345556774912') { %>
-                                <!-- Weesgbr -->
-                                <a href="https://www.youtube.com/weisgerbercubed" target="_blank"><i class="bi bi-youtube"></i></a>
-                                <a href="https://www.instagram.com/weisgerbercub3d" target="_blank"><i class="bi bi-instagram"></i></a>
-                                <% } %>
-                                <% if (post.userId === '389622753747140610') { %>
-                                <!-- Sparrow -->
-                                <a href="https://youtube.com/nightshinethieves" target="_blank"><i class="bi bi-youtube"></i></a>
-                                <% } %>
+                            <div class="author__wrapper">
+                                <div class="post__author">
+                                    <p class="post-author"><%= post.author %></p>
+                                    <% if (!post.edited) { %>
+                                    <p class="post-time"><%= post.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+                                    <% } else { %>
+                                    <p class="post-time">Updated <%= post.edited.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+                                    <% } %>
+                                </div>
+                                <div class="author-socials">
+                                    <% if (post.userId === '438434841617367080') { %>
+                                    <!-- ProbablyRaging -->
+                                    <a href="https://youtube.com/probablyraging" target="_blank"><i class="bi bi-youtube"></i></a>
+                                    <a href="https://twitter.com/ProbablyRaging" target="_blank"><i class="bi bi-twitter"></i></a>
+                                    <a href="https://instagram.com/forthecontentdiscord" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <% } %>
+                                    <% if (post.userId === '152593345556774912') { %>
+                                    <!-- Weesgbr -->
+                                    <a href="https://www.youtube.com/weisgerbercubed" target="_blank"><i class="bi bi-youtube"></i></a>
+                                    <a href="https://www.instagram.com/weisgerbercub3d" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <% } %>
+                                    <% if (post.userId === '389622753747140610') { %>
+                                    <!-- Sparrow -->
+                                    <a href="https://youtube.com/nightshinethieves" target="_blank"><i class="bi bi-youtube"></i></a>
+                                    <% } %>
+                                </div>
                             </div>
                         </div>
 

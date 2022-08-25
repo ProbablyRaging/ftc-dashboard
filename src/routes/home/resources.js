@@ -188,7 +188,6 @@ router.post('/edit', isWriter, async (req, res) => {
         } else {
             image = '/images/default_res_banner.png'
         }
-        console.log(req.body.categories);
         await resourceSchema.findOneAndUpdate({
             _id: req.body.id
         }, {
