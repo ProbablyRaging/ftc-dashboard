@@ -126,14 +126,27 @@
                     <h2>New Resource Post</h2>
 
                     <div class="res-form">
-                        <label for="resource-title">Title:</label><br>
-                        <input class="res-input" id="resource-title" name="resource-title" required>
+                        <label for="resource-title">Title <i class="bi bi-question-circle label-tooltip" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" title="The title of your post (15-80 characters)"></i></label><br>
+                        <input class="res-input" id="resource-title" name="resource-title" minlength=15 maxlength=80 required>
                         <br>
 
-                        <label for="resource-snippet">Snippet:</label><br>
+                        <label for="resource-snippet">Snippet <i class="bi bi-question-circle label-tooltip" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" title="A short description about, or exerpt from your post (50-200 characters)"></i></label><br>
                         <input class="res-input" id="resource-snippet" name="resource-snippet" type="text" minlength=50 maxlength=200 required>
 
-                        <label for="new-resource-post">Body:</label><br>
+                        <label for="category-selector">Categories <i class="bi bi-question-circle label-tooltip" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" title="Select any relative categories for your post"></i></label>
+                        <div class="category-selector">
+                            <input type="checkbox" id="tutorials" name="categories" value="tutorials"><label class="mark-checked" for="tutorials">tutorials</label>
+                            <input type="checkbox" id="tips & advice" name="categories" value="tips & advice"><label class="mark-checked" for="tips & advice">tips & advice</label>
+                            <input type="checkbox" id="graphics" name="categories" value="graphics"><label class="mark-checked" for="graphics">graphics</label>
+                            <input type="checkbox" id="animation" name="categories" value="animation"><label class="mark-checked" for="animation">animation</label>                            
+                            <input type="checkbox" id="news" name="categories" value="news"><label class="mark-checked" for="news">news</label>
+                            <input type="checkbox" id="seo" name="categories" value="seo"><label class="mark-checked" for="seo">seo</label>
+                            <input type="checkbox" id="tools" name="categories" value="tools"><label class="mark-checked" for="tools">tools</label>
+                            <input type="checkbox" id="hardware" name="categories" value="hardware"><label class="mark-checked" for="hardware">hardware</label>
+                            <input type="checkbox" id="recommendation" name="categories" value="recommendation"><label class="mark-checked" for="recommendation">recommendation</label>
+                        </div>
+
+                        <label for="new-resource-post">Body <i class="bi bi-question-circle label-tooltip" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" title="The main content of your post"></i></label><br>
                         <textarea id="new-resource-post">
 
                         </textarea>
@@ -161,7 +174,7 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="titleToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body text-light bg-danger">
-                You must include a <span class="error-type"></span>
+                You must include <span class="error-type"></span>
             </div>
         </div>
     </div>
@@ -169,4 +182,5 @@
     <!-- Footer -->
     <%- include('../partials/home/footer') -%>
     <script src="/scripts/resources.js"></script>
+    <script src="/scripts/bootstrap.js"></script>
 </body>

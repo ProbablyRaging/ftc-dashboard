@@ -85,13 +85,52 @@
             <div class="wp-block-vbi-two-column-layout row content__area row--center">
                 <div class="--reset row row--dense blog__row js--posts-list">
 
+                    <div class="category-wrapper">
+                        <ul class="category-list">
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('tutorials'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">tutorials</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('tips & advice'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">tips & advice</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('graphics'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">graphics</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('animation'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">animation</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('news'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">news</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('seo'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">seo</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('tools'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">tools</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('hardware'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">hardware</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('recommendation'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)">recommendation</button>
+                            </li>
+                            <li class="category-item">
+                                <button class="category-item-btn" onclick="fetchMore('all'); $('.category-item-btn').each(() => { $('.category-item-btn').prop('disabled', false) }); $(this).prop('disabled', true)" disabled>everything</button>
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="resource-wrapper">
                         <% results.forEach(post => { %>
                         <li class="col col--dense col--md-4 col--sm-6">
                             <a href="/resources/<%= post.slug %>" class="blog__item content__area">
-                                <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('<%= post.image %>');">
-                                    <div class="image__cover"></div>
-                                    <div class="post-gallery-item-in"></div>
+                                <div class="image-box">
+                                    <div class="image-animation">
+                                        <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('<%= post.image %>');">
+                                            <div class="image__cover"></div>
+                                            <div class="post-gallery-item-in"></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <p class="blog__item__time h5"><%= post.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                                 <h3 class="blog__item__title"><%= post.title %></h3>
@@ -113,7 +152,7 @@
 
                     <div class="res-comment">
                         <h3>Suggestions</h3>
-                        <p class="comment-sub">Leave a suggestion for a topic for one of our writers to cover</p>
+                        <p class="comment-sub">Suggest a topic for one of our writers to cover</p>
                         <div class="comment-box">
                             <% if (user) { %>
                             <textarea class="res-comment-box" id="res-comment-box"></textarea>
@@ -142,7 +181,7 @@
                                     <p class="comment-author"><%= suggestion.username %></p>
                                     <div class="timestamp-wrapper">
                                         <p class="comment-timestamp"><%= new Date(suggestion.timestamp).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', day: 'numeric' , month: 'short'}) %></p>
-                                    <p class="comment-timestamp"><%= new Date(suggestion.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute:'2-digit' }) %></p>
+                                        <p class="comment-timestamp"><%= new Date(suggestion.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute:'2-digit' }) %></p>
                                     </div>
                                 </div>
                                 <p class="comment-comment"><%= suggestion.suggestion %></p>

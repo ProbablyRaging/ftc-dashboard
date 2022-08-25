@@ -83,11 +83,28 @@
                             <span><a href="/">Home</a> <i class="bi bi-chevron-right"></i> <a href="/resources">Resources</a> <i class="bi bi-chevron-right"></i> <strong><%= post.title %></strong></span>
                         </div>
 
-                        <label id="title-label" for="resource-title" style="display: none;">Title:</label>
+                        <label id="title-label" for="resource-title" style="display: none;">Title</label>
                         <h1 class="post-title" id="post-title"><%= post.title %></h1>
 
-                        <label id="snippet-label" for="resource-snippet" style="display: none;">Snippet:</label>
+                        <label id="snippet-label" for="resource-snippet" style="display: none;">Snippet</label>
                         <input class="res-input" id="resource-snippet" name="resource-snippet" type="text" value="<%= post.snippet %>" minlength=50 maxlength=200 style="display: none;" required>
+
+                        <label id="category-label" for="category-selector" style="display: none;">Categories</label>
+                        <div id="category-selector" class="category-selector" style="display: none;">
+                            <input type="checkbox" id="tutorials" name="categories" value="tutorials"><label class="mark-checked" for="tutorials">tutorials</label>
+                            <input type="checkbox" id="tips & advice" name="categories" value="tips & advice"><label class="mark-checked" for="tips & advice">tips & advice</label>
+                            <input type="checkbox" id="graphics" name="categories" value="graphics"><label class="mark-checked" for="graphics">graphics</label>
+                            <input type="checkbox" id="animation" name="categories" value="animation"><label class="mark-checked" for="animation">animation</label>
+                            <input type="checkbox" id="news" name="categories" value="news"><label class="mark-checked" for="news">news</label>
+                            <input type="checkbox" id="seo" name="categories" value="seo"><label class="mark-checked" for="seo">seo</label>
+                            <input type="checkbox" id="tools" name="categories" value="tools"><label class="mark-checked" for="tools">tools</label>
+                            <input type="checkbox" id="hardware" name="categories" value="hardware"><label class="mark-checked" for="hardware">hardware</label>
+                            <input type="checkbox" id="recommendation" name="categories" value="recommendation"><label class="mark-checked" for="recommendation">recommendation</label>
+                        </div>
+
+                        <% post.categories.forEach(category => { %>
+                        <script>$(`#<%= category %>`).prop('checked', true)</script>
+                        <% }) %>
 
                         <div class="post__info">
                             <div class="post__avatar">

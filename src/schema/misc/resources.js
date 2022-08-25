@@ -52,6 +52,10 @@ const resourceSchema = mongoose.Schema({
     comments: {
         type: Array,
         required: false
+    },
+    categories: {
+        type: Array,
+        required: true
     }
 });
 

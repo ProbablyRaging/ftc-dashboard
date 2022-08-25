@@ -44,9 +44,21 @@ router.get('/:slug', async (req, res) => {
 });
 
 router.post('/fetch', async (req, res) => {
-    const page = req.body.page;
-    const results = await resourceSchema.find().skip(8 * page).limit(8).sort({ '_id': -1 });
-    res.send({ "results": results, "count": results.length });
+    if (req.body.page) {
+        const page = req.body.page;
+        const results = await resourceSchema.find().skip(8 * page).limit(8).sort({ '_id': -1 });
+        res.send({ "results": results, "count": results.length });
+    }
+    if (req.body.category) {
+        const category = req.body.category;
+        if (req.body.category === 'all') {
+            const results = await resourceSchema.find().limit(8).sort({ '_id': -1 });
+            res.send({ "results": results });
+        } else {
+            const results = await resourceSchema.find({ categories: category }).limit(8).sort({ '_id': -1 });
+            res.send({ "results": results });
+        }
+    }
 });
 
 router.post('/post', isWriter, async (req, res) => {
@@ -107,6 +119,7 @@ router.post('/post', isWriter, async (req, res) => {
             title: req.body.title,
             body: body,
             snippet: req.body.snippet,
+            categories: req.body.categories,
             author: req.user.username,
             userId: req.user.userId,
             avatar: req.user.avatar,
@@ -175,11 +188,13 @@ router.post('/edit', isWriter, async (req, res) => {
         } else {
             image = '/images/default_res_banner.png'
         }
+        console.log(req.body.categories);
         await resourceSchema.findOneAndUpdate({
             _id: req.body.id
         }, {
             title: req.body.title,
             body: body,
+            categories: req.body.categories,
             image: image,
             snippet: req.body.snippet,
             edited: Date.now(),

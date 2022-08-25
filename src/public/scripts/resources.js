@@ -34,25 +34,30 @@ function submitPost() {
     const title = document.getElementById('resource-title').value;
     const snippet = document.getElementById('resource-snippet').value;
     const body = tinyMCE.activeEditor.getContent();
+    // Get all checked categories
+    let categories = [];
+    $('.category-selector input:checked').each(function () {
+        categories.push($(this).attr('value'));
+    });
     // If missing required fiels
     if (title === '') {
         const toast = new bootstrap.Toast(titleToast);
-        $('.error-type').text('title');
+        $('.error-type').text('a title');
         return toast.show();
     }
     if (snippet === '') {
         const toast = new bootstrap.Toast(titleToast);
-        $('.error-type').text('snippet');
+        $('.error-type').text('a snippet');
         return toast.show();
     }
     if (snippet.length < 50) {
         const toast = new bootstrap.Toast(titleToast);
-        $('.error-type').text('snippet that is longer than 50 characters');
+        $('.error-type').text('a snippet that is longer than 50 characters');
         return toast.show();
     }
     if (body === '') {
         const toast = new bootstrap.Toast(titleToast);
-        $('.error-type').text('body');
+        $('.error-type').text('a body');
         return toast.show();
     }
     $('.post-submit').html('Please wait..').prop('disabled', true);
@@ -62,7 +67,7 @@ function submitPost() {
         type: 'POST',
         headers: { "Content-Type": "application/json" },
         dataType: 'json',
-        data: JSON.stringify({ "title": `${title}`, "body": `${body}`, "snippet": `${snippet}` })
+        data: JSON.stringify({ "title": title, "body": body, "snippet": snippet, "categories": categories })
     }, (data) => {
         if (data.status === 'ok') {
             window.location = `/resources/${data.slug}`;
@@ -80,7 +85,6 @@ function makeEditable() {
     $('.post-save').css('display', 'block');
     $('.post-cancel').css('display', 'block');
     $('.post-body-wrapper').attr('id', 'editable').css('border', '1px solid #000');
-
     const currentTitle = document.getElementById('post-title').innerHTML;
     var input = $('<input />', {
         'name': 'resource-title',
@@ -93,6 +97,8 @@ function makeEditable() {
     $('#resource-snippet').css('display', 'block');
     $('#title-label').css('display', 'block');
     $('#snippet-label').css('display', 'block');
+    $('#category-selector').css('display', 'block');
+    $('#category-label').css('display', 'block');
     $('.post__info').css('display', 'none');
     $('.post-publish').css('display', 'none');
     $('.post-delete').css('display', 'none');
@@ -130,6 +136,11 @@ function saveEdit(id) {
     const snippet = document.getElementById('resource-snippet').value;
     const body = tinyMCE.activeEditor.getContent();
     const image = $('.post-body-wrapper').find('img').attr('src');
+    // Get all checked categories
+    let categories = [];
+    $('.category-selector input:checked').each(function () {
+        categories.push($(this).attr('value'));
+    });
     // If missing required fiels
     if (title === '') {
         const toast = new bootstrap.Toast(titleToast);
@@ -157,7 +168,7 @@ function saveEdit(id) {
         type: 'POST',
         headers: { "Content-Type": "application/json" },
         dataType: 'json',
-        data: JSON.stringify({ "id": id, "title": `${title}`, "body": `${body}`, "image": `${image}`, "snippet": `${snippet}` })
+        data: JSON.stringify({ "id": id, "title": title, "body": body, "image": image, "snippet": snippet, "categories": categories })
     }, (data) => {
         if (data.status === 'ok') {
             $('.post-body-wrapper').removeAttr('id', 'editable').css('border', 'none');
@@ -273,33 +284,74 @@ async function submitComment(id) {
 
 // Resource pagination
 let page = 1
-function fetchMore() {
-    $.post({
-        url: `/resources/fetch`,
-        type: 'POST',
-        headers: { "Content-Type": "application/json" },
-        dataType: 'json',
-        data: JSON.stringify({ "page": page })
-    }, (data) => {
-        page++;
-        if (data.count < 8) $('.btn-load-more').prop('disabled', true).text('No more results');
-        data.results.forEach(post => {
-            $('.resource-wrapper').append(`
-                                    <li class="col col--dense col--md-4 col--sm-6">
-                                        <div class="slow-reveal" style="display: none;">
-                                            <a href="/resources/${post.slug}" class="blog__item content__area">
-                                                <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('${post.image}');">
-                                                    <div class="image__cover"></div>
-                                                    <div class="post-gallery-item-in"></div>
-                                                </div>
-                                                <p class="blog__item__time h5">${new Date(post.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                                                <h3 class="blog__item__title">${post.title}</h3>
-                                                <p class="blog__item__snippet">${post.snippet}..</p>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    `);
+function fetchMore(category) {
+    if (!category) {
+        $.post({
+            url: `/resources/fetch`,
+            type: 'POST',
+            headers: { "Content-Type": "application/json" },
+            dataType: 'json',
+            data: JSON.stringify({ "page": page })
+        }, (data) => {
+            page++;
+            if (data.count < 8) $('.btn-load-more').prop('disabled', true).text('No more results');
+            data.results.forEach(post => {
+                $('.resource-wrapper').append(`
+                <li class="col col--dense col--md-4 col--sm-6">
+                    <div class="slow-reveal" style="display: none;">
+                        <a href="/resources/${post.slug}" class="blog__item content__area">
+                            <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('${post.image}');">
+                                <div class="image__cover"></div>
+                                <div class="post-gallery-item-in"></div>
+                            </div>
+                            <p class="blog__item__time h5">${new Date(post.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                            <h3 class="blog__item__title">${post.title}</h3>
+                            <p class="blog__item__snippet">${post.snippet}..</p>
+                        </a>
+                    </div>
+                </li>
+                `);
+            });
+            $('.slow-reveal').fadeIn(250);
         });
-        $('.slow-reveal').fadeIn(250);
-    });
+    } else {
+        $.post({
+            url: `/resources/fetch`,
+            type: 'POST',
+            headers: { "Content-Type": "application/json" },
+            dataType: 'json',
+            data: JSON.stringify({ "category": category })
+        }, (data) => {
+            $('.col').each(() => {
+                $('.col').hide();
+            });
+            if (data.results.length < 1) {
+                $('.resource-wrapper').append(`
+                <li class="col col--dense col--md-4 col--sm-6">
+                    <div class="slow-reveal" style="display: none;">
+                        <p style="color: #ccc">No results for ${category}</p>
+                    </div>
+                </li>
+                `);
+            }
+            data.results.forEach(post => {
+                $('.resource-wrapper').append(`
+                <li class="col col--dense col--md-4 col--sm-6">
+                    <div class="slow-reveal" style="display: none;">
+                        <a href="/resources/${post.slug}" class="blog__item content__area">
+                            <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('${post.image}');">
+                                <div class="image__cover"></div>
+                                <div class="post-gallery-item-in"></div>
+                            </div>
+                            <p class="blog__item__time h5">${new Date(post.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                            <h3 class="blog__item__title">${post.title}</h3>
+                            <p class="blog__item__snippet">${post.snippet}..</p>
+                        </a>
+                    </div>
+                </li>
+                `);
+            });
+            $('.slow-reveal').fadeIn(250);
+        });
+    }
 }

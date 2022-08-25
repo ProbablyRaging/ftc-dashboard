@@ -788,8 +788,16 @@ html.is-animating .page--transition-fade {
 .image {
     position: relative;
     width: 100%;
-    margin-bottom: 1rem;
     border-radius: .5rem
+}
+
+.image-box {
+    border-radius: 10px;
+    display: block;
+    flex-basis: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1rem;
 }
 
 .image--bg {
@@ -797,7 +805,16 @@ html.is-animating .page--transition-fade {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-color: #e9edf2
+    background-color: #e9edf2;
+}
+
+.image-animation {
+    transform: scale(1.01);
+    transition: transform 0.2s ease-in-out;
+}
+
+.blog__item:hover .image-animation {
+    transform: scale(1.05);
 }
 
 .image--ratio-16x9 {
@@ -3607,6 +3624,7 @@ li {
 @media screen and (max-width: 720px) {
     .resource-wrapper {
         flex-direction: column;
+        gap: 40px;
     }
 
     .resource-wrapper .col--sm-6 {
@@ -3886,4 +3904,61 @@ li {
     margin-bottom: 10px;
     margin-right: 10px;
     transform: rotate(45deg);
+}
+
+.category-wrapper {
+    margin-left: 12px;
+}
+
+.category-list {
+    display: flex !important;
+    gap: 12px;
+    list-style: none !important;
+    padding: 0 !important;
+    flex-wrap: wrap;
+}
+
+.category-list button:disabled {
+    background-color: #61e58f;
+}
+
+.category-item-btn {
+    font-size: 12px;
+    background-color: #c5e1ff;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.category-selector {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.category-selector input {
+    display: none;
+}
+
+.category-selector label {
+    font-size: 12px;
+    padding: 4px 10px;
+    background-color: #c5e1ff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.category-selector input:checked + .mark-checked {
+    background-color: #61e58f;
+}
+
+.label-tooltip {
+    font-size: 14px;
+}
+
+.tooltip {
+    font-size: 12px;
 }
