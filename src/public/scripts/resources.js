@@ -298,17 +298,21 @@ function fetchMore(category) {
             data.results.forEach(post => {
                 $('.resource-wrapper').append(`
                 <li class="col col--dense col--md-4 col--sm-6">
-                    <div class="slow-reveal" style="display: none;">
-                        <a href="/resources/${post.slug}" class="blog__item content__area">
-                            <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('${post.image}');">
-                                <div class="image__cover"></div>
-                                <div class="post-gallery-item-in"></div>
-                            </div>
-                            <p class="blog__item__time h5">${new Date(post.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                            <h3 class="blog__item__title">${post.title}</h3>
-                            <p class="blog__item__snippet">${post.snippet}..</p>
-                        </a>
-                    </div>
+                <div class="slow-reveal" style="display: none;">
+                <a href="/resources/${post.slug}" class="blog__item content__area">
+                <div class="image-box">
+                <div class="image-animation"> 
+                <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('${post.image}');">
+                <div class="image__cover"></div>
+                <div class="post-gallery-item-in"></div>
+                </div>
+                </div>
+                </div>
+                <p class="blog__item__time h5">${new Date(post.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <h3 class="blog__item__title">${post.title}</h3>
+                <p class="blog__item__snippet">${post.snippet}..</p>
+                </a>
+                </div>
                 </li>
                 `);
             });
@@ -337,17 +341,21 @@ function fetchMore(category) {
             data.results.forEach(post => {
                 $('.resource-wrapper').append(`
                 <li class="col col--dense col--md-4 col--sm-6">
-                    <div class="slow-reveal" style="display: none;">
-                        <a href="/resources/${post.slug}" class="blog__item content__area">
-                            <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('${post.image}');">
-                                <div class="image__cover"></div>
-                                <div class="post-gallery-item-in"></div>
-                            </div>
-                            <p class="blog__item__time h5">${new Date(post.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                            <h3 class="blog__item__title">${post.title}</h3>
-                            <p class="blog__item__snippet">${post.snippet}..</p>
-                        </a>
-                    </div>
+                <div class="slow-reveal" style="display: none;">
+                <a href="/resources/${post.slug}" class="blog__item content__area">
+                <div class="image-box">
+                <div class="image-animation">    
+                <div class="image image--bg image--ratio-16x9 image--loaded" data-plugin="lazy-image" style="background-image: url('${post.image}');">
+                <div class="image__cover"></div>
+                <div class="post-gallery-item-in"></div>
+                </div>
+                </div>
+                </div>
+                <p class="blog__item__time h5">${new Date(post.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <h3 class="blog__item__title">${post.title}</h3>
+                <p class="blog__item__snippet">${post.snippet}..</p>
+                </a>
+                </div>
                 </li>
                 `);
             });
