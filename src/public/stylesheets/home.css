@@ -3701,6 +3701,7 @@ li {
 @media screen and (max-width: 960px) {
     .post-title {
         margin-top: 32px;
+        font-size: 34px;
     }
 }
 
@@ -3908,6 +3909,21 @@ li {
 
 .category-wrapper {
     margin-left: 12px;
+}
+
+@media screen and (max-width: 960px) {
+    .category-wrapper {
+        margin: 0;
+    }   
+}
+
+@media screen and (max-width: 720px) {
+    .category-wrapper {
+        padding: 0;
+    }
+    .category-wrapper ul {
+        margin: 0;
+    }
 }
 
 .category-list {
