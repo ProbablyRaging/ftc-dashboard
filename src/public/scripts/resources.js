@@ -1,7 +1,12 @@
 // Add zoom to resource images
 $(document).ready(function () {
+    // Add zoom to images
     $(".post-body-wrapper img").slice(1).get().map(function (i) {
         $(i).addClass('img-expandable');
+    });
+    // Center images
+    $(".post-body-wrapper img").get().map(function (i) {
+        $(i).attr('style', 'margin-left: auto; margin-right: auto;');
     });
     // Enable comment submit button when text is input
     $('.res-comment-box').keyup(function () {
