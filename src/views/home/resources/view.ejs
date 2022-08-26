@@ -120,8 +120,9 @@
                                     <% } %>
                                 </div>
                                 <script>
-                                    const timestamp = '<%= post.timestamp.toLocaleTimeString() %>';
-                                    document.getElementById('ejs-timestamp').innerHTML = timestamp;
+                                    const timestamp = '<%= post.timestamp %>';
+                                    console.log(new Date(timestamp).toLocaleTimeString());
+                                    document.getElementById('ejs-timestamp').innerHTML = new Date(timestamp).toLocaleTimeString();
                                 </script>
                                 <div class="author-socials">
                                     <% if (post.userId === '438434841617367080') { %>
