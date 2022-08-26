@@ -46,6 +46,7 @@
     text-transform: uppercase;
     letter-spacing: 4px;
     margin: 0 14px;
+    user-select: none;
 }
 
 @media screen and (max-width: 360px) {
@@ -853,7 +854,7 @@ html.is-animating .page--transition-fade {
 }
 
 .button__icon {
-    font-size: 22px;
+    font-size: 20px;
     margin-right: 14px;
 }
 
@@ -3715,6 +3716,10 @@ li {
         padding-left: 0;
         padding-right: 0;
     }
+
+    .post-body-wrapper h2 {
+        font-size: 24px;
+    }
 }
 
 .post-body-wrapper h2 {
@@ -3972,6 +3977,7 @@ li {
 }
 
 .label-tooltip {
+    color: #ccc;
     font-size: 14px;
 }
 
