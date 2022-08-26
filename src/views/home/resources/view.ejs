@@ -116,14 +116,9 @@
                                     <% if (!post.edited) { %>
                                     <p class="post-time"><%= post.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                                     <% } else { %>
-                                    <p class="post-time">Updated <span id="ejs-timestamp"></span></p>
+                                    <p class="post-time">Updated <%= post.edited.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                                     <% } %>
                                 </div>
-                                <script>
-                                    const timestamp = '<%= post.timestamp %>';
-                                    console.log(new Date(timestamp).toLocaleTimeString());
-                                    document.getElementById('ejs-timestamp').innerHTML = new Date(timestamp).toLocaleTimeString();
-                                </script>
                                 <div class="author-socials">
                                     <% if (post.userId === '438434841617367080') { %>
                                     <!-- ProbablyRaging -->
