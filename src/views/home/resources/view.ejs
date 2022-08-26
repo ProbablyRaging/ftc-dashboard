@@ -112,7 +112,7 @@
                             </div>
                             <div class="author__wrapper">
                                 <div class="post__author">
-                                    <p class="post-author"><%= post.author %></p>
+                                    <p class="post-author" id="post-author"><%= post.author %></p>
                                     <% if (!post.edited) { %>
                                     <p class="post-time"><%= post.timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                                     <% } else { %>
@@ -128,6 +128,7 @@
                                     <% } %>
                                     <% if (post.userId === '152593345556774912') { %>
                                     <!-- Weesgbr -->
+                                    <script>document.getElementById('post-author').innerHTML = 'Weisgerber Cubed'</script>
                                     <a href="https://www.youtube.com/weisgerbercubed" target="_blank"><i class="bi bi-youtube"></i></a>
                                     <a href="https://www.instagram.com/weisgerbercub3d" target="_blank"><i class="bi bi-instagram"></i></a>
                                     <% } %>
