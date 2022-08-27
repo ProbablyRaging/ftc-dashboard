@@ -37,6 +37,12 @@ passport.use(new discordStrategy({
         if (discordUserData?.roles?.length > 0 && discordUserData?.roles.includes(`${process.env.AUTH_ROLE_ID}`)) {
             // If they already have a database entry
             if (user) {
+                let guildIds = [];
+                if (profile?.guilds.length > 0) {
+                    profile.guilds.forEach(guild => {
+                        guildIds.push(guild.id);
+                    });
+                }
                 await discordUser.findOneAndUpdate({
                     userId: profile.id
                 }, {
@@ -45,13 +51,19 @@ passport.use(new discordStrategy({
                     avatar: profile.avatar || 'null',
                     accessToken: accessToken,
                     refreshToken: refreshToken,
-                    guilds: profile.guilds,
+                    guilds: guildIds,
                     roles: discordUserData.roles,
                     isStaff: true
                 });
 
                 done(null, user);
             } else {
+                let guildIds = [];
+                if (profile?.guilds.length > 0) {
+                    profile.guilds.forEach(guild => {
+                        guildIds.push(guild.id);
+                    });
+                }
                 const newUser = await discordUser.create({
                     userId: profile.id,
                     username: profile.username,
@@ -59,7 +71,7 @@ passport.use(new discordStrategy({
                     avatar: profile.avatar || 'null',
                     accessToken: accessToken,
                     refreshToken: refreshToken,
-                    guilds: profile.guilds,
+                    guilds: guildIds,
                     roles: discordUserData.roles,
                     isStaff: true
                 });
@@ -69,6 +81,12 @@ passport.use(new discordStrategy({
             }
         } else if (discordUserData.joined_at) {
             if (user) {
+                let guildIds = [];
+                if (profile?.guilds.length > 0) {
+                    profile.guilds.forEach(guild => {
+                        guildIds.push(guild.id);
+                    });
+                }
                 await discordUser.findOneAndUpdate({
                     userId: profile.id
                 }, {
@@ -77,13 +95,19 @@ passport.use(new discordStrategy({
                     avatar: profile.avatar,
                     accessToken: accessToken,
                     refreshToken: refreshToken,
-                    guilds: profile.guilds,
+                    guilds: guildIds,
                     roles: discordUserData?.roles,
                     isStaff: false
                 });
 
                 done(null, user);
             } else {
+                let guildIds = [];
+                if (profile?.guilds.length > 0) {
+                    profile.guilds.forEach(guild => {
+                        guildIds.push(guild.id);
+                    });
+                }
                 const newUser = await discordUser.create({
                     userId: profile.id,
                     username: profile.username,
@@ -91,7 +115,7 @@ passport.use(new discordStrategy({
                     avatar: profile.avatar || 'null',
                     accessToken: accessToken,
                     refreshToken: refreshToken,
-                    guilds: profile.guilds,
+                    guilds: guildIds,
                     roles: discordUserData?.roles,
                     isStaff: false
                 });
