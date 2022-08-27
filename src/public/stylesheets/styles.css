@@ -1052,7 +1052,7 @@ hr {
     margin-bottom: 14px;
     height: 40px;
     width: 180px;
-    border-radius: 1px;
+    border-radius: 4px;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -1079,7 +1079,7 @@ hr {
 .btn-google-icon {
     float: left;
     border-radius: 1px;
-    background: #00000042;
+    background: #0000001a;
     padding: 5px;
 }
 
