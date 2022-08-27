@@ -95,7 +95,8 @@ function makeEditable() {
         'name': 'resource-title',
         'id': 'resource-title',
         'class': 'res-input',
-        'value': currentTitle
+        'value': currentTitle,
+        'spellcheck': true
     });
     $('.post-title').replaceWith(input);
     $('#title-label').css('margin-top', '54px');

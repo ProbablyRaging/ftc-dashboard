@@ -155,9 +155,9 @@
                         <p class="comment-sub">Suggest a topic for one of our writers to cover</p>
                         <div class="comment-box">
                             <% if (user) { %>
-                            <textarea class="res-comment-box" id="res-comment-box"></textarea>
+                            <textarea class="res-comment-box" id="res-comment-box" spellcheck="true"></textarea>
                             <% } else { %>
-                            <textarea class="res-comment-box" id="res-comment-box" disabled>Sign in to leave a suggestion</textarea>
+                            <textarea class="res-comment-box" id="res-comment-box" spellcheck="true" disabled>Sign in to leave a suggestion</textarea>
                             <% } %>
                             <button class="bi bi-send-fill res-comment-btn" onclick="submitComment()" disabled></button>
                         </div>

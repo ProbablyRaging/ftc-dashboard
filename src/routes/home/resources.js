@@ -188,7 +188,7 @@ router.post('/edit', isWriter, async (req, res) => {
         } else {
             image = '/images/default_res_banner.png'
         }
-        await resourceSchema.findOneAndUpdate({
+        const edit = await resourceSchema.findOneAndUpdate({
             _id: req.body.id
         }, {
             title: req.body.title,
@@ -196,8 +196,7 @@ router.post('/edit', isWriter, async (req, res) => {
             categories: req.body.categories,
             image: image,
             snippet: req.body.snippet,
-            edited: Date.now(),
-            slug: slugify(req.body.title, { lower: true, strict: true })
+            edited: Date.now()
         }, {
             upsert: true
         }).catch(err => {
@@ -205,7 +204,7 @@ router.post('/edit', isWriter, async (req, res) => {
             error = true;
             return res.send({ "status": "error" })
         });
-        if (!error) res.send({ "status": "ok", "slug": `${slugify(req.body.title, { lower: true, strict: true })}` });
+        if (!error) res.send({ "status": "ok", "slug": edit.slug });
     }
 });
 

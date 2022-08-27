@@ -87,7 +87,7 @@
                         <h1 class="post-title" id="post-title"><%= post.title %></h1>
 
                         <label id="snippet-label" for="resource-snippet" style="display: none;">Snippet</label>
-                        <input class="res-input" id="resource-snippet" name="resource-snippet" type="text" value="<%= post.snippet %>" minlength=50 maxlength=200 style="display: none;" required>
+                        <input class="res-input" id="resource-snippet" name="resource-snippet" type="text" value="<%= post.snippet %>" minlength=50 maxlength=200 style="display: none;" spellcheck="true" required>
 
                         <label id="category-label" for="category-selector" style="display: none;">Categories</label>
                         <div id="category-selector" class="category-selector" style="display: none;">
@@ -170,9 +170,9 @@
                         <p class="comment-sub">Leave a comment</p>
                         <div class="comment-box">
                             <% if (user) { %>
-                            <textarea class="res-comment-box" id="res-comment-box"></textarea>
+                            <textarea class="res-comment-box" id="res-comment-box" spellcheck="true"></textarea>
                             <% } else { %>
-                            <textarea class="res-comment-box" id="res-comment-box" disabled>Sign in to leave a comment</textarea>
+                            <textarea class="res-comment-box" id="res-comment-box" spellcheck="true" disabled>Sign in to leave a comment</textarea>
                             <% } %>
                             <button class="bi bi-send-fill res-comment-btn" onclick="submitComment('<%= post.id %>')" disabled></button>
                         </div>
