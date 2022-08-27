@@ -3586,6 +3586,10 @@ li {
     flex-wrap: wrap;
 }
 
+.resource-wrapper .col--md-4 {
+    margin-bottom: 64px !important;
+}
+
 .new-post {
     margin-left: 12px;
 }
