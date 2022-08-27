@@ -456,12 +456,14 @@ hr {
     overflow: hidden;
     cursor: pointer;
     user-select: none;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .content-box-button:hover {
     filter: brightness(0.9);
-    box-shadow: rgb(0 0 0 / 20%) 2px 4px 4px;
-
+    box-shadow: rgb(0 0 0 / 20%) 2px 2px 3px;
+    transform: translate3d(-1px, -1px, 0);
 }
 
 .button-img-container {
@@ -516,7 +518,6 @@ hr {
     border: 1px solid transparent;
     transition: border 0.2s;
     outline: none;
-
 }
 
 .content-box-select:hover {
@@ -548,7 +549,6 @@ hr {
 .content-box-textbox:focus {
     border: 1px solid #5fa2db !important;
     background: var(--bg);
-
 }
 
 .content-box-textbox-sm {
