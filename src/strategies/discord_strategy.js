@@ -38,9 +38,9 @@ passport.use(new discordStrategy({
             // If they already have a database entry
             if (user) {
                 let guildIds = [];
-                if (profile?.guilds.length > 0) {
-                    profile.guilds.forEach(guild => {
-                        guildIds.push(guild.id);
+                if (profile?.guilds?.length > 0) {
+                    profile?.guilds.forEach(guild => {
+                        guildIds.push(guild?.id);
                     });
                 }
                 await discordUser.findOneAndUpdate({
@@ -59,9 +59,9 @@ passport.use(new discordStrategy({
                 done(null, user);
             } else {
                 let guildIds = [];
-                if (profile?.guilds.length > 0) {
-                    profile.guilds.forEach(guild => {
-                        guildIds.push(guild.id);
+                if (profile?.guilds?.length > 0) {
+                    profile?.guilds.forEach(guild => {
+                        guildIds.push(guild?.id);
                     });
                 }
                 const newUser = await discordUser.create({
@@ -82,9 +82,9 @@ passport.use(new discordStrategy({
         } else if (discordUserData.joined_at) {
             if (user) {
                 let guildIds = [];
-                if (profile?.guilds.length > 0) {
-                    profile.guilds.forEach(guild => {
-                        guildIds.push(guild.id);
+                if (profile?.guilds?.length > 0) {
+                    profile?.guilds.forEach(guild => {
+                        guildIds.push(guild?.id);
                     });
                 }
                 await discordUser.findOneAndUpdate({
@@ -103,9 +103,9 @@ passport.use(new discordStrategy({
                 done(null, user);
             } else {
                 let guildIds = [];
-                if (profile?.guilds.length > 0) {
-                    profile.guilds.forEach(guild => {
-                        guildIds.push(guild.id);
+                if (profile?.guilds?.length > 0) {
+                    profile?.guilds.forEach(guild => {
+                        guildIds.push(guild?.id);
                     });
                 }
                 const newUser = await discordUser.create({
