@@ -600,22 +600,6 @@ hr {
     border: .5px solid var(--text-alt)
 }
 
-@keyframes cart-pulse {
-    0% {
-        transform: scale(1);
-        opacity: 0
-    }
-
-    20% {
-        opacity: .5
-    }
-
-    100% {
-        transform: scale(2.5);
-        opacity: 0
-    }
-}
-
 @keyframes buttonResizeShrink {
     from {
         max-width: 900px
@@ -671,7 +655,7 @@ hr {
 }
 
 .page--transition-fade {
-    transition: .4s cubic-bezier(0, 0, 0, 1);
+    /* transition: .4s cubic-bezier(0, 0, 0, 1); */
     opacity: 1;
     position: relative
 }
@@ -1181,7 +1165,7 @@ html.is-animating .page--transition-fade {
 }
 
 .hover-effect--scale {
-    transition: .1s transform ease-in-out;
+    transition: transform .1s ease-in-out;
     transform: scale(1)
 }
 
@@ -3780,7 +3764,7 @@ li {
 }
 
 .res-comment-box {
-    height: 75px;
+    height: 40px;
     width: 100%;
     border: 1px solid #e3e2e2;
     border-radius: 8px;
@@ -3788,6 +3772,7 @@ li {
     padding: 12px;
     padding-right: 50px;
     resize: none;
+    overflow: hidden;
 }
 
 .timestamp-wrapper {
@@ -3900,14 +3885,13 @@ li {
 }
 
 .comment-box button {
-    color: #bebebe;
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
     border: none;
     background: 0 0;
     font-size: 24px;
-    margin-bottom: 10px;
+    margin-top: -8px;
     margin-right: 10px;
     transform: rotate(45deg);
 }
@@ -3919,13 +3903,14 @@ li {
 @media screen and (max-width: 960px) {
     .category-wrapper {
         margin: 0;
-    }   
+    }
 }
 
 @media screen and (max-width: 720px) {
     .category-wrapper {
         padding: 0;
     }
+
     .category-wrapper ul {
         margin: 0;
     }
@@ -3972,7 +3957,7 @@ li {
     cursor: pointer;
 }
 
-.category-selector input:checked + .mark-checked {
+.category-selector input:checked+.mark-checked {
     background-color: #61e58f;
 }
 

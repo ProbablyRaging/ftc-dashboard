@@ -33,6 +33,16 @@ $('.res-comment-box').keypress(function (e) {
         $('.res-comment-btn').click();
     }
 });
+// Expand comment box when focused
+$(".res-comment-box").focus(function() {
+    $(this).animate({
+        height: 75
+    }, 150);
+}).blur(function() {
+    $(this).animate({
+        height: 40
+    }, 150);
+});​
 
 // New resource post submit
 function submitPost() {
