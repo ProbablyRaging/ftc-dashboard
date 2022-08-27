@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const { dbTwo } = require('../../database/mongodb');
 
-const userSchema = new mongoose.Schema({
+const userSchema = mongoose.Schema({
     userId: {
         type: String,
         required: true
@@ -39,4 +40,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-const DiscordUser = module.exports = mongoose.model('dashboardusers', userSchema);
+const discorduser = dbTwo.model('dashboardusers', userSchema);
+
+module.exports = discorduser;
