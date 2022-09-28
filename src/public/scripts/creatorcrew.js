@@ -39,7 +39,7 @@ if (top.location.pathname.split('/')[1] === 'creatorcrew') {
 // When the player is ready
 function onPlayerReady(event) {
     if (isUserGoogleAuthed) {
-        const videoId = event.target.i.id;
+        const videoId = event.target.getVideoData()['video_id'];
         const watchStatus = document.getElementById(`${videoId}-watch-status`);
         const playerBorder = document.getElementById(`${videoId}`);
         const setVideoTimer = document.getElementById(`${videoId}-watch-status`);
@@ -93,7 +93,7 @@ function onPlayerReady(event) {
             });
         }, 2000);
     }
-    const videoId = event.target.i.id;
+    const videoId = event.target.getVideoData()['video_id'];
     const videoTitle = event.target.getVideoData().title.slice(0, 40) + '...';
     const setVideoTitle = document.getElementById(`${videoId}-video-title`);
     const setVideoTimer = document.getElementById(`${videoId}-watch-status`);
@@ -124,7 +124,7 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
     // Check if the user is signed in via Google
     if (isUserGoogleAuthed) {
-        const videoId = event.target.i.id;
+        const videoId = event.target.getVideoData()['video_id'];
         const currentWatchTime = event.target.getCurrentTime();
         const watchStatus = document.getElementById(`${videoId}-watch-status`);
         const playerBorder = document.getElementById(`${videoId}`);
