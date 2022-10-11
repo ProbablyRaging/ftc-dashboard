@@ -45,8 +45,7 @@ router.get('/messages', async (req, res) => {
         dataArr = [];
         for (const data of results) {
             const { id, username, msgCount, rank, level, avatar, xp } = data;
-
-            dataArr.push({ id, username, msgCount, rank, level, avatar, xp });
+            if (username) dataArr.push({ id, username, msgCount, rank, level, avatar, xp });
         }
 
         dataArr.sort(function (a, b) {
@@ -76,8 +75,7 @@ router.get('/lastletter', async (req, res) => {
         dataArr = [];
         for (const data of results) {
             const { userId, username, avatar, correctCount } = data;
-
-            dataArr.push({ userId, username, avatar, correctCount });
+            if (username) dataArr.push({ userId, username, avatar, correctCount });
         }
 
         let record;
@@ -114,8 +112,7 @@ router.get('/counting', async (req, res) => {
         dataArr = [];
         for (const data of results) {
             const { userId, username, avatar, counts } = data;
-
-            dataArr.push({ userId, username, avatar, counts });
+            if (username) dataArr.push({ userId, username, avatar, counts });
         }
 
         let record;
