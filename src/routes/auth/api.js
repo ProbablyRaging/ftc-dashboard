@@ -222,8 +222,8 @@ router.post('/dtp', async (req, res) => {
             }, {
                 author: req.body.author,
                 game: req.body.game,
-                title: req.body.title
-
+                title: req.body.title,
+                status: req.body.status
             });
         }
     } else {
