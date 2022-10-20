@@ -2,6 +2,7 @@ const router = require('express').Router();
 const fetch = require('node-fetch');
 const googleUser = require('../../schema/misc/google_user');
 const staffApplicationSchema = require('../../schema/logs/staff_applications_schema');
+const dtpSchema = require('../../schema/misc/dtp');
 
 router.post('/', async (req, res) => {
     res.sendStatus(405);
@@ -207,6 +208,31 @@ A user joined the server via the landing page`
         });
     });
 
+    res.sendStatus(204);
+});
+
+// POST route for Discord Twitch Presence
+router.post('/dtp', async (req, res) => {
+    const results = await dtpSchema.find();
+    if (results.length > 0) {
+        for (const data of results) {
+            console.log(data.game);
+            await dtpSchema.updateOne({
+                author: data.author
+            }, {
+                author: req.body.author,
+                game: req.body.game,
+                title: req.body.title
+
+            });
+        }
+    } else {
+        await dtpSchema.create({
+            author: req.body.author,
+            game: req.body.game,
+            title: req.body.title
+        });
+    }
     res.sendStatus(204);
 });
 

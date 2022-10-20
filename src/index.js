@@ -14,10 +14,13 @@ const { isAuthortized } = require('./strategies/auth_check');
 const { dbOne } = require('./database/mongodb');
 const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
+const  cors = require('cors');
 const path = require('path');
 
 // Database
 dbOne.then(() => console.log('Connected to database')).catch(err => console.error(err));
+
+app.use(cors());
 
 // Minify CSS HTML
 app.use(compression());
