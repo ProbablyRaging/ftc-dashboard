@@ -216,7 +216,6 @@ router.post('/dtp', async (req, res) => {
     const results = await dtpSchema.find();
     if (results.length > 0) {
         for (const data of results) {
-            console.log(data.game);
             await dtpSchema.updateOne({
                 author: data.author
             }, {
