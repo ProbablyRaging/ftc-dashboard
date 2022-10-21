@@ -223,7 +223,7 @@ router.post('/dtp', async (req, res) => {
                 game: req.body.game,
                 title: req.body.title,
                 status: req.body.status,
-                platform: req.body.platorm
+                platform: req.body.platform
             });
         }
     } else {
@@ -233,7 +233,7 @@ router.post('/dtp', async (req, res) => {
             game: req.body.game,
             title: req.body.title,
             status: req.body.status,
-            platform: req.body.platorm
+            platform: req.body.platform
         });
     }
     res.sendStatus(204);
