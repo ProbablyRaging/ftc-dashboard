@@ -231,8 +231,8 @@ router.post('/dtp', async (req, res) => {
             author: req.body.author,
             game: req.body.game,
             title: req.body.title,
-            platform: req.body.platorm,
             status: req.body.status,
+            platform: req.body.platorm
         });
     }
     res.sendStatus(204);
