@@ -213,6 +213,7 @@ A user joined the server via the landing page`
 
 // POST route for Discord Twitch Presence
 router.post('/dtp', async (req, res) => {
+    console.log(req.body);
     const results = await dtpSchema.find();
     if (results.length > 0) {
         for (const data of results) {
