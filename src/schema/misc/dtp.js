@@ -17,6 +17,10 @@ const dtp = mongoose.Schema({
     status: {
         type: String,
         required: true
+    },
+    platform: {
+        type: String,
+        required: true
     }
 });
 

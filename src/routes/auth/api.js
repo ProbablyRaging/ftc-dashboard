@@ -222,7 +222,8 @@ router.post('/dtp', async (req, res) => {
                 author: req.body.author,
                 game: req.body.game,
                 title: req.body.title,
-                status: req.body.status
+                status: req.body.status,
+                platform: req.body.platorm
             });
         }
     } else {
@@ -230,7 +231,8 @@ router.post('/dtp', async (req, res) => {
             author: req.body.author,
             game: req.body.game,
             title: req.body.title,
-            status: req.body.status
+            platform: req.body.platorm,
+            status: req.body.status,
         });
     }
     res.sendStatus(204);
