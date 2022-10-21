@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const { dbTwo } = require('../../database/mongodb');
 
 const dtp = mongoose.Schema({
+    dtp: {
+        type: String,
+        required: true
+    },
     author: {
         type: String,
         required: true

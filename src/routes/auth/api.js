@@ -217,7 +217,7 @@ router.post('/dtp', async (req, res) => {
     if (results.length > 0) {
         for (const data of results) {
             await dtpSchema.updateOne({
-                author: data.author
+                dtp: data.dtp
             }, {
                 author: req.body.author,
                 game: req.body.game,
@@ -228,6 +228,7 @@ router.post('/dtp', async (req, res) => {
         }
     } else {
         await dtpSchema.create({
+            dtp: 'dtp',
             author: req.body.author,
             game: req.body.game,
             title: req.body.title,
