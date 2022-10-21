@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const { dbTwo } = require('../../database/mongodb');
 
-const dtpSchema = mongoose.Schema({
+const dtp = mongoose.Schema({
     author: {
         type: String,
         required: true
@@ -19,4 +20,6 @@ const dtpSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('dtp', dtpSchema);
+const dtpSchema = dbTwo.model('dtp', dtp);
+
+module.exports = dtpSchema;
