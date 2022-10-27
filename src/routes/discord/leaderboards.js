@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 // Ranks
 router.get('/ranks', async (req, res) => {
     if (req.user) {
-        const results = await rankSchema.find({ 'rank': { $gte: 1, $lte: 100 } }).sort({ 'rank': 1 });
+        const results = await rankSchema.find({ 'rank': { $gte: 1, $lte: 20 } }).sort({ 'rank': 1 });
 
         // for (const data of results) {
         //     const response = await fetch(`https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.webp`);

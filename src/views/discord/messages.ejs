@@ -24,10 +24,11 @@
             <table class="leaderboard-table">
                 <tbody>
                     <% for (var i = 0; i < dataArr.length; i++) { %>
+                        <% const pos = i + 1 %> 
 
                     <tr>
                         <td class="rank">
-                            <%= dataArr[i].rank %>
+                            <%= '#' + pos %>
                         </td>
                         <td class="level">
                             <p class="level-number"><%= numberWithCommas(dataArr[i].level) %></p>
